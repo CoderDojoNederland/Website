@@ -37,12 +37,12 @@ h2 {
     box-shadow: 0 -1px 0 rgba(0, 0, 0, .20) inset, 0 1px 0 rgba(255, 255, 255, .05);
 }
 a {
-    color: #fff;
+    color: #28A2DB;
     text-decoration: none;
 }
 a:hover {
     text-decoration: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #28A2DB;
 }
 p.credit {
     position: absolute;
