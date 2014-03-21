@@ -1,0 +1,4 @@
+coderdojo_website:
+    resource: "@CoderdojoWebsiteBundle/Resources/config/routing.yml"
+    prefix:   /
+

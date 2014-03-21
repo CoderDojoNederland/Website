@@ -1,0 +1,7 @@
+parameters:
+#    coderdojo_website.example.class: Coderdojo\WebsiteBundle\Example
+
+services:
+#    coderdojo_website.example:
+#        class: %coderdojo_website.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
