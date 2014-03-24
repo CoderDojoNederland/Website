@@ -1,7 +1,7 @@
 var Index = function () {
 
     return {
-        
+
         //Parallax Slider
         initParallaxSlider: function () {
 			$(function() {
@@ -13,7 +13,7 @@ var Index = function () {
         initLayerSlider: function () {
 		    $(document).ready(function(){
 		        $('#layerslider').layerSlider({
-		            skinsPath : 'assets/plugins/layer_slider/skins/',
+		            skinsPath : '/bundles/coderdojowebsite/plugins/layer_slider/skins/',
 		            skin : 'fullwidth',
 		            thumbnailNavigation : 'hover',
 		            hoverPrevNext : true,
@@ -21,7 +21,7 @@ var Index = function () {
 		            responsiveUnder : 960,
 		            sublayerContainer : 960
 		        });
-		    });     
+		    });
         },
 
         //Revolution Slider
