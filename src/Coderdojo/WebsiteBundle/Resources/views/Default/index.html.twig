@@ -12,22 +12,22 @@
     <meta name="author" content="">
 
     <!-- CSS Global Compulsory-->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/css/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/css/headers/header1.css')}}">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/headers/header1.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/responsive.css')}}">
     <link rel="shortcut icon" href="favicon.ico">
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/plugins/font-awesome/css/font-awesome.css')}}">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/plugins/flexslider/flexslider.css')}}">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/plugins/bxslider/jquery.bxslider.css')}}">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/plugins/fancybox/source/jquery.fancybox.css')}}">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/plugins/revolution_slider/rs-plugin/css/settings.css')}}" type="text/css" media="screen">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/font-awesome/css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/flexslider/flexslider.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/parallax-slider/css/parallax-slider.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('bundles/coderdojowebsite/plugins/blockHover/css/component.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/layer_slider/css/layerslider.css')}}" type="text/css">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/pages/page_search.css')}}">
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/css/pages/page_one.css')}}">
-    <!-- CSS Theme -->
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/css/themes/orange.css')}}" id="style_color">
-    <link rel="stylesheet" href="{{ asset('bundles/coderdojowebsite/css/themes/headers/header1-orange.css')}}" id="style_color-header-1">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/themes/orange.css')}}" id="style_color">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/themes/headers/header1-orange.css')}}" id="style_color-header-1">
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 </head>
 
@@ -86,99 +86,182 @@
 <!--=== End Header ===-->
 
 <!--=== Slider ===-->
-<div class="fullwidthbanner-container">
-    <div class="fullwidthbanner">
-        <ul>
-            <!-- THE FIRST SLIDE -->
-            <li data-transition="fade" data-slotamount="1" data-masterspeed="300" data-thumb="http://farm8.staticflickr.com/7451/10523233224_7889fcdf8d_h.jpg">
+<div class="layer_slider">
+    <div id="layerslider-container-fw">
+        <div id="layerslider" style="width: 100%; height: 500px; margin: 0px auto; ">
+            <!--First Slide-->
+            <div class="ls-layer" style="slidedirection: right;">
 
-                <!-- THE MAIN IMAGE IN THE THIRD SLIDE -->
-                <img src="{{asset('/bundles/coderdojowebsite/img/header.jpg')}}" >
+                <img src="http://farm8.staticflickr.com/7451/10523233224_7889fcdf8d_h.jpg" class="ls-bg" alt="CoderDojo Rotterdam #1">
 
-            </li>
-        </ul>
+            </div>
+            <!--End First Slide-->
 
-        <div class="tp-bannertimer tp-bottom"></div>
+
+            <!--Second Slide-->
+            <div class="ls-layer" style="slidedirection: right; ">
+
+                <img src="http://farm3.staticflickr.com/2837/11225463115_cbb6dfbfd2_h.jpg" class="ls-bg" alt="CoderDojo Rotterdam #2">
+
+            </div>
+            <!--End Second Slide-->
+
+            <!--Second Slide-->
+            <div class="ls-layer" style="slidedirection: right; ">
+
+                <img src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/t31.0-8/1796933_607820075977389_1649688681_o.jpg" class="ls-bg" alt="CoderDojo Rotterdam #2">
+
+            </div>
+            <!--End Second Slide-->
+
+            <!--Third Slide-->
+            <div class="ls-layer" style="slidedirection: right; ">
+
+                <img src="http://farm4.staticflickr.com/3821/11225375626_dc8f1143c9_h.jpg" class="ls-bg" alt="CoderDojo Rotterdam #2">
+
+            </div>
+            <!--End Third Slide-->
+        </div>
     </div>
-</div>
+</div><!--/layer_slider-->
 <!--=== End Slider ===-->
 
 <!--=== Content Part ===-->
-<div class="one-page">
-    <div class="one-page-inner one-grey">
-        <div class="container">
-            <h1>CoderDojo&apos;s in Nederland</h1>
-            <div class="row">
-               <div class="col-md-3">
-                  <h3><a href="http://www.coderdojo-rotterdam.nl">Rotterdam</a></h3>
-                  <p>De Rotterdamse CoderDojo bestaat uit een groep van 25 kinderen en wordt georganiseerd voor Christian Vermeulen samen met de Startup Foundation.</p>
-               </div>
-               <div class="col-md-3">
-                  <h3><a href="http://www.eventbrite.nl/o/5305509403?s=21972267">Amsterdam</a></h3>
-                  <p>De Amsterdamse CoderDojo wordt gehouden in de Urban Office en georganiseerd door Joek van Montfort</p>
-               </div>
-               <div class="col-md-3">
-                  <h3><a href="https://twitter.com/CoderDojoLeiden">Leiden</a></h3>
-                  <p>Leiden is al sterk bezig, meer informatie is te vinden op hun Facebook of Twitter account.</p>
-               </div>
-               <div class="col-md-3">
-                  <h3><a href="http://coderdojo.org/">Bij jou in de buurt?</a></h3>
-                  <p>Is er geen CoderDojo bij jou in de buurt? Start zelf een CoderDojo op!</p>
-               </div>
-            </div>
-        </div>
+<div class="container">
+    <!--Title Box-->
+    <div class="title-box">
+        <div class="title-box-text">Doe mee met <span class="color-green">CoderDojo!</span></div>
+        <p>Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers!<br/>Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!</p>
     </div>
+    <!--End Promo Box-->
 
-    <div class="one-page-inner one-default">
-        <div class="container">
-            <h1>Kinderen van 7 t/m 17 leren gratis programmeren</h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>CoderDojo verzorgt gratis lessen / workshops om kinderen van 7 - 18 jaar te leren programmeren. Wij organiseren regelmatig evenementen waar kinderen, met hun ouders, kunnen samenkomen om te werken aan websites, games, apps en software. Het hele project wordt <b>geheel gratis</b> door vrijwilligers opgezet!</p>
-                    <p>De CoderDojo beweging heeft zijn roots in Ierland waar James Whelton op zijn school bijles gaf aan klasgenoten. Hiervoor zat hij elke week op woensdag middag in een vrij lokaal. Al snel werd deze club groter en groter en waren ze veel verder aan het gaan dan de lessen van school. Vanaf dat moment heeft James samen met Bill Liao CoderDojo opgericht.
-                    </p><p>
-                    CoderDojo is een open source format wat iedereen mag gebruiken en kopiëren. Middels dit format is het mogelijk om een CoderDojo in jouw eigen regio op te richten. Elke CoderDojo voldoet wel aan een aantal richtlijnen.</p>
-                    <a href="http://coderdojo.org/" class="btn-u btn-u-large btn-u-green one-page-btn"><i class="icon-bullhorn"></i> Start een CoderDojo bij jou in de buurt</a>
-                </div>
-                <div class="col-md-6">
-                    <iframe width="560" height="315" src="//www.youtube.com/embed/GLtoyfbPj_U" frameborder="0" allowfullscreen></iframe>
-                </div>
+    <!--Promo Box-->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="promo-box">
+                <i class="icon-eur color-blue"></i>
+                <strong>Gratis en Vrijblijvend</strong>
+                <p>Omdat CoderDojo geheel door vrijwilligers wordt opgezet is het helemaal gratis en voor iedereen tussen de 7 en 17 jaar toegankelijk!</p>
             </div>
         </div>
-    </div>
 
-    <div class="one-page-inner one-orange">
-        <div class="container">
-            <h1>Leer websites bouwen</h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="http://farm4.staticflickr.com/3782/10523276086_56382ca2cc_z.jpg" class="margin-bottom-10 img-responsive" alt="">
-                </div>
-                <div class="col-md-6">
-                    <p>Wil jij leren hoe je een website bouwt? Kom dan naar CoderDojo! Hier leer je werken met opmaaktalen zoals HTML en CSS of een programmeertaal zoals Javascript. Hiermee kun je al een simpelen website opzetten!</p>
-                    <p>Als je nog meer wilt leren kun je ook deelnemen aan lessen over PHP en MySQL om te leren hoe je bijvoorbeeld formuliertjes kunt email of login scripts schrijft!</p>
-                    <a href="http://zen.coderdojo.com/" class="btn-u btn-u-large btn-u-yellow one-page-btn"><i class="icon-search"></i> Zoek een CoderDojo in de buurt</a>
-                </div>
+        <div class="col-md-4">
+            <div class="promo-box">
+                <i class="icon-calendar color-orange"></i>
+                <strong>Regelmatig</strong>
+                <p>Elke Dojo streeft er naar om minimaal één keer per maand open te zijn. In sommige gevallen zelfs vaker!</p>
             </div>
         </div>
-    </div>
 
-    <div class="one-page-inner one-default">
-        <div class="container">
-            <h1>Games en Animaties</h1>
-            <div class="row margin-bottom-40">
-                <div class="col-md-6">
-                    <p>Hou jij van gamen en wil je altijd al een keer je eigen game bouwen? Bij CoderDojo leer je onder andere hoe je een game bouwt, of animaties maakt. Hierbij gaan we bijvoorbeeld ook in op het schrijven van Minecraft scripts!</p>
-                    <p>CoderDojo Rotterdam heeft zelfs een eigen Minecraft server! Deze is voor alle CoderDojo deelnemers gratis toegankelijk. Hier kun je in contact komen met andere deelnemers en samen een eigen server beheren.</p>
-                    <a class="btn-u btn-u-large btn-u-blue one-page-btn"><i class="icon-rocket"></i> CoderDojo Minecraft Server</a>
-                </div>
-                <div class="col-md-6">
-                    <img src="https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-prn1/t31.0-8/1557191_607808192645244_1435575873_o.jpg" class="img-responsive" alt="">
-                </div>
+        <div class="col-md-4">
+            <div class="promo-box">
+                <i class="icon-map-marker color-sea"></i>
+                <strong>Bij jou in de buurt</strong>
+                <p>CoderDojo wordt over de hele wereld gehouden, dus ook bij jou in de buurt. Kun je geen Dojo vinden? Start er zelf één!</p>
             </div>
         </div>
     </div>
-</div><!--/one-page-->
+    <!--End Promo Box-->
+
+    <div class="clearfix margin-bottom-40"></div>
+
+    <!--Our Work-->
+    <div class="row service-v1 margin-bottom-40">
+        <div class="col-md-4 md-margin-bottom-40">
+            <iframe width="100%" height="240" src="//www.youtube.com/embed/GLtoyfbPj_U" frameborder="0" allowfullscreen></iframe>
+            <h2>CoderDojo Rotterdam</h2>
+            <p>In Rotterdam hebben we een vliegende start gehad. Er is nu ruimte voor 25 deelnemers per editie, maar binnenkort zal dit snel groter worden.</p>
+        </div>
+        <div class="col-md-4">
+            <iframe src="//player.vimeo.com/video/82288251" width="100%" height="240" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <h2>CoderDojo Amsterdam</h2>
+            <p>De Amsterdamse tak van CoderDojo is al in een stabiel stadium. Elke maand is er op twee plaatsen een editie te vinden!</p>
+        </div>
+        <div class="col-md-4 md-margin-bottom-40">
+            <img src="http://digivita.nl/wp-content/uploads/2014/01/Activiteiten_Coder-dojo-1.jpg"/ class="img-responsive" alt="CoderDojo Leiden for Girls">
+
+            <h2>CoderDojo Leiden</h2>
+            <p>De meest verse toevoeging aan het Nederlandse arsenaal van CoderDojo is Leiden. Ook hier is een vliegende start gemaakt!</p>
+        </div>
+    </div>
+    <!--End Our Work-->
+
+    <hr class="margin-bottom-40">
+
+    <!-- Info Blcoks -->
+    <div class="row">
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-code icon-info-blocks"></i>
+            <div class="info-blocks-in">
+                <h3>Programmeren</h3>
+                <p>Bij CoderDojo kun je alles leren over programmeren. Denk hierbij aan websites, games, apps of zelfs robots!</p>
+            </div>
+        </div>
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-cog icon-info-blocks"></i>
+            <div class="info-blocks-in">
+                <h3>Aan de slag met techniek</h3>
+                <p>Naast digitale projecten kun je bij CoderDojo ook aan de slag met bijvoorbeeld Arduino om zelf apparaten te bouwen.</p>
+            </div>
+        </div>
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-question icon-info-blocks"></i>
+            <div class="info-blocks-in">
+                <h3>Zit je vast met jouw project?</h3>
+                <p>Ben je zelf met een project bezig en kom je er even niet uit? Kom dan naar een CoderDojo, hier zijn ongetwijfeld mensen die je verder kunnen helpen.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-rocket icon-info-blocks"></i>
+            <div class="info-blocks-in">
+                <h3>Games</h3>
+                <p>Gamen is natuurlijk een groot onderdeel in het leven van een developer. Niet alleen games bouwen, maar ook games spelen hoort bij CoderDojo!</p>
+            </div>
+        </div>
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-group icon-info-blocks"></i>
+            <div class="info-blocks-in">
+                <h3>Leer anderen mensen kennen</h3>
+                <p>De sfeer bij CoderDojo is heel open en iedereen is welkom! Zo kun je snel andere mensen leren kennen met dezelfde interesses.</p>
+            </div>
+        </div>
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-food icon-info-blocks"></i>
+            <div class="info-blocks-in">
+                <h3>Pizza!</h3>
+                <p>Developen en pizza eten gaan hand in hand. Daarom oefenen we dit soms door &apos;s avonds met zijn allen pizza te bestellen!</p>
+            </div>
+        </div>
+    </div>
+    <!--End Info Blcoks -->
+
+    <hr class="margin-bottom-50">
+
+    <!--Service Block-->
+    <div class="row promo-service">
+        <div class="col-md-6 md-margin-bottom-20">
+            <h2>Wil je mee helpen met CoderDojo?</h2>
+            <p>CoderDojo is altijd op zoek naar vrijwilligers! Ben je enthousiast geworden over CoderDojo en lijkt het je leuk om hiervan deel uit te maken? Cool! Je kan jezelf opgeven als mentor bij je lokale CoderDojo of zelf een Dojo starten als je je in één of meerdere van onderstaande dingen kan vinden:</p>
+            <ul class="list-unstyled">
+                <li><i class="icon-angle-right color-green"></i>Developer die kennis wilt delen</li>
+                <li><i class="icon-angle-right color-green"></i>Ruimte beschikbaar stellen</li>
+                <li><i class="icon-angle-right color-green"></i>Promotie van een Dojo</li>
+                <li><i class="icon-angle-right color-green"></i>Begeleiden van een Dojo</li>
+                <li><i class="icon-angle-right color-green"></i>Gastsprekers regelen</li>
+            </ul>
+            <br>
+            <a href="#" class="btn-u btn-u-lg btn-u-sea"><i class="icon-plus-sign-alt"></i> Start een Dojo</a>
+            <a href="#" class="btn-u btn-u-lg btn-u-blue"><i class="icon-ok-sign"></i> Help een Dojo</a>
+        </div>
+
+        <div class="col-md-6">
+            <iframe width="100%" height="350" src="//www.youtube.com/embed/y1kJys-BhAU" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <!--End Service Block-->
+</div>
 <!-- End Content Part -->
 
 <!--=== Footer ===-->
@@ -216,19 +299,19 @@
                 <div class="posts">
                     <div class="headline"><h2>CoderDojo&apos;s in Nederland</h2></div>
                     <dl class="dl-horizontal">
-                        <dt><a href="#"><img src="{{ asset('bundles/coderdojowebsite/img/sliders/elastislide/6.jpg')}}" alt="" /></a></dt>
+                        <dt><a href="#"><img src="/bundles/coderdojowebsite/img/sliders/elastislide/6.jpg" alt="" /></a></dt>
                         <dd>
                             <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
                         </dd>
                     </dl>
                     <dl class="dl-horizontal">
-                    <dt><a href="#"><img src="{{ asset('bundles/coderdojowebsite/img/sliders/elastislide/10.jpg')}}" alt="" /></a></dt>
+                    <dt><a href="#"><img src="/bundles/coderdojowebsite/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
                         <dd>
                             <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
                         </dd>
                     </dl>
                     <dl class="dl-horizontal">
-                    <dt><a href="#"><img src="{{ asset('bundles/coderdojowebsite/img/sliders/elastislide/11.jpg')}}" alt="" /></a></dt>
+                    <dt><a href="#"><img src="/bundles/coderdojowebsite/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
                         <dd>
                             <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
                         </dd>
@@ -290,27 +373,27 @@
 <!--=== End Copyright ===-->
 
 <!-- JS Global Compulsory -->
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/jquery-1.10.2.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/jquery-migrate-1.2.1.min.js')}}"></script>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/hover-dropdown.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/back-to-top.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/less-1.4.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/jquery-1.10.2.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/jquery-migrate-1.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/hover-dropdown.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/back-to-top.js')}}"></script>
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/flexslider/jquery.flexslider-min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/bxslider/jquery.bxslider.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/fancybox/source/jquery.fancybox.pack.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/flexslider/jquery.flexslider-min.js')}}"></script>
+<!-- Layer Slider -->
+<script src="{{asset('bundles/coderdojowebsite/plugins/layer_slider/jQuery/jquery-easing-1.3.js')}}" type="text/javascript"></script>
+<script src="{{asset('bundles/coderdojowebsite/plugins/layer_slider/jQuery/jquery-transit-modified.js')}}" type="text/javascript"></script>
+<script src="{{asset('bundles/coderdojowebsite/plugins/layer_slider/js/layerslider.transitions.js')}}" type="text/javascript"></script>
+<script src="{{asset('bundles/coderdojowebsite/plugins/layer_slider/js/layerslider.kreaturamedia.jquery.js')}}" type="text/javascript"></script>
+<!-- End Layer Slider -->
 <!-- JS Page Level -->
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/js/app.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bundles/coderdojowebsite/js/pages/index.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/js/app.js')}}"></script>
+<script type="text/javascript" src="{{asset('bundles/coderdojowebsite/js/pages/index.js')}}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         App.init();
         App.initSliders();
-        App.initFancybox();
-        App.initBxSlider();
-        Index.initRevolutionSlider();
+        Index.initLayerSlider();
     });
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -321,7 +404,7 @@
     ga('send', 'pageview');
 </script>
 <!--[if lt IE 9]>
-    <script src="{{ asset('bundles/coderdojowebsite/plugins/respond.js')}}"></script>
+    <script src="{{asset('bundles/coderdojowebsite/plugins/respond.js')}}"></script>
 <![endif]-->
 
 </body>
