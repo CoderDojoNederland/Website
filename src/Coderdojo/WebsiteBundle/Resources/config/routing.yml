@@ -1,3 +1,7 @@
 home:
     pattern:  /
     defaults: { _controller: CoderdojoWebsiteBundle:Default:index }
+
+about:
+    pattern:  /over-coderdojo
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:about }

@@ -8,6 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Default:index.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:index.html.twig');
+    }
+
+    public function aboutAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:about.html.twig');
     }
 }
