@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      ~
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -24,9 +24,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    form:
-        resources:
-            - BraincraftedBootstrapBundle:Form:form_div_layout.html.twig
+    # form:
+    #     resources:
+    #         - BraincraftedBootstrapBundle:Form:form_div_layout.html.twig
 
 
 # Assetic Configuration
@@ -83,3 +83,15 @@ braincrafted_bootstrap:
         variables_file: ~
         bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
+
+# Fos user config
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Coderdojo\WebsiteBundle\Entity\Dojo
+    registration:
+        form:
+            type: coderdojo_user_registration
+    profile:
+        form:
+            type: coderdojo_user_profile

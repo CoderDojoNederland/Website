@@ -23,8 +23,8 @@ class DefaultController extends Controller
 
         $next = $em->getRepository("CoderdojoWebsiteBundle:Dojo");
         $query = $next->createQueryBuilder('p')
-            ->where('p.next < :today')
-            ->setParameter('today', date('now'))
+            ->where('p.next > :today')
+            ->setParameter('today', date("Y/m/d H:I:s"))
             ->orderBy('p.next', 'ASC')
             ->getQuery();
 

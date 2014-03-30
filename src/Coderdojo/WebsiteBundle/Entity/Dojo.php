@@ -1,16 +1,16 @@
 <?php
+// src/Acme/UserBundle/Entity/User.php
 
 namespace Coderdojo\WebsiteBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Dojo
- *
- * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Table
  */
-class Dojo
+class Dojo extends BaseUser
 {
     /**
      * @var integer
@@ -19,126 +19,111 @@ class Dojo
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=255)
      */
-    private $location;
+    protected $location;
 
     /**
      * @var string
      *
      * @ORM\Column(name="street", type="string", length=255)
      */
-    private $street;
+    protected $street;
 
     /**
      * @var string
      *
      * @ORM\Column(name="housenumber", type="string", length=255)
      */
-    private $housenumber;
+    protected $housenumber;
 
     /**
      * @var string
      *
      * @ORM\Column(name="postalcode", type="string", length=255)
      */
-    private $postalcode;
+    protected $postalcode;
 
     /**
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255)
      */
-    private $slug;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="geocode", type="string", length=255)
-     */
-    private $geocode;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="logo", type="string", length=255)
-     */
-    private $logo;
+    protected $slug;
 
     /**
      * @var string
      *
      * @ORM\Column(name="facebook", type="string", length=255)
      */
-    private $facebook;
+    protected $facebook;
 
     /**
      * @var string
      *
      * @ORM\Column(name="twitter", type="string", length=255)
      */
-    private $twitter;
+    protected $twitter;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="website", type="string", length=255, nullable=true)
      */
-    private $email;
+    protected $website;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="website", type="string", length=255)
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
      */
-    private $website;
+    protected $status;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="notes", type="string", length=255, nullable=true)
      */
-    private $status;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notes", type="string", length=255)
-     */
-    private $notes;
+    protected $notes;
 
     /**
      * @var string
      *
      * @ORM\Column(name="next", type="datetime", length=255)
      */
-    private $next;
+    protected $next;
 
     /**
      * @var string
      *
      * @ORM\Column(name="tickets", type="string", length=255)
      */
-    private $tickets;
+    protected $tickets;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
     /**
      * Get id
@@ -159,7 +144,10 @@ class Dojo
     public function setName($name)
     {
         $this->name = $name;
-
+        $str = strtolower(trim($this->getName()));
+        $str = preg_replace('/[^a-z0-9-]/', '-', $str);
+        $str = preg_replace('/-+/', "-", $str);
+        $this->setSlug($str);
         return $this;
     }
 
@@ -381,29 +369,6 @@ class Dojo
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return Dojo
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * Set status
      *
      * @param string $status
@@ -504,14 +469,14 @@ class Dojo
     public function setNext($next)
     {
         $this->next = $next;
-    
+
         return $this;
     }
 
     /**
      * Get next
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getNext()
     {
@@ -527,17 +492,22 @@ class Dojo
     public function setTickets($tickets)
     {
         $this->tickets = $tickets;
-    
+
         return $this;
     }
 
     /**
      * Get tickets
      *
-     * @return string 
+     * @return string
      */
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+    public function setEmail($email){
+        $this->setUsername($email);
+        parent::setEmail($email);
     }
 }
