@@ -5,3 +5,11 @@ home:
 about:
     pattern:  /over-coderdojo
     defaults: { _controller: CoderdojoWebsiteBundle:Default:about }
+
+dojo:
+    pattern:  /dojos/{city}
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:dojo }
+
+dojos:
+    pattern:  /dojos
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:dojos }

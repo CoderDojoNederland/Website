@@ -15,4 +15,29 @@ class DefaultController extends Controller
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:about.html.twig');
     }
+
+    public function dojosAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dojos = $em->getRepository("CoderdojoWebsiteBundle:Dojo")->findAll();
+
+        $next = $em->getRepository("CoderdojoWebsiteBundle:Dojo");
+        $query = $next->createQueryBuilder('p')
+            ->where('p.next < :today')
+            ->setParameter('today', date('now'))
+            ->orderBy('p.next', 'ASC')
+            ->getQuery();
+
+        $nextdojos = $query->getResult();
+
+        return $this->render('CoderdojoWebsiteBundle:Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos"=>$nextdojos));
+    }
+
+    public function dojoAction($city)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dojo = $em->getRepository("CoderdojoWebsiteBundle:Dojo")->findOneBySlug($city);
+
+        return $this->render('CoderdojoWebsiteBundle:Pages:dojo.html.twig', array("dojo" => $dojo));
+    }
 }
