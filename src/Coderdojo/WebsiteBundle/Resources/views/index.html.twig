@@ -71,6 +71,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             Over CoderDojo
                         </a>
                     </li>
+                    <li {% if app.request.get('_route') == 'codeeu' %}class="active"{% endif %}>
+                        <a href="{{ path('codeeu') }}">
+                            #CodeEU
+                        </a>
+                    </li>
                     <li {% if app.request.get('_route') == 'dojos' %}class="active"{% endif %}>
                         <a href="{{ path('dojos') }}">
                             In de buurt
