@@ -13,3 +13,7 @@ dojo:
 dojos:
     pattern:  /dojos
     defaults: { _controller: CoderdojoWebsiteBundle:Default:dojos }
+
+codeeu:
+    pattern:  /codeeu
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:codeeu }
