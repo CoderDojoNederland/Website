@@ -21,6 +21,11 @@ class DefaultController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:codeweek.html.twig');
     }
 
+    public function setupAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:setup.html.twig');
+    }
+
     public function dojosAction()
     {
         $em = $this->getDoctrine()->getManager();

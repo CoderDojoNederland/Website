@@ -17,3 +17,7 @@ dojos:
 codeeu:
     pattern:  /codeeu
     defaults: { _controller: CoderdojoWebsiteBundle:Default:codeeu }
+
+setup:
+    pattern:  /opstarten
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:setup }
