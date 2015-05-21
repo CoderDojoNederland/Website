@@ -119,6 +119,13 @@ class Dojo extends BaseUser
      */
     protected $tickets;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="organiser", type="string", length=255)
+     */
+    protected $organiser;
+
     public function __construct()
     {
         parent::__construct();
@@ -509,5 +516,28 @@ class Dojo extends BaseUser
     public function setEmail($email){
         $this->setUsername($email);
         parent::setEmail($email);
+    }
+
+    /**
+     * Set organiser
+     *
+     * @param string $organiser
+     * @return Dojo
+     */
+    public function setOrganiser($organiser)
+    {
+        $this->organiser = $organiser;
+    
+        return $this;
+    }
+
+    /**
+     * Get organiser
+     *
+     * @return string 
+     */
+    public function getOrganiser()
+    {
+        return $this->organiser;
     }
 }

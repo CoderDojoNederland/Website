@@ -31,8 +31,8 @@
                                 {% for dojo in nextdojos %}
                                 <tr>
                                     <td><strong>{{dojo.name}}</strong></td>
-                                    <td>{{dojo.next|date("d/m/Y")}}</td>
-                                    <td><a href="{{dojo.tickets}}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a></td>
+                                    <td>{{ "%02d"|format(dojo.time.day) }}/{{ "%02d"|format(dojo.time.month) }}/{{ dojo.time.year }}</td>
+                                    <td><a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a></td>
                                 </tr>
                                 {% endfor %}
                             {% else %}
@@ -75,9 +75,7 @@
                     <strong>Locatie:</strong><br/>
                     {{ dojo.location }}<br/>
                     {{ dojo.street }} {{ dojo.housenumber }}<br/>
-                    {{ dojo.postalcode }} {{ dojo.city }}<br/>
-                    {{ dojo.city }}<br/><br/>
-                    <strong>Volgende editie:</strong> {{ dojo.next|date("d/m/Y") }}
+                    {{ dojo.postalcode }} {{ dojo.city }}
                 </p>
             </div>
         </div>
