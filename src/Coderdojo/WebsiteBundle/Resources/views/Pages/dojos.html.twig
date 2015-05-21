@@ -31,7 +31,7 @@
                                 {% for dojo in nextdojos %}
                                 <tr>
                                     <td><strong>{{dojo.name}}</strong></td>
-                                    <td>{{ "%02d"|format(dojo.time.day) }}/{{ "%02d"|format(dojo.time.month) }}/{{ dojo.time.year }}</td>
+                                    <td>{{ dojo.time|date("d/m/Y") }}</td>
                                     <td><a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a></td>
                                 </tr>
                                 {% endfor %}

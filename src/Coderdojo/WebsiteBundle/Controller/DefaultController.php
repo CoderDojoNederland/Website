@@ -42,6 +42,13 @@ class DefaultController extends Controller
             }
         }
 
+        usort($nextDojos, function($a, $b)
+        {
+            $t1 = strtotime($a['time']);
+            $t2 = strtotime($b['time']);
+            return $t1 - $t2;
+        });
+
         return $this->render('CoderdojoWebsiteBundle:Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos"=>$nextDojos));
     }
 
@@ -72,7 +79,7 @@ class DefaultController extends Controller
             //var_dump($result->events[0]->start->local);
 
             $event['url'] = $result->events[0]->url;
-            $event['time'] = date_parse($result->events[0]->start->local);
+            $event['time'] = $result->events[0]->start->local;
             return $event;
         }
         else{
