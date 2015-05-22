@@ -12,6 +12,7 @@ class ProfileFormType extends BaseType
         parent::buildForm($builder, $options);
 
         // add your custom field
+        $builder->remove('email');
         $builder->remove('username');
         $builder->remove('current_password');
         $builder->add('name');
@@ -23,8 +24,7 @@ class ProfileFormType extends BaseType
         $builder->add('facebook');
         $builder->add('twitter');
         $builder->add('website');
-        $builder->add('next');
-        $builder->add('tickets');
+        $builder->add('organiser');
     }
 
     public function getName()

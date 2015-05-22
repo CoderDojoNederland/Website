@@ -108,20 +108,6 @@ class Dojo extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="next", type="datetime", length=255)
-     */
-    protected $next;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tickets", type="string", length=255)
-     */
-    protected $tickets;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="organiser", type="string", length=255)
      */
     protected $organiser;

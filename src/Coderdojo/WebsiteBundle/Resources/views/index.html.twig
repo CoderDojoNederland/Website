@@ -202,13 +202,28 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
         <div class="row">
             <div class="col-md-6">
                 <p class="copyright-space">
-                    2014 &copy; CoderDojo Nederland. ALL Rights Reserved.&nbsp;|&nbsp;
+                    2015 &copy; CoderDojo Nederland.&nbsp;|&nbsp;
                     Made by
                     <a
                         href="http://www.christianvermeulen.net"
                         target="_blank">
                         Christian Vermeulen
                     </a>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        &nbsp;|&nbsp;
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="{{ path('fos_user_profile_edit') }}">
+                            Profiel Bewerken
+                        </a>
+                    {% else %}
+                        &nbsp;|&nbsp;
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        &nbsp;|&nbsp;
+                        <a href="{{ path('fos_user_registration_register') }}">Registreer jouw dojo</a>
+                    {% endif %}
                 </p>
             </div>
             <div class="col-md-6">

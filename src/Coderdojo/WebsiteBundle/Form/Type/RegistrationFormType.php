@@ -22,8 +22,7 @@ class RegistrationFormType extends BaseType
         $builder->add('facebook');
         $builder->add('twitter');
         $builder->add('website');
-        $builder->add('next');
-        $builder->add('tickets');
+        $builder->add('organiser');
     }
 
     public function getName()
