@@ -5,6 +5,7 @@ namespace Coderdojo\WebsiteBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -112,10 +113,15 @@ class Dojo extends BaseUser
      */
     protected $organiser;
 
+    /**
+     * @ORM\OneToMany(targetEntity="DojoEvent", mappedBy="dojo")
+     **/
+    private $dojos;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->dojos = new ArrayCollection();
     }
 
     /**
@@ -525,5 +531,38 @@ class Dojo extends BaseUser
     public function getOrganiser()
     {
         return $this->organiser;
+    }
+
+    /**
+     * Add dojos
+     *
+     * @param \Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos
+     * @return Dojo
+     */
+    public function addDojo(\Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos)
+    {
+        $this->dojos[] = $dojos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove dojos
+     *
+     * @param \Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos
+     */
+    public function removeDojo(\Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos)
+    {
+        $this->dojos->removeElement($dojos);
+    }
+
+    /**
+     * Get dojos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDojos()
+    {
+        return $this->dojos;
     }
 }

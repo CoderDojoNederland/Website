@@ -21,3 +21,11 @@ codeeu:
 setup:
     pattern:  /opstarten
     defaults: { _controller: CoderdojoWebsiteBundle:Default:setup }
+
+manage:
+    pattern:  /beheren
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:manage }
+
+new-dojo:
+    pattern:  /beheren/toevoegen
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:manageAdd }
