@@ -214,12 +214,12 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                     </a>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         &nbsp;|&nbsp;
-                        <a href="{{ path('fos_user_security_logout') }}">
-                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                        </a>
-                        &nbsp;|&nbsp;
                         <a href="{{ path('fos_user_profile_edit') }}">
                             Profiel Bewerken
+                        </a>
+                        &nbsp;|&nbsp;
+                        <a href="{{ path('manage') }}">
+                            Beheer Dojos
                         </a>
                     {% else %}
                         &nbsp;|&nbsp;
