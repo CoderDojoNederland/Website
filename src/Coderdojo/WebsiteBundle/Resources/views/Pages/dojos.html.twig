@@ -21,7 +21,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>&nbsp;</th>
+                                <th>Locatie</th>
+                                <th>Naam</th>
                                 <th>Datum</th>
                                 <th>Tickets</th>
                             </tr>
@@ -30,8 +31,9 @@
                             {% if nextdojos|length > 0 %}
                                 {% for dojo in nextdojos %}
                                 <tr>
-                                    <td><strong>{{dojo.dojo.name}}</strong></td>
-                                    <td>{{ dojo.date|date("d/m/Y") }}</td>
+                                    <td><strong>{{dojo.dojo.name|replace({'CoderDojo ':''})}}</strong></td>
+                                    <td>{{dojo.name}}</td>
+                                    <td>{{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}</td>
                                     <td><a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a></td>
                                 </tr>
                                 {% endfor %}

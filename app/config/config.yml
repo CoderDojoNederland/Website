@@ -95,3 +95,9 @@ fos_user:
     profile:
         form:
             type: coderdojo_user_profile
+
+services:
+    twig.extension.intl:
+                class: Twig_Extensions_Extension_Intl
+                tags:
+                    - { name: twig.extension }
