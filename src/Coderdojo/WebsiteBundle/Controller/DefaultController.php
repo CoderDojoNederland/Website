@@ -37,7 +37,7 @@ class DefaultController extends Controller
         $query = $repo->createQueryBuilder('d')
             ->where('d.date > :today')
             ->setParameter('today', new \DateTime("now"))
-            ->orderBy('d.date', 'DESC')
+            ->orderBy('d.date', 'ASC')
             ->getQuery();
 
         $nextDojos = $query->getResult();
