@@ -29,3 +29,7 @@ manage:
 new-dojo:
     pattern:  /beheren/toevoegen
     defaults: { _controller: CoderdojoWebsiteBundle:Default:manageAdd }
+
+list-dojos:
+    pattern: /api/dojos
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:listDojos }

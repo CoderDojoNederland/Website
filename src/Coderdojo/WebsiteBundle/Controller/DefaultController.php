@@ -5,6 +5,7 @@ namespace Coderdojo\WebsiteBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -99,6 +100,34 @@ class DefaultController extends Controller
         }
 
         return new Response($msg);
+    }
+
+    public function listDojosAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository("CoderdojoWebsiteBundle:DojoEvent");
+        $query = $repo->createQueryBuilder('d')
+            ->where('d.date > :today')
+            ->setParameter('today', new \DateTime("now"))
+            ->orderBy('d.date', 'ASC')
+            ->getQuery();
+
+        $nextDojos = $query->getResult();
+
+        $dojos = array();
+
+        foreach($nextDojos as $dojo){
+            $dojos[] = array(
+                "name" => $dojo->getName(),
+                "date" => $dojo->getDate(),
+                "url"  => $dojo->getUrl(),
+                "dojo" => $dojo->getDojo()->getName(),
+                "dojoid" => $dojo->getDojo()->getId(),
+                "location" => $dojo->getDojo()->getLocation()
+            );
+        }
+
+        return new JsonResponse($dojos);
     }
 
     private function getNextDojo($organiserid){
