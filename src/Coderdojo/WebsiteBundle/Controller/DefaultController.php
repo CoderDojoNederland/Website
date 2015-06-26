@@ -117,9 +117,10 @@ class DefaultController extends Controller
         $dojos = array();
 
         foreach($nextDojos as $dojo){
+            $datestring = $dojo->getDate()->format("m-d-Y");
             $dojos[] = array(
                 "name" => $dojo->getName(),
-                "date" => $dojo->getDate(),
+                "date" => $datestring,
                 "url"  => $dojo->getUrl(),
                 "dojo" => $dojo->getDojo()->getName(),
                 "dojoid" => $dojo->getDojo()->getId(),
