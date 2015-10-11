@@ -2,8 +2,10 @@
 
 namespace Coderdojo\WebsiteBundle\Controller;
 
+use Coderdojo\WebsiteBundle\Form\Type\ContactFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -27,6 +29,41 @@ class DefaultController extends Controller
     public function setupAction()
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:setup.html.twig');
+    }
+
+    public function contactAction(Request $request)
+    {
+        $form = $this->createForm(new ContactFormType());
+
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Email via Website')
+                    ->setFrom($form->get('email')->getData(), $form->get('naam')->getData())
+                    ->setTo('chris@coderdojo.nl')
+                    ->setBody(
+                        $this->renderView(
+                            'CoderdojoWebsiteBundle::contactmail.html.twig',
+                            array(
+                                'naam' => $form->get('naam')->getData(),
+                                'message' => $form->get('message')->getData()
+                            )
+                        )
+                    );
+
+                $this->get('mailer')->send($message);
+
+                $request->getSession()->getFlashBag()->add('success', 'Bedankt voor je bericht!');
+
+                return $this->redirect($this->generateUrl('contact'));
+            }
+        }
+
+        return $this->render('CoderdojoWebsiteBundle:Pages:contact.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function dojosAction()
