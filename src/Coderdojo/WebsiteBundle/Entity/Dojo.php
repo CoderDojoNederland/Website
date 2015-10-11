@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
- * @ORM\Table
+ * @ORM\Table(name="Dojo")
  */
 class Dojo extends BaseUser
 {
