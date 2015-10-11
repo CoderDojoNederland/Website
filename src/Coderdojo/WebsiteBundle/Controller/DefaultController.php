@@ -43,6 +43,7 @@ class DefaultController extends Controller
                     ->setSubject('Email via Website')
                     ->setFrom($form->get('email')->getData(), $form->get('naam')->getData())
                     ->setTo('chris@coderdojo.nl')
+                    ->setContentType('text/html')
                     ->setBody(
                         $this->renderView(
                             'CoderdojoWebsiteBundle::contactmail.html.twig',
