@@ -1,0 +1,35 @@
+home:
+    pattern:  /
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:index }
+
+about:
+    pattern:  /over-coderdojo
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:about }
+
+dojo:
+    pattern:  /dojos/{city}
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:dojo }
+
+dojos:
+    pattern:  /dojos
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:dojos }
+
+codeeu:
+    pattern:  /codeeu
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:codeeu }
+
+setup:
+    pattern:  /opstarten
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:setup }
+
+manage:
+    pattern:  /beheren
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:manage }
+
+new-dojo:
+    pattern:  /beheren/toevoegen
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:manageAdd }
+
+list-dojos:
+    pattern: /api/dojos
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:listDojos }

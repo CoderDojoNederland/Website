@@ -1,0 +1,39 @@
+{% extends "CoderdojoWebsiteBundle::index.html.twig" %}
+
+{% block content %}
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Dojo Profiel</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+<div class="container">
+    <div class="row margin-bottom-30">
+        <div class="col-md-8 col-md-offset-2 md-margin-bottom-40">
+            <div style="text-align:right;">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <div>
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

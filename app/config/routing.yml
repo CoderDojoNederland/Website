@@ -1,0 +1,6 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+coderdojo_website:
+    resource: "@CoderdojoWebsiteBundle/Resources/config/routing.yml"
+    prefix:   /

@@ -1,0 +1,14 @@
+parameters:
+#    coderdojo_website.example.class: Coderdojo\WebsiteBundle\Example
+
+services:
+    coderdojo.registration.form.type:
+            class: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: coderdojo_user_registration }
+    coderdojo.profile.form.type:
+            class: Coderdojo\WebsiteBundle\Form\Type\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: coderdojo_user_profile }
