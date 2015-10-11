@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Dojo")
+ * @ORM\Table
  */
 class Dojo extends BaseUser
 {
@@ -88,7 +88,7 @@ class Dojo extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="website", type="string", length=255, nullable=true)
+     * @ORM\Column(name="website", type="string", length=255)
      */
     protected $website;
 

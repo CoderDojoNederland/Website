@@ -13,16 +13,16 @@ class RegistrationFormType extends BaseType
 
         // add your custom field
         $builder->remove('username');
-        $builder->add('name');
-        $builder->add('location');
+        $builder->add('name', null, array('label' => 'Dojo Name'));
+        $builder->add('location', null, array('label' => 'Location Name'));
         $builder->add('street');
         $builder->add('housenumber');
         $builder->add('postalcode');
         $builder->add('city');
-        $builder->add('facebook');
-        $builder->add('twitter');
-        $builder->add('website');
-        $builder->add('organiser');
+        $builder->add('facebook', null, array('attr'=> array('placeholder' => 'http://facebook.com/yourpage')));
+        $builder->add('twitter', null, array('attr'=> array('placeholder' => 'http://twitter.com/yourtwitter')));
+        $builder->add('website', null, array('attr'=> array('placeholder' => 'http://coderdojo-[CITY].nl')));
+        $builder->add('organiser', null, array('attr'=> array('placeholder' => 'Eventbrite Organiser ID (see link below)')));
     }
 
     public function getName()
