@@ -33,7 +33,9 @@
 {%- endblock collection_widget -%}
 
 {%- block textarea_widget -%}
-    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+    <div class="col-lg-10">
+        <textarea {{ block('widget_attributes') }} class="form-control">{{ value }}</textarea>
+    </div>
 {%- endblock textarea_widget -%}
 
 {%- block choice_widget -%}
