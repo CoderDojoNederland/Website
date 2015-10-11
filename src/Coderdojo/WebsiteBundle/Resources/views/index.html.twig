@@ -71,17 +71,22 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                     </li>
                     <li {% if app.request.get('_route') == 'dojos' %}class="active"{% endif %}>
                         <a href="{{ path('dojos') }}">
-                            Vind een Dojo
+                            Waar
                         </a>
                     </li>
                     <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
                         <a href="{{ path('setup') }}">
-                            Start een Dojo
+                            Opzetten
                         </a>
                     </li>
                     <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}>
                         <a href="{{path('about')}}">
-                            Over CoderDojo
+                            Over
+                        </a>
+                    </li>
+                    <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>
+                        <a href="{{path('contact')}}">
+                            Contact
                         </a>
                     </li>
                     <li>
