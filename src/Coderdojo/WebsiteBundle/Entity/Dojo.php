@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="Dojo")
+ * @ORM\HasLifecycleCallbacks() 
  */
 class Dojo extends BaseUser
 {
@@ -63,6 +64,20 @@ class Dojo extends BaseUser
      * @ORM\Column(name="city", type="string", length=255)
      */
     protected $city;
+    
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="geo_lat", type="decimal", precision=9, scale=6)
+     */
+    protected $lat;
+    
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="geo_long", type="decimal", precision=9, scale=6)
+     */
+    protected $long;
 
     /**
      * @var string
@@ -250,6 +265,26 @@ class Dojo extends BaseUser
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return float
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Get long
+     *
+     * @return float
+     */
+    public function getLong()
+    {
+        return $this->long;
     }
 
     /**
@@ -564,5 +599,26 @@ class Dojo extends BaseUser
     public function getDojos()
     {
         return $this->dojos;
+    }
+
+    /** @ORM\PreFlush */
+    public function geocodeAddress()
+    {
+      // build geocode request URL
+      $geoCodeUrl  = sprintf("https://maps.googleapis.com/maps/api/geocode/json?address=%s+%s+%s&key=%s", $this->housenumber, $this->postalcode, $this->city, "AIzaSyAFfhAgoL1GV8iZZic3hy0uPKsrRhpVawE");
+
+      // make the request and decode the json
+      $response = json_decode(file_get_contents($geoCodeUrl));
+
+      // parse the results
+      if(isset($response->results) && is_array($response->results)){
+        if(isset($response->results[0]->geometry)){
+
+          // everything is present, store it in the model
+          $geometry   = $response->results[0]->geometry;
+          $this->lat  = $geometry->location->lat;
+          $this->long = $geometry->location->lng;
+        }
+      }
     }
 }
