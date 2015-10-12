@@ -17,7 +17,11 @@
         slug:         "{{dojo.slug}}",
         facebook:     "{{dojo.facebook}}",
         twitter:      "{{dojo.twitter}}",
-        website:      "{{dojo.website}}"
+        website:      "{{dojo.website}}",
+        geo: {
+          lat: {{dojo.lat}},
+          long: {{dojo.long}}
+        }
       }
     {% endfor %}
   </script>
@@ -83,7 +87,7 @@
                         <tbody>
 
                           {% for dojo in dojos %}
-                            <tr class="dojo-row">
+                            <tr data-dojo-id="{{dojo.id}}" class="dojo-row">
                               <td>
                                 <strong>{{dojo.name}}</strong><br />
                                 {{dojo.location}}<br />
