@@ -131,19 +131,6 @@ class DojoEvent
     }
 
     /**
-     * Set date
-     *
-     * @param \Date $date
-     * @return DojoEvent
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    
-        return $this;
-    }
-
-    /**
      * Get date
      *
      * @return \Date
