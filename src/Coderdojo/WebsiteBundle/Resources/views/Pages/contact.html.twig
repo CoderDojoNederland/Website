@@ -1,0 +1,60 @@
+{% extends "CoderdojoWebsiteBundle::index.html.twig" %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Contact</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container">
+
+    <div class="row margin-bottom-30">
+        <div class="col-md-8 col-md-offset-2">
+
+            <div class="panel panel-green margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Contact</h3>
+                </div>
+                <div class="panel-body">
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+
+                    {% endfor %}
+                    <p>
+                        Heb je eenv vraag of suggestie? Neem dan via dit formulier contact ons op.<br/>
+                        Wij doen ons uiterste best om zo snel mogelijk te antwoorden!
+                    </p>
+                    <form action="{{ path('contact') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal" role="form">
+                        {{ form_widget(form) }}
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <input type="submit" value="Verzenden" class="btn-u btn-u-green" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix margin-bottom-40"></div>
+
+</div><!--/container-->
+<!--=== End Content Part ===-->
+{% endblock %}
+
+{% block description %}
+    Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
+{% endblock %}
+
+{% block fbdescription %}
+    Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
+{% endblock %}
