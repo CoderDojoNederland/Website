@@ -5,21 +5,18 @@ php:
 
 sudo: false
 
-addons:
-  code_climate:
-    repo_token: c0ea634b3fd562679652608188fc52b9888471af125334ad1b8e7d6ca22761bd
-
 cache:
   directories:
     - $HOME/.composer/cache
 
 before_install:
   - composer self-update
+  - composer require satooshi/php-coveralls:~0.6@stable
 
 install: composer update --prefer-dist --no-interaction
 
 script:
   - phpunit -c app/ --coverage-clover build/logs/clover.xml
 
-after_script:
-  - vendor/bin/test-reporter
+after_success:
+  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php vendor/bin/coveralls -v; fi;'
