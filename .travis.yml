@@ -5,6 +5,10 @@ php:
 
 sudo: false
 
+addons:
+  code_climate:
+    repo_token: c0ea634b3fd562679652608188fc52b9888471af125334ad1b8e7d6ca22761bd
+
 cache:
   directories:
     - $HOME/.composer/cache
@@ -15,4 +19,7 @@ before_install:
 install: composer update --prefer-dist --no-interaction
 
 script:
-  - phpunit -c app/ --coverage-text
+  - phpunit -c app/ --coverage-clover build/logs/clover.xml
+
+after_script:
+  - vendor/bin/test-reporter
