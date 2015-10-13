@@ -10,9 +10,11 @@ Welcome in the CoderDojo Nederland Website repository. The website is completely
 
 In order to develop on the website locally you need a couple of things:
 
+```
 - php 5.6 (minimum)
 - MySQL
 - Apache
+```
 
 The tools you need are:
 
