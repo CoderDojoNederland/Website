@@ -131,16 +131,6 @@ class DojoEvent
     }
 
     /**
-     * Get date
-     *
-     * @return \Date
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set dojo
      *
      * @param \Coderdojo\WebsiteBundle\Entity\Dojo $dojo
