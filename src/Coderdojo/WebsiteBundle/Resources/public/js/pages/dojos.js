@@ -1,66 +1,113 @@
 (function(){
 
-  var map;
-  function initialize() {
-    var mapCanvas = document.getElementById('all-dojos-map');
+  // class to wrap the map background in
+  var DojosMapBackground = function(mapCanvas, dojos){
+    this.map       = null;
+    this.mapCanvas = mapCanvas;
+    this.dojos     = dojos;
+
+    google.maps.event.addDomListener(window, 'load', this.initializeMap.bind(this));
+  };
+
+  DojosMapBackground.prototype.initializeMap = function(){
     var mapOptions = {
-      center: new google.maps.LatLng(52.132633, 5.291266),
-      zoom: 8,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false,
-      streetViewControl: false,
-      mapTypeControl: false
-    }
-    map = new google.maps.Map(mapCanvas, mapOptions)
+      center:             new google.maps.LatLng(52.132633, 5.291266),
+      zoom:               8,
+      mapTypeId:          google.maps.MapTypeId.ROADMAP,
+      scrollwheel:        false,
+      streetViewControl:  false,
+      mapTypeControl:     false
+    };
 
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
+    // setup the map
+    this.map = new google.maps.Map(this.mapCanvas, mapOptions);
 
+    // place the markers needed
+    this.placeMarkers();
+  };
 
-  // on hover, fetch dojo details
-  $('.dojo-row').hover(function(e){
-    dojoId = $(this).data('dojo-id');
+  // place a single marker and save the reference to it
+  DojosMapBackground.prototype.placeMarkerForDojo = function(dojo){
+    var marker = new google.maps.Marker({
+      position: {lat: dojo.geo.lat, lng: dojo.geo.long},
+      map:      this.map,
+      title:    dojo.name
+    });
 
-    // grab dojo object
-    dojo = _dojos[dojoId]
+    dojo.geo.marker = marker;
+  };
 
-    console.log(dojo);
+  // place the markers
+  DojosMapBackground.prototype.placeMarkers = function(){
+    $.each(this.dojos, function(_, dojo){
+      this.placeMarkerForDojo(dojo);
+    }.bind(this));
+  };
 
-    // focus map on dojo address
+  // start bouncing the dojo marker for the given id
+  DojosMapBackground.prototype.startBouncingMarkerForDojoId = function(dojoId){
+    dojo = this.dojos[dojoId];
+    dojo.geo.marker.setAnimation(google.maps.Animation.BOUNCE);
+  };
 
-  });
+  // stop bouncing the dojo marker for the given id
+  DojosMapBackground.prototype.stopBouncingMarkerFordojoId = function(dojoId){
+    dojo = this.dojos[dojoId];
+    dojo.geo.marker.setAnimation(null);
+  };
 
+  // pan and zoom to the location of the dojo
+  // TODO: Make sure it is slightly off-center since the UI overlays here..
+  DojosMapBackground.prototype.focusOnDojoWithId = function(dojoId){
+    dojo = this.dojos[dojoId];
+    this.map.panTo({lat: dojo.geo.lat, lng: dojo.geo.long});
+    this.map.setZoom(15);
+    dojo.geo.marker.setAnimation(null);
+  };
+
+  // UI logic
   $(function(){
-    // grab reference to the tabs
-    var allDojosTab           = $('[data-js-ref=all-dojos]')
-        upcomingDojosTab      = $('[data-js-ref=upcoming-dojos]'),
-        upcomingDojosContent  = $('[data-js-ref=list-upcoming-dojos]'),
-        allDojosContent       = $('[data-js-ref=list-all-dojos]');
 
-    // when all tab is clicked, switch to all content
-    allDojosTab.on('click', function(e){
-      e.preventDefault();
+    // logic to control the map background
+    var mapBackground = new DojosMapBackground(
+      $('#all-dojos-map')[0],
+      _dojos
+    );
 
-      // toggle active state of tab
-      allDojosTab.addClass('active');
-      upcomingDojosTab.removeClass('active');
-
-      // toggle visibility of content
-      allDojosContent.removeClass('hidden');
-      upcomingDojosContent.addClass('hidden');
-     
+    $('.dojo-row').hover(function(){
+      dojoId = $(this).data('dojo-id');
+      mapBackground.startBouncingMarkerForDojoId(dojoId);
     });
 
-    upcomingDojosTab.on('click', function(e){
-      e.preventDefault();
-
-      allDojosTab.removeClass('active');
-      upcomingDojosTab.addClass('active')
-
-      allDojosContent.addClass('hidden');
-      upcomingDojosContent.removeClass('hidden');
+    $('.dojo-row').mouseout(function(){
+      dojoId = $(this).data('dojo-id');
+      mapBackground.stopBouncingMarkerFordojoId(dojoId);
     });
 
+    $('.dojo-row').click(function(e){
+      e.preventDefault();
+      dojoId = $(this).data('dojo-id');
+      mapBackground.focusOnDojoWithId(dojoId);
+    });
+
+    // logic to control the tabs in the list
+    $('[data-tab-ref]').click(function(){
+      switch($(this).data('tab-ref')){
+        case 'upcoming-dojos':
+          $('[data-tab-ref=upcoming-dojos]').addClass('active');
+          $('[data-tab-ref=all-dojos]').removeClass('active');
+          $('[data-js-ref=list-upcoming-dojos]').removeClass('hidden');
+          $('[data-js-ref=list-all-dojos]').addClass('hidden');
+        break;
+
+        case 'all-dojos':
+          $('[data-tab-ref=all-dojos]').addClass('active');
+          $('[data-tab-ref=upcoming-dojos]').removeClass('active');
+          $('[data-js-ref=list-upcoming-dojos]').addClass('hidden');
+          $('[data-js-ref=list-all-dojos]').removeClass('hidden');
+        break;
+      }
+    });
 
   });
 
