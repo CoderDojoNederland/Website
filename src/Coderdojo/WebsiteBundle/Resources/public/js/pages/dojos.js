@@ -11,8 +11,6 @@
 
   DojosMapBackground.prototype.initializeMap = function(){
     var mapOptions = {
-      center:             new google.maps.LatLng(52.132633, 5.291266),
-      zoom:               8,
       mapTypeId:          google.maps.MapTypeId.ROADMAP,
       scrollwheel:        false,
       streetViewControl:  false,
@@ -21,6 +19,9 @@
 
     // setup the map
     this.map = new google.maps.Map(this.mapCanvas, mapOptions);
+
+    // focus the map in the middle of the Netherlands
+    this.resetFocus();
 
     // place the markers needed
     this.placeMarkers();
@@ -65,6 +66,12 @@
     dojo.geo.marker.setAnimation(null);
   };
 
+  // reset the focus and show all dojos in the Netherlands
+  DojosMapBackground.prototype.resetFocus = function(){
+    this.map.setCenter(new google.maps.LatLng(52.132633, 5.291266));
+    this.map.setZoom(8);
+  };
+
   // UI logic
   $(function(){
 
@@ -105,6 +112,7 @@
           $('[data-tab-ref=upcoming-dojos]').removeClass('active');
           $('[data-js-ref=list-upcoming-dojos]').addClass('hidden');
           $('[data-js-ref=list-all-dojos]').removeClass('hidden');
+          mapBackground.resetFocus();
         break;
       }
     });
