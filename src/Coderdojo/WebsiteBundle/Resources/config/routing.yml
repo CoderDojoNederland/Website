@@ -14,8 +14,8 @@ dojos:
     pattern:  /dojos
     defaults: { _controller: CoderdojoWebsiteBundle:Default:dojos }
 
-codeeu:
-    pattern:  /codeeu
+codeweek:
+    pattern:  /codeweek
     defaults: { _controller: CoderdojoWebsiteBundle:Default:codeeu }
 
 setup:
