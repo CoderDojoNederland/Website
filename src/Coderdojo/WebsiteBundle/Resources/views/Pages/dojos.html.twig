@@ -63,7 +63,7 @@
                                 {% for dojo in nextdojos %}
                                 <tr data-dojo-id="{{dojo.dojo.id}}" class="dojo-row">
                                     <td><strong>{{dojo.dojo.name|replace({'CoderDojo ':''})}}</strong><br />{{dojo.name}}</td>
-                                    <td>{{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}</td>
+                                    <td>{{ dojo.dojodate|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}</td>
                                     <td><a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a></td>
                                 </tr>
                                 {% endfor %}
