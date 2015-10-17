@@ -1,5 +1,4 @@
 <?php
-// src/Acme/UserBundle/Entity/User.php
 
 namespace Coderdojo\WebsiteBundle\Entity;
 
@@ -91,20 +90,6 @@ class Dojo extends BaseUser
      * @ORM\Column(name="website", type="string", length=255)
      */
     protected $website;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string", length=255, nullable=true)
-     */
-    protected $status;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notes", type="string", length=255, nullable=true)
-     */
-    protected $notes;
 
     /**
      * @var string
@@ -258,7 +243,7 @@ class Dojo extends BaseUser
      * @param string $slug
      * @return Dojo
      */
-    public function setSlug($slug)
+    private function setSlug($slug)
     {
         $this->slug = $slug;
 
@@ -296,29 +281,6 @@ class Dojo extends BaseUser
     public function getGeocode()
     {
         return $this->geocode;
-    }
-
-    /**
-     * Set logo
-     *
-     * @param string $logo
-     * @return Dojo
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return string
-     */
-    public function getLogo()
-    {
-        return $this->logo;
     }
 
     /**
@@ -368,52 +330,6 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set status
-     *
-     * @param string $status
-     * @return Dojo
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set notes
-     *
-     * @param string $notes
-     * @return Dojo
-     */
-    public function setNotes($notes)
-    {
-        $this->notes = $notes;
-
-        return $this;
-    }
-
-    /**
-     * Get notes
-     *
-     * @return string
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
      * Set website
      *
      * @param string $website
@@ -457,52 +373,6 @@ class Dojo extends BaseUser
     public function getLocation()
     {
         return $this->location;
-    }
-
-    /**
-     * Set next
-     *
-     * @param \DateTime $next
-     * @return Dojo
-     */
-    public function setNext($next)
-    {
-        $this->next = $next;
-
-        return $this;
-    }
-
-    /**
-     * Get next
-     *
-     * @return \DateTime
-     */
-    public function getNext()
-    {
-        return $this->next;
-    }
-
-    /**
-     * Set tickets
-     *
-     * @param string $tickets
-     * @return Dojo
-     */
-    public function setTickets($tickets)
-    {
-        $this->tickets = $tickets;
-
-        return $this;
-    }
-
-    /**
-     * Get tickets
-     *
-     * @return string
-     */
-    public function getTickets()
-    {
-        return $this->tickets;
     }
 
     public function setEmail($email){

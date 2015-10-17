@@ -12,6 +12,7 @@ use Coderdojo\WebsiteBundle\Entity\Dojo;
 
 /**
  * Class LoadUserData
+ * @codeCoverageIgnore
  */
 class LoadUserData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {

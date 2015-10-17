@@ -1,6 +1,7 @@
 <?php
 
-namespace TicketSwap\Core\UploadBundle\Tests\Entity;
+namespace Coderdojo\WebsiteBundle\Tests\Entity;
+
 use Coderdojo\WebsiteBundle\Entity\Dojo;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 
