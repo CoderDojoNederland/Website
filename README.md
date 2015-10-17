@@ -1,5 +1,8 @@
 # CoderDojo Nederland Website
 
+[![Coverage Status](https://coveralls.io/repos/CoderDojoNederland/website/badge.svg?branch=master&service=github)](https://coveralls.io/github/CoderDojoNederland/website?branch=master)
+[![Build Status](https://travis-ci.org/CoderDojoNederland/website.svg?branch=master)](https://travis-ci.org/CoderDojoNederland/website)
+
 http://www.coderdojo.nl
 
 Welcome in the CoderDojo Nederland Website repository. The website is completely open source which means anybody can contribute to it. We welcome everybody to do so and send us a pull request to bring it into master and have it deployed. In order to do so, here are the basics you need to know.
