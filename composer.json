@@ -27,7 +27,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
-        "codeclimate/php-test-reporter": "dev-master"
+        "satooshi/php-coveralls": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
