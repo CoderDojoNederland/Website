@@ -23,10 +23,8 @@
 
     // if the window resizes, the map should know
     $(window).resize(function () {
-      console.log("resize triggerss");
       google.maps.event.trigger(this.map, "resize");
     }.bind(this));
-
 
     // focus the map in the middle of the Netherlands
     this.resetFocus();
@@ -42,6 +40,11 @@
       map:      this.map,
       title:    dojo.name
     });
+
+    // show info window on click
+    marker.addListener('click', function () {
+      this.showInfoWindowForDojoId(dojo.id);
+    }.bind(this));
 
     dojo.geo.marker = marker;
   };
