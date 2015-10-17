@@ -21,6 +21,13 @@
     // setup the map
     this.map = new google.maps.Map(this.mapCanvas, mapOptions);
 
+    // if the window resizes, the map should know
+    $(window).resize(function () {
+      console.log("resize triggerss");
+      google.maps.event.trigger(this.map, "resize");
+    }.bind(this));
+
+
     // focus the map in the middle of the Netherlands
     this.resetFocus();
 
@@ -59,7 +66,6 @@
   };
 
   // pan and zoom to the location of the dojo
-  // TODO: Make sure it is slightly off-center since the UI overlays here..
   DojosMapBackground.prototype.focusOnDojoWithId = function (dojoId) {
     var dojo = this.dojos[dojoId];
 
@@ -67,6 +73,17 @@
     this.map.panTo({lat: dojo.geo.lat, lng: dojo.geo.long});
     this.map.setZoom(15);
     dojo.geo.marker.setAnimation(null);
+
+    // show the info window for this dojo
+    this.showInfoWindowForDojoId(dojoId);
+  };
+
+  DojosMapBackground.prototype.showInfoWindowForDojoId = function (dojoId) {
+    var dojo = this.dojos[dojoId],
+      windowContent = "<strong>" + dojo.name + "</strong><br>" +
+        dojo.location + "<br>" +
+        dojo.street + " " + dojo.housenumber + "<br>" +
+        dojo.postalcode + " " + dojo.city;
 
     // close and nullify info window if already existing
     if (this.infoWindow) {
@@ -76,16 +93,10 @@
 
     // create and show infoWindow
     this.infoWindow = new google.maps.InfoWindow({
-      content: "<strong>" + dojo.name + "</strong><br>"
+      content: windowContent
     });
 
     this.infoWindow.open(this.map, dojo.geo.marker);
-  };
-
-  DojosMapBackground.prototype.showInfoWindow = function (dojoId) {
-    // var dojo =
-    console.log("things..", dojoId);
-
   };
 
   // reset the focus and show all dojos in the Netherlands
@@ -100,7 +111,7 @@
     // logic to control the map background
     var mapBackground = new DojosMapBackground(
       $('#all-dojos-map')[0],
-      window._dojos
+      window.dojos
     );
 
     $('.dojo-row').hover(function () {

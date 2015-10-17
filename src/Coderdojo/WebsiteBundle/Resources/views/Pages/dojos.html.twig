@@ -4,9 +4,9 @@
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
   <script>
-    window._dojos = {};
+    window.dojos = {};
     {% for dojo in dojos %}
-      _dojos[{{dojo.id}}] = {
+      dojos[{{dojo.id}}] = {
         id:           {{dojo.id}},
         name:         "{{dojo.name}}",
         location:     "{{dojo.location}}",
