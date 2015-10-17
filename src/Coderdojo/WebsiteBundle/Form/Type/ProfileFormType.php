@@ -5,6 +5,10 @@ namespace Coderdojo\WebsiteBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 
+/**
+ * Class ProfileFormType
+ * @codeCoverageIgnore
+ */
 class ProfileFormType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
