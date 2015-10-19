@@ -56,6 +56,40 @@
     }.bind(this));
   };
 
+  // calculate an offsetted center
+  DojosMapBackground.prototype.calculateOffsettedCenter = function (latlng, offsetx, offsety) {
+    // latlng is the apparent centre-point
+    // offsetx is the distance you want that point to move to the right, in pixels
+    // offsety is the distance you want that point to move upwards, in pixels
+    // offset can be negative
+    // offsetx and offsety are both optional
+
+    var scale = Math.pow(2, this.map.getZoom()),
+      // nw = new google.maps.LatLng(
+      //   this.map.getBounds().getNorthEast().lat(),
+      //   this.map.getBounds().getSouthWest().lng()
+      // ),
+      worldCoordinateCenter = this.map.getProjection().fromLatLngToPoint(latlng),
+      pixelOffset = new google.maps.Point((offsetx / scale) || 0, (offsety / scale) || 0),
+
+      worldCoordinateNewCenter = new google.maps.Point(
+        worldCoordinateCenter.x - pixelOffset.x,
+        worldCoordinateCenter.y + pixelOffset.y
+      ),
+      newCenter = this.map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
+
+    return newCenter;
+  };
+
+  // center the map on the given dojo
+  DojosMapBackground.prototype.centerDojoWithDojoId = function (dojoId) {
+    var dojo   = this.dojos[dojoId],
+      location = new google.maps.LatLng(dojo.geo.lat, dojo.geo.long),
+      center   = this.calculateOffsettedCenter(location, 200, 0);
+
+    this.map.panTo(center);
+  };
+
   // start bouncing the dojo marker for the given id
   DojosMapBackground.prototype.startBouncingMarkerForDojoId = function (dojoId) {
     var dojo = this.dojos[dojoId];
@@ -70,11 +104,18 @@
 
   // pan and zoom to the location of the dojo
   DojosMapBackground.prototype.focusOnDojoWithId = function (dojoId) {
-    var dojo = this.dojos[dojoId];
-
-    // pan and zoom map to dojo's position
-    this.map.panTo({lat: dojo.geo.lat, lng: dojo.geo.long});
+    // zoom in on the map
     this.map.setZoom(15);
+
+    // do calculations to center the dojo correctly
+    var dojo   = this.dojos[dojoId],
+      location = new google.maps.LatLng(dojo.geo.lat, dojo.geo.long),
+      center   = this.calculateOffsettedCenter(location, 200, 0);
+
+    // pan to it
+    this.map.panTo(center);
+
+    // stop the animation
     dojo.geo.marker.setAnimation(null);
 
     // show the info window for this dojo
@@ -120,6 +161,7 @@
     $('.dojo-row').hover(function () {
       var dojoId = $(this).data('dojo-id');
       mapBackground.startBouncingMarkerForDojoId(dojoId);
+      mapBackground.centerDojoWithDojoId(dojoId);
     });
 
     $('.dojo-row').mouseout(function () {
