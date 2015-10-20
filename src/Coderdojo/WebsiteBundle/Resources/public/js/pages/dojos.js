@@ -15,7 +15,16 @@
       mapTypeId:          google.maps.MapTypeId.ROADMAP,
       scrollwheel:        false,
       streetViewControl:  false,
-      mapTypeControl:     false
+      mapTypeControl:     false,
+      styles: [
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [
+            {visibility: "off"}
+          ]
+        }
+      ]
     };
 
     // setup the map
@@ -58,17 +67,7 @@
 
   // calculate an offsetted center
   DojosMapBackground.prototype.calculateOffsettedCenter = function (latlng, offsetx, offsety) {
-    // latlng is the apparent centre-point
-    // offsetx is the distance you want that point to move to the right, in pixels
-    // offsety is the distance you want that point to move upwards, in pixels
-    // offset can be negative
-    // offsetx and offsety are both optional
-
     var scale = Math.pow(2, this.map.getZoom()),
-      // nw = new google.maps.LatLng(
-      //   this.map.getBounds().getNorthEast().lat(),
-      //   this.map.getBounds().getSouthWest().lng()
-      // ),
       worldCoordinateCenter = this.map.getProjection().fromLatLngToPoint(latlng),
       pixelOffset = new google.maps.Point((offsetx / scale) || 0, (offsety / scale) || 0),
 
@@ -127,7 +126,7 @@
       windowContent = "<strong>" + dojo.name + "</strong><br>" +
         dojo.location + "<br>" +
         dojo.street + " " + dojo.housenumber + "<br>" +
-        dojo.postalcode + " " + dojo.city;
+        dojo.postalcode + " " + dojo.city + "<br>";
 
     // close and nullify info window if already existing
     if (this.infoWindow) {
@@ -176,7 +175,9 @@
     });
 
     // logic to control the tabs in the list
-    $('[data-tab-ref]').click(function () {
+    $('[data-tab-ref]').click(function (e) {
+      e.preventDefault();
+
       switch ($(this).data('tab-ref')) {
       case 'upcoming-dojos':
         $('[data-tab-ref=upcoming-dojos]').addClass('active');
