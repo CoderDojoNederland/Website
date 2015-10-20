@@ -11,12 +11,12 @@
 .panel-heading {
   padding-bottom: 0px;
 }
-
 .nav-tabs {
   border-bottom: 0px !important;
 }
 
-.nav-tabs a{
+/* inactive state for tabs */
+.nav-tabs a {
   color: white;
 }
 
@@ -32,21 +32,20 @@
   padding-top: 40px;
 }
 
-.dojos-header, .dojo-row{
+/* table headers */
+.dojos-header, .dojo-row {
   padding: 5px !important;
 }
+
+/* individual dojo rows in overview */
 .dojo-row {
   transition: background-color, 300ms;
   border-bottom: 1px solid #ededed;
 }
-
-.empty {
-  text-align: center;
-}
-
 .dojo-row:hover {
   background-color: #ededed;
 }
+
 .contact-info > a:nth-child(1) {
   margin-bottom: 5px;
 }
@@ -54,4 +53,9 @@
 [data-js-ref=list-all-dojos] {
   max-height: 500px;
   overflow-y: scroll;
+}
+
+/* emptystate for no upcoming dojos */
+.empty {
+  text-align: center;
 }
