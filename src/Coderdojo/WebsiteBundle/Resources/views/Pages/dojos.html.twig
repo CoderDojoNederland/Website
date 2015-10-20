@@ -36,6 +36,8 @@
   <div id="all-dojos-map" class="map">
   </div>
 
+  <div class="container">
+
 
     <div class="row margin-bottom-30 dojo-selector">
         <div class="col-md-6">
@@ -50,74 +52,119 @@
                 </div>
 
                 <div class="panel-body" data-js-ref="list-upcoming-dojos">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Naam</th>
-                                <th>Datum</th>
-                                <th>Tickets</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% if nextdojos|length > 0 %}
-                                {% for dojo in nextdojos %}
-                                <tr data-dojo-id="{{dojo.dojo.id}}" class="dojo-row">
-                                    <td><strong>{{dojo.dojo.name|replace({'CoderDojo ':''})}}</strong><br />{{dojo.name}}</td>
-                                    <td>{{ dojo.dojodate|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}</td>
-                                    <td><a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a></td>
-                                </tr>
-                                {% endfor %}
-                            {% else %}
-                                <tr>
-                                    <td style="text-align:center;" colspan="3">Er zijn momenteel geen edities gepland</td>
-                                </tr>
-                            {% endif %}
-                        </tbody>
-                    </table>
+
+                  <!-- header row -->
+                  <div class="row dojos-header">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <b>Naam</b>
+                        </div>
+                        <div class="col-md-4">
+                          <b>Datum</b>
+                        </div>
+                        <div class="col-md-4">
+                          <b>Tickets</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- various dojo rows -->
+                  {% if nextdojos|length > 0 %}
+                      {% for dojo in nextdojos %}
+                      <div class="row dojo-row" data-dojo-id="{{dojo.dojo.id}}">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <strong>{{dojo.dojo.name|replace({'CoderDojo ':''})}}</strong><br />{{dojo.name}}
+                            </div>
+                            <div class="col-md-4">
+                              {{ dojo.dojodate|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
+                            </div>
+                            <div class="col-md-4">
+                              <a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  {% else %}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p class="empty">
+                        Er zijn momenteel geen edities gepland
+                      </p>
+                    </div>
+                  </div>
+                  {% endif %}
+
+
+
                 </div>
 
                 <div class="panel-body hidden" data-js-ref="list-all-dojos">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Naam</th>
-                                <th colspan="2">Contact</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                  <!-- header row -->
+                  <div class="row dojos-header">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <b>Naam</b>
+                        </div>
+                        <div class="col-md-7">
+                          <b>Contact</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                          {% for dojo in dojos %}
-                            <tr data-dojo-id="{{dojo.id}}" class="dojo-row">
-                              <td>
-                                <strong>{{dojo.name}}</strong><br />
-                                {{dojo.location}}<br />
-                                {{dojo.street}} {{dojo.housenumber}}<br />
-                                {{dojo.postalcode}} {{dojo.city}}
-                              </td>
-                              <td>
-                                <p class="contact-info">
-                                  <a href="mailto:{{ dojo.email }}" class="btn-u btn-u-blue btn-block"><i class="icon-envelope"></i>&nbsp;&nbsp;Email</a><br/>
-                                  <a href="{{ dojo.website }}" class="btn-u btn-u-blue btn-block"><i class="icon-globe"></i>&nbsp;&nbsp;Website</a>
-                                </p>
-                              </td>
-                              <td>
-                                <p class="contact-info">
-                                  <a href="http://twitter.com/{{ dojo.twitter }}" class="btn-u btn-u-blue btn-block"><i class="icon-twitter"></i>&nbsp;&nbsp;Twitter</a><br/>
-                                  <a href="{{ dojo.facebook }}" class="btn-u btn-u-blue btn-block"><i class="icon-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;Facebook</a>
-                                </p>
-                              </td>
-                            </tr>
-                          {% endfor %}
+                  <!-- various dojo rows -->
+                  {% for dojo in dojos %}
+                  <div class="row dojo-row" data-dojo-id="{{dojo.id}}" class="dojo-row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <!-- general dojo information -->
+                        <div class="col-md-5">
+                          <strong>{{dojo.name}}</strong><br />
+                          {{dojo.location}}<br />
+                          {{dojo.street}} {{dojo.housenumber}}<br />
+                          {{dojo.postalcode}} {{dojo.city}}
+                        </div>
 
-                        </tbody>
-                    </table>
+                        <!-- dojos contact buttons -->
+                        <div class="col-md-7">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <p class="contact-info">
+                                    <a href="mailto:{{ dojo.email }}" class="btn-u btn-u-blue btn-block"><i class="icon-envelope"></i>&nbsp;&nbsp;Email</a><br/>
+                                    <a href="{{ dojo.website }}" class="btn-u btn-u-blue btn-block"><i class="icon-globe"></i>&nbsp;&nbsp;Website</a>
+                                  </p>
+                                </div>
+                                <div class="col-md-6">
+                                  <p class="contact-info">
+                                    <a href="http://twitter.com/{{ dojo.twitter }}" class="btn-u btn-u-blue btn-block"><i class="icon-twitter"></i>&nbsp;&nbsp;Twitter</a><br/>
+                                    <a href="{{ dojo.facebook }}" class="btn-u btn-u-blue btn-block"><i class="icon-facebook"></i>&nbsp;&nbsp;Facebook</a>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+
                 </div>
 
             </div>
             <!--End Orange Panels-->
         </div>
+      </div>
     </div>
-
 </div>
 
 {% endblock %}
