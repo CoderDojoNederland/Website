@@ -488,7 +488,7 @@ class Dojo extends BaseUser
     /**
      * Get dojos
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDojos()
     {
@@ -499,7 +499,13 @@ class Dojo extends BaseUser
     public function geocodeAddress()
     {
       // build geocode request URL
-      $geoCodeUrl  = sprintf("https://maps.googleapis.com/maps/api/geocode/json?address=%s+%s+%s&key=%s", $this->housenumber, $this->postalcode, $this->city, "AIzaSyAFfhAgoL1GV8iZZic3hy0uPKsrRhpVawE");
+      $geoCodeUrl  = sprintf("https://maps.googleapis.com/maps/api/geocode/json?address=%s+%s+%s+%s&key=%s",
+        urlencode($this->street),
+        urlencode($this->housenumber),
+        urlencode($this->postalcode),
+        urlencode($this->city),
+        "AIzaSyAFfhAgoL1GV8iZZic3hy0uPKsrRhpVawE"
+      );
 
       // make the request and decode the json
       $response = json_decode(file_get_contents($geoCodeUrl));
