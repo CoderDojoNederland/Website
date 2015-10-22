@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="Dojo")
- * @ORM\HasLifecycleCallbacks() 
+ * @ORM\HasLifecycleCallbacks()
  */
 class Dojo extends BaseUser
 {
@@ -63,14 +63,14 @@ class Dojo extends BaseUser
      * @ORM\Column(name="city", type="string", length=255)
      */
     protected $city;
-    
+
     /**
      * @var decimal
      *
      * @ORM\Column(name="geo_lat", type="decimal", precision=9, scale=6)
      */
     protected $lat;
-    
+
     /**
      * @var decimal
      *
@@ -253,6 +253,18 @@ class Dojo extends BaseUser
     }
 
     /**
+     * Set lat
+     *
+     * @param float $lat
+     * @return Dojo
+     */
+    public function setLat($lat)
+    {
+      $this->lat = $lat;
+      return $this;
+    }
+
+    /**
      * Get lat
      *
      * @return float
@@ -260,6 +272,18 @@ class Dojo extends BaseUser
     public function getLat()
     {
         return $this->lat;
+    }
+
+    /**
+     * Set long
+     *
+     * @param float $long
+     * @return Dojo
+     */
+    public function setLong($long)
+    {
+      $this->long = $long;
+      return $this;
     }
 
     /**
@@ -424,14 +448,14 @@ class Dojo extends BaseUser
     public function setOrganiser($organiser)
     {
         $this->organiser = $organiser;
-    
+
         return $this;
     }
 
     /**
      * Get organiser
      *
-     * @return string 
+     * @return string
      */
     public function getOrganiser()
     {
@@ -447,7 +471,7 @@ class Dojo extends BaseUser
     public function addDojo(\Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos)
     {
         $this->dojos[] = $dojos;
-    
+
         return $this;
     }
 
