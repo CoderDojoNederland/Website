@@ -55,15 +55,15 @@
 
                   <!-- header row -->
                   <div class="row dojos-header">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                       <div class="row">
-                        <div class="col-md-4">
-                          <b>Naam</b>
+                        <div class="col-xs-4">
+                          <b>Locatie</b>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-xs-4">
                           <b>Datum</b>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-xs-4">
                           <b>Tickets</b>
                         </div>
                       </div>
@@ -74,15 +74,15 @@
                   {% if nextdojos|length > 0 %}
                       {% for dojo in nextdojos %}
                       <div class="row dojo-row" data-dojo-id="{{dojo.dojo.id}}">
-                        <div class="col-md-12">
+                        <div class="col-xs-12">
                           <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                               {{dojo.dojo.name|replace({'CoderDojo ':''})}}
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                               {{ dojo.dojodate|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                               <a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a>
                             </div>
                           </div>
@@ -91,7 +91,7 @@
                       {% endfor %}
                   {% else %}
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                       <p class="empty">
                         Er zijn momenteel geen edities gepland
                       </p>
@@ -108,10 +108,10 @@
                   <div class="row dojos-header">
                     <div class="col-md-12">
                       <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-xs-7">
                           <b>Naam</b>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-xs-5">
                           <b>Contact</b>
                         </div>
                       </div>
@@ -121,25 +121,21 @@
                   <!-- various dojo rows -->
                   {% for dojo in dojos %}
                   <div class="row dojo-row" data-dojo-id="{{dojo.id}}">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                       <div class="row">
                         <!-- general dojo information -->
-                        <div class="col-md-7">
+                        <div class="col-xs-7">
                           {{dojo.name}}
                         </div>
 
                         <!-- dojos contact buttons -->
-                        <div class="col-md-5">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <p class="contact-info">
-                                <a href="mailto:{{ dojo.email }}" title="Email"><i class="icon-envelope"></i></a>&nbsp;&nbsp;
-                                <a href="{{ dojo.website }}" title="Website"><i class="icon-globe"></i></a>&nbsp;&nbsp;
-                                <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter"><i class="icon-twitter"></i></a>&nbsp;&nbsp;
-                                <a href="{{ dojo.facebook }}" title="Facebook"><i class="icon-facebook"></i></a>
-                              </p>
-                            </div>
-                          </div>
+                        <div class="col-xs-5">
+                          <p class="contact-info">
+                            <a href="mailto:{{ dojo.email }}" title="Email"><i class="icon-envelope"></i></a>&nbsp;
+                            <a href="{{ dojo.website }}" title="Website"><i class="icon-globe"></i></a>&nbsp;
+                            <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter"><i class="icon-twitter"></i></a>&nbsp;
+                            <a href="{{ dojo.facebook }}" title="Facebook"><i class="icon-facebook"></i></a>
+                          </p>
                         </div>
 
                       </div>
