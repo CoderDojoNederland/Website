@@ -150,7 +150,7 @@
       window.dojos
     );
 
-    $('.dojo-row').mouseenter(function (e) {
+    $('.dojo-row').mouseenter(function () {
       var dojoId = $(this).data('dojo-id');
       if(mapBackground.infoWindow){
         mapBackground.infoWindow.close();
@@ -165,7 +165,7 @@
       mapBackground.centerDojoWithDojoId(dojoId);
     });
 
-    $('.dojo-row').mouseout(function (e) {
+    $('.dojo-row').mouseout(function () {
       var dojoId = $(this).data('dojo-id');
       mapBackground.stopBouncingMarkerFordojoId(dojoId);
     });
