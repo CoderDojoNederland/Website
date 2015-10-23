@@ -13,7 +13,7 @@ before_install:
   - composer self-update
   - composer require satooshi/php-coveralls:~0.6@stable
 
-install: composer update --prefer-dist --no-interaction
+install: composer install --prefer-dist --no-interaction
 
 script:
   - phpunit -c app/ --coverage-clover build/logs/clover.xml
