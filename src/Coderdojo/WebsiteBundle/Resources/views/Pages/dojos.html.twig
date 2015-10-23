@@ -77,7 +77,7 @@
                         <div class="col-md-12">
                           <div class="row">
                             <div class="col-md-4">
-                              <strong>{{dojo.dojo.name|replace({'CoderDojo ':''})}}</strong><br />{{dojo.name}}
+                              {{dojo.dojo.name|replace({'CoderDojo ':''})}}
                             </div>
                             <div class="col-md-4">
                               {{ dojo.dojodate|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
@@ -108,10 +108,10 @@
                   <div class="row dojos-header">
                     <div class="col-md-12">
                       <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-7">
                           <b>Naam</b>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-5">
                           <b>Contact</b>
                         </div>
                       </div>
@@ -120,35 +120,24 @@
 
                   <!-- various dojo rows -->
                   {% for dojo in dojos %}
-                  <div class="row dojo-row" data-dojo-id="{{dojo.id}}" class="dojo-row">
+                  <div class="row dojo-row" data-dojo-id="{{dojo.id}}">
                     <div class="col-md-12">
                       <div class="row">
                         <!-- general dojo information -->
-                        <div class="col-md-5">
-                          <strong>{{dojo.name}}</strong><br />
-                          {{dojo.location}}<br />
-                          {{dojo.street}} {{dojo.housenumber}}<br />
-                          {{dojo.postalcode}} {{dojo.city}}
+                        <div class="col-md-7">
+                          {{dojo.name}}
                         </div>
 
                         <!-- dojos contact buttons -->
-                        <div class="col-md-7">
+                        <div class="col-md-5">
                           <div class="row">
                             <div class="col-md-12">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <p class="contact-info">
-                                    <a href="mailto:{{ dojo.email }}" class="btn-u btn-u-blue btn-block"><i class="icon-envelope"></i>&nbsp;&nbsp;Email</a><br/>
-                                    <a href="{{ dojo.website }}" class="btn-u btn-u-blue btn-block"><i class="icon-globe"></i>&nbsp;&nbsp;Website</a>
-                                  </p>
-                                </div>
-                                <div class="col-md-6">
-                                  <p class="contact-info">
-                                    <a href="http://twitter.com/{{ dojo.twitter }}" class="btn-u btn-u-blue btn-block"><i class="icon-twitter"></i>&nbsp;&nbsp;Twitter</a><br/>
-                                    <a href="{{ dojo.facebook }}" class="btn-u btn-u-blue btn-block"><i class="icon-facebook"></i>&nbsp;&nbsp;Facebook</a>
-                                  </p>
-                                </div>
-                              </div>
+                              <p class="contact-info">
+                                <a href="mailto:{{ dojo.email }}" title="Email"><i class="icon-envelope"></i></a>&nbsp;&nbsp;
+                                <a href="{{ dojo.website }}" title="Website"><i class="icon-globe"></i></a>&nbsp;&nbsp;
+                                <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter"><i class="icon-twitter"></i></a>&nbsp;&nbsp;
+                                <a href="{{ dojo.facebook }}" title="Facebook"><i class="icon-facebook"></i></a>
+                              </p>
                             </div>
                           </div>
                         </div>
