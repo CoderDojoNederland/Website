@@ -16,15 +16,7 @@
       scrollwheel:        false,
       streetViewControl:  false,
       mapTypeControl:     false,
-      styles: [
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [
-            {visibility: "off"}
-          ]
-        }
-      ]
+      styles: [{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"visibility":"on"},{"color":"#e67e22"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#428bca"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#FFFFFF"},{"weight":4}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"visibility":"off"},{"color":"#FFFFFF"},{"weight":3}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"},{"color":"#fcd3a1"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#000000"}]}]
     };
 
     // setup the map
@@ -47,7 +39,8 @@
     var marker = new google.maps.Marker({
       position: {lat: dojo.geo.lat, lng: dojo.geo.long},
       map:      this.map,
-      title:    dojo.name
+      title:    dojo.name,
+      icon:     '/bundles/coderdojowebsite/img/markers/white.png'
     });
 
     // show info window on click
@@ -104,7 +97,7 @@
   // pan and zoom to the location of the dojo
   DojosMapBackground.prototype.focusOnDojoWithId = function (dojoId) {
     // zoom in on the map
-    this.map.setZoom(15);
+    this.map.setZoom(14);
 
     // do calculations to center the dojo correctly
     var dojo   = this.dojos[dojoId],
@@ -157,13 +150,22 @@
       window.dojos
     );
 
-    $('.dojo-row').hover(function () {
+    $('.dojo-row').mouseenter(function (e) {
       var dojoId = $(this).data('dojo-id');
+      if(mapBackground.infoWindow){
+        mapBackground.infoWindow.close();
+        mapBackground.infoWindow = null;
+      }
+
+      if(mapBackground.map.getZoom() !== 8) {
+        mapBackground.resetFocus();
+      }
+
       mapBackground.startBouncingMarkerForDojoId(dojoId);
       mapBackground.centerDojoWithDojoId(dojoId);
     });
 
-    $('.dojo-row').mouseout(function () {
+    $('.dojo-row').mouseout(function (e) {
       var dojoId = $(this).data('dojo-id');
       mapBackground.stopBouncingMarkerFordojoId(dojoId);
     });
