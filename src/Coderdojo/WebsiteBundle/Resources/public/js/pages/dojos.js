@@ -152,12 +152,12 @@
 
     $('.dojo-row').mouseenter(function () {
       var dojoId = $(this).data('dojo-id');
-      if(mapBackground.infoWindow){
+      if (mapBackground.infoWindow) {
         mapBackground.infoWindow.close();
         mapBackground.infoWindow = null;
       }
 
-      if(mapBackground.map.getZoom() !== 8) {
+      if (mapBackground.map.getZoom() !== 8) {
         mapBackground.resetFocus();
       }
 
@@ -165,7 +165,7 @@
       mapBackground.centerDojoWithDojoId(dojoId);
     });
 
-    $('.dojo-row').mouseout(function () {
+    $('.dojo-row').mouseleave(function () {
       var dojoId = $(this).data('dojo-id');
       mapBackground.stopBouncingMarkerFordojoId(dojoId);
     });
