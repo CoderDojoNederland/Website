@@ -261,29 +261,6 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set geocode
-     *
-     * @param string $geocode
-     * @return Dojo
-     */
-    public function setGeocode($geocode)
-    {
-        $this->geocode = $geocode;
-
-        return $this;
-    }
-
-    /**
-     * Get geocode
-     *
-     * @return string
-     */
-    public function getGeocode()
-    {
-        return $this->geocode;
-    }
-
-    /**
      * Set facebook
      *
      * @param string $facebook
@@ -375,6 +352,9 @@ class Dojo extends BaseUser
         return $this->location;
     }
 
+    /**
+     * @param string $email
+     */
     public function setEmail($email){
         $this->setUsername($email);
         parent::setEmail($email);

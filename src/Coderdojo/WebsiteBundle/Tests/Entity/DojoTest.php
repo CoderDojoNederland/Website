@@ -25,7 +25,6 @@ class DojoTest extends \PHPUnit_Framework_TestCase
             ->setHousenumber('10')
             ->setPostalcode('1234aa')
             ->setCity('city')
-            ->setGeocode('geocode')
             ->setFacebook('facebook')
             ->setTwitter('twitter')
             ->setWebsite('website')
@@ -49,7 +48,6 @@ class DojoTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('10', $this->dojo->getHousenumber());
         $this->assertSame('1234aa', $this->dojo->getPostalcode());
         $this->assertSame('city', $this->dojo->getCity());
-        $this->assertSame('geocode', $this->dojo->getGeocode());
         $this->assertSame('facebook', $this->dojo->getFacebook());
         $this->assertSame('twitter', $this->dojo->getTwitter());
         $this->assertSame('website', $this->dojo->getWebsite());
