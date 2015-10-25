@@ -8,6 +8,9 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 
+/**
+ * @codeCoverageIgnore
+ */
 class LoadDojoEventData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
     /**

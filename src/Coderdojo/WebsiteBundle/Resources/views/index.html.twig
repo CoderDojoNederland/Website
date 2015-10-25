@@ -79,6 +79,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             Opzetten
                         </a>
                     </li>
+                    <li {% if app.request.get('_route') == 'codeweek' %}class="active"{% endif %}>
+                        <a href="{{ path('codeweek') }}">
+                            CodeWeek
+                        </a>
+                    </li>
                     <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}>
                         <a href="{{path('about')}}">
                             Over

@@ -1,5 +1,4 @@
 <?php
-// src/Acme/UserBundle/Entity/User.php
 
 namespace Coderdojo\WebsiteBundle\Entity;
 
@@ -244,7 +243,7 @@ class Dojo extends BaseUser
      * @param string $slug
      * @return Dojo
      */
-    public function setSlug($slug)
+    private function setSlug($slug)
     {
         $this->slug = $slug;
 
@@ -259,52 +258,6 @@ class Dojo extends BaseUser
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set geocode
-     *
-     * @param string $geocode
-     * @return Dojo
-     */
-    public function setGeocode($geocode)
-    {
-        $this->geocode = $geocode;
-
-        return $this;
-    }
-
-    /**
-     * Get geocode
-     *
-     * @return string
-     */
-    public function getGeocode()
-    {
-        return $this->geocode;
-    }
-
-    /**
-     * Set logo
-     *
-     * @param string $logo
-     * @return Dojo
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return string
-     */
-    public function getLogo()
-    {
-        return $this->logo;
     }
 
     /**

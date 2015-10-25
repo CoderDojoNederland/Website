@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Class ContactFormType
+ * @codeCoverageIgnore
  */
 class ContactFormType extends AbstractType
 {
