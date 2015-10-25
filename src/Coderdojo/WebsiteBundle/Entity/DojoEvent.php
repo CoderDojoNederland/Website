@@ -64,12 +64,12 @@ class DojoEvent
     /**
      * Set dojodate
      *
-     * @param \DateTime $dojodate
+     * @param \DateTime $date
      * @return DojoEvent
      */
-    public function setDojodate($dojodate)
+    public function setDate($date)
     {
-        $this->date = $dojodate;
+        $this->date = $date;
     
         return $this;
     }
@@ -79,7 +79,7 @@ class DojoEvent
      *
      * @return \DateTime 
      */
-    public function getDojodate()
+    public function getDate()
     {
         return $this->date;
     }
@@ -128,16 +128,6 @@ class DojoEvent
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \Date
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 
     /**

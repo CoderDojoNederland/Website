@@ -18,7 +18,7 @@ class DojoEventTest extends \PHPUnit_Framework_TestCase
     {
         $this->dojoEvent = new DojoEvent();
         $this->dojoEvent->setUrl('url')
-            ->setDojodate(new \DateTime('2016-01-01 00:00:00'))
+            ->setDate(new \DateTime('2016-01-01 00:00:00'))
             ->setName('dojo');
     }
 

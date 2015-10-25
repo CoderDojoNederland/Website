@@ -95,20 +95,6 @@ class Dojo extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255, nullable=true)
-     */
-    protected $status;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notes", type="string", length=255, nullable=true)
-     */
-    protected $notes;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="organiser", type="string", length=255)
      */
     protected $organiser;
@@ -368,52 +354,6 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set status
-     *
-     * @param string $status
-     * @return Dojo
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set notes
-     *
-     * @param string $notes
-     * @return Dojo
-     */
-    public function setNotes($notes)
-    {
-        $this->notes = $notes;
-
-        return $this;
-    }
-
-    /**
-     * Get notes
-     *
-     * @return string
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
      * Set website
      *
      * @param string $website
@@ -460,51 +400,8 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set next
-     *
-     * @param \DateTime $next
-     * @return Dojo
+     * @param string $email
      */
-    public function setNext($next)
-    {
-        $this->next = $next;
-
-        return $this;
-    }
-
-    /**
-     * Get next
-     *
-     * @return \DateTime
-     */
-    public function getNext()
-    {
-        return $this->next;
-    }
-
-    /**
-     * Set tickets
-     *
-     * @param string $tickets
-     * @return Dojo
-     */
-    public function setTickets($tickets)
-    {
-        $this->tickets = $tickets;
-
-        return $this;
-    }
-
-    /**
-     * Get tickets
-     *
-     * @return string
-     */
-    public function getTickets()
-    {
-        return $this->tickets;
-    }
-
     public function setEmail($email){
         $this->setUsername($email);
         parent::setEmail($email);
