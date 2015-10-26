@@ -26,10 +26,11 @@ class DojoEventTest extends \PHPUnit_Framework_TestCase
         $this->dojo = $this->createDojoMock();
 
         $this->dojoEvent = new DojoEvent();
+
         $this->dojoEvent
             ->setDojo($this->dojo)
             ->setUrl('url')
-            ->setDojodate(new \DateTime('2016-01-01 00:00:00'))
+            ->setDate(new \DateTime('2016-01-01 00:00:00'))
             ->setName('dojo');
     }
 
@@ -42,7 +43,7 @@ class DojoEventTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('dojo', $this->dojoEvent->getName());
         $this->assertSame($this->dojo, $this->dojoEvent->getDojo());
         $this->assertNull($this->dojoEvent->getId());
-        $this->assertSame(\DateTime::class, get_class($this->dojoEvent->getDojodate()));
+        $this->assertSame(\DateTime::class, get_class($this->dojoEvent->getDate()));
     }
 
     /**
