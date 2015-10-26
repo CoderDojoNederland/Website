@@ -14,6 +14,7 @@ parameters:
     mailer_host:       smtp.mandrillapp.com
     mailer_user:       chris@coderdojo.nl
     mailer_password:   insert-password
+    mailer_port:       587
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
