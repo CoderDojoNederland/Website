@@ -80,7 +80,7 @@
                               {{dojo.dojo.name|replace({'CoderDojo ':''})}}
                             </div>
                             <div class="col-xs-4">
-                              {{ dojo.dojodate|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
+                              {{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
                             </div>
                             <div class="col-xs-4">
                               <a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green">Reserveer</a>
@@ -155,9 +155,11 @@
 {% endblock %}
 
 {% block description %}
-In heel Nederland worden er CoderDojo's gehouden. Kijk hier waar er een bij jou in de buurt is!
+In heel Nederland zijn er inmiddels {{ dojos|length }} dojo's. Kijk hier waar er een bij jou in de buurt is!
 {% endblock %}
 
 {% block fbdescription %}
-In heel Nederland worden er CoderDojo's gehouden. Kijk hier waar er een bij jou in de buurt is!
+  In heel Nederland zijn er inmiddels {{ dojos|length }} dojo's. Kijk hier waar er een bij jou in de buurt is!
 {% endblock %}
+
+{% block og_image %}http://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/og-dojos.png')}}{% endblock %}
