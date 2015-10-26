@@ -69,10 +69,13 @@ class DefaultController extends Controller
 
     public function dojosAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $dojos = $em->getRepository("CoderdojoWebsiteBundle:Dojo")->findAll();
+        $dojos = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:Dojo")->findAll();
 
-        $repo = $em->getRepository("CoderdojoWebsiteBundle:DojoEvent");
+        usort($dojos, function ($a, $b) {
+            return strnatcmp($a->getCity(), $b->getCity());
+        });
+
+        $repo = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:DojoEvent");
         $query = $repo->createQueryBuilder('d')
             ->where('d.date > :today')
             ->setParameter('today', new \DateTime("now"))

@@ -49,7 +49,9 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
             ->setWebsite('http://coderdojo.nl')
             ->setPostalcode('3032AD')
             ->setOrganiser('4680001283')
-            ->setEnabled(true);
+            ->setEnabled(true)
+            ->setLat(51.928294)
+            ->setLong(4.480246);
 
         $encoder = $this->container
             ->get('security.encoder_factory')

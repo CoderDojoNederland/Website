@@ -1,0 +1,61 @@
+/*Dojos Pages
+------------------------------------*/
+
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 100px);
+}
+
+/* override some bootstrap styles */
+.panel-heading {
+  padding-bottom: 0px;
+}
+.nav-tabs {
+  border-bottom: 0px !important;
+}
+
+/* inactive state for tabs */
+.nav-tabs a {
+  color: white;
+}
+
+/* the map in the background */
+.map {
+	width: 100%;
+	height: 100%;
+  position: absolute;
+}
+
+/* the selector box containing the dojos */
+.dojo-selector {
+  padding-top: 40px;
+}
+
+/* table headers */
+.dojos-header, .dojo-row {
+  padding: 5px !important;
+}
+
+/* individual dojo rows in overview */
+.dojo-row {
+  transition: background-color, 300ms;
+  border-bottom: 1px solid #ededed;
+}
+.dojo-row:hover {
+  background-color: #ededed;
+}
+
+.contact-info > a:nth-child(1) {
+  margin-bottom: 5px;
+}
+
+[data-js-ref=list-all-dojos] {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+/* emptystate for no upcoming dojos */
+.empty {
+  text-align: center;
+}

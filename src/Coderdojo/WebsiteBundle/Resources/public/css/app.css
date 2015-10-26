@@ -888,3 +888,13 @@ i.style-switcher-btn-option:hover {
 .style-switcher li.theme-light {
    background: #ecf0f1;
 }
+
+/* Dojos page
+------------------------------------*/
+.contact-info {
+   font-size: 18px;
+}
+
+.contact-info a:hover {
+   text-decoration: none;
+}
