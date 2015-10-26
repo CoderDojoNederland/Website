@@ -171,7 +171,7 @@
     });
 
     $('.dojo-row').click(function (e) {
-      e.preventDefault();
+      e.stopPropagation();
       var dojoId = $(this).data('dojo-id');
       mapBackground.focusOnDojoWithId(dojoId);
     });
