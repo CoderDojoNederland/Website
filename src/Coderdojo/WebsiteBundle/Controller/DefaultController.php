@@ -42,7 +42,7 @@ class DefaultController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject('Email via Website')
                     ->setFrom($form->get('email')->getData(), $form->get('naam')->getData())
-                    ->setTo('chris@coderdojo.nl')
+                    ->setTo('contact@coderdojo.nl')
                     ->setContentType('text/html')
                     ->setBody(
                         $this->renderView(
