@@ -115,3 +115,6 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
+
+cl_slack:
+    api_token: %slack_api_token%

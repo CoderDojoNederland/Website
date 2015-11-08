@@ -126,6 +126,7 @@ class DefaultController extends Controller
             if($result->organizer_id == $this->getUser()->getOrganiser())
             {
                 $em = $this->getDoctrine()->getManager();
+
                 $dojo = new DojoEvent();
                 $dojo->setName($result->name->text)
                     ->setDate(new \DateTime($result->start->local))
@@ -134,6 +135,16 @@ class DefaultController extends Controller
                 $this->getUser()->addDojo($dojo);
                 $em->persist($dojo);
                 $em->flush();
+
+                $msg = sprintf(
+                    "%s heeft een nieuwe dojo toegevoegd voor %s\n<%s|Registreer op Eventbrite>",
+                    $this->getUser()->getName(),
+                    $dojo->getDate()->format('d F Y'),
+                    $dojo->getUrl()
+                );
+
+                $this->get('coderdojo.website_bundle.slack_service')->sendToChannel('#general', $msg);
+
                 $msg = "ok";
             }else{
                 $msg = "Deze dojo hoort niet bij jouw organizer id";
