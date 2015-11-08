@@ -3,12 +3,17 @@ parameters:
 
 services:
     coderdojo.registration.form.type:
-            class: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType
-            arguments: [%fos_user.model.user.class%]
-            tags:
-                - { name: form.type, alias: coderdojo_user_registration }
+        class: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: coderdojo_user_registration }
+
     coderdojo.profile.form.type:
-            class: Coderdojo\WebsiteBundle\Form\Type\ProfileFormType
-            arguments: [%fos_user.model.user.class%]
-            tags:
-                - { name: form.type, alias: coderdojo_user_profile }
+        class: Coderdojo\WebsiteBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: coderdojo_user_profile }
+
+    coderdojo.website_bundle.slack_service:
+        class: Coderdojo\WebsiteBundle\Service\SlackService
+        arguments: [@cl_slack.api_client]
