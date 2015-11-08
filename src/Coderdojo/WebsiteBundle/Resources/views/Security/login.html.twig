@@ -8,12 +8,12 @@
         <div class="panel-heading">
             <h3 class="panel-title">Inloggen</h3>
         </div>
-        {% if error %}
-            <div style="color:#ff0000;">{{ error|trans }}</div>
-        {% endif %}
         <div class="panel-body">
             <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" role="form">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% if error %}
+                    <p style="color:#ff0000;">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+                {% endif %}
                 <div class="form-group">
                     <label for="username" class="col-lg-2 control-label">Email</label>
                     <div class="col-lg-10">
