@@ -17,8 +17,9 @@
                         <label class="sr-only" for="eid">Eventbrite ID</label>
                         <input type="text" class="form-control" id="eid" placeholder="Eventbrite ID">
                     </div>
-                    <button type="submit" class="btn-u btn-u-green">Dojo Toevoegen</button>
+                    <button type="submit" class="btn btn-success" id="btn_submit">Dojo Toevoegen</button>
                     <div class="form-group">
+                        <p style="display:none;" id="spinner"><img src="{{ asset('/bundles/coderdojowebsite/img/ajax-loader.gif') }}"/></p>
                         <p style="color:#F00 !important;" id="error"></p>
                     </div>
                 </form>
@@ -61,6 +62,9 @@
     <script type="text/javascript" language="javascript">
         $("#newDojo").on("submit", function(e){
             e.preventDefault();
+            $("#btn_submit").attr('disabled', 'disabled');
+            $("#spinner").show();
+            $("#error").html('');
 
             var eid = $("#eid").val();
 
@@ -78,6 +82,10 @@
             })
             .fail(function(msg){
                 $("#error").html("Er is iets mis gegaan!");
+            }).
+            always(function(){
+                $("#btn_submit").removeAttr('disabled');
+                $("#spinner").hide();
             });
 
             return false;
