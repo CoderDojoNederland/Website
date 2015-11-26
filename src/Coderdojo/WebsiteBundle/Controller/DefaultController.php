@@ -183,30 +183,8 @@ class DefaultController extends Controller
         return new JsonResponse($dojos);
     }
 
-    private function getNextDojo($organiserid){
-
-        $url = "https://www.eventbriteapi.com/v3/events/search/?token=CT3M6TIFGKYO5CM7QWOK&organizer.id=".$organiserid;
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL,$url);
-        $result=curl_exec($ch);
-        curl_close($ch);
-
-        $result = json_decode($result);
-
-        if($result->pagination->object_count > 0){
-            //var_dump($result->events[0]->url);
-            //echo "<br/>";
-            //var_dump($result->events[0]->start->local);
-
-            $event['url'] = $result->events[0]->url;
-            $event['time'] = $result->events[0]->start->local;
-            return $event;
-        }
-        else{
-            return false;
-        }
+    public function materialAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:material.html.twig');
     }
 }

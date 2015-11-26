@@ -22,6 +22,10 @@ setup:
     pattern:  /opstarten
     defaults: { _controller: CoderdojoWebsiteBundle:Default:setup }
 
+material:
+    pattern:  /materiaal
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:material }
+
 contact:
     pattern:  /contact
     defaults: { _controller: CoderdojoWebsiteBundle:Default:contact }
