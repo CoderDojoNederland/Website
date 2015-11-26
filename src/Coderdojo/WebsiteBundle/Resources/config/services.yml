@@ -16,4 +16,4 @@ services:
 
     coderdojo.website_bundle.slack_service:
         class: Coderdojo\WebsiteBundle\Service\SlackService
-        arguments: [@cl_slack.api_client]
+        arguments: [@cl_slack.api_client, @kernel]
