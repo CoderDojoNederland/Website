@@ -31,11 +31,17 @@ Vagrant.configure(2) do |config|
     rm -rf /var/www/html
     ln -fs /vagrant/web /var/www/html
 
-    curl -sS https://getcomposer.org/installer | php
+    apt-get install -y g++
+    curl -sL https://deb.nodesource.com/setup_0.12 | sh
+    apt-get install -y nodejs
+
+    npm install -g less
+
+    curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
     cd /vagrant
 
-    php composer.phar install
+    composer install
     
     php app/console doctrine:database:create
     php app/console doctrine:schema:update --force
