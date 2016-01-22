@@ -86,4 +86,4 @@ Once your PR has been reviewed and approved it will be merged and deployed to pr
 
 For questions feel free to contact **[@ChristianVermeulen](http://github.com/christianvermeulen)** or **[@tmw](http://github.com/tmw)**.
 
-testing blabla
+testing Lorem Ipsum Dolor Sit Amet
