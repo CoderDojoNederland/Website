@@ -21,11 +21,6 @@ class DefaultController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:about.html.twig');
     }
 
-    public function codeeuAction()
-    {
-        return $this->render('CoderdojoWebsiteBundle:Pages:codeweek.html.twig');
-    }
-
     public function setupAction()
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:setup.html.twig');
