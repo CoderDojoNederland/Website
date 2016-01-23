@@ -21,9 +21,9 @@ class DefaultController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:about.html.twig');
     }
 
-    public function codeeuAction()
+    public function stichtingAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:codeweek.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:stichting.html.twig');
     }
 
     public function setupAction()
