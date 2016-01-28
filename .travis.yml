@@ -10,6 +10,7 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
+  - mysql -e 'create database coderdojonl;'
   - cp app/config/parameters.yml.test.dist app/config/parameters.yml
   - composer self-update
   - composer require satooshi/php-coveralls:~0.6@stable
