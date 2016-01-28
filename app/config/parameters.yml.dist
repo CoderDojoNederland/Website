@@ -6,7 +6,7 @@ parameters:
     database_port:     ~
     database_name:     coderdojonl
     database_user:     root
-    database_password: supersafe
+    database_password: ~
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
