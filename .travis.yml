@@ -12,6 +12,7 @@ cache:
 before_install:
   - composer self-update
   - composer require satooshi/php-coveralls:~0.6@stable
+  - cp app/config/parameters.yml.test.dist app/config/parameters.yml
 
 install: composer install --prefer-dist --no-interaction
 
@@ -20,11 +21,3 @@ script:
 
 after_success:
   - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php bin/coveralls -v; fi;'
-  
-notifications:
-  webhooks:
-    urls:
-      - https://dockbit.com/webhooks/62ea9999083a6f2bda7b0c27adade320b2fc1347
-    on_success: [always|never|change] # default: always
-    on_failure: [always|never|change] # default: always
-    on_start: [always|never|change] # default: always

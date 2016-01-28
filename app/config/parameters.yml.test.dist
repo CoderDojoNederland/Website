@@ -1,0 +1,20 @@
+parameters:
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     coderdojonl
+    database_user:     root
+    database_password: ~
+    # You should uncomment this if you want use pdo_sqlite
+    # database_path: "%kernel.root_dir%/data.db3"
+
+    mailer_transport:  smtp
+    mailer_host:       smtp.mandrillapp.com
+    mailer_user:       chris@coderdojo.nl
+    mailer_password:   insert-password
+    mailer_port:       587
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Api token for talking to slack
+    slack_api_token: 1234
