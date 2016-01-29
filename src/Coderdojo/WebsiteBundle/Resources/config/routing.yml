@@ -14,9 +14,9 @@ dojos:
     pattern:  /dojos
     defaults: { _controller: CoderdojoWebsiteBundle:Default:dojos }
 
-codeweek:
-    pattern:  /codeweek
-    defaults: { _controller: CoderdojoWebsiteBundle:Default:codeeu }
+stichting:
+    pattern:  /over-de-stichting
+    defaults: { _controller: CoderdojoWebsiteBundle:Default:stichting }
 
 setup:
     pattern:  /opstarten
