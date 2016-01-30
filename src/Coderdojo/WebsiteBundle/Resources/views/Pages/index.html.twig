@@ -6,15 +6,15 @@
 <div class="container">
     <!--Title Box-->
     <div class="title-box">
-        <div class="title-box-text">Doe mee met <span class="color-green">CoderDojo!</span></div>
         <div class="row margin-bottom-40">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="title-box-text">Ervaar zelf <span class="color-green">CoderDojo!</span></div>
+                <p>Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers! Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!</p>
                 <div class="responsive-video">
                     <iframe width="640" height="360" src="//www.youtube.com/embed/GLtoyfbPj_U" frameborder="0" allowfullscreen style="margin:20px 0"></iframe>
                 </div>
             </div>
         </div>
-        <p>Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers!<br/>Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!</p>
     </div>
     <!--End Promo Box-->
 
@@ -45,29 +45,6 @@
         </div>
     </div>
     <!--End Promo Box-->
-
-    <div class="clearfix margin-bottom-40"></div>
-
-    <!--Our Work-->
-    <div class="row service-v1 margin-bottom-40">
-        <div class="col-md-4 md-margin-bottom-40">
-            <iframe width="100%" height="240" src="//www.youtube.com/embed/y1kJys-BhAU" frameborder="0" allowfullscreen></iframe>
-            <h2>CoderDojo Rotterdam</h2>
-            <p>In Rotterdam hebben we een vliegende start gehad. Er is nu ruimte voor 25 deelnemers per editie, maar binnenkort zal dit snel groter worden.</p>
-        </div>
-        <div class="col-md-4">
-            <iframe src="//player.vimeo.com/video/82288251" width="100%" height="240" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-            <h2>CoderDojo Amsterdam</h2>
-            <p>De Amsterdamse tak van CoderDojo is al in een stabiel stadium. Elke maand is er op twee plaatsen een editie te vinden!</p>
-        </div>
-        <div class="col-md-4 md-margin-bottom-40">
-            <img src="{{ asset('bundles/coderdojowebsite/img/digivita.jpg') }}"/ class="img-responsive" alt="CoderDojo Leiden for Girls">
-
-            <h2>CoderDojo Leiden</h2>
-            <p>De meest verse toevoeging aan het Nederlandse arsenaal van CoderDojo is Leiden. Ook hier is een vliegende start gemaakt!</p>
-        </div>
-    </div>
-    <!--End Our Work-->
 
     <hr class="margin-bottom-40">
 
@@ -124,23 +101,34 @@
 
     <!--Service Block-->
     <div class="row promo-service">
-        <div class="col-md-6 md-margin-bottom-20">
-            <h2>Wil je mee helpen met CoderDojo?</h2>
-            <p>CoderDojo is altijd op zoek naar vrijwilligers! Ben je enthousiast geworden over CoderDojo en lijkt het je leuk om hiervan deel uit te maken? Cool! Je kan jezelf opgeven als mentor bij je lokale CoderDojo of zelf een Dojo starten als je je in één of meerdere van onderstaande dingen kan vinden:</p>
-            <ul class="list-unstyled">
-                <li><i class="icon-angle-right color-green"></i>Developer die kennis wilt delen</li>
-                <li><i class="icon-angle-right color-green"></i>Ruimte beschikbaar stellen</li>
-                <li><i class="icon-angle-right color-green"></i>Promotie van een Dojo</li>
-                <li><i class="icon-angle-right color-green"></i>Begeleiden van een Dojo</li>
-                <li><i class="icon-angle-right color-green"></i>Gastsprekers regelen</li>
-            </ul>
-            <br>
+        <div class="col-md-7 md-margin-bottom-20">
+            <h2 class="margin-bottom-20">Komende Dojos</h2>
+
+            {% for dojo in dojos %}
+            <div class="row" itemscope itemtype="http://schema.org/Event">
+                <div class="col-md-3" itemprop="startDate" content="{{ dojo.date|date('Y-m-d') }}">
+                    {{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")}}
+                </div>
+                <div class="col-md-4" itemprop="name">
+                    <a itemprop="url" href="{{ dojo.url }}" target="_blank">{{ dojo.dojo.name }}</a>
+                </div>
+                <div class="col-md-5" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                    <span itemprop="name">{{ dojo.dojo.location }}</span>
+                    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="hidden">
+                        <span itemprop="addressLocality">{{ dojo.dojo.city }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <hr class="margin-bottom-20">
             <a href="{{path('setup')}}" class="btn-u btn-u-lg btn-u-sea"><i class="icon-plus-sign-alt"></i> Start een Dojo</a>
-            <a href="{{path('dojos')}}" class="btn-u btn-u-lg btn-u-blue"><i class="icon-ok-sign"></i> Help een Dojo</a>
+            <a href="{{path('dojos')}}" class="btn-u btn-u-lg btn-u-blue"><i class="icon-ok-sign"></i> Vind een Dojo</a>
         </div>
 
-        <div class="col-md-6">
-            <iframe width="100%" height="350" src="//www.youtube.com/embed/Z1yL3gfJRlQ" frameborder="0" allowfullscreen></iframe>
+        <div class="col-md-5">
+            <h2>In 2016 werken wij samen met:</h2>
+
         </div>
     </div>
     <!--End Service Block-->

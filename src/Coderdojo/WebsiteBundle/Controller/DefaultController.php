@@ -13,7 +13,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:index.html.twig');
+        $dojos = $this->getUpComingDojos();
+
+        return $this->render('CoderdojoWebsiteBundle:Pages:index.html.twig', [
+            'dojos' => $dojos
+        ]);
     }
 
     public function aboutAction()
@@ -155,7 +159,22 @@ class DefaultController extends Controller
     }
 
     public function listDojosAction(){
-        $em = $this->getDoctrine()->getManager();
+        $dojos = $this->getUpComingDojos();
+
+        return new JsonResponse($dojos);
+    }
+
+    public function materialAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:material.html.twig');
+    }
+
+    /**
+     * @return array
+     */
+    private function getUpComingDojos()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
 
         $repo = $em->getRepository("CoderdojoWebsiteBundle:DojoEvent");
         $query = $repo->createQueryBuilder('d')
@@ -166,25 +185,6 @@ class DefaultController extends Controller
 
         $nextDojos = $query->getResult();
 
-        $dojos = array();
-
-        foreach($nextDojos as $dojo){
-            $datestring = $dojo->getDate()->format("m-d-Y");
-            $dojos[] = array(
-                "name" => $dojo->getName(),
-                "date" => $datestring,
-                "url"  => $dojo->getUrl(),
-                "dojo" => $dojo->getDojo()->getName(),
-                "dojoid" => $dojo->getDojo()->getId(),
-                "location" => $dojo->getDojo()->getLocation()
-            );
-        }
-
-        return new JsonResponse($dojos);
-    }
-
-    public function materialAction()
-    {
-        return $this->render('CoderdojoWebsiteBundle:Pages:material.html.twig');
+        return $nextDojos;
     }
 }
