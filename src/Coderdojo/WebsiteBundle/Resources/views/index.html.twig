@@ -93,20 +93,25 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown {% if app.request.get('_route') in ['stichting', 'about'] %}active{% endif %}">
+                    <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'collaboration'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Over
+                            Achtergrond
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li {% if app.request.get('_route') == 'stichting' %}class="active"{% endif %}>
-                                <a href="{{ path('stichting') }}">
-                                   De Stichting
+                            <li {% if app.request.get('_route') == 'foundation' %}class="active"{% endif %}>
+                                <a href="{{ path('foundation') }}">
+                                   Stichting Gegevens
+                                </a>
+                            </li>
+                            <li {% if app.request.get('_route') == 'collaboration' %}class="active"{% endif %}>
+                                <a href="{{ path('collaboration') }}">
+                                    Samenwerkingen
                                 </a>
                             </li>
                             <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}>
                                 <a href="{{ path('about') }}">
-                                    Over CoderDojo
+                                    CoderDojo Wereldwijd
                                 </a>
                             </li>
                         </ul>

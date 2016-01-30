@@ -101,7 +101,7 @@
 
     <!--Service Block-->
     <div class="row promo-service">
-        <div class="col-md-7 md-margin-bottom-20">
+        <div class="col-md-7">
             <h2 class="margin-bottom-20">Komende Dojos</h2>
 
             {% for dojo in dojos %}
@@ -120,15 +120,16 @@
                 </div>
             </div>
             {% endfor %}
-            
+
             <hr class="margin-bottom-20">
             <a href="{{path('setup')}}" class="btn-u btn-u-lg btn-u-sea"><i class="icon-plus-sign-alt"></i> Start een Dojo</a>
             <a href="{{path('dojos')}}" class="btn-u btn-u-lg btn-u-blue"><i class="icon-ok-sign"></i> Vind een Dojo</a>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-5 partners">
             <h2>In 2016 werken wij samen met:</h2>
-
+            <img src="{{ asset('/bundles/coderdojowebsite/img/ziggo.png') }}" title="Ziggo"/>
+            <img src="{{ asset('/bundles/coderdojowebsite/img/codeqube.png') }}" title="CodeQube"/>
         </div>
     </div>
     <!--End Service Block-->
