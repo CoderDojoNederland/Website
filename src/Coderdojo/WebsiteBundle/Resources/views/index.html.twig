@@ -101,17 +101,17 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                         <ul class="dropdown-menu">
                             <li {% if app.request.get('_route') == 'foundation' %}class="active"{% endif %}>
                                 <a href="{{ path('foundation') }}">
-                                   Stichting Gegevens
+                                   Stichting
                                 </a>
                             </li>
                             <li {% if app.request.get('_route') == 'collaboration' %}class="active"{% endif %}>
                                 <a href="{{ path('collaboration') }}">
-                                    Samenwerkingen
+                                    Samenwerking
                                 </a>
                             </li>
                             <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}>
                                 <a href="{{ path('about') }}">
-                                    CoderDojo Wereldwijd
+                                    CoderDojo
                                 </a>
                             </li>
                         </ul>
