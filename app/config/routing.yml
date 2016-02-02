@@ -1,6 +1,14 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+old-manage:
+    path: /beheren
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: manage
+        permanent: true
+
 coderdojo_website:
-    resource: "@CoderdojoWebsiteBundle/Resources/config/routing.yml"
+    resource: "@CoderdojoWebsiteBundle/Controller/"
     prefix:   /
+    type:     annotation

@@ -4,6 +4,7 @@ namespace Coderdojo\WebsiteBundle\Controller;
 
 use Coderdojo\WebsiteBundle\Form\Type\ContactFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,26 +12,45 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    /**
+     * @Route("/", name="home")
+     */
+    public function homeAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:index.html.twig');
+        $dojos = $this->getUpComingDojos();
+
+        return $this->render('CoderdojoWebsiteBundle:Pages:index.html.twig', [
+            'dojos' => $dojos
+        ]);
     }
 
+    /**
+     * @Route("/over-coderdojo", name="about")
+     */
     public function aboutAction()
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:about.html.twig');
     }
 
-    public function stichtingAction()
+    /**
+     * @Route("/over-de-stichting", name="foundation")
+     */
+    public function foundationAction()
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:stichting.html.twig');
     }
 
+    /**
+     * @Route("/opstarten", name="setup")
+     */
     public function setupAction()
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:setup.html.twig');
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     */
     public function contactAction(Request $request)
     {
         $form = $this->createForm(new ContactFormType());
@@ -67,6 +87,9 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * @Route("/dojos", name="dojos")
+     */
     public function dojosAction()
     {
         $dojos = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:Dojo")->findAll();
@@ -87,17 +110,11 @@ class DefaultController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos"=>$nextDojos));
     }
 
-    public function dojoAction($city)
+    /**
+     * @Route("/mijn-dojo/beheren", name="manage")
+     */
+    public function manageAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $dojo = $em->getRepository("CoderdojoWebsiteBundle:Dojo")->findOneBySlug($city);
-
-        return $this->render('CoderdojoWebsiteBundle:Pages:dojo.html.twig', array("dojo" => $dojo));
-    }
-
-    public function manageAction(){
-        //$dojos = $this->getUser()->getDojos();
-
         $em = $this->getDoctrine()->getManager();
         $dojos = $em->getRepository("CoderdojoWebsiteBundle:DojoEvent")->findBy(
             array("dojo"=>$this->getUser()),
@@ -107,8 +124,13 @@ class DefaultController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:manage.html.twig', array("dojos" => $dojos));
     }
 
-    public function manageAddAction(){
-        $eid = $this->getRequest()->query->get('eid');
+    /**
+     * @Route("/mijn-dojo/beheren/toevoegen", name="new-dojo")
+     * @param Request $request
+     * @return Response
+     */
+    public function manageAddAction(Request $request){
+        $eid = $request->query->get('eid');
         $url = "https://www.eventbriteapi.com/v3/events/".$eid."/?token=CT3M6TIFGKYO5CM7QWOK";
 
         $ch = curl_init();
@@ -154,7 +176,36 @@ class DefaultController extends Controller
         return new Response($msg);
     }
 
+    /**
+     * @Route("/api/dojos", name="list-dojos")
+     */
     public function listDojosAction(){
+        $dojos = $this->getUpComingDojos();
+
+        return new JsonResponse($dojos);
+    }
+
+    /**
+     * @Route("/materiaal", name="material")
+     */
+    public function materialAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:material.html.twig');
+    }
+
+    /**
+     * @Route("/samenwerkingen", name="collaboration")
+     */
+    public function collaborationAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:collaboration.html.twig');
+    }
+
+    /**
+     * @return array
+     */
+    private function getUpComingDojos()
+    {
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository("CoderdojoWebsiteBundle:DojoEvent");
@@ -166,25 +217,6 @@ class DefaultController extends Controller
 
         $nextDojos = $query->getResult();
 
-        $dojos = array();
-
-        foreach($nextDojos as $dojo){
-            $datestring = $dojo->getDate()->format("m-d-Y");
-            $dojos[] = array(
-                "name" => $dojo->getName(),
-                "date" => $datestring,
-                "url"  => $dojo->getUrl(),
-                "dojo" => $dojo->getDojo()->getName(),
-                "dojoid" => $dojo->getDojo()->getId(),
-                "location" => $dojo->getDojo()->getLocation()
-            );
-        }
-
-        return new JsonResponse($dojos);
-    }
-
-    public function materialAction()
-    {
-        return $this->render('CoderdojoWebsiteBundle:Pages:material.html.twig');
+        return $nextDojos;
     }
 }
