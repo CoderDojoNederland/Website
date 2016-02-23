@@ -7,6 +7,32 @@ http://www.coderdojo.nl
 
 Welcome in the CoderDojo Nederland Website repository. The website is completely open source which means anybody can contribute to it. We welcome everybody to do so and send us a pull request to bring it into master and have it deployed. In order to do so, here are the basics you need to know.
 
+# Table of Contents
+
+- [What to do?](#what-to-do)
+- [How to contribute](#how-to-contribute)
+- [Local Development](#local-development)
+  - [Easy](#easy): Run a virtual box with Vagrant (1 command)
+  - [Advanced](#advanced): Set up your own (L/W/X/M)AMP environment
+- [Contact](#contact)
+
+# What to do?
+
+We keep track of stuff to do in the [Gitgub Issue](https://github.com/CoderDojoNederland/website/issues) list. Here you can mainly see 2 different categories; Bugs & Ideas. Both can either be reported or accepted. The accepted ones are ready to be picked up, the reported ones are ready to be discussed and then accepted / rejected.
+
+# How to Contribute
+
+Some ground rules
+
+1. Keep all commits, comments, descriptions, etc. in English
+2. Fork the Repo and send a pull request
+3. Always add a description in your pull request
+4. Use the labels (`Work In Progress`, `Ready For Review`, `Ready For Merge`, `Needs Work`)
+5. Make sure you wright according unit tests to your code
+6. We stick with [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) as much as possible
+
+Once your PR has been reviewed and approved it will be merged and deployed to production.
+
 # Local Development
 
 There are 2 options to work on this project locally:
@@ -86,19 +112,6 @@ http://localhost/app_dev.php
 ```
 
 *Note how you open `/app_dev.php`, this adds extra debug features*
-
-# How to Contribute
-
-Some ground rules
-
-1. Keep all commits, comments, descriptions, etc. in English
-2. Fork the Repo and send a pull request
-3. Always add a description in your pull request
-4. Use the labels (`Work In Progress`, `Ready For Review`, `Ready For Merge`, `Needs Work`)
-5. Make sure you wright according unit tests to your code
-6. We stick with [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) as much as possible
-
-Once your PR has been reviewed and approved it will be merged and deployed to production.
 
 # Contact
 
