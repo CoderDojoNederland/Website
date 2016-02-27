@@ -1,0 +1,40 @@
+{% extends "CoderdojoWebsiteBundle::index.html.twig" %}
+
+{% block content %}
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs margin-bottom-40">
+        <div class="container">
+            <h1 class="pull-left">Oops!</h1>
+        </div>
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
+
+    <div class="container">
+        <!--Error Block-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="error-v1">
+                    <h1 style="text-align: center">Deze pagina konden we niet vinden!</h1>
+                    <br/>
+                    <div class="row tag-box tag-box-v5">
+                        <div class="col-md-8">
+                            <p>
+                                Misschien heb je zelf al een idee waarom?<br/>Dan kun je ons helpen om het op te lossen!
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><a href="https://github.com/coderdojonederland/website" class="btn-u btn-u-lg btn-u-red"><i class="icon-github"></i> Naar GitHub</a></p>
+                        </div>
+                    </div>
+                    <br/>
+                    <p style="text-align: center;font-weight: bold;">Als je 2 minuten de tijd hebt, kun je hier de aftermovie van de MegaDojo zien!</p>
+                    <div class="responsive-video">
+                        <iframe src="https://www.youtube.com/embed/Z80vsk5damA?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <br/><br/><br/>
+                </div>
+            </div>
+        </div>
+        <!--End Error Block-->
+    </div>
+{% endblock %}
