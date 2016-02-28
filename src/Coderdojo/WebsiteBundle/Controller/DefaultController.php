@@ -22,6 +22,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/slack-community", name="slack")
+     */
+    public function slackAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:slack.html.twig');
+    }
+
+    /**
      * @Route("/contact", name="contact")
      */
     public function contactAction(Request $request)
