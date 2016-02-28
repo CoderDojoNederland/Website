@@ -13,7 +13,7 @@ umask(0000);
 
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
-    || ('www.coderdojo.nl' === $_SERVER['HTTP_HOST'] || php_sapi_name() === 'cli-server')
+    || !(in_array(@$_SERVER['REMOTE_ADDR'], ['94.208.96.125', '92.111.223.122', '127.0.0.1', 'fe80::1', '::1']) || php_sapi_name() === 'cli-server')
 ) {
     header('HTTP/1.0 403 Forbidden');
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
