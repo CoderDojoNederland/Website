@@ -8,11 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class PagesController extends Controller
 {
     /******************
-     * MEEDOEN
+     * MEEHELPEN
      ******************/
 
     /**
-     * @Route("/meedoen/opstarten", name="setup")
+     * @Route("/meehelpen/opstarten", name="setup")
      */
     public function setupAction()
     {
@@ -20,7 +20,7 @@ class PagesController extends Controller
     }
 
     /**
-     * @Route("/meedoen/mentor-worden", name="mentors")
+     * @Route("/meehelpen/mentor-worden", name="mentors")
      */
     public function mentorAction()
     {
@@ -28,7 +28,7 @@ class PagesController extends Controller
     }
 
     /**
-     * @Route("/meedoen/materiaal", name="material")
+     * @Route("/meehelpen/materiaal", name="material")
      */
     public function materialAction()
     {

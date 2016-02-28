@@ -3,7 +3,7 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <title>CoderDojo Nederland</title>
+    <title>{% block title %}CoderDojo Nederland{% endblock %}</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -13,7 +13,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <meta name="author" content="Christian Vermeulen">
 
     <!-- FB tags -->
-    <meta property="og:title" content="CoderDojo Nederland"/>
+    <meta property="og:title" content="{% block fbtitle %}CoderDojo Nederland{% endblock %}"/>
     <meta property="og:image" content="{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/facebook.png')}}{% endblock %}"/>
     <meta property="og:site_name" content="CoderDojo Nederland"/>
     <meta property="og:description" content="{% block fbdescription %}Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers!
@@ -24,7 +24,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/headers/header1.css')}}">
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/responsive.css')}}">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/font-awesome/css/font-awesome.css')}}">
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/plugins/flexslider/flexslider.css')}}">
@@ -75,12 +75,17 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             Waar
                         </a>
                     </li>
-                    <li class="dropdown {% if app.request.get('_route') in ['setup', 'material'] %}active{% endif %}">
+                    <li class="dropdown {% if app.request.get('_route') in ['mentors','setup', 'material'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Informatie
+                            Meehelpen
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
+                            <li {% if app.request.get('_route') == 'mentors' %}class="active"{% endif %}>
+                                <a href="{{ path('mentors') }}">
+                                    Word mentor
+                                </a>
+                            </li>
                             <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
                                 <a href="{{ path('setup') }}">
                                     Start een dojo

@@ -1,5 +1,18 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block title %}Dojo&apos;s in Nederland &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Dojo&apos;s in Nederland &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+  In heel Nederland zijn er inmiddels {{ dojos|length }} dojo's. Kijk hier waar er een bij jou in de buurt is!
+{% endblock %}
+
+{% block fbdescription %}
+  In heel Nederland zijn er inmiddels {{ dojos|length }} dojo's. Kijk hier waar er een bij jou in de buurt is!
+{% endblock %}
+
+{% block og_image %}http://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/og-dojos.png')}}{% endblock %}
+
 {% block customjs %}
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
@@ -153,13 +166,3 @@
 </div>
 
 {% endblock %}
-
-{% block description %}
-In heel Nederland zijn er inmiddels {{ dojos|length }} dojo's. Kijk hier waar er een bij jou in de buurt is!
-{% endblock %}
-
-{% block fbdescription %}
-  In heel Nederland zijn er inmiddels {{ dojos|length }} dojo's. Kijk hier waar er een bij jou in de buurt is!
-{% endblock %}
-
-{% block og_image %}http://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/og-dojos.png')}}{% endblock %}

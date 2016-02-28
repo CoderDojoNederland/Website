@@ -1,5 +1,16 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block title %}Contact &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Contact &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
+{% endblock %}
+
+{% block fbdescription %}
+    Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -49,12 +60,4 @@
 
 </div><!--/container-->
 <!--=== End Content Part ===-->
-{% endblock %}
-
-{% block description %}
-    Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
-{% endblock %}
-
-{% block fbdescription %}
-    Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
 {% endblock %}

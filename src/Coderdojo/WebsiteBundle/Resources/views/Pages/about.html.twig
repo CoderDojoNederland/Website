@@ -1,5 +1,16 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block title %}Over CoderDojo &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Over CoderDojo &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    CoderDojo is een non-profit wereldwijde beweging, opgezet door Hames Whelton en Bill Liao. Het is begonnen op de school van James Whelton begin 2011 toen James publiciteit ontving voor het hacken van de iPod Nano en jongeren leerlingen interesse toonden in het leren van programmeren.
+{% endblock %}
+
+{% block fbdescription %}
+    CoderDojo is een non-profit wereldwijde beweging, opgezet door Hames Whelton en Bill Liao. Het is begonnen op de school van James Whelton begin 2011 toen James publiciteit ontving voor het hacken van de iPod Nano en jongeren leerlingen interesse toonden in het leren van programmeren.
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -80,12 +91,4 @@
 
 </div><!--/container-->
 <!--=== End Content Part ===-->
-{% endblock %}
-
-{% block description %}
-CoderDojo is een non-profit wereldwijde beweging, opgezet door Hames Whelton en Bill Liao. Het is begonnen op de school van James Whelton begin 2011 toen James publiciteit ontving voor het hacken van de iPod Nano en jongeren leerlingen interesse toonden in het leren van programmeren.
-{% endblock %}
-
-{% block fbdescription %}
-CoderDojo is een non-profit wereldwijde beweging, opgezet door Hames Whelton en Bill Liao. Het is begonnen op de school van James Whelton begin 2011 toen James publiciteit ontving voor het hacken van de iPod Nano en jongeren leerlingen interesse toonden in het leren van programmeren.
 {% endblock %}

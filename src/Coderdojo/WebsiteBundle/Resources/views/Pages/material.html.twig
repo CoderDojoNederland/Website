@@ -1,5 +1,16 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block title %}Materiaal &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Materiaal &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Van lesmateriaal tot documenten, op deze pagina vind je alles wat je nodig hebt voor jouw dojo.
+{% endblock %}
+
+{% block fbdescription %}
+    Van lesmateriaal tot documenten, op deze pagina vind je alles wat je nodig hebt voor jouw dojo.
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -160,12 +171,4 @@
 </div><!--/container-->
 <!--=== End Content Part ===-->
 
-{% endblock %}
-
-{% block description %}
-    Van lesmateriaal tot documenten, op deze pagina vind je alles wat je nodig hebt voor jouw dojo.
-{% endblock %}
-
-{% block fbdescription %}
-    Van lesmateriaal tot documenten, op deze pagina vind je alles wat je nodig hebt voor jouw dojo.
 {% endblock %}
