@@ -1,5 +1,16 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block title %}Start een Dojo &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Start een Dojo &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Wil jij ook een coderdojo oprichten in Nederland? Super tof! Lees hier hoe je makkelijk in 5 stappen een dojo op kan richten.
+{% endblock %}
+
+{% block fbdescription %}
+    Richt in 5 stappen jouw eigen dojo op in Nederland! Hier lees je alles over hoe je dit moet doen.
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -102,12 +113,4 @@
 
 </div><!--/container-->
 <!--=== End Content Part ===-->
-{% endblock %}
-
-{% block description %}
-Wil jij ook een coderdojo oprichten in Nederland? Super tof! Lees hier hoe je makkelijk in 5 stappen een dojo op kan richten.
-{% endblock %}
-
-{% block fbdescription %}
-Richt in 5 stappen jouw eigen dojo op in Nederland! Hier lees je alles over hoe je dit moet doen.
 {% endblock %}

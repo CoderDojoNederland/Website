@@ -8,7 +8,41 @@ old-manage:
         route: manage
         permanent: true
 
+old-setup:
+    path: /opstarten
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: setup
+        permanent: true
+
+old-material:
+    path: /materiaal
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: material
+        permanent: true
+
+old-about:
+    path: /over-coderdojo
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: about
+        permanent: true
+
+old-foundation:
+    path: /over-de-stichting
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: foundation
+        permanent: true
+
+old-collaboration:
+    path: /samenwerkingen
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: collaboration
+        permanent: true
+
 coderdojo_website:
-    resource: "@CoderdojoWebsiteBundle/Controller/"
-    prefix:   /
+    resource: "@CoderdojoWebsiteBundle/Controller"
     type:     annotation

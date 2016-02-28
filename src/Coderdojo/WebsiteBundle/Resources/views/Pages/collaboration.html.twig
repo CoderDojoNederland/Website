@@ -1,5 +1,16 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block title %}Samenwerkingen &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Samenwerkingen &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    CoderDojo Nederland werkt graag samen met andere organisaties. Ook dit jaar zijn er leuke partijen waar we mee samen werken waaronder Ziggo en de Code Qube.
+{% endblock %}
+
+{% block fbdescription %}
+    CoderDojo Nederland werkt graag samen met andere organisaties. Ook dit jaar zijn er leuke partijen waar we mee samen werken waaronder Ziggo en de Code Qube
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -54,12 +65,4 @@
 
 </div><!--/container-->
 <!--=== End Content Part ===-->
-{% endblock %}
-
-{% block description %}
-CoderDojo Nederland werkt graag samen met andere organisaties. Ook dit jaar zijn er leuke partijen waar we mee samen werken.
-{% endblock %}
-
-{% block fbdescription %}
-    CoderDojo Nederland werkt graag samen met andere organisaties. Ook dit jaar zijn er leuke partijen waar we mee samen werken.
 {% endblock %}
