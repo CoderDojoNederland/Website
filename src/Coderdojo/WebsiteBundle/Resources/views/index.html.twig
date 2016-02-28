@@ -121,10 +121,23 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>
-                        <a href="{{path('contact')}}">
+                    <li {% if app.request.get('_route') in ['contact', 'slack'] %}class="active"{% endif %}>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             Contact
+                            <i class="icon-angle-down"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>
+                                <a href="{{ path('contact') }}">
+                                    Stuur een email
+                                </a>
+                            </li>
+                            <li {% if app.request.get('_route') == 'slack' %}class="active"{% endif %}>
+                                <a href="{{ path('slack') }}">
+                                    Slack Community
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <ul class="social-icons social-icons-color">
@@ -133,6 +146,9 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                             <li>
                                 <a href="http://twitter.com/coderdojonl" data-original-title="Twitter" class="social_twitter" target="_blank"></a>
+                            </li>
+                            <li>
+                                <a href="{{ path('slack') }}" data-original-title="Slack" class="social_slack"></a>
                             </li>
                         </ul>
                     </li>
@@ -157,9 +173,9 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
 <div class="copyright">
     <div class="container">
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-12 col-md-9 margin-bottom-30">
                 <p class="copyright-space">
-                    2015 &copy; CoderDojo Nederland.&nbsp;|&nbsp;
+                    2015 &copy; CoderDojo Nederland<br/>
                     Made by
                     <a
                         href="https://github.com/coderdojonederland/website"
@@ -183,13 +199,16 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                     {% endif %}
                 </p>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-12 col-md-3">
                 <ul class="social-icons right">
                     <li>
                         <a href="https://twitter.com/coderdojonl" data-original-title="Twitter" class="social_twitter" target="_blank"></a>
                     </li>
                     <li>
                         <a href="https://facebook.com/coderdojonederland" data-original-title="Facebook" class="social_facebook" target="_blank"></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('slack') }}" data-original-title="Slack" class="social_slack"></a>
                     </li>
                 </ul>
             </div>

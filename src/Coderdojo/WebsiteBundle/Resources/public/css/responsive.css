@@ -44,6 +44,15 @@
 		margin-bottom: 60px;
 	}
 	/*End Spacea (Margin Bottom)*/
+
+	.copyright {
+		text-align: center;
+	}
+
+	.copyright ul.social-icons li {
+		float:none;
+		display: inline-block;
+	}
 }
 
 /* Medium devices (desktops, 992px and up) */
@@ -65,6 +74,15 @@
 		margin-bottom: 60px;
 	}
 	/*End Spacea (Margin Bottom)*/
+
+	.copyright {
+		text-align: center;
+	}
+
+	.copyright ul.social-icons li {
+		float:none;
+		display: inline-block;
+	}
 }
 
 /*Sliders
@@ -80,6 +98,15 @@
 	/*Slider Parallax*/
 	.da-slide .da-img {
 		display:none;
+	}
+
+	.copyright {
+		text-align: center;
+	}
+
+	.copyright ul.social-icons li {
+		float:none;
+		display: inline-block;
 	}
 }
 
@@ -100,5 +127,14 @@
 	/*Slider Parallax*/
 	.da-slide p {
 		display:none;
+	}
+
+	.copyright {
+		text-align: center;
+	}
+
+	.copyright ul.social-icons li {
+		float:none;
+		display: inline-block;
 	}
 }

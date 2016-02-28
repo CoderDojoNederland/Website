@@ -219,6 +219,9 @@ a.btn-u-lg {
    margin: 0;
    padding: 0;
 }
+.copyright .social-icons {
+   margin-top: 16px;
+}
 .social-icons li {
    float: left;
    display: inline;
@@ -286,7 +289,7 @@ a.btn-u-lg {
 .social_yahoo {background: url(../img/icons/social/yahoo.png) no-repeat;}
 .social_youtube {background: url(../img/icons/social/youtube.png) no-repeat;}
 .social_vk {background: url(../img/icons/social/vk.png) no-repeat;}
-
+.social_slack {background: url(../img/icons/social/slack.png) no-repeat;}
 
 /*Font Awesome Icon Page*/
 .fa-heading .headline {
