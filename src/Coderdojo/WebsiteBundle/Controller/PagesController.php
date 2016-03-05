@@ -62,4 +62,16 @@ class PagesController extends Controller
     {
         return $this->render('CoderdojoWebsiteBundle:Pages:collaboration.html.twig');
     }
+
+    /******************
+     * SUPPORTING
+     ******************/
+
+    /**
+     * @Route("/scratch-space-kickoff", name="scratch_space_kickoff")
+     */
+    public function scratchSpaceKickoffAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:Supporting/scratchSpaceKickoff.html.twig');
+    }
 }
