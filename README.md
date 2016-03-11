@@ -18,7 +18,7 @@ Welcome in the CoderDojo Nederland Website repository. The website is completely
 
 # What to do?
 
-We keep track of stuff to do in the [Gitgub Issue](https://github.com/CoderDojoNederland/website/issues) list. Here you can mainly see 2 different categories; Bugs & Ideas. Both can either be reported or accepted. The accepted ones are ready to be picked up, the reported ones are ready to be discussed and then accepted / rejected.
+We keep track of stuff to do in the [GitHub Issue](https://github.com/CoderDojoNederland/website/issues) list. Here you can mainly see 2 different categories; Bugs & Ideas. Both can either be reported or accepted. The accepted ones are ready to be picked up, the reported ones are ready to be discussed and then accepted / rejected.
 
 # How to Contribute
 
