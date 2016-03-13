@@ -23,8 +23,8 @@ class DojoController extends Controller
 
         $repo = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:DojoEvent");
         $query = $repo->createQueryBuilder('d')
-            ->where('d.date > :today')
-            ->setParameter('today', new \DateTime("now"))
+            ->having('d.date >= :today')
+            ->setParameter('today', date('Y-m-d'))
             ->orderBy('d.date', 'ASC')
             ->getQuery();
 
