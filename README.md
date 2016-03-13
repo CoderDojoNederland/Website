@@ -18,7 +18,7 @@ Welcome in the CoderDojo Nederland Website repository. The website is completely
 
 # What to do?
 
-We keep track of stuff to do in the [Gitgub Issue](https://github.com/CoderDojoNederland/website/issues) list. Here you can mainly see 2 different categories; Bugs & Ideas. Both can either be reported or accepted. The accepted ones are ready to be picked up, the reported ones are ready to be discussed and then accepted / rejected.
+We keep track of stuff to do in the [GitHub Issue](https://github.com/CoderDojoNederland/website/issues) list. Here you can mainly see 2 different categories; Bugs & Ideas. Both can either be reported or accepted. The accepted ones are ready to be picked up, the reported ones are ready to be discussed and then accepted / rejected.
 
 # How to Contribute
 
@@ -28,7 +28,7 @@ Some ground rules
 2. Fork the Repo and send a pull request
 3. Always add a description in your pull request
 4. Use the labels (`Work In Progress`, `Ready For Review`, `Ready For Merge`, `Needs Work`)
-5. Make sure you wright according unit tests to your code
+5. Make sure you write according unit tests to your code
 6. We stick with [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) as much as possible
 
 Once your PR has been reviewed and approved it will be merged and deployed to production.
