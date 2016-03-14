@@ -1,7 +1,8 @@
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/vivid64"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 3306, host: 33306
 
   config.vm.network "private_network", type: "dhcp"
   config.vm.network "public_network"
@@ -42,7 +43,7 @@ Vagrant.configure(2) do |config|
     cd /vagrant
 
     composer install
-    
+
     php app/console doctrine:database:create
     php app/console doctrine:schema:update --force
     yes | php app/console doctrine:fixtures:load
