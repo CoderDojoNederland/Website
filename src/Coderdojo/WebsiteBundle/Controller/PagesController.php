@@ -68,10 +68,10 @@ class PagesController extends Controller
      ******************/
 
     /**
-     * @Route("/scratch-space-kickoff", name="scratch_space_kickoff")
+     * @Route("/space-games", name="space-games")
      */
-    public function scratchSpaceKickoffAction()
+    public function spaceGamesAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:Supporting/scratchSpaceKickoff.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:Supporting/spaceGames.html.twig');
     }
 }
