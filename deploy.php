@@ -11,10 +11,12 @@ server('prod', 'coderdojo.nl', 22)
     ->stage('production')
     ->env('deploy_path', '/deploy-test'); // Define the base path to deploy your project to.
 
-after('deploy', function(){
+task('set_cache_rights', function(){
     cd('{{release_path}}');
     run('sudo chmod 777 -R app/cache');
 });
+
+after('deploy', 'set_cache_rights');
 
 // Specify the repository from which to download your project's code.
 // The server needs to have git installed for this to work.
