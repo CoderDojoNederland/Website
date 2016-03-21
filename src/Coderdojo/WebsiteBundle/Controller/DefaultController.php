@@ -41,7 +41,7 @@ class DefaultController extends Controller
 
             if ($form->isValid()) {
                 $message = \Swift_Message::newInstance()
-                    ->setSubject($form->get('email')->getData())
+                    ->setSubject($form->get('subject')->getData())
                     ->setFrom($form->get('email')->getData(), $form->get('naam')->getData())
                     ->setTo('contact@coderdojo.nl')
                     ->setContentType('text/html')
