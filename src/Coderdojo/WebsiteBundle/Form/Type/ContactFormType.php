@@ -31,6 +31,9 @@ class ContactFormType extends AbstractType
                 )
             ))
             ->add('email', 'email')
+            ->add('subject', 'text', array(
+                'label' => 'Onderwerp'
+            ))
             ->add('message', 'textarea', array(
                 'label' => 'Bericht',
                 'attr' => array(
