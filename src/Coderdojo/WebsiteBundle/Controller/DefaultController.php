@@ -37,7 +37,7 @@ class DefaultController extends Controller
         $form = $this->createForm(new ContactFormType());
 
         if ($request->isMethod('POST')) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($form->isValid()) {
                 $message = \Swift_Message::newInstance()
