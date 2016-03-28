@@ -34,7 +34,9 @@ class DefaultController extends Controller
      */
     public function contactAction(Request $request)
     {
-        $form = $this->createForm(new ContactFormType());
+        $dojos = $this->getDoctrine()->getRepository('CoderdojoWebsiteBundle:Dojo')->findBy([],['city'=>'asc']);
+
+        $form = $this->createForm(new ContactFormType($dojos));
 
         if ($request->isMethod('POST')) {
             $form->submit($request);
@@ -42,8 +44,9 @@ class DefaultController extends Controller
             if ($form->isValid()) {
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
-                    ->setFrom($form->get('email')->getData(), $form->get('naam')->getData())
-                    ->setTo('contact@coderdojo.nl')
+                    ->setFrom('no-reply@coderdojo.nl', $form->get('naam')->getData())
+                    ->setReplyTo($form->get('email')->getData())
+                    ->setTo($form->get('ontvanger')->getData())
                     ->setContentType('text/html')
                     ->setBody(
                         $this->renderView(
