@@ -2,8 +2,10 @@
 
 namespace Coderdojo\WebsiteBundle\Form\Type;
 
+use Coderdojo\WebsiteBundle\Entity\Dojo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
@@ -16,6 +18,16 @@ use Symfony\Component\Validator\Constraints\Collection;
  */
 class ContactFormType extends AbstractType
 {
+    /**
+     * @var Dojo[]
+     */
+    private $dojos;
+
+    public function __construct($dojos)
+    {
+        $this->dojos = $dojos;
+    }
+
     /**
      * Build the form
      *
@@ -31,6 +43,21 @@ class ContactFormType extends AbstractType
                 )
             ))
             ->add('email', 'email')
+            ->add('ontvanger', 'choice', [
+                'empty_value' => '- Kies een dojo -',
+                'mapped' => false,
+                'choices' => $this->buildChoices(),
+                'group_by' => function($val, $key, $index) {
+                    if ('contact@coderdojo.nl' !== $val) {
+                        return 'Lokale Dojo\'s';
+                    } else {
+                        return 'Algemene zaken';
+                    }
+                },
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('subject', 'text', array(
                 'label' => 'Onderwerp'
             ))
@@ -41,6 +68,20 @@ class ContactFormType extends AbstractType
                     'rows' => 10
                 )
             ));
+    }
+
+    protected function buildChoices()
+    {
+        $choices = [];
+
+        $choices['contact@coderdojo.nl'] = 'CoderDojo Nederland';
+
+        /** @var Dojo $dojo */
+        foreach ($this->dojos as $dojo) {
+            $choices[ $dojo->getEmail() ] = $dojo->getName();
+        }
+
+        return $choices;
     }
 
     /**
