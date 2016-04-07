@@ -16,7 +16,7 @@ class PagesController extends Controller
      */
     public function setupAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:setup.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:Meehelpen/setup.html.twig');
     }
 
     /**
@@ -24,7 +24,7 @@ class PagesController extends Controller
      */
     public function mentorAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:mentor.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:Meehelpen/mentor.html.twig');
     }
 
     /**
@@ -32,11 +32,30 @@ class PagesController extends Controller
      */
     public function materialAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:material.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:Meehelpen/material.html.twig');
     }
 
     /******************
-     * ACHTERGROND
+     * Samenwerkingen
+     ******************/
+    /**
+     * @Route("/samenwerkingen/code-qube", name="codeqube")
+     */
+    public function codeQubeAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:Samenwerkingen/codeqube.html.twig');
+    }
+
+    /**
+     * @Route("/samenwerkingen/ziggo", name="ziggo")
+     */
+    public function ziggoAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:Samenwerkingen/ziggo.html.twig');
+    }
+
+    /******************
+     * De Stichting
      ******************/
 
     /**
@@ -44,7 +63,7 @@ class PagesController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:about.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:Achtergrond/about.html.twig');
     }
 
     /**
@@ -52,15 +71,7 @@ class PagesController extends Controller
      */
     public function foundationAction()
     {
-        return $this->render('CoderdojoWebsiteBundle:Pages:stichting.html.twig');
-    }
-
-    /**
-     * @Route("/informatie/samenwerkingen", name="collaboration")
-     */
-    public function collaborationAction()
-    {
-        return $this->render('CoderdojoWebsiteBundle:Pages:collaboration.html.twig');
+        return $this->render('CoderdojoWebsiteBundle:Pages:Achtergrond/stichting.html.twig');
     }
 
     /******************

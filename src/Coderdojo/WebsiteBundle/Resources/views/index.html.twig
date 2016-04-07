@@ -65,11 +65,6 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li {% if app.request.get('_route') == 'home' %}class="active"{% endif %}>
-                        <a href="{{path('home')}}">
-                            Home
-                        </a>
-                    </li>
                     <li {% if app.request.get('_route') == 'dojos' %}class="active"{% endif %}>
                         <a href="{{ path('dojos') }}">
                             Waar
@@ -98,38 +93,43 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'collaboration'] %}active{% endif %}">
+                    <li class="dropdown {% if app.request.get('_route') in ['codeqube','ziggo'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Achtergrond
+                            Samenwerkingen
+                            <i class="icon-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li {% if app.request.get('_route') == 'codeqube' %}class="active"{% endif %}>
+                                <a href="{{ path('codeqube') }}">
+                                    Code Qube On Tour
+                                </a>
+                            </li>
+                            <li {% if app.request.get('_route') == 'ziggo' %}class="active"{% endif %}>
+                                <a href="{{ path('ziggo') }}">
+                                    Ziggo
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'contact', 'slack'] %}active{% endif %}">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                            De Stichting
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li {% if app.request.get('_route') == 'foundation' %}class="active"{% endif %}>
                                 <a href="{{ path('foundation') }}">
-                                   Stichting
-                                </a>
-                            </li>
-                            <li {% if app.request.get('_route') == 'collaboration' %}class="active"{% endif %}>
-                                <a href="{{ path('collaboration') }}">
-                                    Samenwerking
+                                   Over de Stichting
                                 </a>
                             </li>
                             <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}>
                                 <a href="{{ path('about') }}">
-                                    CoderDojo
+                                    Over CoderDojo
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-                    <li {% if app.request.get('_route') in ['contact', 'slack'] %}class="active"{% endif %}>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Contact
-                            <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
                             <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>
                                 <a href="{{ path('contact') }}">
-                                    Stuur een email
+                                    Contact
                                 </a>
                             </li>
                             <li {% if app.request.get('_route') == 'slack' %}class="active"{% endif %}>
