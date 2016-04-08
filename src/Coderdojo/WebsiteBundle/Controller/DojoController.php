@@ -53,8 +53,15 @@ class DojoController extends Controller
      * @return Response
      */
     public function manageAddAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
         $eid = $request->query->get('eid');
         $url = "https://www.eventbriteapi.com/v3/events/".$eid."/?token=CT3M6TIFGKYO5CM7QWOK";
+
+        $dojoEvent = $em->getRepository('CoderdojoWebsiteBundle:DojoEvent')->findOneBy(['eventbriteId'=>$eid]);
+
+        if (null !== $dojoEvent) {
+            return new Response('Dit event is al toegevoegd!');
+        }
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -70,13 +77,12 @@ class DojoController extends Controller
         }else{
             if($result->organizer_id == $this->getUser()->getOrganiser())
             {
-                $em = $this->getDoctrine()->getManager();
-
                 $dojo = new DojoEvent();
                 $dojo->setName($result->name->text)
                     ->setDate(new \DateTime($result->start->local))
                     ->setUrl($result->url)
-                    ->setDojo($this->getUser());
+                    ->setDojo($this->getUser())
+                    ->setEventbriteId($eid);
                 $this->getUser()->addDojo($dojo);
                 $em->persist($dojo);
                 $em->flush();

@@ -43,6 +43,13 @@ class DojoEvent
     private $url;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="eventbrite_id", type="string", length=255, unique=true)
+     */
+    private $eventbriteId;
+
+    /**
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Dojo", inversedBy="dojos")
@@ -151,5 +158,21 @@ class DojoEvent
     public function getDojo()
     {
         return $this->dojo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEventbriteId()
+    {
+        return $this->eventbriteId;
+    }
+
+    /**
+     * @param string $eventbriteId
+     */
+    public function setEventbriteId($eventbriteId)
+    {
+        $this->eventbriteId = $eventbriteId;
     }
 }
