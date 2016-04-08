@@ -43,6 +43,13 @@ old-collaboration:
         route: collaboration
         permanent: true
 
+codeqube-alias:
+    path: /codeqube
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: codeqube
+        permanent: true
+
 coderdojo_website:
     resource: "@CoderdojoWebsiteBundle/Controller"
     type:     annotation
