@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DojoEvent
  *
  * @ORM\Table(name="DojoEvent")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Coderdojo\WebsiteBundle\Repository\DojoEventRepository")
  */
 class DojoEvent
 {
