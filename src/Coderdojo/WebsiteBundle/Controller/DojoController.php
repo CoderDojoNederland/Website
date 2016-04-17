@@ -15,22 +15,10 @@ class DojoController extends Controller
      */
     public function dojosAction()
     {
-        $dojos = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:Dojo")->findAll();
+        $dojos = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:Dojo")->getSortedByCity();
+        $nextDojos = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:DojoEvent")->getAllUpcomingEvents();
 
-        usort($dojos, function ($a, $b) {
-            return strnatcmp($a->getCity(), $b->getCity());
-        });
-
-        $repo = $this->getDoctrine()->getRepository("CoderdojoWebsiteBundle:DojoEvent");
-        $query = $repo->createQueryBuilder('d')
-            ->having('d.date >= :today')
-            ->setParameter('today', date('Y-m-d'))
-            ->orderBy('d.date', 'ASC')
-            ->getQuery();
-
-        $nextDojos = $query->getResult();
-
-        return $this->render('CoderdojoWebsiteBundle:Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos"=>$nextDojos));
+        return $this->render('CoderdojoWebsiteBundle:Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos" => $nextDojos));
     }
 
     /**
