@@ -30,6 +30,7 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    serializer: true
 
 # Twig Configuration
 twig:
@@ -87,7 +88,7 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
     jquery_path: %kernel.root_dir%/../vendor/components/jquery/jquery.min.js
-    less_filter: less # "less", "lessphp" or "none"
+    css_preprocessor: less # "less", "lessphp" or "none"
     auto_configure:
         assetic: true
         twig: false

@@ -3,12 +3,15 @@
 namespace Coderdojo\WebsiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * DojoEvent
  *
  * @ORM\Table(name="DojoEvent")
  * @ORM\Entity(repositoryClass="Coderdojo\WebsiteBundle\Repository\DojoEventRepository")
+ * @ExclusionPolicy("none")
  */
 class DojoEvent
 {
@@ -54,6 +57,7 @@ class DojoEvent
      *
      * @ORM\ManyToOne(targetEntity="Dojo", inversedBy="dojos")
      * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id")
+     * @Serializer\Accessor(getter="getDojoId")
      */
     private $dojo;
 
@@ -153,11 +157,19 @@ class DojoEvent
     /**
      * Get dojo
      *
-     * @return \Coderdojo\WebsiteBundle\Entity\Dojo 
+     * @return \Coderdojo\WebsiteBundle\Entity\Dojo
      */
     public function getDojo()
     {
         return $this->dojo;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDojoId()
+    {
+        return $this->getDojo()->getId();
     }
 
     /**
