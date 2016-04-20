@@ -16,7 +16,11 @@ class ApiController extends Controller
      */
     public function dojoAction(Dojo $dojo)
     {
-        return new Response(json_encode($this->serializeDojo($dojo)));
+        return new Response(
+            json_encode($this->serializeDojo($dojo)),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -30,7 +34,11 @@ class ApiController extends Controller
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $jsonContent = $serializer->serialize($events, 'json');
 
-        return new Response($jsonContent);
+        return new Response(
+            $jsonContent,
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -45,7 +53,11 @@ class ApiController extends Controller
             $json[] = $this->serializeDojo($dojo);
         }
 
-        return new Response(json_encode($json));
+        return new Response(
+            json_encode($json),
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**
@@ -57,7 +69,11 @@ class ApiController extends Controller
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $jsonContent = $serializer->serialize($dojoEvents, 'json');
 
-        return new Response($jsonContent);
+        return new Response(
+            $jsonContent,
+            200,
+            ['Access-Control-Allow-Origin' => '*']
+        );
     }
 
     /**

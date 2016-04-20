@@ -48,7 +48,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
             ->setTwitter('http://twitter.com/coderdojonl')
             ->setWebsite('http://coderdojo.nl')
             ->setPostalcode('3032AD')
-            ->setOrganiser('4680001283')
+            ->setOrganiser('5495554471')
             ->setEnabled(true)
             ->setLat(51.928294)
             ->setLong(4.480246);
