@@ -17,6 +17,12 @@
 
 {% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/slack.jpg')}}{% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Slack Page");
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

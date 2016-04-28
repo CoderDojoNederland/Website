@@ -11,6 +11,16 @@
     Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
 {% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Contact Page");
+
+        mixpanel.track_forms("#contactform", "Email Sent", {
+            'Dojo Name': $('#contact_ontvanger').find('option:selected').text()
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -43,7 +53,7 @@
                         Heb je een vraag of suggestie? Neem dan via dit formulier contact ons op.<br/>
                         Wij doen ons uiterste best om zo snel mogelijk te antwoorden!
                     </p>
-                    <form action="{{ path('contact') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal" role="form">
+                    <form id="contactform" action="{{ path('contact') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal" role="form">
                         {{ form_widget(form) }}
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">

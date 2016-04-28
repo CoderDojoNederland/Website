@@ -12,6 +12,12 @@ In 2016 gaat de Code Qube on Tour door heel Nederland. Maar liefst 20 dojos kome
     In 2016 gaat de Code Qube on Tour door heel Nederland. Maar liefst 20 dojos komen aan bod!
 {% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Code Qube Page");
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

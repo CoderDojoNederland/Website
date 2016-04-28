@@ -11,6 +11,12 @@
     Van lesmateriaal tot documenten, op deze pagina vind je alles wat je nodig hebt voor jouw dojo.
 {% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Material Page");
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

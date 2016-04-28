@@ -12,6 +12,12 @@ Ziggo ondersteund CoderDojo in Nederland en zal zich daarom inzetten om ook de c
     Ziggo ondersteund CoderDojo in Nederland en zal zich daarom inzetten om ook de community in Nederland te ondersteunen.
 {% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Ziggo Page");
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

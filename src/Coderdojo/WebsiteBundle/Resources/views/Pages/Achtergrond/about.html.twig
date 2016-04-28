@@ -11,6 +11,12 @@
     CoderDojo is een non-profit wereldwijde beweging, opgezet door Hames Whelton en Bill Liao. Het is begonnen op de school van James Whelton begin 2011 toen James publiciteit ontving voor het hacken van de iPod Nano en jongeren leerlingen interesse toonden in het leren van programmeren.
 {% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View About Page");
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

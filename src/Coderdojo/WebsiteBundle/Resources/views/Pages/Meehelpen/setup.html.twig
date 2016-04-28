@@ -11,6 +11,12 @@
     Richt in 5 stappen jouw eigen dojo op in Nederland! Hier lees je alles over hoe je dit moet doen.
 {% endblock %}
 
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Startup Page");
+    </script>
+{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
