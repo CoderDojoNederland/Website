@@ -5,9 +5,10 @@
     $('#dojoeventlist a').on('click', function(e){
         var el = $(e.target);
 
-        mixpanel.track("Homepage Register for dojo", {
+        mixpanel.track("Register for dojo", {
             "Dojo Name": el.data('dojo'),
-            "Dojo Event Date": el.data('dojo-date')
+            "Dojo Event Date": el.data('dojo-date'),
+            "Registration Location": 'homepage'
         });
     });
 </script>
