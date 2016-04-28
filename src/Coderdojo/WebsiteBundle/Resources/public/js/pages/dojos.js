@@ -208,8 +208,8 @@
     var el = $(e.target);
 
     mixpanel.track("Register for dojo", {
-      "dojo": el.data('dojo'),
-      "date": el.data('dojo-date')
+      "Dojo Name": el.data('dojo'),
+      "Dojo Event Date": el.data('dojo-date')
     });
 
     setTimeout(cb, 500);

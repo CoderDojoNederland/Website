@@ -1,5 +1,18 @@
 {% extends "CoderdojoWebsiteBundle::index.html.twig" %}
 
+{% block customjs %}
+<script type="text/javascript">
+    $('#dojoeventlist a').on('click', function(e){
+        var el = $(e.target);
+
+        mixpanel.track("Homepage Register for dojo", {
+            "Dojo Name": el.data('dojo'),
+            "Dojo Event Date": el.data('dojo-date')
+        });
+    });
+</script>
+{% endblock %}
+
 {% block content %}
 {% include "CoderdojoWebsiteBundle:Snippets:Slider.html.twig" %}
 <!--=== Content Part ===-->
@@ -100,7 +113,7 @@
     <hr class="margin-bottom-50">
 
     <!--Service Block-->
-    <div class="row promo-service">
+    <div class="row promo-service" id="dojoeventlist">
         <div class="col-md-7">
             <h2 class="margin-bottom-20">Komende Dojos</h2>
 
@@ -110,7 +123,7 @@
                     {{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")}}
                 </div>
                 <div class="col-md-4" itemprop="name">
-                    <a itemprop="url" href="{{ dojo.url }}" target="_blank">{{ dojo.dojo.name }}</a>
+                    <a itemprop="url" href="{{ dojo.url }}" target="_blank" data-dojo="{{ dojo.dojo.name }}" data-dojo-date="{{ dojo.date|date("Y/m/d") }}">{{ dojo.dojo.name }}</a>
                 </div>
                 <div class="col-md-5" itemprop="location" itemscope itemtype="http://schema.org/Place">
                     <span itemprop="name">{{ dojo.dojo.location }}</span>
