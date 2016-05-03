@@ -101,6 +101,10 @@ In 2016 gaat de Code Qube on Tour door heel Nederland. Maar liefst 20 dojos kome
                         <td><strong>25 juni</strong></td>
                         <td>Leidsche Rijn</td>
                     </tr>
+                    <tr {% if date() > date('2016-6-25') %}class="text-muted"{% endif %}>
+                        <td><strong>25 juni</strong></td>
+                        <td>Rotterdam (Startup Foundation)</td>
+                    </tr>
                     <tr {% if date() > date('2016-7-2') %}class="text-muted"{% endif %}>
                         <td><strong>2 juli</strong></td>
                         <td>Nijmegen</td>
@@ -108,6 +112,14 @@ In 2016 gaat de Code Qube on Tour door heel Nederland. Maar liefst 20 dojos kome
                     <tr {% if date() > date('2016-7-16') %}class="text-muted"{% endif %}>
                         <td><strong>16 juli</strong></td>
                         <td>Leiden</td>
+                    </tr>
+                    <tr {% if date() > date('2016-9-3') %}class="text-muted"{% endif %}>
+                        <td><strong>3 september</strong></td>
+                        <td>Woerden</td>
+                    </tr>
+                    <tr {% if date() > date('2016-9-24') %}class="text-muted"{% endif %}>
+                        <td><strong>24 september</strong></td>
+                        <td>Groningen</td>
                     </tr>
                 </tbody>
             </table>
