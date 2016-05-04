@@ -117,9 +117,17 @@ In 2016 gaat de Code Qube on Tour door heel Nederland. Maar liefst 20 dojos kome
                         <td><strong>3 september</strong></td>
                         <td>Woerden</td>
                     </tr>
+                    <tr {% if date() > date('2016-9-23') %}class="text-muted"{% endif %}>
+                        <td><strong>23 september</strong></td>
+                        <td>Joure</td>
+                    </tr>
                     <tr {% if date() > date('2016-9-24') %}class="text-muted"{% endif %}>
                         <td><strong>24 september</strong></td>
                         <td>Groningen (ICF)</td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-21') %}class="text-muted"{% endif %}>
+                        <td><strong>21 november</strong></td>
+                        <td>Sneek</td>
                     </tr>
                 </tbody>
             </table>
