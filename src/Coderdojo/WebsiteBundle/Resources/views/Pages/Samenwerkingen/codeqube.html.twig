@@ -109,13 +109,29 @@ In 2016 gaat de Code Qube on Tour door heel Nederland. Maar liefst 20 dojos kome
                         <td><strong>2 juli</strong></td>
                         <td>Nijmegen</td>
                     </tr>
+                    <tr {% if date() > date('2016-7-2') %}class="text-muted"{% endif %}>
+                        <td><strong>2 juli</strong></td>
+                        <td>Uden</td>
+                    </tr>
                     <tr {% if date() > date('2016-7-16') %}class="text-muted"{% endif %}>
                         <td><strong>16 juli</strong></td>
                         <td>Leiden</td>
                     </tr>
+                    <tr {% if date() > date('2016-8-20') %}class="text-muted"{% endif %}>
+                        <td><strong>20 augustus</strong></td>
+                        <td>Amersfoort</td>
+                    </tr>
+                    <tr {% if date() > date('2016-9-3') %}class="text-muted"{% endif %}>
+                        <td><strong>3 september</strong></td>
+                        <td>Zwolle</td>
+                    </tr>
                     <tr {% if date() > date('2016-9-3') %}class="text-muted"{% endif %}>
                         <td><strong>3 september</strong></td>
                         <td>Woerden</td>
+                    </tr>
+                    <tr {% if date() > date('2016-9-10') %}class="text-muted"{% endif %}>
+                        <td><strong>10 september</strong></td>
+                        <td>Amsterdam</td>
                     </tr>
                     <tr {% if date() > date('2016-9-23') %}class="text-muted"{% endif %}>
                         <td><strong>23 september</strong></td>
