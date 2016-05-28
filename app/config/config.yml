@@ -119,5 +119,5 @@ services:
     fos_user.doctrine_registry:
         alias: doctrine
 
-cl_slack:
-    api_token: %slack_api_token%
+coderdojo_website:
+    slack_api_token: %slack_api_token%

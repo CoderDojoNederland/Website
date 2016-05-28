@@ -25,5 +25,16 @@ class CoderdojoWebsiteExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $this->setParameters($container, $config);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param string[]         $config
+     */
+    protected function setParameters(ContainerBuilder $container, array $config)
+    {
+        $container->setParameter('slack_api_token', $config['slack_api_token']);
     }
 }

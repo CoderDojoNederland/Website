@@ -43,8 +43,12 @@ class DojoController extends Controller
     public function manageAddAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $eid = $request->query->get('eid');
-        $url = "https://www.eventbriteapi.com/v3/events/".$eid."/?token=CT3M6TIFGKYO5CM7QWOK";
-
+        
+        if (0 === preg_match('/^[0-9]{9,15}$/', $eid)) {
+            return new Response('Dit is geen geldig ID. Een id bestaat uit 10 cijfers, bijv. 11528212193.');
+        }
+        
+        $url = "https://www.eventbriteapi.com/v3/events/".$eid."/?token=".$this->container->getParameter('eventbrite_api_token');
         $dojoEvent = $em->getRepository('CoderdojoWebsiteBundle:DojoEvent')->findOneBy(['eventbriteId'=>$eid]);
 
         if (null !== $dojoEvent) {
@@ -61,6 +65,7 @@ class DojoController extends Controller
         $result = json_decode($result);
 
         if(isset($result->error)){
+            $this->get('logger')->addError('Error with EventBrite API for ' . $this->getUser()->getCity() . ' : ' . $result->error);
             $msg = "Er is iets mis gegaan. Wellicht klopt de Eventbrite id niet?";
         }else{
             if($result->organizer_id == $this->getUser()->getOrganiser())
@@ -82,7 +87,12 @@ class DojoController extends Controller
                     $dojo->getUrl()
                 );
 
-                $this->get('coderdojo.website_bundle.slack_service')->sendToChannel('#general', $msg);
+                try {
+                    $this->get('coderdojo.website_bundle.slack_service')->sendToChannel('#general', $msg);
+                } catch (\Exception $exception) {
+                    // Fail silently so dojo's can still be added
+                    $this->get('logger')->addError('Error with Slack for dojo ' . $this->getUser()->getCity() . ': ' . $exception->getMessage());
+                }
 
                 $msg = "ok";
             }else{

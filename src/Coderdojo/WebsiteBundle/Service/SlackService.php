@@ -5,6 +5,7 @@ namespace Coderdojo\WebsiteBundle\Service;
 use CL\Slack\Payload\ChatPostMessagePayload;
 use CL\Slack\Payload\PayloadResponseInterface;
 use CL\Slack\Transport\ApiClient;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Kernel;
 
 class SlackService
@@ -21,12 +22,12 @@ class SlackService
 
     /**
      * SlackService constructor.
-     * @param ApiClient $client
+     * @param $token
      * @param Kernel $kernel
      */
-    public function __construct(ApiClient $client, Kernel $kernel)
+    public function __construct($token, Kernel $kernel)
     {
-        $this->client = $client;
+        $this->client = new ApiClient($token);
         $this->kernel = $kernel;
     }
 
@@ -39,7 +40,7 @@ class SlackService
     public function sendToChannel($channel, $message)
     {
         if ('prod' !== $this->kernel->getEnvironment()) {
-            return;
+            $channel = "#website-nl";
         }
 
         $payload = new ChatPostMessagePayload();
