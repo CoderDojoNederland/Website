@@ -21,3 +21,4 @@ parameters:
 
     # Api token for talking to slack
     slack_api_token: 1234
+    eventbrite_api_token: 1234

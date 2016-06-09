@@ -24,6 +24,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('slack_api_token')->defaultNull()->end()
+                ->scalarNode('eventbrite_api_token')->defaultNull()->end()
             ->end()
         ;
 

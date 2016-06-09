@@ -36,5 +36,6 @@ class CoderdojoWebsiteExtension extends Extension
     protected function setParameters(ContainerBuilder $container, array $config)
     {
         $container->setParameter('slack_api_token', $config['slack_api_token']);
+        $container->setParameter('eventbrite_api_token', $config['eventbrite_api_token']);
     }
 }
