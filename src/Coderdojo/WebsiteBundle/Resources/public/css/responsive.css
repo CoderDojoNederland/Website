@@ -83,6 +83,10 @@
 		float:none;
 		display: inline-block;
 	}
+
+	.unplugged {
+		display:none;
+	}
 }
 
 /*Sliders
