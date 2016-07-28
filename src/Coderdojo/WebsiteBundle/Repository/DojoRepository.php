@@ -15,7 +15,7 @@ class DojoRepository extends EntityRepository
     public function getSortedByCity()
     {
         return $this->createQueryBuilder('d')
-            ->orderBy('d.city', 'ASC')
+            ->orderBy('d.name', 'ASC')
             ->getQuery()
             ->getResult();
     }
