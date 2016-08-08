@@ -40,7 +40,7 @@ old-collaboration:
     path: /samenwerkingen
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: collaboration
+        route: home
         permanent: true
 
 codeqube-alias:
