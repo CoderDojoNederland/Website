@@ -331,6 +331,7 @@ blockquote:hover {
 
 .copyright p.copyright-space {
 	margin-top: 12px;
+	margin-bottom: 0;
 }
 
 .copyright a {
