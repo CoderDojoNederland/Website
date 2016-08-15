@@ -81,6 +81,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <!-- Mailchimp -->
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us13.list-manage.com","uuid":"8ec0b28920a640e210372bee9","lid":"f763b9923d"}) })</script>
     <!-- end mailchimp -->
+    <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
 </head>
 
 <body>
@@ -238,6 +239,27 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                         <a href="{{ path('fos_user_registration_register') }}">Registreer jouw dojo</a>
                     {% endif %}
                 </p>
+                <div id="SkypeButton_Call_coderdojonederland_footer">
+                    <script type="text/javascript">
+                        Skype.ui({
+                            "name": "call",
+                            "element": "SkypeButton_Call_coderdojonederland_footer",
+                            "participants": ["live:contact_38802"],
+                            "imageColor": "white"
+                        });
+                    </script>
+                </div>
+                <span style="color: #fff">|</span>
+                <div id="SkypeButton_Chat_coderdojonederland_footer">
+                    <script type="text/javascript">
+                        Skype.ui({
+                            "name": "chat",
+                            "element": "SkypeButton_Chat_coderdojonederland_footer",
+                            "participants": ["live:contact_38802"],
+                            "imageColor": "white"
+                        });
+                    </script>
+                </div>
             </div>
             <div class="col-sm-12 col-md-3">
                 <ul class="social-icons right">
