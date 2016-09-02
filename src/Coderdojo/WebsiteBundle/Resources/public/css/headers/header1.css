@@ -105,8 +105,8 @@
 }
 
 .header .navbar {
-	margin: 0;
-	min-height: inherit;
+	/*margin: 0;
+	min-height: inherit;*/
 }
 
 .header .navbar-default {
@@ -223,9 +223,9 @@
 
 	/*Navbar*/
 	.header .navbar-nav {
-		position: absolute;
+		/*position: absolute;
 		bottom: -2px;
-		right: 0;
+		right: 0;*/
 	}
 
 	.header .navbar-default .navbar-nav > li > a,

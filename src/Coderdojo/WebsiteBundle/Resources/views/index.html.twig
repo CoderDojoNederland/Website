@@ -105,26 +105,31 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav">
+                    <li {% if app.request.get('_route') == 'home' %}class="active"{% endif %}>
+                        <a href="{{ path('home') }}">
+                            Home
+                        </a>
+                    </li>
                     <li {% if app.request.get('_route') == 'dojos' %}class="active"{% endif %}>
                         <a href="{{ path('dojos') }}">
-                            Waar
+                            Locaties
                         </a>
                     </li>
                     <li class="dropdown {% if app.request.get('_route') in ['mentors','setup', 'material'] %}active{% endif %}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Meehelpen
+                        <a href="{{ path('setup') }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                            Jouw Dojo
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
+                            <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
+                                <a href="{{ path('setup') }}">
+                                    Start een Dojo
+                                </a>
+                            </li>
                             <li {% if app.request.get('_route') == 'mentors' %}class="active"{% endif %}>
                                 <a href="{{ path('mentors') }}">
                                     Word mentor
-                                </a>
-                            </li>
-                            <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
-                                <a href="{{ path('setup') }}">
-                                    Start een dojo
                                 </a>
                             </li>
                             <li {% if app.request.get('_route') == 'material' %}class="active"{% endif %}>
@@ -136,7 +141,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                     </li>
                     <li class="dropdown {% if app.request.get('_route') in ['codeqube','ziggo'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Samenwerkingen
+                            Partners
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
@@ -152,7 +157,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'contact', 'slack'] %}active{% endif %}">
+                    <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'contact'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
                             De Stichting
                             <i class="icon-angle-down"></i>
@@ -173,13 +178,14 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                     Contact
                                 </a>
                             </li>
-                            <li {% if app.request.get('_route') == 'slack' %}class="active"{% endif %}>
-                                <a href="{{ path('slack') }}">
-                                    Slack Community
-                                </a>
-                            </li>
                         </ul>
                     </li>
+                    <li {% if app.request.get('_route') == 'slack' %}class="active"{% endif %}>
+                        <a href="{{ path('slack') }}">
+                            Slack Community
+                        </a>
+                    </li>
+                    <!--
                     <li>
                         <ul class="social-icons social-icons-color">
                             <li>
@@ -193,7 +199,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <!--
+
                         <li>
                             <a href="#">
                                 Start een CoderDojo

@@ -6,8 +6,40 @@
  * Website: http://htmlstream.com/preview/unify
 */
 
+@media (min-width: 768px) {
+	.navbar {
+		margin-bottom: 0;
+	}
+
+	.navbar-header {
+		float: none;
+	}
+
+	.navbar .container .navbar-brand {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.navbar-collapse .navbar-nav {
+		display: flex;
+		position: relative;
+		float: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.navbar-nav > li {
+		flex-grow: 1;
+		text-align: center;
+	}
+}
+
 /* Small devices (tablets, 768px and less) */
 @media (max-width: 768px) { 
+	.navbar {
+		margin-bottom: 0;
+	}
+
 	/*Purchase Block*/
 	.purchase span {
 		font-size: 24px;
@@ -115,6 +147,10 @@
 }
 
 @media (max-width: 450px) {
+	.navbar-brand img {
+		width: 90%;
+	}
+
 	/*Slider Sequence*/
 	#sequence-theme .info {
 		top:70px !important;

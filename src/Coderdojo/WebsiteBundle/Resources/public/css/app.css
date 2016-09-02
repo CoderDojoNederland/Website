@@ -76,6 +76,14 @@ img.img-circle {
 
 /*Navigation
 ------------------------------------*/
+.navbar-header {
+   text-align: center;
+}
+
+.navbar-brand {
+   float:none;
+}
+
 /*Pagination*/
 .pagination > .active > a,
 .pagination > .active > span,
