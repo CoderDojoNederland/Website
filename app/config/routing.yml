@@ -50,6 +50,13 @@ codeqube-alias:
         route: codeqube
         permanent: true
 
+codeweek-alias:
+    path: /codeweek
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: eucodeweek
+        permanent: true
+
 coderdojo_website:
     resource: "@CoderdojoWebsiteBundle/Controller"
     type:     annotation

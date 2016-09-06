@@ -83,7 +83,8 @@ class DefaultController extends Controller
             ->where('d.date > :today')
             ->setParameter('today', new \DateTime("now"))
             ->orderBy('d.date', 'ASC')
-            ->getQuery();
+            ->getQuery()
+            ->setMaxResults(15);
 
         $nextDojos = $query->getResult();
 

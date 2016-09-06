@@ -1,0 +1,80 @@
+{% extends "CoderdojoWebsiteBundle::index.html.twig" %}
+
+{% block title %}EU CodeWeek 2016 &mdash; Samenwerkingen &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Eu CodeWeek 2016 &mdash; Samenwerkingen &mdash; {{ parent() }}{% endblock %}
+{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/fb_codeweek.png')}}{% endblock %}
+
+{% block description %}
+    Van 15 tot en met 23 oktober is het weer tijd voor de EU CodeWeek! Bekijk hier wat er gebeurd in CoderDojo-land.
+{% endblock %}
+
+{% block fbdescription %}
+    Van 15 tot en met 23 oktober is het weer tijd voor de EU CodeWeek! Bekijk hier wat er gebeurd in CoderDojo-land.
+{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">EU CodeWeek 2016</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8 col-md-push-2 col-sm-12 col-sm-push-0 text-center margin-bottom-10">
+            <img src="{{ asset('bundles/coderdojowebsite/img/cover_codeweek.png') }}" style="width:100%;" alt="EU CodeWeek"/>
+        </div>
+    </div>
+    <div class="row margin-bottom-30">
+        <div class="col-md-8 col-md-push-2 col-sm-12 col-sm-push-0">
+            <p class="margin-bottom-20">
+                Sinds 2013 vind jaarlijks de EU CodeWeek plaats. Deze wordt altijd in oktober gepland en valt dit jaar
+                van 15 tot en met 23 oktober. Deze week is in het leven geroepen om meer aandacht te vestigen op
+                op de mogelijkheden van programmeren en hoe je hiermee creatieve ideeen en concepten tot leven kan wekken.
+            </p>
+            <p>
+                Dit jaar is ook CoderDojo Nederland ambassadeur van de EU CodeWeek en sporen wij al onze dojo's aan om
+                hier bij aan te sluiten met hun events. Op deze pagina kun je zien wat er zoal in CoderDojo-land gebeurd
+                tijdens deze week.
+            </p>
+            <!--
+            <p class="text-center">
+                <a href="http://goo.gl/forms/j8PLgu2K11" target="_blank" class="btn-u btn-u-blue margin-bottom-10">Meld jouw dojo aan&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-chevron-right"></i></a><br/>
+                <a href="http://www.codeqube.nl" target="_blank">www.codeweek.eu</a> | <a href="mailto: info@codeweek.eu" target="_blank">info@codeqube.nl</a>
+            </p>
+            -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="headline">
+                <h2>Wat is de EU CodeWeek?</h2>
+            </div>
+            <div class="responsive-video margin-bottom-40 margin-top-0">
+                <iframe width="640" height="360" src="//www.youtube.com/embed/bkGtInkEbH4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="headline">
+                <h2>Waar is de EU CodeWeek?</h2>
+            </div>
+            <p class="margin-bottom-20">Tijdens de EU CodeWeek staan de volgende events gepland:</p>
+            <table class="table">
+                <tbody>
+                    <tr {% if date() > date('2016-12-2') %}class="text-muted"{% endif %}>
+                        <td><strong>Oktober</strong></td>
+                        <td>Volgt snel!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><!--/container-->
+<!--=== End Content Part ===-->
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endblock %}
