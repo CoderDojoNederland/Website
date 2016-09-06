@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="headline">
                 <h2>Wat is de EU CodeWeek?</h2>
             </div>
@@ -58,16 +58,64 @@
                 <iframe width="640" height="360" src="//www.youtube.com/embed/bkGtInkEbH4" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="headline">
                 <h2>Waar is de EU CodeWeek?</h2>
             </div>
             <p class="margin-bottom-20">Tijdens de EU CodeWeek staan de volgende events gepland:</p>
             <table class="table">
                 <tbody>
+                    <tr {% if date() > date('2016-10-12') %}class="text-muted"{% endif %}>
+                        <td><strong>12 Oktober - Kennemerwaard</strong></td>
+                        <td><a href="http://www.eventbrite.nl/e/tickets-coderdojo-kennemerwaard-26660618628" target="_blank">CoderDojo</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-13') %}class="text-muted"{% endif %}>
+                        <td><strong>13 Oktober - Den Haag</strong></td>
+                        <td>CodeWeek Opening</td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-15') %}class="text-muted"{% endif %}>
+                        <td><strong>15 Oktober - Ede</strong></td>
+                        <td>CoderDojo</td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-15') %}class="text-muted"{% endif %}>
+                        <td><strong>15 Oktober - Kennemerwaard</strong></td>
+                        <td><a href="http://www.eventbrite.nl/e/tickets-coderdojo-3-26747932787" target="_blank">CoderDojo</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-15') %}class="text-muted"{% endif %}>
+                        <td><strong>15 Oktober - Den Haag</strong></td>
+                        <td>CoderDojo ism CodeCombat</td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-15') %}class="text-muted"{% endif %}>
+                        <td><strong>15 Oktober - Utrecht</strong></td>
+                        <td><a href="https://www.eventbrite.nl/e/tickets-coderdojo-xl-utrecht-15-op-15-oktober-2016-27441769070" target="_blank">CoderDojo XL</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-17') %}class="text-muted"{% endif %}>
+                        <td><strong>17 Oktober - Den Haag</strong></td>
+                        <td>CoderDojo bij Madorudom</td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-17') %}class="text-muted"{% endif %}>
+                        <td><strong>17 Oktober - Kennemerwaard</strong></td>
+                        <td>CoderDojo voor <a href="https://www.bibliotheekkennemerwaard.nl/activiteiten-algemeen/846-coderdojo-voor-volwassenen">volwassenen</a></td>
+                    </tr>
                     <tr {% if date() > date('2016-10-21') %}class="text-muted"{% endif %}>
                         <td><strong>21 Oktober - Sneek</strong></td>
                         <td>In samenwerking met <a href="{{ path('codeqube') }}">CodeQube</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-22') %}class="text-muted"{% endif %}>
+                        <td><strong>22 Oktober - Kennemerwaard</strong></td>
+                        <td><a href="http://www.eventbrite.nl/e/tickets-coderdojo-kennemerwaard-26661007792" target="_blank">CoderDojo</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-22') %}class="text-muted"{% endif %}>
+                        <td><strong>22 Oktober - Apeldoorn</strong></td>
+                        <td><a href="http://www.eventbrite.nl/e/tickets-coderdojo-apeldoorn-oktober-2016-27323379965" target="_blank">CoderDojo</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-22') %}class="text-muted"{% endif %}>
+                        <td><strong>22 Oktober - Spijkenisse</strong></td>
+                        <td><a href="http://www.eventbrite.nl/e/tickets-coderdojo-10-27457101931" target="_blank">CoderDojo</a></td>
+                    </tr>
+                    <tr {% if date() > date('2016-10-22') %}class="text-muted"{% endif %}>
+                        <td><strong>22 Oktober - Leeuwarden</strong></td>
+                        <td><a href="http://www.eventbrite.nl/e/tickets-coderdojo-leeuwarden-so2ep2-webdevelopment-en-scratch-27051685319" target="_blank">CoderDojo</a></td>
                     </tr>
                 </tbody>
             </table>
