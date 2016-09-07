@@ -77,10 +77,10 @@ fos_user:
     user_class: Coderdojo\WebsiteBundle\Entity\Dojo
     registration:
         form:
-            type: coderdojo_user_registration
+            type: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType
     profile:
         form:
-            type: coderdojo_user_profile
+            type: Coderdojo\WebsiteBundle\Form\Type\ProfileFormType
 
 services:
     twig.extension.intl:

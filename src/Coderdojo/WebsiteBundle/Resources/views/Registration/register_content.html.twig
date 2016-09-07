@@ -9,7 +9,10 @@
         <p>
             Dit formulier is bedoeld voor de Champions die een nieuwe dojo hebben opgezet. Is jouw dojo een feit? Dan kun je deze hier registreren zodat iedereen jouw dojo kan vinden.
         </p>
+        {#
         <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal" role="form">
+        #}
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form-horizontal'}}) }}
             {{ form_widget(form) }}
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
@@ -21,6 +24,6 @@
                     <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn-u btn-u-green" />
                 </div>
             </div>
-        </form>
+        {{ form_end(form) }}
     </div>
 </div>
