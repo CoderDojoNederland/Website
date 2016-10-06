@@ -21,16 +21,16 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
-        # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
     fragments:       ~
     http_method_override: true
-    serializer: true
+    assets: ~
 
 # Twig Configuration
 twig:
@@ -38,19 +38,6 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - 'CoderdojoWebsiteBundle:Form:fields.html.twig'
-
-# Assetic Configuration
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        [ ]
-    #java: /usr/bin/java
-    filters:
-        less:
-            node: /usr/local/bin/node
-            node_paths: [/usr/local/lib/node_modules]
-            apply_to: "\.less$"
-        cssrewrite: ~
 
 # Doctrine Configuration
 doctrine:
@@ -83,22 +70,6 @@ swiftmailer:
     port:      "%mailer_port%"
     spool:     { type: memory }
 
-# Config for bootstrap
-braincrafted_bootstrap:
-    output_dir:
-    assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
-    jquery_path: %kernel.root_dir%/../vendor/components/jquery/jquery.min.js
-    css_preprocessor: less # "less", "lessphp" or "none"
-    auto_configure:
-        assetic: true
-        twig: false
-        knp_menu: true
-        knp_paginator: true
-    customize:
-        variables_file: ~
-        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
-        bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
-
 # Fos user config
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
@@ -106,10 +77,10 @@ fos_user:
     user_class: Coderdojo\WebsiteBundle\Entity\Dojo
     registration:
         form:
-            type: coderdojo_user_registration
+            type: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType
     profile:
         form:
-            type: coderdojo_user_profile
+            type: Coderdojo\WebsiteBundle\Form\Type\ProfileFormType
 
 services:
     twig.extension.intl:

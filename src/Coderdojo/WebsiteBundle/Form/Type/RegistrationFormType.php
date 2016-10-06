@@ -2,19 +2,17 @@
 
 namespace Coderdojo\WebsiteBundle\Form\Type;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
 /**
  * Class RegistrationFormType
  * @codeCoverageIgnore
  */
-class RegistrationFormType extends BaseType
+class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
-
         // add your custom field
         $builder->remove('username');
         $builder->add('name', null, array('label' => 'Dojo Name'));
@@ -29,7 +27,12 @@ class RegistrationFormType extends BaseType
         $builder->add('organiser', null, array('attr'=> array('placeholder' => 'Eventbrite Organiser ID (see link below)')));
     }
 
-    public function getName()
+    public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    }
+
+    public function getBlockPrefix()
     {
         return 'coderdojo_user_registration';
     }

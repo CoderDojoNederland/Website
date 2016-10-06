@@ -5,7 +5,7 @@
         <h3 class="panel-title">Dojo Gegevens</h3>
     </div>
     <div class="panel-body">
-        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal" role="form">
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit form-horizontal' } }) }}
             {{ form_widget(form) }}
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
@@ -15,7 +15,7 @@
             <div>
 
             </div>
-        </form>
+        {{ form_end(form) }}
 
     </div>
 </div>

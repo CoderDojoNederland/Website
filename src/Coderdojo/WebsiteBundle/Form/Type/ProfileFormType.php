@@ -2,20 +2,17 @@
 
 namespace Coderdojo\WebsiteBundle\Form\Type;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 
 /**
  * Class ProfileFormType
  * @codeCoverageIgnore
  */
-class ProfileFormType extends BaseType
+class ProfileFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
-
-        // add your custom field
         $builder->remove('email');
         $builder->remove('username');
         $builder->remove('current_password');
@@ -31,7 +28,12 @@ class ProfileFormType extends BaseType
         $builder->add('organiser');
     }
 
-    public function getName()
+    public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    }
+
+    public function getBlockPrefix()
     {
         return 'coderdojo_user_profile';
     }

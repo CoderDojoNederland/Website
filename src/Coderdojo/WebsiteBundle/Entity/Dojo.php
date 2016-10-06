@@ -475,7 +475,9 @@ class Dojo extends BaseUser
         return $this->dojos;
     }
 
-    /** @ORM\PreFlush */
+    /**
+     * @ORM\PreFlush()
+     */
     public function geocodeAddress()
     {
       // build geocode request URL

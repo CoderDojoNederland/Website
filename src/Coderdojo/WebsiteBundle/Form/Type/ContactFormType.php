@@ -3,10 +3,13 @@
 namespace Coderdojo\WebsiteBundle\Form\Type;
 
 use Coderdojo\WebsiteBundle\Entity\Dojo;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -23,9 +26,15 @@ class ContactFormType extends AbstractType
      */
     private $dojos;
 
-    public function __construct($dojos)
+    /**
+     * @var Registry
+     */
+    private $doctrine;
+
+    public function __construct(Registry $doctrine)
     {
-        $this->dojos = $dojos;
+        $this->doctrine = $doctrine;
+        $this->dojos = $this->doctrine->getRepository('CoderdojoWebsiteBundle:Dojo')->findAll();
     }
 
     /**
@@ -37,14 +46,14 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('naam', 'text', array(
+            ->add('naam', TextType::class, array(
                 'attr' => array(
                     'pattern'     => '.{2,}'
                 )
             ))
-            ->add('email', 'email')
-            ->add('ontvanger', 'choice', [
-                'empty_value' => '- Kies een dojo -',
+            ->add('email', EmailType::class)
+            ->add('ontvanger', ChoiceType::class, [
+                'empty_data' => '- Kies een dojo -',
                 'mapped' => false,
                 'choices' => $this->buildChoices(),
                 'group_by' => function($val, $key, $index) {
@@ -58,10 +67,10 @@ class ContactFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('subject', 'text', array(
+            ->add('subject', TextType::class, array(
                 'label' => 'Onderwerp'
             ))
-            ->add('message', 'textarea', array(
+            ->add('message', TextareaType::class, array(
                 'label' => 'Bericht',
                 'attr' => array(
                     'cols' => 90,
@@ -74,11 +83,11 @@ class ContactFormType extends AbstractType
     {
         $choices = [];
 
-        $choices['contact@coderdojo.nl'] = 'CoderDojo Nederland';
+        $choices['CoderDojo Nederland'] = 'contact@coderdojo.nl';
 
         /** @var Dojo $dojo */
         foreach ($this->dojos as $dojo) {
-            $choices[ $dojo->getEmail() ] = $dojo->getName();
+            $choices[ $dojo->getName() ] = $dojo->getEmail();
         }
 
         return $choices;

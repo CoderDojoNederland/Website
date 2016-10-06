@@ -55,27 +55,35 @@
     </div>
 {%- endblock choice_widget_expanded -%}
 
-{%- block choice_widget_collapsed -%}
+{% block choice_widget_collapsed -%}
     <div class="col-lg-10">
-        {%- if required and empty_value is none and not empty_value_in_choices and not multiple -%}
+        {% if errors|length > 0 -%}
+            {% set attr = attr|merge({class: (attr.class|default('') ~ ' error')|trim}) %}
+        {% endif %}
+
+        {% if multiple -%}
+            {% set attr = attr|merge({style: (attr.style|default('') ~ ' height: auto; background-image: none;')|trim}) %}
+        {% endif %}
+
+        {% if required and placeholder is none and not placeholder_in_choices and not multiple -%}
             {% set required = false %}
         {%- endif -%}
-        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
-            {%- if empty_value is not none -%}
-                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
-            {%- endif -%}
+        <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple" data-customforms="disabled"{% endif %}>
+            {% if placeholder is not none -%}
+                <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain) }}</option>
+            {%- endif %}
             {%- if preferred_choices|length > 0 -%}
                 {% set options = preferred_choices %}
                 {{- block('choice_widget_options') -}}
-                {%- if choices|length > 0 and separator is not none -%}
+                {% if choices|length > 0 and separator is not none -%}
                     <option disabled="disabled">{{ separator }}</option>
-                {%- endif -%}
+                {%- endif %}
             {%- endif -%}
-            {%- set options = choices -%}
+            {% set options = choices -%}
             {{- block('choice_widget_options') -}}
         </select>
     </div>
-{%- endblock choice_widget_collapsed -%}
+{%- endblock choice_widget_collapsed %}
 
 {%- block choice_widget_options -%}
     {% for group_label, choice in options %}
@@ -309,7 +317,7 @@
 {%- endblock form_rows -%}
 
 {%- block widget_attributes -%}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}
     {%- for attrname, attrvalue in attr %} {% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}"{% else %}{{ attrname }}="{{ attrvalue }}"{% endif %}{%- endfor -%}
 {%- endblock widget_attributes -%}
 

@@ -53,14 +53,14 @@
                         Heb je een vraag of suggestie? Neem dan via dit formulier contact ons op.<br/>
                         Wij doen ons uiterste best om zo snel mogelijk te antwoorden!
                     </p>
-                    <form id="contactform" action="{{ path('contact') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal" role="form">
+                    {{ form_start(form, { 'action': path('contact'), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
                         {{ form_widget(form) }}
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <input type="submit" value="Verzenden" class="btn-u btn-u-green" />
                             </div>
                         </div>
-                    </form>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
