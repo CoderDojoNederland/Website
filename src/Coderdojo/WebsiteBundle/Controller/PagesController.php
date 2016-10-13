@@ -62,6 +62,14 @@ class PagesController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:Samenwerkingen/codeweekEU.html.twig');
     }
 
+    /**
+     * @Route("/samenwerkingen/boeken", name="books")
+     */
+    public function booksAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:Samenwerkingen/books.html.twig');
+    }
+
     /******************
      * De Stichting
      ******************/

@@ -144,6 +144,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
+                            {#<li {% if app.request.get('_route') == 'books' %}class="active"{% endif %}>
+                                <a href="{{ path('books') }}">
+                                    Boeken
+                                </a>
+                            </li>#}
                             <li {% if app.request.get('_route') == 'eucodeweek' %}class="active"{% endif %}>
                                 <a href="{{ path('eucodeweek') }}">
                                     EU CodeWeek 2016
