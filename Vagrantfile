@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
     echo mysql-server-5.5 mysql-server/root_password password supersafe | debconf-set-selections
     echo mysql-server-5.5 mysql-server/root_password_again password supersafe | debconf-set-selections
 
-    apt-get install -y mysql-common mysql-server mysql-client
+    apt-get install -y mysql-common mysql-server mysql-client git
 
     apt-get install -y apache2
 
@@ -44,10 +44,10 @@ Vagrant.configure(2) do |config|
 
     composer install
 
-    php app/console doctrine:database:create
-    php app/console doctrine:schema:update --force
-    yes | php app/console doctrine:fixtures:load
-    php app/console assets:install --symlink
-    php app/console cache:clear
+    php bin/console doctrine:database:create
+    php bin/console doctrine:schema:update --force
+    yes | php bin/console doctrine:fixtures:load
+    php bin/console assets:install --symlink
+    php bin/console cache:clear
   SHELL
 end
