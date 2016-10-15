@@ -34,7 +34,7 @@ class ContactFormType extends AbstractType
     public function __construct(Registry $doctrine)
     {
         $this->doctrine = $doctrine;
-        $this->dojos = $this->doctrine->getRepository('CoderdojoWebsiteBundle:Dojo')->findAll();
+        $this->dojos = $this->doctrine->getRepository('CoderdojoWebsiteBundle:Dojo')->findBy([],['name'=>'asc']);
     }
 
     /**
