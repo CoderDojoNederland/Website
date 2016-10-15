@@ -4,6 +4,9 @@ namespace Coderdojo\WebsiteBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Url;
 
 /**
  * Class RegistrationFormType
@@ -15,16 +18,80 @@ class RegistrationFormType extends AbstractType
     {
         // add your custom field
         $builder->remove('username');
-        $builder->add('name', null, array('label' => 'Dojo Name'));
-        $builder->add('location', null, array('label' => 'Location Name'));
-        $builder->add('street');
-        $builder->add('housenumber');
-        $builder->add('postalcode');
-        $builder->add('city');
-        $builder->add('facebook', null, array('attr'=> array('placeholder' => 'http://facebook.com/yourpage')));
-        $builder->add('twitter', null, array('attr'=> array('placeholder' => 'http://twitter.com/yourtwitter')));
-        $builder->add('website', null, array('attr'=> array('placeholder' => 'http://coderdojo-[CITY].nl')));
-        $builder->add('organiser', null, array('attr'=> array('placeholder' => 'Eventbrite Organiser ID (see link below)')));
+        $builder->add('name', null, [
+            'label'       => 'Dojo Name',
+            'constraints' => [
+                new NotBlank(),
+            ],
+        ]);
+        $builder->add('location', null, [
+            'label' => 'Location Name',
+            'constraints' => [
+                new NotBlank(),
+            ],
+        ]);
+        $builder->add('street', null, [
+            'constraints' => [
+                new NotBlank()
+            ]
+        ]);
+        $builder->add('housenumber', null, [
+            'constraints' => [
+                new NotBlank()
+            ]
+        ]);
+        $builder->add('postalcode', null, [
+            'constraints' => [
+                new NotBlank(),
+                new Length(6)
+            ]
+        ]);
+        $builder->add('city', null, [
+            'constraints' => [
+                new NotBlank()
+            ]
+        ]);
+        $builder->add('facebook', null, [
+            'attr' => [
+                'placeholder' => 'https://facebook.com/yourpage'
+            ],
+            'constraints' => [
+                new NotBlank(),
+                new Url()
+            ]
+        ]);
+        $builder->add('twitter', null, [
+            'attr' => [
+                'placeholder' => 'https://twitter.com/yourtwitter'
+            ],
+            'constraints' => [
+                new NotBlank(),
+                new Url()
+            ]
+        ]);
+        $builder->add('website', null, [
+            'attr' => [
+                'placeholder' => 'http://www.yourwebsite.com'
+            ],
+            'constraints' => [
+                new NotBlank(),
+                new Url()
+            ]
+        ]);
+        $builder->add('organiser', null, [
+            'attr' => [
+                'placeholder' => 'Eventbrite Organiser ID (see link below)',
+            ],
+            'constraints' => [
+                new NotBlank(),
+                new Length([
+                    'min'=>8,
+                    'max'=>12,
+                    'minMessage' => 'Dit is geen geldige ID. Zie onderstaande link voor meer uitleg',
+                    'maxMessage' => 'Dit is geen geldige ID. Zie onderstaande link voor meer uitleg.'
+                ])
+            ]
+        ]);
     }
 
     public function getParent()

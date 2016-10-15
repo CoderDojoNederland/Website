@@ -74,6 +74,16 @@ img.img-circle {
    margin-bottom: 15px;
 }
 
+form ul.error {
+   list-style-type: none;
+   color: #f00;
+   font-weight: bold;
+}
+
+form ul.error li {
+   color: #f00;
+}
+
 /*Navigation
 ------------------------------------*/
 .navbar-header {

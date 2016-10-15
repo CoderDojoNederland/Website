@@ -243,8 +243,8 @@
 {%- block form_row -%}
     <div class="form-group">
         {{- form_label(form) -}}
-        {{- form_errors(form) -}}
         {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
     </div>
 {%- endblock form_row -%}
 
@@ -292,7 +292,7 @@
 
 {%- block form_errors -%}
     {%- if errors|length > 0 -%}
-        <ul>
+        <ul class="error col-lg-10 col-lg-push-2">
             {%- for error in errors -%}
                 <li>{{ error.message }}</li>
             {%- endfor -%}
