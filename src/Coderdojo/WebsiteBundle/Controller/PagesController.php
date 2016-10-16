@@ -102,6 +102,15 @@ class PagesController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:Supporting/spaceGames.html.twig');
     }
 
+
+    /**
+     * @Route("/ziggodome", name="ZiggoDome")
+     */
+    public function ziggodomeAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:Supporting/ziggodome.html.twig');
+    }
+
     /**
      * @Route("/survey", name="survey")
      */
