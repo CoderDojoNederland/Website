@@ -139,15 +139,15 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                     </li>
                     <li class="dropdown {% if app.request.get('_route') in ['codeqube','ziggo', 'eucodeweek'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Partners
+                            Samenwerkingen
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            {#<li {% if app.request.get('_route') == 'books' %}class="active"{% endif %}>
+                            <li {% if app.request.get('_route') == 'books' %}class="active"{% endif %}>
                                 <a href="{{ path('books') }}">
-                                    Boeken
+                                    Verdien het CoderDojo Boek
                                 </a>
-                            </li>#}
+                            </li>
                             <li {% if app.request.get('_route') == 'eucodeweek' %}class="active"{% endif %}>
                                 <a href="{{ path('eucodeweek') }}">
                                     EU CodeWeek 2016
