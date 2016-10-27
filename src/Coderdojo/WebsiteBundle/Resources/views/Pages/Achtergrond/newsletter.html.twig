@@ -35,7 +35,8 @@
             {% if app.request.query.has('thankyou') %}
                 <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Bedankt!</strong> Je ontvangt nu onze nieuwsbrief
+                    <strong>Bedankt!</strong><br/>
+                    We hebben je een email gestuurd om jouw adres te bevestigen. Klik op de link in de email om de nieuwbrief te ontvangen!
                 </div>
             {% endif %}
             <div class="panel panel-green margin-bottom-40">
@@ -44,10 +45,10 @@
                 </div>
                 <div class="panel-body" id="mc_embed_signup">
                     <form class="form-horizontal validate" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" method="post" role="form" action="https://coderdojo.us13.list-manage.com/subscribe/post?u=8ec0b28920a640e210372bee9&amp;id=f763b9923d" target="_blank">
-                        <div class="form-group mc-field-group">
+                        <div class="form-group">
                             <label for="firstname" class="col-lg-3 control-label">Voornaam</label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control" id="mce-FNAME" placeholder="Voornaam" name="FNAME">
+                            <div class="col-lg-9 mc-field-group">
+                                <input type="text" class="form-control required firstname" id="mce-FNAME" placeholder="Voornaam" name="FNAME">
                             </div>
                         </div>
                         <div class="form-group">
