@@ -90,6 +90,14 @@ class PagesController extends Controller
         return $this->render('CoderdojoWebsiteBundle:Pages:Achtergrond/stichting.html.twig');
     }
 
+    /**
+     * @Route("/informatie/nieuwsbrief", name="newsletter")
+     */
+    public function newsletterAction()
+    {
+        return $this->render('CoderdojoWebsiteBundle:Pages:Achtergrond/newsletter.html.twig');
+    }
+
     /******************
      * SUPPORTING
      ******************/
