@@ -28,7 +28,7 @@ class DojoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $dojos = $em->getRepository("CoderdojoWebsiteBundle:DojoEvent")->findBy(
-            array("dojo"=>$this->getUser()),
+            array("user" =>$this->getUser()),
             array("date"=>"desc")
         );
 
@@ -74,7 +74,7 @@ class DojoController extends Controller
                 $dojo->setName($result->name->text)
                     ->setDate(new \DateTime($result->start->local))
                     ->setUrl($result->url)
-                    ->setDojo($this->getUser())
+                    ->setUser($this->getUser())
                     ->setEventbriteId($eid);
                 $this->getUser()->addDojo($dojo);
                 $em->persist($dojo);

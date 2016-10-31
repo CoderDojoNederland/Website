@@ -74,7 +74,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Coderdojo\WebsiteBundle\Entity\Dojo
+    user_class: Coderdojo\WebsiteBundle\Entity\User
     registration:
         form:
             type: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType

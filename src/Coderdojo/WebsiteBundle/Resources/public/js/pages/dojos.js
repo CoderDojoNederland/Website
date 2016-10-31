@@ -117,9 +117,7 @@
   DojosMapBackground.prototype.showInfoWindowForDojoId = function (dojoId) {
     var dojo = this.dojos[dojoId],
       windowContent = "<strong>" + dojo.name + "</strong><br>" +
-        dojo.location + "<br>" +
-        dojo.street + " " + dojo.housenumber + "<br>" +
-        dojo.postalcode + " " + dojo.city + "<br>";
+        dojo.city + "<br>";
 
     // close and nullify info window if already existing
     if (this.infoWindow) {

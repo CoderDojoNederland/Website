@@ -2,7 +2,7 @@
 
 namespace Coderdojo\WebsiteBundle\Controller;
 
-use Coderdojo\WebsiteBundle\Entity\Dojo;
+use Coderdojo\WebsiteBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -14,7 +14,7 @@ class ApiController extends Controller
      * @Route("/api/dojo/{id}", name="api_dojo")
      * @ParamConverter("dojo", class="CoderdojoWebsiteBundle:Dojo")
      */
-    public function dojoAction(Dojo $dojo)
+    public function dojoAction(User $dojo)
     {
         return new Response(
             json_encode($this->serializeDojo($dojo)),
@@ -27,7 +27,7 @@ class ApiController extends Controller
      * @Route("/api/dojo/{id}/events", name="api_dojo_events")
      * @ParamConverter("dojo", class="CoderdojoWebsiteBundle:Dojo")
      */
-    public function dojoEventAction(Dojo $dojo)
+    public function dojoEventAction(User $dojo)
     {
         $events = $dojo->getDojos();
 
@@ -80,10 +80,10 @@ class ApiController extends Controller
      * Serialize dojo manually due to FosUserBundle adding password and salt
      * @TODO: Seperate dojo from user account
      *
-     * @param Dojo $dojo
+     * @param User $dojo
      * @return array
      */
-    private function serializeDojo(Dojo $dojo)
+    private function serializeDojo(User $dojo)
     {
         return [
             "id" => $dojo->getId(),

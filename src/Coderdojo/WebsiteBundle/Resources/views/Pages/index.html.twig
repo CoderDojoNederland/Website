@@ -156,28 +156,28 @@
         <div class="col-md-12">
             <h2 class="margin-bottom-20">Komende Dojos</h2>
 
-            {% for dojo in dojos %}
+            {% for event in dojos %}
             <div class="row margin-bottom-5" itemscope itemtype="http://schema.org/Event">
-                <div class="col-md-2" itemprop="name">
-                    {{ dojo.dojo.name }}
+                <div class="col-md-4" itemprop="name">
+                    {{ event.dojo.name }}
                 </div>
-                <div class="col-md-2" itemprop="startDate" content="{{ dojo.date|date('Y-m-d') }}">
-                    {{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}
+                <div class="col-md-3" itemprop="startDate" content="{{ event.date|date('Y-m-d') }}">
+                    {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}
                 </div>
-                <div class="col-md-6" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                <div class="col-md-2" itemprop="location" itemscope itemtype="http://schema.org/Place">
                     <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <span itemprop="name">{{ dojo.dojo.location }}</span>, <span itemprop="addressLocality">{{ dojo.dojo.street }} {{ dojo.dojo.housenumber }}, {{ dojo.dojo.postalcode }} {{ dojo.dojo.city }}</span>
+                        <span itemprop="name">{{ event.dojo.city }}</span>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <a itemprop="url" href="{{ dojo.url }}" target="_blank" data-dojo="{{ dojo.dojo.name }}" data-dojo-date="{{ dojo.date|date("Y/m/d") }}" class="btn btn-success btn-block btn-xs">Reserveer</a>
+                <div class="col-md-3">
+                    <a itemprop="url" href="{{ event.url }}" target="_blank" data-dojo="{{ event.dojo.name }}" data-dojo-date="{{ event.date|date("Y/m/d") }}" class="btn btn-success btn-block btn-xs">Reserveer</a>
                 </div>
             </div>
             {% endfor %}
             <div class="row margin-bottom-5" itemscope itemtype="http://schema.org/Event">
-                <div class="col-md-10">
+                <div class="col-md-9">
                 </div>
-                <div class="col-md-2 right">
+                <div class="col-md-3 right">
                     <a href="{{path('dojos')}}" class="btn btn-block btn-default btn-xs" type="button">Bekijk alle dojo&apos;s &raquo;</a>
                 </div>
             </div>

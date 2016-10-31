@@ -2,23 +2,23 @@
 
 namespace Coderdojo\WebsiteBundle\Tests\Entity;
 
-use Coderdojo\WebsiteBundle\Entity\Dojo;
+use Coderdojo\WebsiteBundle\Entity\User;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 
 /**
- * @covers \Coderdojo\WebsiteBundle\Entity\Dojo
+ * @covers \Coderdojo\WebsiteBundle\Entity\User
  * @group FullCoverage
  */
 class DojoTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Dojo
+     * @var User
      */
     private $dojo;
 
     public function setUp()
     {
-        $this->dojo = new Dojo();
+        $this->dojo = new User();
         $this->dojo
             ->setName('chris')
             ->setStreet('street')

@@ -2,7 +2,7 @@
 
 namespace Coderdojo\WebsiteBundle\Tests\Entity;
 
-use Coderdojo\WebsiteBundle\Entity\Dojo;
+use Coderdojo\WebsiteBundle\Entity\User;
 use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 
 /**
@@ -12,7 +12,7 @@ use Coderdojo\WebsiteBundle\Entity\DojoEvent;
 class DojoEventTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject|Dojo
+     * @var \PHPUnit_Framework_MockObject_MockObject|User
      */
     private $dojo;
 
@@ -28,7 +28,7 @@ class DojoEventTest extends \PHPUnit_Framework_TestCase
         $this->dojoEvent = new DojoEvent();
 
         $this->dojoEvent
-            ->setDojo($this->dojo)
+            ->setUser($this->dojo)
             ->setUrl('url')
             ->setDate(new \DateTime('2016-01-01 00:00:00'))
             ->setName('dojo');
@@ -41,17 +41,17 @@ class DojoEventTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame('url', $this->dojoEvent->getUrl());
         $this->assertSame('dojo', $this->dojoEvent->getName());
-        $this->assertSame($this->dojo, $this->dojoEvent->getDojo());
+        $this->assertSame($this->dojo, $this->dojoEvent->getUser());
         $this->assertNull($this->dojoEvent->getId());
         $this->assertSame(\DateTime::class, get_class($this->dojoEvent->getDate()));
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|Dojo
+     * @return \PHPUnit_Framework_MockObject_MockObject|User
      */
     private function createDojoMock()
     {
-        return $this->getMockBuilder(Dojo::class)
+        return $this->getMockBuilder(User::class)
             ->disableOriginalConstructor()
             ->getMock();
     }

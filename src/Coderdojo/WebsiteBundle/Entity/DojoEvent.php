@@ -15,6 +15,9 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
  */
 class DojoEvent
 {
+    const TYPE_ZEN = 'zen';
+    const TYPE_CUSTOM = 'custom';
+
     /**
      * @var integer
      *
@@ -23,6 +26,19 @@ class DojoEvent
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $zenId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="event_type", type="string", length=255, options={"default" : "custom"})
+     */
+    private $type;
 
     /**
      * @var string
@@ -48,19 +64,18 @@ class DojoEvent
     /**
      * @var string
      *
-     * @ORM\Column(name="eventbrite_id", type="string", length=255, unique=true)
+     * @ORM\Column(name="eventbrite_id", type="string", length=255, unique=true, nullable=true)
      */
     private $eventbriteId;
 
     /**
-     * @var integer
+     * @var Dojo
      *
-     * @ORM\ManyToOne(targetEntity="Dojo", inversedBy="dojos")
+     * @ORM\ManyToOne(targetEntity="Dojo", inversedBy="events")
      * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id")
      * @Serializer\Accessor(getter="getDojoId")
      */
     private $dojo;
-
 
     /**
      * Get id
@@ -142,29 +157,6 @@ class DojoEvent
     }
 
     /**
-     * Set dojo
-     *
-     * @param \Coderdojo\WebsiteBundle\Entity\Dojo $dojo
-     * @return DojoEvent
-     */
-    public function setDojo(\Coderdojo\WebsiteBundle\Entity\Dojo $dojo = null)
-    {
-        $this->dojo = $dojo;
-    
-        return $this;
-    }
-
-    /**
-     * Get dojo
-     *
-     * @return \Coderdojo\WebsiteBundle\Entity\Dojo
-     */
-    public function getDojo()
-    {
-        return $this->dojo;
-    }
-
-    /**
      * @return int
      */
     public function getDojoId()
@@ -186,5 +178,53 @@ class DojoEvent
     public function setEventbriteId($eventbriteId)
     {
         $this->eventbriteId = $eventbriteId;
+    }
+
+    /**
+     * @return Dojo
+     */
+    public function getDojo()
+    {
+        return $this->dojo;
+    }
+
+    /**
+     * @param Dojo $dojo
+     */
+    public function setDojo($dojo)
+    {
+        $this->dojo = $dojo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZenId()
+    {
+        return $this->zenId;
+    }
+
+    /**
+     * @param string $zenId
+     */
+    public function setZenId($zenId)
+    {
+        $this->zenId = $zenId;
     }
 }

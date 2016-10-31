@@ -2,7 +2,7 @@
 
 namespace Coderdojo\WebsiteBundle\Form\Type;
 
-use Coderdojo\WebsiteBundle\Entity\Dojo;
+use Coderdojo\WebsiteBundle\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints\Collection;
 class ContactFormType extends AbstractType
 {
     /**
-     * @var Dojo[]
+     * @var User[]
      */
     private $dojos;
 
@@ -85,7 +85,7 @@ class ContactFormType extends AbstractType
 
         $choices['CoderDojo Nederland'] = 'contact@coderdojo.nl';
 
-        /** @var Dojo $dojo */
+        /** @var User $dojo */
         foreach ($this->dojos as $dojo) {
             $choices[ $dojo->getName() ] = $dojo->getEmail();
         }

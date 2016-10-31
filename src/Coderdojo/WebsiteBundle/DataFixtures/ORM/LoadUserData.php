@@ -8,7 +8,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Coderdojo\WebsiteBundle\Entity\Dojo;
+use Coderdojo\WebsiteBundle\Entity\User;
 
 /**
  * Class LoadUserData
@@ -34,7 +34,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
      */
     public function load(ObjectManager $manager)
     {
-        $user = new Dojo();
+        $user = new User();
         $user
             ->setUsername('contact@coderdojo-city.nl')
             ->setEmail('contact@coderdojo-city.nl');

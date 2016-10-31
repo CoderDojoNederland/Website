@@ -23,7 +23,7 @@ class LoadDojoEventData extends AbstractFixture implements FixtureInterface, Ord
         $dojo->setName('CoderDojo #12')
             ->setDate(new \DateTime('12-12-2025 12:00:00'))
             ->setUrl('http://www.eventbrite.nl/e/registratie-19-vrije-editie-zondag-18482884806')
-            ->setDojo($this->getReference('user'))
+            ->setUser($this->getReference('user'))
             ->setEventbriteId('4567876');
 
         $this->getReference('user')->addDojo($dojo);

@@ -22,18 +22,12 @@
       dojos[{{dojo.id}}] = {
         id:           {{dojo.id}},
         name:         "{{dojo.name}}",
-        location:     "{{dojo.location}}",
-        street:       "{{dojo.street}}",
-        housenumber:  "{{dojo.housenumber}}",
-        postalcode:   "{{dojo.postalcode}}",
         city:         "{{dojo.city}}",
-        slug:         "{{dojo.slug}}",
-        facebook:     "{{dojo.facebook}}",
         twitter:      "{{dojo.twitter}}",
         website:      "{{dojo.website}}",
         geo: {
           lat: {{dojo.lat}},
-          long: {{dojo.long}}
+          long: {{dojo.lon}}
         }
       }
     {% endfor %}
@@ -85,18 +79,22 @@
 
                   <!-- various dojo rows -->
                   {% if nextdojos|length > 0 %}
-                      {% for dojo in nextdojos %}
-                      <div class="row dojo-row" data-dojo-id="{{dojo.dojo.id}}">
+                      {% for event in nextdojos %}
+                      <div class="row dojo-row" data-dojo-id="{{event.dojo.id}}">
                         <div class="col-xs-12">
                           <div class="row">
                             <div class="col-xs-4">
-                              {{dojo.dojo.name|replace({'CoderDojo ':''})}}
+                              {{event.dojo.name|replace({'CoderDojo ':''})}}
                             </div>
                             <div class="col-xs-4">
-                              {{ dojo.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
+                              {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
                             </div>
                             <div class="col-xs-4">
-                              <a href="{{ dojo.url }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ dojo.date|date('Y/m/d') }}" data-dojo="{{ dojo.dojo.name }}">Reserveer</a>
+                              {% if event.type == 'zen' %}
+                                <a href="{{ event.dojo.zenUrl }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}">Reserveer</a>
+                              {% else %}
+                                <a href="{{ event.url }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}">Reserveer</a>
+                              {% endif %}
                             </div>
                           </div>
                         </div>
@@ -146,8 +144,7 @@
                           <p class="contact-info">
                             <a href="mailto:{{ dojo.email }}" title="Email"><i class="icon-envelope"></i></a>&nbsp;
                             <a href="{{ dojo.website }}" title="Website"><i class="icon-globe"></i></a>&nbsp;
-                            <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter"><i class="icon-twitter"></i></a>&nbsp;
-                            <a href="{{ dojo.facebook }}" title="Facebook"><i class="icon-facebook"></i></a>
+                            <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter"><i class="icon-twitter"></i></a>&nbsp
                           </p>
                         </div>
 

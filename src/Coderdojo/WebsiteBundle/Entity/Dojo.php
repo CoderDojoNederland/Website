@@ -2,16 +2,19 @@
 
 namespace Coderdojo\WebsiteBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
- * @ORM\Entity(repositoryClass="Coderdojo\WebsiteBundle\Repository\DojoRepository")
+ * Dojo
+ *
  * @ORM\Table(name="Dojo")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Coderdojo\WebsiteBundle\Repository\DojoRepository")
+ * @ExclusionPolicy("none")
  */
-class Dojo extends BaseUser
+class Dojo
 {
     /**
      * @var integer
@@ -20,139 +23,122 @@ class Dojo extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $name;
+    private $zenId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="location", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $location;
+    private $zenCreatorEmail;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="street", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $street;
+    private $zenUrl;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="housenumber", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    protected $housenumber;
+    private $name;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="postalcode", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    protected $postalcode;
+    private $city;
+
+    /**
+     * @var float
+     * @ORM\Column(type="decimal", precision=9, scale=6)
+     */
+    private $lat;
+
+    /**
+     * @var float
+     * @ORM\Column(type="decimal", precision=9, scale=6)
+     */
+    private $lon;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    protected $city;
-
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(name="geo_lat", type="decimal", precision=9, scale=6)
-     */
-    protected $lat;
-
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(name="geo_long", type="decimal", precision=9, scale=6)
-     */
-    protected $long;
+    private $email;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    protected $slug;
+    private $website;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="facebook", type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $facebook;
+    private $twitter;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="twitter", type="string", length=255)
-     */
-    protected $twitter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="website", type="string", length=255)
-     */
-    protected $website;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="organiser", type="string", length=255)
-     */
-    protected $organiser;
-
-    /**
+     * @var DojoEvent[]
      * @ORM\OneToMany(targetEntity="DojoEvent", mappedBy="dojo")
      **/
-    private $dojos;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->dojos = new ArrayCollection();
-    }
+    private $events;
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+     * @var User[]
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="dojos")
+     * @ORM\JoinTable(name="users_dojos")
+     **/
+    private $owners;
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return Dojo
+     * Dojo constructor.
+     * @param $zenId
+     * @param $name
+     * @param $city
+     * @param $lat
+     * @param $lon
+     * @param $email
+     * @param $website
+     * @param $twitter
+     * @param User $owner
      */
-    public function setName($name)
-    {
+    public function __construct(
+        $zenId,
+        $name,
+        $city,
+        $lat,
+        $lon,
+        $email,
+        $website,
+        $twitter,
+        User $owner = null
+    ) {
+        $this->zenId = $zenId;
         $this->name = $name;
-        $str = strtolower(trim($this->getName()));
-        $str = preg_replace('/[^a-z0-9-]/', '-', $str);
-        $str = preg_replace('/-+/', "-", $str);
-        $this->setSlug($str);
-        return $this;
+        $this->city = $city;
+        $this->lat = $lat;
+        $this->lon = $lon;
+        $this->email = $email;
+        $this->setWebsite($website);
+        $this->setTwitter($twitter);
+
+        $this->owners = new ArrayCollection();
+        $this->events = new ArrayCollection();
+
+        if (null != $owner) {
+            $this->owners->add($owner);
+        }
     }
 
     /**
-     * Get name
-     *
      * @return string
      */
     public function getName()
@@ -161,90 +147,14 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set street
-     *
-     * @param string $street
-     * @return Dojo
+     * @param string $name
      */
-    public function setStreet($street)
+    public function setName($name)
     {
-        $this->street = $street;
-
-        return $this;
+        $this->name = $name;
     }
 
     /**
-     * Get street
-     *
-     * @return string
-     */
-    public function getStreet()
-    {
-        return $this->street;
-    }
-
-    /**
-     * Set housenumber
-     *
-     * @param string $housenumber
-     * @return Dojo
-     */
-    public function setHousenumber($housenumber)
-    {
-        $this->housenumber = $housenumber;
-
-        return $this;
-    }
-
-    /**
-     * Get housenumber
-     *
-     * @return string
-     */
-    public function getHousenumber()
-    {
-        return $this->housenumber;
-    }
-
-    /**
-     * Set postalcode
-     *
-     * @param string $postalcode
-     * @return Dojo
-     */
-    public function setPostalcode($postalcode)
-    {
-        $this->postalcode = $postalcode;
-
-        return $this;
-    }
-
-    /**
-     * Get postalcode
-     *
-     * @return string
-     */
-    public function getPostalcode()
-    {
-        return $this->postalcode;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Dojo
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-        $this->slug = strtolower(str_replace(" ","-",$city));
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
      * @return string
      */
     public function getCity()
@@ -253,20 +163,14 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set lat
-     *
-     * @param float $lat
-     * @return Dojo
+     * @param string $city
      */
-    public function setLat($lat)
+    public function setCity($city)
     {
-      $this->lat = $lat;
-      return $this;
+        $this->city = $city;
     }
 
     /**
-     * Get lat
-     *
      * @return float
      */
     public function getLat()
@@ -275,89 +179,72 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set long
-     *
-     * @param float $long
-     * @return Dojo
+     * @param float $lat
      */
-    public function setLong($long)
+    public function setLat($lat)
     {
-      $this->long = $long;
-      return $this;
+        $this->lat = $lat;
     }
 
     /**
-     * Get long
-     *
      * @return float
      */
-    public function getLong()
+    public function getLon()
     {
-        return $this->long;
+        return $this->lon;
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Dojo
+     * @param float $lon
      */
-    private function setSlug($slug)
+    public function setLon($lon)
     {
-        $this->slug = $slug;
-
-        return $this;
+        $this->lon = $lon;
     }
 
     /**
-     * Get slug
-     *
      * @return string
      */
-    public function getSlug()
+    public function getEmail()
     {
-        return $this->slug;
+        return $this->email;
     }
 
     /**
-     * Set facebook
-     *
-     * @param string $facebook
-     * @return Dojo
+     * @param string $email
      */
-    public function setFacebook($facebook)
+    public function setEmail($email)
     {
-        $this->facebook = $facebook;
-
-        return $this;
+        $this->email = $email;
     }
 
     /**
-     * Get facebook
-     *
      * @return string
      */
-    public function getFacebook()
+    public function getWebsite()
     {
-        return $this->facebook;
+        if (null === $this->website) {
+            return 'https://coderdojo.nl';
+        }
+
+        return $this->website;
     }
 
     /**
-     * Set twitter
-     *
-     * @param string $twitter
-     * @return Dojo
+     * @param string $website
      */
-    public function setTwitter($twitter)
+    public function setWebsite($website)
     {
-        $this->twitter = $twitter;
+        if (null === $website) {
+            $this->website = 'https://coderdojo.nl';
 
-        return $this;
+            return;
+        }
+
+        $this->website = $website;
     }
 
     /**
-     * Get twitter
-     *
      * @return string
      */
     public function getTwitter()
@@ -366,141 +253,100 @@ class Dojo extends BaseUser
     }
 
     /**
-     * Set website
-     *
-     * @param string $website
-     * @return Dojo
+     * @param string $twitter
      */
-    public function setWebsite($website)
+    public function setTwitter($twitter)
     {
-        $this->website = $website;
-
-        return $this;
+        $twitter = str_replace('@', '', $twitter);
+        $twitter = str_replace('https://twitter.com/', '', $twitter);
+        $this->twitter = $twitter;
     }
 
     /**
-     * Get website
-     *
+     * @return DojoEvent[]
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * @param DojoEvent $event
+     */
+    public function addEvent(DojoEvent $event)
+    {
+        $this->events->add($event);
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getOwners()
+    {
+        return $this->owners;
+    }
+
+    /**
+     * @param User $owner
+     */
+    public function addOwner(User $owner)
+    {
+        $this->owners->add($owner);
+    }
+
+    /**
      * @return string
      */
-    public function getWebsite()
+    public function getZenId()
     {
-        return $this->website;
+        return $this->zenId;
     }
 
     /**
-     * Set location
-     *
-     * @param string $location
-     * @return Dojo
+     * @return int
      */
-    public function setLocation($location)
+    public function getId()
     {
-        $this->location = $location;
-
-        return $this;
+        return $this->id;
     }
 
     /**
-     * Get location
-     *
      * @return string
      */
-    public function getLocation()
+    public function getZenCreatorEmail()
     {
-        return $this->location;
+        return $this->zenCreatorEmail;
     }
 
     /**
-     * @param string $email
+     * @param string $zenCreatorEmail
      */
-    public function setEmail($email){
-        $this->setUsername($email);
-        parent::setEmail($email);
-    }
-
-    /**
-     * Set organiser
-     *
-     * @param string $organiser
-     * @return Dojo
-     */
-    public function setOrganiser($organiser)
+    public function setZenCreatorEmail($zenCreatorEmail)
     {
-        $this->organiser = $organiser;
-
-        return $this;
+        $this->zenCreatorEmail = $zenCreatorEmail;
     }
 
     /**
-     * Get organiser
-     *
+     * @param string $zenId
+     */
+    public function setZenId($zenId)
+    {
+        $this->zenId = $zenId;
+    }
+
+    /**
      * @return string
      */
-    public function getOrganiser()
+    public function getZenUrl()
     {
-        return $this->organiser;
+        return $this->zenUrl;
     }
 
     /**
-     * Add dojos
-     *
-     * @param \Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos
-     * @return Dojo
+     * @param string $zenUrl
      */
-    public function addDojo(\Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos)
+    public function setZenUrl($zenUrl)
     {
-        $this->dojos[] = $dojos;
-
-        return $this;
-    }
-
-    /**
-     * Remove dojos
-     *
-     * @param \Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos
-     */
-    public function removeDojo(\Coderdojo\WebsiteBundle\Entity\DojoEvent $dojos)
-    {
-        $this->dojos->removeElement($dojos);
-    }
-
-    /**
-     * Get dojos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDojos()
-    {
-        return $this->dojos;
-    }
-
-    /**
-     * @ORM\PreFlush()
-     */
-    public function geocodeAddress()
-    {
-      // build geocode request URL
-      $geoCodeUrl  = sprintf("https://maps.googleapis.com/maps/api/geocode/json?address=%s+%s+%s+%s&key=%s",
-        urlencode($this->street),
-        urlencode($this->housenumber),
-        urlencode($this->postalcode),
-        urlencode($this->city),
-        "AIzaSyAFfhAgoL1GV8iZZic3hy0uPKsrRhpVawE"
-      );
-
-      // make the request and decode the json
-      $response = json_decode(file_get_contents($geoCodeUrl));
-
-      // parse the results
-      if(isset($response->results) && is_array($response->results)){
-        if(isset($response->results[0]->geometry)){
-
-          // everything is present, store it in the model
-          $geometry   = $response->results[0]->geometry;
-          $this->lat  = $geometry->location->lat;
-          $this->long = $geometry->location->lng;
-        }
-      }
+        $this->zenUrl = 'https://zen.coderdojo.com/dojo/'.$zenUrl;
     }
 }
