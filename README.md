@@ -79,7 +79,7 @@ Please make sure to refer to the [Symfony Documentation](http://symfony.com) for
 First you fork the repo and clone it to your computer. Once you have it enter de root directory on your terminal. The first step is to install all dependencies by running composer.
 
 ```
-composer install
+composer install --no-scripts
 ```
 
 At the end of the process this will ask you to also define some parameters. Fill in the database host, port, name, user and password according to you local database environment. The email settings can be left default (unless you need to test emails) and for the secret just type a random string.
@@ -94,15 +94,15 @@ Now make sure the following directories are writable by apache:
 Now you can fill the database with dummy data to work with:
 
 ```
-php app/console doctrine:fixtures:load
+php bin/console doctrine:fixtures:load
 ```
 
 And you install assets:
 
 ```
-php app/console cache:clear
-php app/console assetic:dump
-php app/console assets:install --symlink
+php bin/console cache:clear
+php bin/console assetic:dump
+php bin/console assets:install --symlink
 ```
 
 Now finally make sure apache uses the `web` directory as root and open the site in your browser:
