@@ -21,3 +21,6 @@ services:
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
+
+    coder_dojo.website_bundle.service.zen_api_service:
+        class: CoderDojo\WebsiteBundle\Service\ZenApiService
