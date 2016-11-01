@@ -24,3 +24,7 @@ services:
 
     coder_dojo.website_bundle.service.zen_api_service:
         class: CoderDojo\WebsiteBundle\Service\ZenApiService
+
+    coder_dojo.website_bundle.service.sync_service:
+        class: CoderDojo\WebsiteBundle\Service\SyncService
+        arguments: ["@coder_dojo.website_bundle.service.zen_api_service", "@doctrine"]
