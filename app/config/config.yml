@@ -37,7 +37,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - 'CoderdojoWebsiteBundle:Form:fields.html.twig'
+        - 'CoderDojoWebsiteBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -74,13 +74,13 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Coderdojo\WebsiteBundle\Entity\User
+    user_class: CoderDojo\WebsiteBundle\Entity\User
     registration:
         form:
-            type: Coderdojo\WebsiteBundle\Form\Type\RegistrationFormType
+            type: CoderDojo\WebsiteBundle\Form\Type\RegistrationFormType
     profile:
         form:
-            type: Coderdojo\WebsiteBundle\Form\Type\ProfileFormType
+            type: CoderDojo\WebsiteBundle\Form\Type\ProfileFormType
 
 services:
     twig.extension.intl:
@@ -90,6 +90,6 @@ services:
     fos_user.doctrine_registry:
         alias: doctrine
 
-coderdojo_website:
+coder_dojo_website:
     slack_api_token: %slack_api_token%
     eventbrite_api_token: %eventbrite_api_token%

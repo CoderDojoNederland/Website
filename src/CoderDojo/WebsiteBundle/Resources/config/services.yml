@@ -1,0 +1,23 @@
+parameters:
+#    coderdojo_website.example.class: CoderDojo\WebsiteBundle\Example
+
+services:
+    coder_dojo.form.registration:
+        class: CoderDojo\WebsiteBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    coder_dojo.form.profile:
+        class: CoderDojo\WebsiteBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type, alias: coderdojo_user_profile }
+
+    coder_dojo.form.contact:
+        class: CoderDojo\WebsiteBundle\Form\Type\ContactFormType
+        arguments: ['@doctrine']
+        tags:
+            - { name: form.type, alias: coderdojo_contact_form }
+
+    coder_dojo.website_bundle.slack_service:
+        class: CoderDojo\WebsiteBundle\Service\SlackService
+        arguments: ["%slack_api_token%", "@kernel"]

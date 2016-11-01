@@ -1,5 +1,5 @@
 imports:
-    - { resource: "@CoderdojoWebsiteBundle/Resources/config/services.yml" }
+    - { resource: "@CoderDojoWebsiteBundle/Resources/config/services.yml" }
 
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
