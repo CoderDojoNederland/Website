@@ -29,46 +29,22 @@ class User extends BaseUser
     private $dojos;
 
     /**
-     * @var DojoEvent[]
-     * @ORM\OneToMany(targetEntity="DojoEvent", mappedBy="user")
-     **/
-    private $events;
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstName;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $lastName;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10)
      */
-    private $city;
-
-    /**
-     * @var float
-     * @ORM\Column(type="decimal", precision=9, scale=6)
-     */
-    private $lat;
-
-    /**
-     * @var float
-     * @ORM\Column(type="decimal", precision=9, scale=6)
-     */
-    private $long;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private $website;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=255)
-     */
-    private $twitter;
+    private $phone;
 
     public function __construct()
     {
@@ -129,98 +105,50 @@ class User extends BaseUser
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLong()
+    public function getFirstName()
     {
-        return $this->long;
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getLastName()
     {
-        return $this->name;
+        return $this->lastName;
     }
 
     /**
-     * @param string $name
+     * @param string $lastName
      */
-    public function setName($name)
+    public function setLastName($lastName)
     {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * @return float
-     */
-    public function getLat()
-    {
-        return $this->lat;
-    }
-
-    /**
-     * @param float $lat
-     */
-    public function setLat($lat)
-    {
-        $this->lat = $lat;
+        $this->lastName = $lastName;
     }
 
     /**
      * @return string
      */
-    public function getWebsite()
+    public function getPhone()
     {
-        return $this->website;
+        return $this->phone;
     }
 
     /**
-     * @param string $website
+     * @param string $phone
      */
-    public function setWebsite($website)
+    public function setPhone($phone)
     {
-        $this->website = $website;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
-    }
-
-    /**
-     * @param string $twitter
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-    }
-
-    /**
-     * @return DojoEvent[]
-     */
-    public function getEvents()
-    {
-        return $this->events;
+        $this->phone = $phone;
     }
 }

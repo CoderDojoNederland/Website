@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Form\Type;
 
+use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
@@ -18,80 +19,42 @@ class RegistrationFormType extends AbstractType
     {
         // add your custom field
         $builder->remove('username');
-        $builder->add('name', null, [
-            'label'       => 'Dojo Name',
+        $builder->remove('email');
+        $builder->remove('plainPassword');
+
+        $builder->add('firstName', null, [
+            'label'       => 'Voornaam',
             'constraints' => [
                 new NotBlank(),
             ],
         ]);
-        $builder->add('location', null, [
-            'label' => 'Location Name',
+
+        $builder->add('lastName', null, [
+            'label' => 'Achternaam',
             'constraints' => [
                 new NotBlank(),
             ],
         ]);
-        $builder->add('street', null, [
-            'constraints' => [
-                new NotBlank()
-            ]
-        ]);
-        $builder->add('housenumber', null, [
-            'constraints' => [
-                new NotBlank()
-            ]
-        ]);
-        $builder->add('postalcode', null, [
-            'constraints' => [
-                new NotBlank(),
-                new Length(6)
-            ]
-        ]);
-        $builder->add('city', null, [
-            'constraints' => [
-                new NotBlank()
-            ]
-        ]);
-        $builder->add('facebook', null, [
-            'attr' => [
-                'placeholder' => 'https://facebook.com/yourpage'
-            ],
-            'constraints' => [
-                new NotBlank(),
-                new Url()
-            ]
-        ]);
-        $builder->add('twitter', null, [
-            'attr' => [
-                'placeholder' => 'https://twitter.com/yourtwitter'
-            ],
-            'constraints' => [
-                new NotBlank(),
-                new Url()
-            ]
-        ]);
-        $builder->add('website', null, [
-            'attr' => [
-                'placeholder' => 'http://www.yourwebsite.com'
-            ],
-            'constraints' => [
-                new NotBlank(),
-                new Url()
-            ]
-        ]);
-        $builder->add('organiser', null, [
-            'attr' => [
-                'placeholder' => 'Eventbrite Organiser ID (see link below)',
-            ],
+
+        $builder->add('phone', null, [
+            'label' => 'Telefoon',
             'constraints' => [
                 new NotBlank(),
                 new Length([
-                    'min'=>8,
-                    'max'=>12,
-                    'minMessage' => 'Dit is geen geldige ID. Zie onderstaande link voor meer uitleg',
-                    'maxMessage' => 'Dit is geen geldige ID. Zie onderstaande link voor meer uitleg.'
+                    "min" => 10,
+                    "max" => 10
                 ])
             ]
         ]);
+
+        $builder->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'));
+        $builder->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
+            'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
+            'options' => array('translation_domain' => 'FOSUserBundle'),
+            'first_options' => array('label' => 'form.password'),
+            'second_options' => array('label' => 'form.password_confirmation'),
+            'invalid_message' => 'fos_user.password.mismatch',
+        ));
     }
 
     public function getParent()

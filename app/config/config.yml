@@ -75,7 +75,14 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: CoderDojo\WebsiteBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
     registration:
+        confirmation:
+            enabled: true
+            from_email:
+              address:        contact@coderdojo.nl
+              sender_name:    CoderDojo Nederland
         form:
             type: CoderDojo\WebsiteBundle\Form\Type\RegistrationFormType
     profile:

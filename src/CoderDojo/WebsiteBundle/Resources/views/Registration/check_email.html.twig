@@ -8,10 +8,9 @@
             <h3 class="panel-title margin-bottom-10">Account aanmaken</h3>
         </div>
         <div class="panel-body">
-            <p>{{ 'registration.confirmed'|trans({'%username%': user.firstName}) }}</p>
-            {% if targetUrl %}
-                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-            {% endif %}
+            <p>
+                {{ 'registration.check_email'|trans({'%email%': user.email}) }}
+            </p>
         </div>
     </div>
 {% endblock fos_user_content %}

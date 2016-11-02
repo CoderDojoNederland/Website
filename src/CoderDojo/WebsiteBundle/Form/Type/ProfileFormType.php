@@ -3,6 +3,8 @@
 namespace CoderDojo\WebsiteBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -13,19 +15,13 @@ class ProfileFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->remove('email');
+        $builder->remove('plainPassword');
         $builder->remove('username');
-        $builder->remove('current_password');
-        $builder->add('name');
-        $builder->add('location');
-        $builder->add('street');
-        $builder->add('housenumber');
-        $builder->add('postalcode');
-        $builder->add('city');
-        $builder->add('facebook');
-        $builder->add('twitter');
-        $builder->add('website');
-        $builder->add('organiser');
+        $builder->remove('email');
+        $builder->add('firstName', null, ['label'=>'Voornaam']);
+        $builder->add('lastName', null, ['label'=>'Achternaam']);
+        $builder->add('email', EmailType::class, ['label'=>'Email']);
+        $builder->add('phone', null, ['label'=>'Telefoon']);
     }
 
     public function getParent()
