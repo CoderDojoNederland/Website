@@ -22,17 +22,11 @@ class DojoController extends Controller
     }
 
     /**
-     * @Route("/mijn-dojo/beheren", name="manage")
+     * @Route("/dashboard", name="dashboard")
      */
-    public function manageAction()
+    public function dashboardAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $dojos = $em->getRepository("CoderDojoWebsiteBundle:DojoEvent")->findBy(
-            array("user" =>$this->getUser()),
-            array("date"=>"desc")
-        );
-
-        return $this->render('CoderDojoWebsiteBundle:Pages:manage.html.twig', array("dojos" => $dojos));
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:index.html.twig');
     }
 
     /**

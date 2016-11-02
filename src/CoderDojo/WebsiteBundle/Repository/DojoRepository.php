@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Repository;
 
+use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 

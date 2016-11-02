@@ -247,10 +247,6 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                         <a href="{{ path('fos_user_profile_edit') }}">
                             Profiel Bewerken
                         </a>
-                        &nbsp;|&nbsp;
-                        <a href="{{ path('manage') }}">
-                            Beheer Dojos
-                        </a>
                     {% else %}
                         &nbsp;|&nbsp;
                         <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
