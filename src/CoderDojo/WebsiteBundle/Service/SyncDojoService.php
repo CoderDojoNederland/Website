@@ -5,9 +5,10 @@ namespace CoderDojo\WebsiteBundle\Service;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\WebsiteBundle\Service\ZenModel\Dojo as ExternalDojo;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SyncService
+class SyncDojoService
 {
     /**
      * @var ZenApiService
@@ -35,38 +36,46 @@ class SyncService
         $output->writeln('**********************************');
         $output->writeln('Starting sync for dojos');
 
+        $progressbar = $this->newProgressBar($output);
+
         $externalDojos = $this->zen->getDojos();
 
-        $output->writeln('Found ' . count($externalDojos) . ' External Dojos');
-        $output->writeln('Iterating dojos...');
+        $progressbar->start(count($externalDojos));
+        $progressbar->setMessage('Iterating dojos...');
+
+        $countNew = 0;
+        $countUpdated = 0;
 
         foreach($externalDojos as $externalDojo) {
-            $output->writeln('Starting on ' . $externalDojo->getName());
+            $progressbar->setMessage('Handling ' . $externalDojo->getName());
 
             $internalDojo = $this->getInternalDojo($externalDojo->getZenId(), $externalDojo->getCity());
 
             if (null !== $internalDojo) {
-                $output->writeln('Matched internal dojo: ' . $internalDojo->getName());
-                $output->writeln('Updating.');
+                $progressbar->setMessage('Matched internal dojo: ' . $internalDojo->getName());
 
                 $this->updateInternalDojo($internalDojo, $externalDojo);
 
-                $output->writeln('#######');
+                $progressbar->advance();
+                $countUpdated++;
 
                 continue;
             }
 
-            $output->writeln('No internal matched.');
-            $output->writeln('Creating new one');
+            $progressbar->setMessage('Creating new one');
 
             $this->createInternalDojo($externalDojo);
 
-            $output->writeln('#######');
+            $progressbar->advance();
+            $countNew++;
         }
 
-        $output->writeln('Flushing');
+        $progressbar->setMessage('Flushing');
         $this->doctrine->flush();
-        $output->writeln('Finished!');
+        $progressbar->setMessage('Finished syncing dojos!');
+        $progressbar->finish();
+        $output->writeln($countNew . ' New dojos added');
+        $output->writeln($countUpdated . ' Existing dojos updated');
     }
 
     /**
@@ -134,5 +143,25 @@ class SyncService
         $internalDojo->setZenUrl($externalDojo->getZenUrl());
 
         $this->doctrine->persist($internalDojo);
+    }
+
+    /**
+     * @param OutputInterface $output
+     * @return ProgressBar
+     */
+    private function newProgressBar(OutputInterface $output)
+    {
+        $progressbar = new ProgressBar($output);
+        $format = implode(
+            "\n",
+            [
+                'Processing ',
+                '%current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s%',
+                'Status: %message:10s%',
+                ''
+            ]
+        );
+        $progressbar->setFormat($format);
+        return $progressbar;
     }
 }

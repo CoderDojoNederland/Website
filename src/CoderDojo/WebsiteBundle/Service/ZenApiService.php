@@ -3,6 +3,7 @@
 namespace CoderDojo\WebsiteBundle\Service;
 
 use CoderDojo\WebsiteBundle\Service\ZenModel\Dojo;
+use CoderDojo\WebsiteBundle\Service\ZenModel\Event;
 use GuzzleHttp\Client;
 
 class ZenApiService
@@ -69,9 +70,38 @@ class ZenApiService
 
     /**
      * Retrieve CoderDojo Events from Zen Api
+     * @param array $dojoZenIds
+     * @return Event[]
      */
-    public function getEvents()
+    public function getEvents(array $dojoZenIds)
     {
+        $headers = [
+            'Content-Type' => 'application/json'
+        ];
 
+        $dojoList = json_encode($dojoZenIds);
+
+        $body = '{"query":{"dojo_id": {"in$":'.$dojoList.'}}}';
+
+        $response = $this->client->request('POST', 'https://zen.coderdojo.com/api/2.0/events/search', [
+            'headers' => $headers,
+            'body' => $body
+        ]);
+
+        $events = json_decode($response->getBody()->getContents());
+
+        $externalEvents = [];
+
+        foreach ($events as $externalEvent) {
+            $externalEvents[] = new Event(
+                $externalEvent->id,
+                $externalEvent->dojoId,
+                $externalEvent->name,
+                new \DateTime($externalEvent->dates[0]->startTime),
+                $externalEvent->dojoId
+            );
+        }
+
+        return $externalEvents;
     }
 }

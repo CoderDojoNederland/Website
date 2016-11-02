@@ -14,9 +14,31 @@ class DojoRepository extends EntityRepository
      */
     public function getSortedByCity()
     {
-        return $this->createQueryBuilder('u')
-            ->orderBy('u.name', 'ASC')
+        return $this->createQueryBuilder('d')
+            ->orderBy('d.name', 'ASC')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * Returns an array of known zen ids for dojos
+     *
+     * @return array
+     */
+    public function getZenIds()
+    {
+        $list = $this->createQueryBuilder('d')
+            ->select('d.zenId')
+            ->where('d.zenId IS NOT NULL')
+            ->getQuery()
+            ->getScalarResult();
+
+        $return = [];
+
+        foreach ($list as $item) {
+            $return[] = $item['zenId'];
+        }
+
+        return $return;
     }
 }
