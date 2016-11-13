@@ -95,7 +95,6 @@ class SyncDojoService
         }
 
         $internalDojos = $this->doctrine
-            ->getManager()
             ->getRepository('CoderDojoWebsiteBundle:Dojo')
             ->findBy(['city' => $city, 'zenId' => null]);
 

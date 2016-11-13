@@ -12,50 +12,26 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h3>Mijn Dojo&apos;s</h3>
-                {% for dojo in app.user.dojos %}
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <h3 class="panel-title margin-bottom-10"><i class="glyphicon glyphicon-flag"></i> {{ dojo.name }}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ dojo.lat }},{{ dojo.lon }}&zoom=6&size=190x150&maptype=roadmap&markers={{ dojo.lat }},{{ dojo.lon }}&key=AIzaSyBetOCLHOnWYFAgiEcnwGLT4qyPkLeBh6M" style="width:100%;" />
-                                </div>
-                                <div class="col-md-9">
-                                    <table>
-                                        <tr>
-                                            <td width="80"><strong>Locatie:</strong></td>
-                                            <td>{{ dojo.city }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Zen:</strong></td>
-                                            <td><a href="{{ dojo.zenUrl }}">{{ dojo.zenUrl }}</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Website:</strong></td>
-                                            <td><a href="{{ dojo.website }}">{{ dojo.website }}</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Email:</strong></td>
-                                            <td><a href="mailto: {{ dojo.email }}">{{ dojo.email }}<a/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Twitter:</strong></td>
-                                            <td>{{ dojo.twitter }}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
                     </div>
                 {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% block dashboard_content %}
+                {% endblock dashboard_content %}
             </div>
             <div class="col-md-3">
                 <h3>Acties</h3>
                 <p>
-                    <a href="#" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Dojo Toevoegen</a>
+                    <a href="{{ path('dashboard-add-dojo') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Dojo Toevoegen</a>
+                    <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Mentoren Verzoeken</a>
                     <a href="#" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Event Toevoegen</a>
                     <a href="#" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> VOG Aanvragen</a>
                 </p>

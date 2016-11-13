@@ -46,10 +46,17 @@ class User extends BaseUser
      */
     private $phone;
 
+    /**
+     * @var DojoRequest[]
+     * @ORM\OneToMany(targetEntity="DojoRequest", mappedBy="users")
+     **/
+    private $dojoRequests;
+
     public function __construct()
     {
         parent::__construct();
         $this->dojos = new ArrayCollection();
+        $this->dojoRequests = new ArrayCollection();
     }
 
     /**
@@ -150,5 +157,21 @@ class User extends BaseUser
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+
+    /**
+     * @return DojoRequest[]
+     */
+    public function getDojoRequests()
+    {
+        return $this->dojoRequests;
+    }
+
+    /**
+     * @param DojoRequest $request
+     */
+    public function addDojoRequest(DojoRequest $request)
+    {
+        $this->dojoRequests->add($request);
     }
 }

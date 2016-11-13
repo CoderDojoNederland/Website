@@ -99,6 +99,12 @@ class Dojo
     private $owners;
 
     /**
+     * @var DojoRequest[]
+     * @ORM\OneToMany(targetEntity="DojoRequest", mappedBy="dojo")
+     **/
+    private $mentorRequests;
+
+    /**
      * Dojo constructor.
      * @param $zenId
      * @param $name
@@ -132,6 +138,7 @@ class Dojo
 
         $this->owners = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->mentorRequests = new ArrayCollection();
 
         if (null != $owner) {
             $this->owners->add($owner);
@@ -279,7 +286,7 @@ class Dojo
     }
 
     /**
-     * @return User[]
+     * @return User[]|ArrayCollection
      */
     public function getOwners()
     {
@@ -348,5 +355,21 @@ class Dojo
     public function setZenUrl($zenUrl)
     {
         $this->zenUrl = 'https://zen.coderdojo.com/dojo/'.$zenUrl;
+    }
+
+    /**
+     * @return DojoRequest[]
+     */
+    public function getMentorRequests()
+    {
+        return $this->mentorRequests;
+    }
+
+    /**
+     * @param DojoRequest $request
+     */
+    public function addMentorRequest(DojoRequest $request)
+    {
+        $this->mentorRequests->add($request);
     }
 }

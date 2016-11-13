@@ -22,14 +22,6 @@ class DojoController extends Controller
     }
 
     /**
-     * @Route("/dashboard", name="dashboard")
-     */
-    public function dashboardAction()
-    {
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:index.html.twig');
-    }
-
-    /**
      * @Route("/mijn-dojo/beheren/toevoegen", name="new-dojo")
      * @param Request $request
      * @return Response

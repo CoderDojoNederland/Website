@@ -59,6 +59,10 @@ img.img-circle {
    border-bottom: none;
 }
 
+.table tbody th {
+   font-weight: normal;
+}
+
 /*Forms
 ------------------------------------*/
 .form-control {

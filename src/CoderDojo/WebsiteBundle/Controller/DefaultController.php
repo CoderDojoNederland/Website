@@ -60,7 +60,7 @@ class DefaultController extends Controller
 
                 $this->get('mailer')->send($message);
 
-                $request->getSession()->getFlashBag()->add('success', 'Bedankt voor je bericht!');
+                $request->get('session')->getFlashBag()->add('success', 'Bedankt voor je bericht!');
 
                 return $this->redirect($this->generateUrl('contact'));
             }
