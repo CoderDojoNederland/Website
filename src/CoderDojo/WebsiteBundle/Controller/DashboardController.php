@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Entity\Claim;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
@@ -22,6 +23,90 @@ class DashboardController extends Controller
     public function dashboardAction()
     {
         return $this->render('CoderDojoWebsiteBundle:Dashboard:dashboard.html.twig');
+    }
+
+    /**
+     * @Route("/claim-dojo/{dojoId}", name="dashboard-claim-dojo")
+     */
+    public function claimDojoAction($dojoId)
+    {
+        $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($dojoId);
+
+        if (null === $dojo) {
+            $this->get('session')->getFlashBag()->add('error', 'De dojo waar je toegang toe wilt kan niet gevonden worden.');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (true === in_array($dojo, $user->getDojos()->toArray())) {
+            $this->get('session')->getFlashBag()->add('error', 'Je bent al verbonden aan deze dojo!');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        $claim = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Claim')->findOneBy([
+            'dojo' => $dojo,
+            'user' => $this->getUser(),
+        ]);
+
+        if (null !== $claim) {
+            /**
+             * Has this claim already been handled?
+             */
+            if (null !== $claim->getClaimedAt()) {
+                $this->get('session')->getFlashBag()->add('error', 'Dit verzoek is al geclaimed!');
+
+                return $this->redirectToRoute('dashboard-add-dojo');
+            }
+
+            /**
+             * Is this claim still valid?
+             */
+            if ($claim->isExpired()) {
+                $this->get('session')->getFlashBag()->add('error', 'Dit verzoek is verlopen en verwijderd. Je dient een claim binnen 24h te bevestigen via de link in onze email.');
+
+                $this->getDoctrine()->getManager()->remove($claim);
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('dashboard-add-dojo');
+            }
+
+            $this->get('session')->getFlashBag()->add('success', 'We hebben al een claim voor je klaar staan. Controleer het dojo emailadres van de dojo om de claim te bevestigen.');
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        $claim = new Claim($dojo, $this->getUser());
+        $this->getDoctrine()->getManager()->persist($claim);
+        $this->getDoctrine()->getManager()->flush();
+
+        /**
+         * Send email to dojo contact address
+         */
+        $message = \Swift_Message::newInstance()
+            ->setSubject(sprintf('%s wilt %s claimen', $this->getUser()->getFirstname(), $dojo->getName()))
+            ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
+            ->setTo($dojo->getEmail())
+            ->setBcc('chris+dojorequest@coderdojo.nl')
+            ->setContentType('text/html')
+            ->setBody(
+                $this->renderView(
+                    'CoderDojoWebsiteBundle:Dashboard:claimMail.html.twig',
+                    array(
+                        'dojo' => $dojo,
+                        'user' => $this->getUser(),
+                        'claim' => $claim
+                    )
+                )
+            );
+
+        $this->get('mailer')->send($message);
+
+        $this->get('session')->getFlashBag()->add('success', 'We hebben een email gestuurd naar de dojo. Klik op de link in de mail om jouw claim te bevestigen.');
+
+        return $this->redirectToRoute('dashboard-add-dojo');
     }
 
     /**
@@ -76,7 +161,7 @@ class DashboardController extends Controller
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
-                    'CoderDojoWebsiteBundle:Dashboard:requestmail.html.twig',
+                    'CoderDojoWebsiteBundle:Dashboard:requestMail.html.twig',
                     array(
                         'dojo' => $dojo,
                         'user' => $this->getUser()

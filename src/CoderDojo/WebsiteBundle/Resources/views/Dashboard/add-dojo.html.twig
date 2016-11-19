@@ -22,7 +22,7 @@
                         {% if dojo.owners|length > 0 %}
                             <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Toevoegen</a>
                         {% else %}
-                            <a href="#" class="btn btn-warning btn-xs"><i class="icon-ok"></i> Claimen</a>
+                            <a href="{{ path('dashboard-claim-dojo', {'dojoId': dojo.id }) }}" class="btn btn-warning btn-xs"><i class="icon-ok"></i> Claimen</a>
                         {% endif %}
                     </th>
                 </tr>
