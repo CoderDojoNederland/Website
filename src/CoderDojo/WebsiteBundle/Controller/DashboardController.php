@@ -26,6 +26,91 @@ class DashboardController extends Controller
     }
 
     /**
+     * @Route("/claim-dojo/{dojoId}/{hash}", name="dashboard-claim-dojo-verify")
+     */
+    public function verifyClaimDojoAction($dojoId, $hash)
+    {
+        $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($dojoId);
+
+        if (null === $dojo) {
+            $this->get('session')->getFlashBag()->add('error', 'De dojo waar je toegang toe wilt kan niet gevonden worden.');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        $claim = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Claim')->findOneBy([
+            'dojo' => $dojo,
+            'user' => $this->getUser(),
+        ]);
+
+        /**
+         * Check if the claim actually exists
+         */
+        if (null === $claim) {
+            $this->get('session')->getFlashBag()->add('error', 'We konden jouw claim niet vinden.');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        /**
+         * Check is the claim is not expired
+         */
+        if (true === $claim->isExpired()) {
+            $this->getDoctrine()->getManager()->remove($claim);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->get('session')->getFlashBag()->add('error', 'Deze claim is reeds verlopen! Je moet binnen 48h bevestigen.');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        /**
+         * Check if the claim has already been verified
+         */
+        if (null !== $claim->getClaimedAt()) {
+            $this->get('session')->getFlashBag()->add('success', 'Deze claim heb je al bevestigd');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        /**
+         * Check if the hash is correct
+         */
+        if ($hash !== $claim->getHash()) {
+            $this->get('session')->getFlashBag()->add('error', 'De link voor deze claim is niet geldig, zorg dat je met dezelfde account bent inglogged als waarmee je de claim hebt aangevraagd.');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        /**
+         * Claim the dojo
+         */
+        $claim->claim();
+        $dojo->addOwner($this->getUser());
+        $this->getUser()->addDojo($dojo);
+        $this->getDoctrine()->getManager()->flush();
+
+        $claims = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Claim')->findBy([
+            'dojo' => $dojo,
+            'claimed' => null
+        ]);
+
+        /**
+         * Convert other claims to mentor requests
+         */
+        foreach ($claims as $claim) {
+            $mentorRequest = new DojoRequest($dojo, $claim->getUser());
+            $this->getDoctrine()->getManager()->persist($mentorRequest);
+            $this->getDoctrine()->getManager()->remove($claim);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        $this->get('session')->getFlashBag()->add('success', 'Je hebt de dojo geclaimed!');
+
+        return $this->redirectToRoute('dashboard');
+    }
+
+    /**
      * @Route("/claim-dojo/{dojoId}", name="dashboard-claim-dojo")
      */
     public function claimDojoAction($dojoId)

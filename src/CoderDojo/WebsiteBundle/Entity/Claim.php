@@ -66,7 +66,7 @@ class Claim
     {
         $this->dojo = $dojo;
         $this->user = $user;
-        $this->expires = new \DateTime('+1 day');
+        $this->expires = new \DateTime('+2 days');
         $this->hash = Uuid::uuid4()->toString();
     }
 
