@@ -31,7 +31,7 @@
                 <h3>Acties</h3>
                 <p>
                     <a href="{{ path('dashboard-add-dojo') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Dojo Toevoegen</a>
-                    <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Mentoren Verzoeken</a>
+                    <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Mentoren Verzoeken <span class="label label-warning">{{ render(controller('CoderDojoWebsiteBundle:Dashboard:countDojoRequests')) }}</span></a>
                     <a href="#" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Event Toevoegen</a>
                     <a href="#" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> VOG Aanvragen</a>
                 </p>

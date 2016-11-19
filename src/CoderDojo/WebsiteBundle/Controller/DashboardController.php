@@ -347,4 +347,25 @@ class DashboardController extends Controller
             ]
         );
     }
+
+    /**
+     * @return Response
+     */
+    public function countDojoRequestsAction()
+    {
+        $requests = 0;
+
+        /** @var Dojo $dojo */
+        foreach ($this->getUser()->getDojos() as $dojo) {
+            $mentorRequests = $dojo->getMentorRequests();
+
+            foreach ($mentorRequests as $mentorRequest) {
+                if (null === $mentorRequest->getApproved()) {
+                    $requests++;
+                }
+            }
+        }
+
+        return new Response($requests);
+    }
 }
