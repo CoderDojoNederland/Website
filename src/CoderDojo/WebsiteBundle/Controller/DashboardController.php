@@ -10,10 +10,13 @@ use CoderDojo\WebsiteBundle\Entity\DojoEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @Route("/dashboard")
+ */
 class DashboardController extends Controller
 {
     /**
-     * @Route("/dashboard", name="dashboard")
+     * @Route("/", name="dashboard")
      */
     public function dashboardAction()
     {
@@ -21,7 +24,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/add-dojo/{dojoId}", name="dashboard-request-dojo")
+     * @Route("/add-dojo/{dojoId}", name="dashboard-request-dojo")
      */
     public function requestDojoAction($dojoId)
     {
@@ -79,7 +82,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/mentor-requests", name="dashboard-mentor-requests")
+     * @Route("/mentor-requests", name="dashboard-mentor-requests")
      */
     public function mentorRequestsAction()
     {
@@ -99,7 +102,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/mentor-requests/{id}", name="dashboard-mentor-requests-accept")
+     * @Route("/mentor-requests/{id}", name="dashboard-mentor-requests-accept")
      */
     public function mentorAcceptAction($id)
     {
@@ -150,7 +153,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/dashboard/add-dojo", name="dashboard-add-dojo")
+     * @Route("/add-dojo", name="dashboard-add-dojo")
      */
     public function addDojoAction()
     {
