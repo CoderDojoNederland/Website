@@ -13,20 +13,22 @@
         </thead>
         <tbody>
         {% for dojo in dojos %}
-            {# if dojo not in app.user.dojos #}
-                <tr>
-                    <th>{{ dojo.name }}</th>
-                    <th>{{ dojo.city }}</th>
-                    <th>{{ dojo.email }}</th>
-                    <th>
-                        {% if dojo.owners|length > 0 %}
-                            <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Toevoegen</a>
+            <tr>
+                <th>{{ dojo.name }}</th>
+                <th>{{ dojo.city }}</th>
+                <th>{{ dojo.email }}</th>
+                <th>
+                    {% if dojo.owners|length > 0 %}
+                        {% if app.user in dojo.owners %}
+                            <a href="#" class="btn btn-default btn-xs disabled"><i class="icon-ok"></i> Reeds toegevoegd</a>
                         {% else %}
-                            <a href="{{ path('dashboard-claim-dojo', {'dojoId': dojo.id }) }}" class="btn btn-warning btn-xs"><i class="icon-ok"></i> Claimen</a>
+                            <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Toegang Aanvragen</a>
                         {% endif %}
-                    </th>
-                </tr>
-            {# endif #}
+                    {% else %}
+                        <a href="{{ path('dashboard-claim-dojo', {'dojoId': dojo.id }) }}" class="btn btn-warning btn-xs"><i class="icon-ok"></i> Dojo Claimen</a>
+                    {% endif %}
+                </th>
+            </tr>
         {% endfor %}
         </tbody>
     </table>
