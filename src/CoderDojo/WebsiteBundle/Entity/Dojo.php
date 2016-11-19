@@ -383,4 +383,19 @@ class Dojo
     {
         return in_array($user, $this->getOwners()->toArray());
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function hasPendingRequest(User $user)
+    {
+        foreach ($this->mentorRequests as $request) {
+            if ($request->getUser() === $user && null === $request->getApproved()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -19,7 +19,9 @@
                 <th>{{ dojo.email }}</th>
                 <th>
                     {% if dojo.owners|length > 0 %}
-                        {% if app.user in dojo.owners %}
+                        {% if dojo.hasPendingRequest(app.user) %}
+                            <a href="#" class="btn btn-success btn-xs disabled"><i class="icon-ok"></i> Toegang aangevraagd</a>
+                        {% elseif app.user in dojo.owners %}
                             <a href="#" class="btn btn-default btn-xs disabled"><i class="icon-ok"></i> Reeds toegevoegd</a>
                         {% else %}
                             <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Toegang Aanvragen</a>

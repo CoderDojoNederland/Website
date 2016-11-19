@@ -106,7 +106,7 @@ class DojoRequest
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getApproved()
     {
