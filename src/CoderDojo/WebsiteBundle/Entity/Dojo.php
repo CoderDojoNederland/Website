@@ -372,4 +372,15 @@ class Dojo
     {
         $this->mentorRequests->add($request);
     }
+
+    /**
+     * Checks if a user is connected to this dojo
+     *
+     * @param User $user
+     * @return bool
+     */
+    public function isOwner(User $user)
+    {
+        return in_array($user, $this->getOwners()->toArray());
+    }
 }

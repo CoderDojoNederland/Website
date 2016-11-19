@@ -57,7 +57,7 @@
     </table>
     <p>&nbsp;</p>
     <p style="text-align: center;">
-        <a href="#" class="btn">Geef {{ user.firstname }} toegang</a>
+        <a href="{{ url('dashboard-mentor-requests-accept', {'id': requestId }) }}" class="btn">Geef {{ user.firstname }} toegang</a>
     </p>
     <p>&nbsp;</p>
     <p>

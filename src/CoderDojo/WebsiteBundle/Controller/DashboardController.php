@@ -249,7 +249,8 @@ class DashboardController extends Controller
                     'CoderDojoWebsiteBundle:Dashboard:requestMail.html.twig',
                     array(
                         'dojo' => $dojo,
-                        'user' => $this->getUser()
+                        'user' => $this->getUser(),
+                        'requestId' => $dojoRequest->getId()
                     )
                 )
             );
@@ -258,7 +259,7 @@ class DashboardController extends Controller
 
         $this->get('session')->getFlashBag()->add('success', 'We hebben een email gestuurd naar deze dojo met het verzoek om jou toegang te geven.');
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:add-dojo.html.twig');
+        return $this->redirectToRoute('dashboard');
     }
 
     /**
