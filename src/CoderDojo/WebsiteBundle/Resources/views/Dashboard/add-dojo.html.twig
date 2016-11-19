@@ -2,5 +2,32 @@
 
 {% block dashboard_content %}
     <h3>Dojo's Toevoegen</h3>
-    <p>Hier komen de optionele dojo's.</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Dojo</th>
+            <th>Stad</th>
+            <th>Email</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for dojo in dojos %}
+            {# if dojo not in app.user.dojos #}
+                <tr>
+                    <th>{{ dojo.name }}</th>
+                    <th>{{ dojo.city }}</th>
+                    <th>{{ dojo.email }}</th>
+                    <th>
+                        {% if dojo.owners|length > 0 %}
+                            <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Toevoegen</a>
+                        {% else %}
+                            <a href="#" class="btn btn-warning btn-xs"><i class="icon-ok"></i> Claimen</a>
+                        {% endif %}
+                    </th>
+                </tr>
+            {# endif #}
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock dashboard_content %}

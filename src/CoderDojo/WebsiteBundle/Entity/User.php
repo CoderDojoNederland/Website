@@ -104,7 +104,7 @@ class User extends BaseUser
     /**
      * Get dojos
      *
-     * @return Dojo[]
+     * @return Dojo[]|ArrayCollection
      */
     public function getDojos()
     {

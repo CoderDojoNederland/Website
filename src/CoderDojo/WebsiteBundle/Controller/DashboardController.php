@@ -4,6 +4,7 @@ namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoRequest;
+use CoderDojo\WebsiteBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
@@ -32,6 +33,15 @@ class DashboardController extends Controller
 
         if (null === $dojo) {
             $this->get('session')->getFlashBag()->add('error', 'De dojo waar je toegang toe wilt kan niet gevonden worden.');
+
+            return $this->redirectToRoute('dashboard-add-dojo');
+        }
+
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (true === in_array($dojo, $user->getDojos()->toArray())) {
+            $this->get('session')->getFlashBag()->add('error', 'Je bent al verbonden aan deze dojo!');
 
             return $this->redirectToRoute('dashboard-add-dojo');
         }
@@ -157,6 +167,13 @@ class DashboardController extends Controller
      */
     public function addDojoAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:add-dojo.html.twig');
+        $dojos = $this->get('doctrine')->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy([],['name'=>'ASC']);
+
+        return $this->render(
+            'CoderDojoWebsiteBundle:Dashboard:add-dojo.html.twig',
+            [
+                'dojos'=>$dojos
+            ]
+        );
     }
 }

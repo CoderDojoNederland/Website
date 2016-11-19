@@ -20,12 +20,12 @@
             </tr>
             </thead>
             <tbody>
-                {% for mentorRequest in requests %}
-                    <tr>
-                        <th>{{ mentorRequest.dojo.name }}</th>
-                        <th>{{ mentorRequest.user.firstname|capitalize }}</th>
-                        <th>{{ mentorRequest.user.lastname|capitalize }}</th>
-                        <th>{{ mentorRequest.user.email }}</th>
+            {% for mentorRequest in requests %}
+                <tr>
+                    <th>{{ mentorRequest.dojo.name }}</th>
+                    <th>{{ mentorRequest.user.firstname|capitalize }}</th>
+                    <th>{{ mentorRequest.user.lastname|capitalize }}</th>
+                    <th>{{ mentorRequest.user.email }}</th>
                         <th>{{ mentorRequest.user.phone }}</th>
                         <th><a href="{{ path('dashboard-mentor-requests-accept', {'id': mentorRequest.id}) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Accepteren</a></th>
                     </tr>
