@@ -22,7 +22,7 @@
                 <td><a href="{{ event.url }}" class="btn btn-default"><i class="icon-globe"></i></a></td>
                 <td>
                     {% if event.type is constant('CoderDojo\\WebsiteBundle\\Entity\\DojoEvent::TYPE_CUSTOM') %}
-                        <a href="#" class="btn btn-default" title="Bewerken"><i class="icon-pencil"></i></a>&nbsp;
+                        <a href="{{ path('dashboard-dojo-events-edit', {'id': event.id}) }}" class="btn btn-default" title="Bewerken"><i class="icon-pencil"></i></a>&nbsp;
                         <a href="#" class="btn btn-danger" title="Verwijderen"><i class="icon-trash"></i></a>
                     {% else  %}
                         <p class="small">Geimporteerd uit <a href="https://zen.coderdojo.com" target="_blank">Zen</a></p>

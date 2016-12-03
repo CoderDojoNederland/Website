@@ -422,6 +422,54 @@ class DashboardController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/events/{id}/edit", name="dashboard-dojo-events-edit")
+     */
+    public function editEventAction(Request $request, $id)
+    {
+        $event = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:DojoEvent')->find($id);
+        $dojo = $event->getDojo();
+        $user = $this->getUser();
+
+        if (false === $dojo->isOwner($user)) {
+            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo events te bewerken.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        if (DojoEvent::TYPE_CUSTOM !== $event->getType()) {
+            $this->get('session')->getFlashBag()->add('danger', 'Dit event kan alleen op zen.coderdojo.com bewerkt worden.');
+            return $this->redirectToRoute('dashboard-dojo-events');
+        }
+
+        $form = $this->createForm(EventFormType::class, $event);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $event->setName($form->get('name')->getData());
+                $event->setDate($form->get('date')->getData());
+                $event->setUrl($form->get('url')->getData());
+                $event->setType(DojoEvent::TYPE_CUSTOM);
+
+                $this->getDoctrine()->getManager()->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Dit event is bewerkt!');
+
+                return $this->redirectToRoute('dashboard-dojo-events', ['id'=>$dojo->getId()]);
+            } else {
+                return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+                    'form'=>$form->createView(),
+                    'dojo' => $dojo
+                ]);
+            }
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+            'form'=>$form->createView(),
+            'dojo' => $dojo
+        ]);
+    }
 
     /**
      * @return Response

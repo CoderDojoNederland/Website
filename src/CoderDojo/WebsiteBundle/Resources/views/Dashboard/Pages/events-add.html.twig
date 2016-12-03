@@ -2,7 +2,7 @@
 
 {% block dashboard_content %}
 <h3>Events toevoegen</h3>
-    {{ form_start(form, { 'action': path('dashboard-dojo-events-add', {'id':dojo.id}), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
+    {{ form_start(form, { 'action': '#', 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
     {{ form_widget(form) }}
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
