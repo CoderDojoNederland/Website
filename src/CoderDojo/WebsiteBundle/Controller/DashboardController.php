@@ -23,6 +23,18 @@ class DashboardController extends Controller
      */
     public function dashboardAction()
     {
+        if (
+            true === empty($this->getUser()->getFirstName()) ||
+            true === empty($this->getUser()->getLastName()) ||
+            true === empty($this->getUser()->getPhone())
+        ) {
+            $text = "Welkom bij de nieuwe coderdojo.nl! Omdat we de dojo's nu los hebben getrokken van de profielen vragen we je om jouw profiel bij te werken. Vul onderstaande gegevens in om verder te gaan!";
+
+            $this->get('session')->getFlashBag()->add('success', $text);
+
+            return $this->redirectToRoute('fos_user_profile_edit');
+        }
+
         return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/dashboard.html.twig');
     }
 

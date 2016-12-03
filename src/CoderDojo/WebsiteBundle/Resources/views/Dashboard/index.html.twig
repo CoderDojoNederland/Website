@@ -30,9 +30,10 @@
             <div class="col-md-3">
                 <h3>Acties</h3>
                 <p>
-                    <a href="{{ path('dashboard') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Mijn Dojo&apos;s</a>
-                    <a href="{{ path('dashboard-add-dojo') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Dojo Toevoegen</a>
-                    <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-default btn-block"><i class="icon-cloud-download"></i> Mentoren Verzoeken <span class="label label-warning">{{ render(controller('CoderDojoWebsiteBundle:Dashboard:countDojoRequests')) }}</span></a>
+                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block"><i class="icon-user"></i> Mijn Profiel</a>
+                    <a href="{{ path('dashboard') }}" class="btn btn-default btn-block"><i class="icon-location-arrow"></i> Mijn Dojo&apos;s</a>
+                    <a href="{{ path('dashboard-add-dojo') }}" class="btn btn-default btn-block"><i class="icon-plus-sign"></i> Dojo Toevoegen</a>
+                    <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-default btn-block"><i class="icon-exclamation-sign"></i> Mentoren Verzoeken <span class="label label-warning">{{ render(controller('CoderDojoWebsiteBundle:Dashboard:countDojoRequests')) }}</span></a>
                 </p>
             </div>
         </div>

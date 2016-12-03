@@ -13,6 +13,9 @@
             <p class="text-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {{ 'layout.logged_in_as'|trans({'%username%': app.user.firstName}, 'FOSUserBundle') }} |
+                    <a href="{{ path('dashboard') }}">
+                        Dashboard
+                    </a> |
                     <a href="{{ path('fos_user_change_password') }}">
                         Wachtwoord Wijzigen
                     </a> |
