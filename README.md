@@ -46,7 +46,7 @@ The easy way is to use the Vagrant setup we have provided. This is a predefined 
 
 1. Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 2. Install [Vagrant](https://www.vagrantup.com/downloads.html)*
-3. Add `127.0.0.1 coderdojo.nl.dev` to your hosts file ([see how](http://support.hostgator.com/articles/general-help/technical/how-do-i-change-my-hosts-file))
+3. Add `10.4.4.59 coderdojo.nl.dev` to your hosts file ([see how](http://support.hostgator.com/articles/general-help/technical/how-do-i-change-my-hosts-file))
 4. From the root of the project directory run `vagrant up` (the first time can take a while, grab a coffee)
 5. Open your browser and go to http://coderdojo.nl.dev:8080/app_dev.php
 
@@ -72,7 +72,7 @@ Next you will need to install a few dependencies for this project:
 2. Install [Node.JS](http://nodejs.org) / [NPM](http://npmjs.com)
 3. Install Less: `npm install less`
 
-As you might have noticed, we run on Symfony (2.7 at the moment).
+As you might have noticed, we run on Symfony (2.8 at the moment).
 
 Please make sure to refer to the [Symfony Documentation](http://symfony.com) for basic knowledge of the system.
 
@@ -108,7 +108,7 @@ php bin/console assets:install --symlink
 Now finally make sure apache uses the `web` directory as root and open the site in your browser:
 
 ```
-http://localhost/app_dev.php
+http://coderdojo.nl.dev/app_dev.php
 ```
 
 *Note how you open `/app_dev.php`, this adds extra debug features*
