@@ -35,23 +35,11 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user
-            ->setUsername('contact@coderdojo-city.nl')
+        $user->setUsername('contact@coderdojo-city.nl')
             ->setEmail('contact@coderdojo-city.nl');
-        $user
-            ->setLocation('Startup Port')
-            ->setCity('Rotterdam')
-            ->setStreet('Heer Bokelweg')
-            ->setHousenumber('155')
-            ->setName('CoderDojo City')
-            ->setFacebook('http://facebook.com/coderdojonederland')
-            ->setTwitter('http://twitter.com/coderdojonl')
-            ->setWebsite('http://coderdojo.nl')
-            ->setPostalcode('3032AD')
-            ->setOrganiser('5495554471')
-            ->setEnabled(true)
-            ->setLat(51.928294)
-            ->setLong(4.480246);
+        $user->setFirstName('Firstname');
+        $user->setLastName('Lastname');
+        $user->setPhone('0000000000');
 
         $encoder = $this->container
             ->get('security.encoder_factory')
