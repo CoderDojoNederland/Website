@@ -1,0 +1,122 @@
+{% extends "CoderDojoWebsiteBundle::index.html.twig" %}
+
+{% block title %}Start een Dojo &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Start een Dojo &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Wil jij ook een coderdojo oprichten in Nederland? Super tof! Lees hier hoe je makkelijk in 5 stappen een dojo op kan richten.
+{% endblock %}
+
+{% block fbdescription %}
+    Richt in 5 stappen jouw eigen dojo op in Nederland! Hier lees je alles over hoe je dit moet doen.
+{% endblock %}
+
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View Startup Page");
+    </script>
+{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Start een CoderDojo</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container privacy">
+
+    <div class="row margin-bottom-50">
+        <div class="col-md-6 col-md-push-3" style="text-align:center;">
+            <h2>Start in 5 stappen jouw Dojo op!</h2>
+            <p>Tof dat je ook een Dojo wilt oprichten! Op deze pagina kun je lezen hoe dat in zijn werk gaat. Als je hulp nodig hebt kun je altijd contact opnemen met een <a href="/dojos">dojo in de buurt</a>, zij helpen je graag verder!</p>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-30">
+        <div class="col-md-6 margin-bottom-20">
+            <div class="responsive-video">
+                <iframe width="560" height="315" src="//www.youtube.com/embed/_Wu8Y1473A4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul style="list-style-type:none;margin:0;padding:0;"><li><h2><i class="icon-thumbs-up icon-bg-green icon-round"></i> 1. Word champion</h2></li></ul>
+            <p>Een <strong>Champion</strong> is de oprichter en organisator van een Dojo. Een champion hoeft g&eacute;&eacute;n kennis van programmeren te hebben! Als champion zorg je in eerste instantie dat er een ruimte is en mentoren zijn voor de dojo.</p>
+            <p>Als je besloten hebt om Champion te worden doe dan eerst de volgende dingen:</p>
+            <div class="col-md-6">
+                <a href="https://zen.coderdojo.com/start-dojo" class="btn btn-success btn-block" target="_blank">Aanmelden bij Zen</a>
+            </div>
+            <div class="col-md-6">
+                <a href="{{ path('contact') }}" class="btn btn-success btn-block">Laat het ons weten</a></li>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-30">
+        <div class="col-md-6 margin-bottom-20">
+            <div class="responsive-video">
+                <iframe width="560" height="315" src="//www.youtube.com/embed/Ni3RC6i--A4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul style="list-style-type:none;margin:0;padding:0;"><li><h2><i class="icon-calendar icon-bg-green icon-round"></i> 2. Datum</h2></li></ul>
+            <p>Als tweede zorg je voor een datum. Zodra je een datum hebt kun je deze gebruiken om naartoe te werken. De locaties die je benadert kun je al aangeven wanneer ze nodig zijn, en ook de mentoren kunnen deze datum in hun agenda zetten.</p>
+            <p>Voor het communiceren van de datum en het afhandelen van inschrijvingen adviseren wij het gebruik van <a href="http://eventbrite.nl">Eventbrite</a>. Hiermee kunnen deelnemers zich registreren en kun je een maximum hanteren zodat je niet overladen wordt met te veel deelnemers. Ook heb je een mooi overzicht van wie er allemaal komen.</p>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-30">
+        <div class="col-md-6 margin-bottom-20">
+            <div class="responsive-video">
+                <iframe width="560" height="315" src="//www.youtube.com/embed/h3rFi_Qx-Ok" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul style="list-style-type:none;margin:0;padding:0;"><li><h2><i class="icon-home icon-bg-green icon-round"></i> 3. Locatie</h2></li></ul>
+            <p>De basis van je Dojo is de locatie. <strong>Dit mag geen priv&eacute; gelegenheid zijn!</strong> Een dojo moet ten alle tijden in een publieke ruimte zijn. Denk bijvoorbeeld aan een bibliotheek, school, kantoorruimte, etc.</p>
+            <p>Zorg er voor dat je ruimte over voldoende stopcontacten beschikt en snel genoeg internet heeft om alle kids te kunnen voorzien van stroom en internet.</p>
+            <p>Tot slot, let waar mogelijk ook op veiligheid en hygi&euml;ne. Schone wc&apos;s en vrije vluchtroutes zijn absoluut nodig!</p>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-30">
+        <div class="col-md-6 margin-bottom-20">
+            <div class="responsive-video">
+                <iframe width="560" height="315" src="//www.youtube.com/embed/LOSaE2TtdQg" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul style="list-style-type:none;margin:0;padding:0;"><li><h2><i class="icon-group icon-bg-green icon-round"></i> 4. Team</h2></li></ul>
+            <p>CoderDojo is en blijft gratis voor iedereen, maar het vergt ook veel werk. Daarom heb je mensen nodig die je helpen. Als je zelf geen kennis hebt van programmeren moet je op zoek gaan naar mentoren die dat wel hebben. Ook ouders kun je vragen om te helpen!</p>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-30">
+        <div class="col-md-6 margin-bottom-20">
+            <div class="responsive-video">
+                <iframe width="560" height="315" src="//www.youtube.com/embed/QqV8wx2F87M" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ul style="list-style-type:none;margin:0;padding:0;"><li><h2><i class="icon-bullhorn icon-bg-green icon-round"></i> 5. Promoten</h2></li></ul>
+            <p>Nu je alles bij elkaar hebt en klaar bent om te beginnen heb je natuurlijk nog deelnemers nodig! Tijd om jouw dojo te promoten. Maak bijvoorbeeld een Twitter / Facebook en een website. Download de <a href="/bundles/coderdojowebsite/coderdojo-starter-pack.zip">starter pack (zip, 9,3mb)</a> om snel van start te gaan.</p>
+            <p>In dit pack vind je:</p>
+            <ul>
+                <li>Huisstijl Guidelines</li>
+                <li>CoderDojo Nederland huisstijl*</li>
+                <li>Wordpress Thema**</li>
+            </ul>
+            <p>*) Neem <a href="{{ path('contact') }}">contact met ons op</a> zodat wij kunnen zorgen voor jouw eigen lokale logo en dit z.s.m. naar je toe kunnen sturen.</p>
+            <p>**) Wij beschikken over hosting voor zowel websites al domeinen. Heb je geen funding voor een domein en hosting? Neem dan <a href="{{ path('contact') }}">contact met ons op</a>.</p>
+        </div>
+    </div>
+
+
+    <div class="clearfix margin-bottom-40"></div>
+
+</div><!--/container-->
+<!--=== End Content Part ===-->
+{% endblock %}

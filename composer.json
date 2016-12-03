@@ -26,7 +26,8 @@
         "components/jquery": "1.10",
         "twig/extensions": "^1.3",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
-        "cleentfaar/slack": "0.20.*"
+        "cleentfaar/slack": "0.20.*",
+        "ramsey/uuid": "^3.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

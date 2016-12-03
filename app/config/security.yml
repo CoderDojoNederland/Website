@@ -20,7 +20,7 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 always_use_default_target_path: false
-                default_target_path: /beheren
+                default_target_path: /dashboard
 
             logout:       true
             anonymous:    true
@@ -30,4 +30,5 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/mijn-dojo, role: ROLE_USER }
+        - { path: ^/dashboard, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }

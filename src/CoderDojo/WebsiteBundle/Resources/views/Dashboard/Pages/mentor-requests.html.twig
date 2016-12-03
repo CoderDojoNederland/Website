@@ -1,0 +1,36 @@
+{% extends "CoderDojoWebsiteBundle:Dashboard:index.html.twig" %}
+
+{% block dashboard_content %}
+    <h3>Mentoren Toevoegen</h3>
+
+    {% if requests|length == 0 %}
+        <p>Er staan momenteel geen mentor verzoeken open voor jouw dojo's.</p>
+    {% endif %}
+
+    {% if requests|length > 0 %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Dojo</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Email</th>
+                <th>Telefoon</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for mentorRequest in requests %}
+                <tr>
+                    <th>{{ mentorRequest.dojo.name }}</th>
+                    <th>{{ mentorRequest.user.firstname|capitalize }}</th>
+                    <th>{{ mentorRequest.user.lastname|capitalize }}</th>
+                    <th>{{ mentorRequest.user.email }}</th>
+                        <th>{{ mentorRequest.user.phone }}</th>
+                        <th><a href="{{ path('dashboard-mentor-requests-accept', {'id': mentorRequest.id}) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Accepteren</a></th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock dashboard_content %}

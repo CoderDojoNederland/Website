@@ -57,6 +57,6 @@ codeweek-alias:
         route: eucodeweek
         permanent: true
 
-coderdojo_website:
-    resource: "@CoderdojoWebsiteBundle/Controller"
+coder_dojo_website:
+    resource: "@CoderDojoWebsiteBundle/Controller"
     type:     annotation

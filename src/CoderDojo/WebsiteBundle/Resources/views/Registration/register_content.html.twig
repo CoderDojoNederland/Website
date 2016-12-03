@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="panel panel-green margin-bottom-40">
+    <div class="panel-heading">
+        <h3 class="panel-title margin-bottom-10">Account aanmaken</h3>
+    </div>
+    <div class="panel-body">
+        <p class="margin-bottom-40">
+            Ga jij namens jouw dojo dingen beheren op coderdojo.nl? Maak dan hier eerst een gebruikersaccount aan.<br/>
+            <strong>Let op!</strong> Gebruik een persoonlijk email adres! Het emailadres van de dojo is al gekoppeld.
+        </p>
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form-horizontal'}}) }}
+            {{ form_widget(form) }}
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn-u btn-u-green" />
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
