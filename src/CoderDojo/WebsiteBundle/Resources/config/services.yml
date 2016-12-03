@@ -18,6 +18,11 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_contact_form }
 
+    coder_dojo.form.event:
+        class: CoderDojo\WebsiteBundle\Form\Type\EventFormType
+        tags:
+            - { name: form.type, alias: coderdojo_event }
+
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]

@@ -121,7 +121,9 @@
 
 {%- block date_widget -%}
     {%- if widget == 'single_text' -%}
+        <div class="col-lg-10">
         {{ block('form_widget_simple') }}
+        </div>
     {%- else -%}
         <div {{ block('widget_container_attributes') }}>
             {{- date_pattern|replace({
@@ -161,7 +163,9 @@
 
 {%- block url_widget -%}
     {%- set type = type|default('url') -%}
+<div class="col-lg-10">
     {{ block('form_widget_simple') }}
+    </div>
 {%- endblock url_widget -%}
 
 {%- block search_widget -%}

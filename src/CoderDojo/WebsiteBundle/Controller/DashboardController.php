@@ -6,6 +6,7 @@ use CoderDojo\WebsiteBundle\Entity\Claim;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
+use CoderDojo\WebsiteBundle\Form\Type\EventFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
@@ -347,6 +348,80 @@ class DashboardController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/events/{id}", name="dashboard-dojo-events")
+     */
+    public function eventAction($id)
+    {
+        $dojo = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:Dojo")->find($id);
+        $events = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:DojoEvent')->findBy(
+            [
+            "dojo" => $dojo
+            ],
+            [
+                "date" => 'DESC'
+            ]
+        );
+
+        return $this->render(
+            'CoderDojoWebsiteBundle:Dashboard/Pages:events.html.twig',
+            [
+                'dojo' => $dojo,
+                'events' => $events
+            ]
+        );
+    }
+
+    /**
+     * @Route("/events/{id}/add", name="dashboard-dojo-events-add")
+     */
+    public function addEventAction(Request $request, $id)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($id);
+
+        if (false === $dojo->isOwner($user)) {
+            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om aan deze dojo een event toe te voegen.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        $form = $this->createForm(EventFormType::class);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $event = new DojoEvent();
+                $event->setName($form->get('name')->getData());
+                $event->setDate($form->get('date')->getData());
+                $event->setUrl($form->get('url')->getData());
+                $event->setType(DojoEvent::TYPE_CUSTOM);
+                $event->setDojo($dojo);
+
+                $dojo->addEvent($event);
+
+                $this->getDoctrine()->getManager()->persist($event);
+                $this->getDoctrine()->getManager()->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Dit event is toegevoegd!');
+
+                return $this->redirectToRoute('dashboard-dojo-events', ['id'=>$dojo->getId()]);
+            } else {
+                return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+                    'form'=>$form->createView(),
+                    'dojo' => $dojo
+                ]);
+            }
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+            'form'=>$form->createView(),
+            'dojo' => $dojo
+        ]);
+    }
+
 
     /**
      * @return Response
