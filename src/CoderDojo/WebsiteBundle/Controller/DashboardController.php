@@ -395,7 +395,7 @@ class DashboardController extends Controller
         $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($id);
 
         if (false === $dojo->isOwner($user)) {
-            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om aan deze dojo een event toe te voegen.');
+            $this->get('session')->getFlashBag()->add('error', 'Zo te zien heb je geen rechten om aan deze dojo een event toe te voegen.');
             return $this->redirectToRoute('dashboard');
         }
 
@@ -444,12 +444,12 @@ class DashboardController extends Controller
         $user = $this->getUser();
 
         if (false === $dojo->isOwner($user)) {
-            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo events te bewerken.');
+            $this->get('session')->getFlashBag()->add('error', 'Zo te zien heb je geen rechten om voor deze dojo events te bewerken.');
             return $this->redirectToRoute('dashboard');
         }
 
         if (DojoEvent::TYPE_CUSTOM !== $event->getType()) {
-            $this->get('session')->getFlashBag()->add('danger', 'Dit event kan alleen op zen.coderdojo.com bewerkt worden.');
+            $this->get('session')->getFlashBag()->add('error', 'Dit event kan alleen op zen.coderdojo.com bewerkt worden.');
             return $this->redirectToRoute('dashboard-dojo-events');
         }
 
@@ -492,12 +492,12 @@ class DashboardController extends Controller
         $event = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:DojoEvent')->find($eventId);
 
         if (false === $dojo->isOwner($this->getUser())) {
-            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo events te verwijderen.');
+            $this->get('session')->getFlashBag()->add('error', 'Zo te zien heb je geen rechten om voor deze dojo events te verwijderen.');
             return $this->redirectToRoute('dashboard');
         }
 
         if ($event->getDojo() !== $dojo) {
-            $this->get('session')->getFlashBag()->add('danger', 'Dit event hoor niet bij deze dojo.');
+            $this->get('session')->getFlashBag()->add('error', 'Dit event hoor niet bij deze dojo.');
             return $this->redirectToRoute('dashboard');
         }
 
@@ -525,7 +525,7 @@ class DashboardController extends Controller
         $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($id);
 
         if (false === $dojo->isOwner($this->getUser())) {
-            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo mentoren te beheren.');
+            $this->get('session')->getFlashBag()->add('error', 'Zo te zien heb je geen rechten om voor deze dojo mentoren te beheren.');
             return $this->redirectToRoute('dashboard');
         }
 
@@ -543,13 +543,13 @@ class DashboardController extends Controller
         $mentor = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:User')->find($mentorId);
 
         if (false === $dojo->isOwner($this->getUser())) {
-            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo mentoren te beheren.');
+            $this->get('session')->getFlashBag()->add('error', 'Zo te zien heb je geen rechten om voor deze dojo mentoren te beheren.');
 
             return $this->redirectToRoute('dashboard');
         }
 
         if ($mentor === $this->getUser()) {
-            $this->get('session')->getFlashBag()->add('danger', 'Je kunt jezelf niet verwijderen!');
+            $this->get('session')->getFlashBag()->add('error', 'Je kunt jezelf niet verwijderen!');
 
             return $this->redirectToRoute('dashboard-dojo-mentors', ['id'=>$dojo->getId()]);
         }
