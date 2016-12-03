@@ -472,6 +472,23 @@ class DashboardController extends Controller
     }
 
     /**
+     * @Route("/mentors/{id}", name="dashboard-dojo-mentors")
+     */
+    public function mentorAction($id)
+    {
+        $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($id);
+
+        if (false === $dojo->isOwner($this->getUser())) {
+            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo mentoren te beheren.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/mentors.html.twig', [
+            'dojo' => $dojo
+        ]);
+    }
+
+    /**
      * @return Response
      */
     public function countDojoRequestsAction()
