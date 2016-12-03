@@ -53,6 +53,7 @@ class DefaultController extends Controller
                             'CoderDojoWebsiteBundle::contactmail.html.twig',
                             array(
                                 'naam' => $form->get('naam')->getData(),
+                                'email' => $form->get('email')->getData(),
                                 'message' => $form->get('message')->getData()
                             )
                         )
