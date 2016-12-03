@@ -22,7 +22,7 @@ class DashboardController extends Controller
      */
     public function dashboardAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:dashboard.html.twig');
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/dashboard.html.twig');
     }
 
     /**
@@ -178,7 +178,7 @@ class DashboardController extends Controller
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
-                    'CoderDojoWebsiteBundle:Dashboard:claimMail.html.twig',
+                    'CoderDojoWebsiteBundle:Dashboard:Email/claimMail.html.twig',
                     array(
                         'dojo' => $dojo,
                         'user' => $this->getUser(),
@@ -246,7 +246,7 @@ class DashboardController extends Controller
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
-                    'CoderDojoWebsiteBundle:Dashboard:requestMail.html.twig',
+                    'CoderDojoWebsiteBundle:Dashboard:Email/requestMail.html.twig',
                     array(
                         'dojo' => $dojo,
                         'user' => $this->getUser(),
@@ -279,7 +279,7 @@ class DashboardController extends Controller
             }
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:mentor-requests.html.twig', ['requests' => $requests]);
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/mentor-requests.html.twig', ['requests' => $requests]);
     }
 
     /**
@@ -318,7 +318,7 @@ class DashboardController extends Controller
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
-                    'CoderDojoWebsiteBundle:Dashboard:request-accepted-mail.html.twig',
+                    'CoderDojoWebsiteBundle:Dashboard:Email/request-accepted-mail.html.twig',
                     array(
                         'dojo' => $dojo,
                         'mentor' => $mentor
@@ -341,7 +341,7 @@ class DashboardController extends Controller
         $dojos = $this->get('doctrine')->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy([],['name'=>'ASC']);
 
         return $this->render(
-            'CoderDojoWebsiteBundle:Dashboard:add-dojo.html.twig',
+            'CoderDojoWebsiteBundle:Dashboard:Pages/add-dojo.html.twig',
             [
                 'dojos'=>$dojos
             ]
