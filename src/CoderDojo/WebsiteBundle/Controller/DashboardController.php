@@ -472,6 +472,40 @@ class DashboardController extends Controller
     }
 
     /**
+     * @Route("/dojo/{id}/event/remove/{eventId}", name="dashboard-dojo-event-remove")
+     */
+    public function removeEventAction(Request $request, $id, $eventId)
+    {
+        $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($id);
+        $event = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:DojoEvent')->find($eventId);
+
+        if (false === $dojo->isOwner($this->getUser())) {
+            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo events te verwijderen.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        if ($event->getDojo() !== $dojo) {
+            $this->get('session')->getFlashBag()->add('danger', 'Dit event hoor niet bij deze dojo.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        if (true === $request->query->has('confirmed')) {
+            $this->getDoctrine()->getManager()->remove($event);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Event is verwijderd!');
+
+            return $this->redirectToRoute('dashboard-dojo-events', ['id'=>$dojo->getId()]);
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/event-remove.html.twig', [
+            'dojo' => $dojo,
+            'event' => $event
+        ]);
+
+    }
+
+    /**
      * @Route("/mentors/{id}", name="dashboard-dojo-mentors")
      */
     public function mentorAction($id)
