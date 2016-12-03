@@ -49,7 +49,12 @@ class SyncDojoService
         foreach($externalDojos as $externalDojo) {
             $progressbar->setMessage('Handling ' . $externalDojo->getName());
 
-            $internalDojo = $this->getInternalDojo($externalDojo->getZenId(), $externalDojo->getCity());
+            $internalDojo = $this->getInternalDojo(
+                $externalDojo->getZenId(),
+                $externalDojo->getCity(),
+                $externalDojo->getTwitter(),
+                $externalDojo->getEmail()
+            );
 
             if (null !== $internalDojo) {
                 $progressbar->setMessage('Matched internal dojo: ' . $internalDojo->getName());
@@ -84,7 +89,7 @@ class SyncDojoService
      *
      * @return InternalDojo|null
      */
-    private function getInternalDojo($zenId, $city)
+    private function getInternalDojo($zenId, $city, $twitter, $email)
     {
         $internalDojo = $this->doctrine
             ->getRepository('CoderDojoWebsiteBundle:Dojo')
@@ -96,7 +101,7 @@ class SyncDojoService
 
         $internalDojos = $this->doctrine
             ->getRepository('CoderDojoWebsiteBundle:Dojo')
-            ->findBy(['city' => $city, 'zenId' => null]);
+            ->findBy(['city' => $city, 'twitter'=>$twitter, 'zenId' => null]);
 
         if (1 === count($internalDojos)) {
             return $internalDojos[0];
