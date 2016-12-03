@@ -18,6 +18,6 @@ class EventFormType extends AbstractType
     {
         $builder->add('name', TextType::class, ['label'=>'Titel']);
         $builder->add('date', DateType::class, ['label'=>'Datum', 'widget'=>'single_text']);
-        $builder->add('url', UrlType::class, ['label'=>'Link']);
+        $builder->add('url', UrlType::class, ['label'=>'Registratie URL']);
     }
 }
