@@ -559,6 +559,14 @@ class DashboardController extends Controller
     }
 
     /**
+     * @Route("/vog", name="dashboard-vog")
+     */
+    public function vogAction()
+    {
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog.html.twig');
+    }
+
+    /**
      * @return Response
      */
     public function countDojoRequestsAction()
