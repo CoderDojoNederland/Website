@@ -302,6 +302,16 @@ class Dojo
     }
 
     /**
+     * Remove mentor
+     *
+     * @param User $user
+     */
+    public function removeOwner(User $user)
+    {
+        $this->owners->removeElement($user);
+    }
+
+    /**
      * @return string
      */
     public function getZenId()

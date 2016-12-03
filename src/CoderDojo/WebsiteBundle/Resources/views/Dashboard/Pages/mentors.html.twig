@@ -18,7 +18,7 @@
                 <td>{{ mentor.email}}</td>
                 <td>{{ mentor.phone }}</td>
                 <td>
-                    <a href="#" class="btn btn-danger" title="Verwijderen"><i class="icon-trash"></i></a>
+                    <a href="{{ path('dashboard-dojo-mentors-remove',{'id':dojo.id, 'mentorId':mentor.id}) }}" class="btn btn-danger" title="Verwijderen"><i class="icon-trash"></i></a>
                 </td>
             </tr>
         {% endfor %}

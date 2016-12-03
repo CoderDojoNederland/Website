@@ -489,6 +489,42 @@ class DashboardController extends Controller
     }
 
     /**
+     * @Route("/dojo/{id}/mentor/remove/{mentorId}", name="dashboard-dojo-mentors-remove")
+     */
+    public function removeMentorAction(Request $request, $id, $mentorId)
+    {
+        $dojo = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Dojo')->find($id);
+        $mentor = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:User')->find($mentorId);
+
+        if (false === $dojo->isOwner($this->getUser())) {
+            $this->get('session')->getFlashBag()->add('danger', 'Zo te zien heb je geen rechten om voor deze dojo mentoren te beheren.');
+
+            return $this->redirectToRoute('dashboard');
+        }
+
+        if ($mentor === $this->getUser()) {
+            $this->get('session')->getFlashBag()->add('danger', 'Je kunt jezelf niet verwijderen!');
+
+            return $this->redirectToRoute('dashboard-dojo-mentors', ['id'=>$dojo->getId()]);
+        }
+
+        if (true === $request->query->has('confirmed')) {
+            $mentor->removeDojo($dojo);
+            $dojo->removeOwner($mentor);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Mentor is verwijderd!');
+
+            return $this->redirectToRoute('dashboard-dojo-mentors', ['id'=>$dojo->getId()]);
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/mentors-remove.html.twig', [
+            'dojo' => $dojo,
+            'mentor' => $mentor
+        ]);
+    }
+
+    /**
      * @return Response
      */
     public function countDojoRequestsAction()

@@ -1,0 +1,12 @@
+{% extends "CoderDojoWebsiteBundle:Dashboard:index.html.twig" %}
+
+{% block dashboard_content %}
+    <h3>Mentor Verwijderen</h3>
+    <p>
+        Weet je zeker dat je {{ mentor.firstName }} {{ mentor.lastName }} wilt verwijderen van {{ dojo.name }}?
+    </p>
+    <p>
+        <a href="?confirmed" class="btn btn-danger"><i class="icon-trash"></i> Verwijderen</a>
+    </p>
+
+{% endblock dashboard_content %}
