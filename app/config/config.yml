@@ -100,3 +100,6 @@ services:
 coder_dojo_website:
     slack_api_token: %slack_api_token%
     eventbrite_api_token: %eventbrite_api_token%
+
+sentry:
+    dsn: "%sentry%"
