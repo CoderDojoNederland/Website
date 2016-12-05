@@ -227,7 +227,7 @@ class SyncDojoService
 
         foreach ($internalDojo->getOwners() as $owner) {
             $internalDojo->removeOwner($owner);
-            $this->doctrine->remove($owner);
+            $owner->removeDojo($internalDojo);
         }
 
         foreach ($internalDojo->getMentorRequests() as $mentorRequest) {
