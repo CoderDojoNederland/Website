@@ -130,7 +130,7 @@ class SyncDojoService
         try {
             $internalDojo = $this->doctrine
                 ->getRepository('CoderDojoWebsiteBundle:Dojo')
-                ->getForExternal($city, $email, $twitter);
+                ->getForExternalWithoutZenId($city, $email, $twitter);
         } catch (NonUniqueResultException $exception) {
 
         }

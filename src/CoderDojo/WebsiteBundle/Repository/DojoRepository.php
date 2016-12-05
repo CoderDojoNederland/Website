@@ -49,7 +49,7 @@ class DojoRepository extends EntityRepository
      * @param $twitter
      * @return Dojo|null
      */
-    public function getForExternal($city, $email, $twitter)
+    public function getForExternalWithoutZenId($city, $email, $twitter)
     {
         $qb = $this->createQueryBuilder('d');
 
@@ -62,6 +62,7 @@ class DojoRepository extends EntityRepository
                 $qb->expr()->eq('d.city', ':city'),
                 $qb->expr()->eq('d.twitter', ':twitter')
             ))
+            ->andWhere('d.zenId IS NULL')
             ->setParameter('city', $city)
             ->setParameter('email', $email)
             ->setParameter('twitter', $twitter)
