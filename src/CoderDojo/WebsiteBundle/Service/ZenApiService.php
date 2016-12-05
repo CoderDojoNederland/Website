@@ -51,6 +51,16 @@ class ZenApiService
             $city = explode(" ", $city);
             $city = array_pop($city);
 
+            $removed = false;
+
+            if (4 === $externalDojo->stage) {
+                $removed = true;
+            }
+
+            if (1 === $externalDojo->deleted) {
+                $removed = true;
+            }
+
             $externalDojos[] = new Dojo(
                 $externalDojo->id,
                 $externalDojo->creatorEmail,
@@ -61,7 +71,8 @@ class ZenApiService
                 $externalDojo->geoPoint->lon,
                 $externalDojo->email,
                 $externalDojo->website,
-                $externalDojo->twitter
+                $externalDojo->twitter,
+                $removed
             );
         }
 

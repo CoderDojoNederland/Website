@@ -55,6 +55,11 @@ class Dojo
     private $twitter;
 
     /**
+     * @var bool
+     */
+    private $removed;
+
+    /**
      * Dojo constructor.
      * @param string $zenId
      * @param string $zenCreatorEmail
@@ -66,8 +71,9 @@ class Dojo
      * @param string $email
      * @param string $website
      * @param string $twitter
+     * @param bool   $removed
      */
-    public function __construct($zenId, $zenCreatorEmail, $zenUrl, $name, $city, $lat, $lon, $email, $website, $twitter)
+    public function __construct($zenId, $zenCreatorEmail, $zenUrl, $name, $city, $lat, $lon, $email, $website, $twitter, $removed)
     {
         $this->zenId = $zenId;
         $this->zenCreatorEmail = $zenCreatorEmail;
@@ -79,6 +85,7 @@ class Dojo
         $this->email = $email;
         $this->website = $website;
         $this->twitter = $twitter;
+        $this->removed = $removed;
     }
 
     /**
@@ -159,5 +166,13 @@ class Dojo
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isRemoved()
+    {
+        return $this->removed;
     }
 }

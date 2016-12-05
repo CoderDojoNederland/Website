@@ -42,4 +42,30 @@ class DojoRepository extends EntityRepository
 
         return $return;
     }
+
+    /**
+     * @param $city
+     * @param $email
+     * @param $twitter
+     * @return Dojo|null
+     */
+    public function getForExternal($city, $email, $twitter)
+    {
+        $qb = $this->createQueryBuilder('d');
+
+        return $qb
+            ->where($qb->expr()->andX(
+                $qb->expr()->eq('d.city', ':city'),
+                $qb->expr()->eq('d.email', ':email')
+            ))
+            ->orWhere($qb->expr()->andX(
+                $qb->expr()->eq('d.city', ':city'),
+                $qb->expr()->eq('d.twitter', ':twitter')
+            ))
+            ->setParameter('city', $city)
+            ->setParameter('email', $email)
+            ->setParameter('twitter', $twitter)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
