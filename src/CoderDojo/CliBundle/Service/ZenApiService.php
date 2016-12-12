@@ -1,9 +1,9 @@
 <?php
 
-namespace CoderDojo\WebsiteBundle\Service;
+namespace CoderDojo\CliBundle\Service;
 
-use CoderDojo\WebsiteBundle\Service\ZenModel\Dojo;
-use CoderDojo\WebsiteBundle\Service\ZenModel\Event;
+use CoderDojo\CliBundle\Service\ZenModel\Dojo;
+use CoderDojo\CliBundle\Service\ZenModel\Event;
 use GuzzleHttp\Client;
 
 class ZenApiService

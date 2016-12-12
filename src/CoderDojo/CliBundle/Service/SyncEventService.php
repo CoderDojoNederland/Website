@@ -1,12 +1,11 @@
 <?php
 
-namespace CoderDojo\WebsiteBundle\Service;
+namespace CoderDojo\CliBundle\Service;
 
 use CL\Slack\Model\Attachment;
-use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
-use CoderDojo\WebsiteBundle\Service\ZenModel\Dojo as ExternalDojo;
+use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;

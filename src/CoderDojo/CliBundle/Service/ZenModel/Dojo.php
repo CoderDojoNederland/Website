@@ -1,6 +1,6 @@
 <?php
 
-namespace CoderDojo\WebsiteBundle\Service\ZenModel;
+namespace CoderDojo\CliBundle\Service\ZenModel;
 
 class Dojo
 {

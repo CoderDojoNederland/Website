@@ -26,14 +26,3 @@ services:
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
-
-    coder_dojo.website_bundle.service.zen_api_service:
-        class: CoderDojo\WebsiteBundle\Service\ZenApiService
-
-    coder_dojo.website_bundle.service.sync_dojo_service:
-        class: CoderDojo\WebsiteBundle\Service\SyncDojoService
-        arguments: ["@coder_dojo.website_bundle.service.zen_api_service", "@doctrine", "@coder_dojo.website_bundle.slack_service"]
-
-    coder_dojo.website_bundle.service.sync_event_service:
-        class: CoderDojo\WebsiteBundle\Service\SyncEventService
-        arguments: ["@coder_dojo.website_bundle.service.zen_api_service", "@doctrine", "@coder_dojo.website_bundle.slack_service"]

@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Sentry\SentryBundle\SentryBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new CoderDojo\CliBundle\CoderDojoCliBundle(),
             new CoderDojo\WebsiteBundle\CoderDojoWebsiteBundle()
         );
 
