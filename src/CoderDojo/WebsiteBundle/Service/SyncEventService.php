@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Service;
 
+use CL\Slack\Model\Attachment;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
@@ -23,14 +24,21 @@ class SyncEventService
     private $doctrine;
 
     /**
+     * @var SlackService
+     */
+    private $slackService;
+
+    /**
      * SyncService constructor.
      * @param ZenApiService $zen
      * @param Registry $doctrine
+     * @param SlackService $slackService
      */
-    public function __construct(ZenApiService $zen, Registry $doctrine)
+    public function __construct(ZenApiService $zen, Registry $doctrine, SlackService $slackService)
     {
         $this->zen = $zen;
         $this->doctrine = $doctrine->getManager();
+        $this->slackService = $slackService;
     }
 
     public function run(OutputInterface $output)
@@ -106,73 +114,29 @@ class SyncEventService
         $output->writeln($countNew . ' New events added');
         $output->writeln($countUpdated . ' Existing events updated');
         $output->writeln($countNoMatch . ' events could not be matched with a dojo');
-    }
 
-    /**
-     * @param $zenId
-     * @param $city
-     *
-     * @return InternalDojo|null
-     */
-    private function getInternalDojo($zenId, $city)
-    {
-        $internalDojo = $this->doctrine
-            ->getRepository('CoderDojoWebsiteBundle:Dojo')
-            ->findOneBy(['zenId' => $zenId]);
+        $message = "Zen synchronizer just handled events.";
+        $attachments = [];
 
-        if (null !== $internalDojo) {
-            return $internalDojo;
-        }
+        $attachment = new Attachment();
+        $attachment->setFallback($countNew . " events added.");
+        $attachment->setText($countNew . " events added.");
+        $attachment->setColor('good');
+        $attachments[] = $attachment;
 
-        $internalDojos = $this->doctrine
-            ->getManager()
-            ->getRepository('CoderDojoWebsiteBundle:Dojo')
-            ->findBy(['city' => $city, 'zenId' => null]);
+        $attachment = new Attachment();
+        $attachment->setFallback($countUpdated . " events updated.");
+        $attachment->setText($countUpdated . " events updated.");
+        $attachment->setColor('warning');
+        $attachments[] = $attachment;
 
-        if (1 === count($internalDojos)) {
-            return $internalDojos[0];
-        }
+        $attachment = new Attachment();
+        $attachment->setFallback($countNoMatch . " events not matched.");
+        $attachment->setText($countNoMatch . " events not matched.");
+        $attachment->setColor('danger');
+        $attachments[] = $attachment;
 
-        return null;
-    }
-
-    /**
-     * @param InternalDojo $internalDojo
-     * @param ExternalDojo $externalDojo
-     */
-    private function updateInternalDojo($internalDojo, $externalDojo)
-    {
-        $internalDojo->setZenId($externalDojo->getZenId());
-        $internalDojo->setZenCreatorEmail($externalDojo->getZenCreatorEmail());
-        $internalDojo->setZenUrl($externalDojo->getZenUrl());
-        $internalDojo->setName($externalDojo->getName());
-        $internalDojo->setLat($externalDojo->getLat());
-        $internalDojo->setLon($externalDojo->getLon());
-        $internalDojo->setEmail($externalDojo->getEmail());
-        $internalDojo->setWebsite($externalDojo->getWebsite());
-        $internalDojo->setTwitter($externalDojo->getTwitter());
-    }
-
-    /**
-     * @param ExternalDojo $externalDojo
-     */
-    private function createInternalDojo($externalDojo)
-    {
-        $internalDojo = new InternalDojo(
-            $externalDojo->getZenId(),
-            $externalDojo->getName(),
-            $externalDojo->getCity(),
-            $externalDojo->getLat(),
-            $externalDojo->getLon(),
-            $externalDojo->getEmail(),
-            $externalDojo->getWebsite(),
-            $externalDojo->getTwitter()
-        );
-
-        $internalDojo->setZenCreatorEmail($externalDojo->getZenCreatorEmail());
-        $internalDojo->setZenUrl($externalDojo->getZenUrl());
-
-        $this->doctrine->persist($internalDojo);
+        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
     }
 
     /**

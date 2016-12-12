@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Service;
 
+use CL\Slack\Model\Attachment;
 use CL\Slack\Payload\ChatPostMessagePayload;
 use CL\Slack\Payload\PayloadResponseInterface;
 use CL\Slack\Transport\ApiClient;
@@ -35,9 +36,9 @@ class SlackService
     /**
      * @param string $channel
      * @param string $message
-     * @throws \CL\Slack\Exception\SlackException
+     * @param Attachment[] $attachments
      */
-    public function sendToChannel($channel, $message)
+    public function sendToChannel($channel, $message, $attachments = [])
     {
         if ('prod' !== $this->kernel->getEnvironment()) {
             $channel = "#website-nl";
@@ -48,6 +49,12 @@ class SlackService
         $payload->setText($message);
         $payload->setUsername('DojoBot');
         $payload->setIconEmoji('coderdojo');
+
+        if (false === empty($attachments)) {
+            foreach ($attachments as $attachment) {
+                $payload->addAttachment($attachment);
+            }
+        }
 
         $this->client->send($payload);
 

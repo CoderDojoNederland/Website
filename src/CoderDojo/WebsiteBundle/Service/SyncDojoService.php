@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Service;
 
+use CL\Slack\Model\Attachment;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\WebsiteBundle\Service\ZenModel\Dojo as ExternalDojo;
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -37,14 +38,21 @@ class SyncDojoService
     private $countRemoved = 0;
 
     /**
+     * @var SlackService
+     */
+    private $slackService;
+
+    /**
      * SyncService constructor.
      * @param ZenApiService $zen
      * @param Registry $doctrine
+     * @param SlackService $slackService
      */
-    public function __construct(ZenApiService $zen, Registry $doctrine)
+    public function __construct(ZenApiService $zen, Registry $doctrine, SlackService $slackService)
     {
         $this->zen = $zen;
         $this->doctrine = $doctrine->getManager();
+        $this->slackService = $slackService;
     }
 
     public function run(OutputInterface $output)
@@ -106,6 +114,29 @@ class SyncDojoService
         $output->writeln($this->countNew . ' New dojos added');
         $output->writeln($this->countUpdated . ' Existing dojos updated');
         $output->writeln($this->countRemoved . ' Existing dojos removed');
+
+        $message = "Zen synchronizer just handled dojo's.";
+        $attachments = [];
+
+        $attachment = new Attachment();
+        $attachment->setFallback($this->countNew . " dojo's added.");
+        $attachment->setText($this->countNew . " dojo's added.");
+        $attachment->setColor('good');
+        $attachments[] = $attachment;
+
+        $attachment = new Attachment();
+        $attachment->setFallback($this->countUpdated . " dojo's updated.");
+        $attachment->setText($this->countUpdated . " dojo's updated.");
+        $attachment->setColor('warning');
+        $attachments[] = $attachment;
+
+        $attachment = new Attachment();
+        $attachment->setFallback($this->countRemoved . " dojo's removed.");
+        $attachment->setText($this->countRemoved . " dojo's removed.");
+        $attachment->setColor('danger');
+        $attachments[] = $attachment;
+
+        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
     }
 
     /**
