@@ -17,6 +17,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Sentry\SentryBundle\SentryBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+            new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
             new CoderDojo\CliBundle\CoderDojoCliBundle(),
             new CoderDojo\WebsiteBundle\CoderDojoWebsiteBundle()
         );

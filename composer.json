@@ -28,7 +28,8 @@
         "doctrine/doctrine-fixtures-bundle": "^2.2",
         "cleentfaar/slack": "0.20.*",
         "ramsey/uuid": "^3.5",
-        "sentry/sentry-symfony": "^0.6.0"
+        "sentry/sentry-symfony": "^0.6.0",
+        "simple-bus/symfony-bridge": "^4.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
