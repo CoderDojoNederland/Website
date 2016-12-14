@@ -33,14 +33,14 @@ class Claim
 
     /**
      * @var Dojo
-     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Dojo")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Dojo", inversedBy="claims")
      * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id")
      */
     private $dojo;
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User", inversedBy="claims")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

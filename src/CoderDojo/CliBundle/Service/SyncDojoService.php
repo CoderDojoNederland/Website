@@ -230,29 +230,7 @@ class SyncDojoService
             return;
         }
 
-        foreach ($internalDojo->getEvents() as $event) {
-            $this->doctrine->remove($event);
-        }
-
-        foreach ($internalDojo->getOwners() as $owner) {
-            $internalDojo->removeOwner($owner);
-            $owner->removeDojo($internalDojo);
-        }
-
-        foreach ($internalDojo->getMentorRequests() as $mentorRequest) {
-            $this->doctrine->remove($mentorRequest);
-        }
-
-        $claims = $this->doctrine->getRepository('CoderDojoWebsiteBundle:Claim')->findBy(['dojo'=>$internalDojo]);
-
-        foreach ($claims as $claim) {
-            $this->doctrine->remove($claim);
-        }
-
-        $this->doctrine->flush();
-
         $this->doctrine->remove($internalDojo);
-
         $this->doctrine->flush();
 
         $this->countRemoved++;
