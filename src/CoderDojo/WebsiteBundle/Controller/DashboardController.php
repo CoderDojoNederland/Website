@@ -252,7 +252,7 @@ class DashboardController extends Controller
          */
         $message = \Swift_Message::newInstance()
             ->setSubject(sprintf('%s wilt toegang tot %s', $this->getUser()->getFirstname(), $dojo->getName()))
-            ->setFrom('no-reply@coderdojo.nl', sprintf('%s %s', $this->getUser()->getFirstname(), $this->getUser()->getLastname()))
+            ->setFrom('contact@coderdojo.nl', sprintf('%s %s', $this->getUser()->getFirstname(), $this->getUser()->getLastname()))
             ->setReplyTo($this->getUser()->getEmail())
             ->setTo($dojo->getEmail())
             ->setBcc('chris+dojorequest@coderdojo.nl')
