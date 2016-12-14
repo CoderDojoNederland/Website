@@ -5,6 +5,7 @@ namespace CoderDojo\CliBundle\Service;
 use CL\Slack\Model\Attachment;
 use CL\Slack\Model\AttachmentField;
 use CoderDojo\WebsiteBundle\Command\CreateDojoCommand;
+use CoderDojo\WebsiteBundle\Command\RemoveDojoCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\CliBundle\Service\ZenModel\Dojo as ExternalDojo;
 use CoderDojo\WebsiteBundle\Service\SlackService;
@@ -219,19 +220,24 @@ class SyncDojoService
     {
         $this->progressBar->setMessage('Removing ' . $externalDojo->getName());
 
-        $internalDojo = $this->getInternalDojo(
-            $externalDojo->getZenId(),
-            $externalDojo->getCity(),
-            $externalDojo->getTwitter(),
-            $externalDojo->getEmail()
-        );
+        try {
+            $internalDojo = $this->getInternalDojo(
+                $externalDojo->getZenId(),
+                $externalDojo->getCity(),
+                $externalDojo->getTwitter(),
+                $externalDojo->getEmail()
+            );
+        } catch (NonUniqueResultException $exception) {
+
+            return;
+        }
 
         if (null === $internalDojo) {
             return;
         }
 
-        $this->doctrine->remove($internalDojo);
-        $this->doctrine->flush();
+        $command = new RemoveDojoCommand($internalDojo->getId());
+        $this->commandBus->handle($command);
 
         $this->countRemoved++;
 
