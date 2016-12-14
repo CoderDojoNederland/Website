@@ -3,10 +3,12 @@
 namespace CoderDojo\CliBundle\Service;
 
 use CL\Slack\Model\Attachment;
+use CoderDojo\WebsiteBundle\Command\CreateEventCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
 use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -28,16 +30,27 @@ class SyncEventService
     private $slackService;
 
     /**
+     * @var MessageBus
+     */
+    private $commandBus;
+
+    /**
      * SyncService constructor.
      * @param ZenApiService $zen
      * @param Registry $doctrine
      * @param SlackService $slackService
+     * @param MessageBus $commandBus
      */
-    public function __construct(ZenApiService $zen, Registry $doctrine, SlackService $slackService)
-    {
+    public function __construct(
+        ZenApiService $zen,
+        Registry $doctrine,
+        SlackService $slackService,
+        MessageBus $commandBus
+    ) {
         $this->zen = $zen;
         $this->doctrine = $doctrine->getManager();
         $this->slackService = $slackService;
+        $this->commandBus = $commandBus;
     }
 
     public function run(OutputInterface $output)
@@ -81,16 +94,16 @@ class SyncEventService
             if (null === $internalEvent){
                 $progressbar->setMessage('No internal event found');
 
-                $newEvent = new DojoEvent();
-                $newEvent->setZenId($externalEvent->getZenId());
-                $newEvent->setName($externalEvent->getName());
-                $newEvent->setDojo($internalDojo);
-                $newEvent->setType(DojoEvent::TYPE_ZEN);
-                $newEvent->setDate($externalEvent->getStartTime());
-                $newEvent->setUrl($internalDojo->getZenUrl());
-                $internalDojo->addEvent($newEvent);
+                $command = new CreateEventCommand(
+                    $internalDojo->getId(),
+                    $externalEvent->getName(),
+                    $externalEvent->getStartTime(),
+                    $internalDojo->getZenUrl(),
+                    $externalEvent->getZenId(),
+                    DojoEvent::TYPE_ZEN
+                );
 
-                $this->doctrine->persist($newEvent);
+                $this->commandBus->handle($command);
 
                 $progressbar->advance();
                 $countNew++;
