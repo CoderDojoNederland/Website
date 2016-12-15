@@ -87,22 +87,28 @@ class Dojo
 
     /**
      * @var DojoEvent[]
-     * @ORM\OneToMany(targetEntity="DojoEvent", mappedBy="dojo")
+     * @ORM\OneToMany(targetEntity="DojoEvent", mappedBy="dojo", cascade={"persist", "remove"})
      **/
     private $events;
 
     /**
      * @var User[]
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="dojos")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="dojos", cascade={"persist"})
      * @ORM\JoinTable(name="users_dojos")
      **/
     private $owners;
 
     /**
      * @var DojoRequest[]
-     * @ORM\OneToMany(targetEntity="DojoRequest", mappedBy="dojo")
+     * @ORM\OneToMany(targetEntity="DojoRequest", mappedBy="dojo", cascade={"persist", "remove"})
      **/
     private $mentorRequests;
+
+    /**
+     * @var Claim[]
+     * @ORM\OneToMany(targetEntity="Claim", mappedBy="dojo", cascade={"persist", "remove"})
+     **/
+    private $claims;
 
     /**
      * Dojo constructor.
@@ -139,6 +145,7 @@ class Dojo
         $this->owners = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->mentorRequests = new ArrayCollection();
+        $this->claims = new ArrayCollection();
 
         if (null != $owner) {
             $this->owners->add($owner);
@@ -407,5 +414,21 @@ class Dojo
         }
 
         return false;
+    }
+
+    /**
+     * @return Claim[]
+     */
+    public function getClaims()
+    {
+        return $this->claims;
+    }
+
+    /**
+     * @param $claim
+     */
+    public function addClaim($claim)
+    {
+        $this->claims = $claim;
     }
 }

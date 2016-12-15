@@ -24,7 +24,7 @@ class User extends BaseUser
 
     /**
      * @var Dojo[]
-     * @ORM\ManyToMany(targetEntity="Dojo", mappedBy="owners")
+     * @ORM\ManyToMany(targetEntity="Dojo", mappedBy="owners", cascade={"persist"})
      **/
     private $dojos;
 
@@ -48,9 +48,15 @@ class User extends BaseUser
 
     /**
      * @var DojoRequest[]
-     * @ORM\OneToMany(targetEntity="DojoRequest", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="DojoRequest", mappedBy="user", cascade={"persist", "remove"})
      **/
     private $dojoRequests;
+
+    /**
+     * @var Claim[]
+     * @ORM\OneToMany(targetEntity="Claim", mappedBy="user", cascade={"persist", "remove"})
+     **/
+    private $claims;
 
     public function __construct()
     {
@@ -173,5 +179,21 @@ class User extends BaseUser
     public function addDojoRequest(DojoRequest $request)
     {
         $this->dojoRequests->add($request);
+    }
+
+    /**
+     * @return Claim[]
+     */
+    public function getClaims()
+    {
+        return $this->claims;
+    }
+
+    /**
+     * @param $claim
+     */
+    public function addClaim($claim)
+    {
+        $this->claims = $claim;
     }
 }

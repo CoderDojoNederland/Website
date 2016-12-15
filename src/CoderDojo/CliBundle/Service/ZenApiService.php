@@ -2,8 +2,8 @@
 
 namespace CoderDojo\CliBundle\Service;
 
-use CoderDojo\CliBundle\Service\ZenModel\Dojo;
 use CoderDojo\CliBundle\Service\ZenModel\Event;
+use CoderDojo\WebsiteBundle\Command\CreateDojoCommand;
 use GuzzleHttp\Client;
 
 class ZenApiService
@@ -21,7 +21,7 @@ class ZenApiService
     /**
      * Retrieve CoderDojo locations from Zen Api
      *
-     * @return Dojo[]
+     * @return CreateDojoCommand[]
      */
     public function getDojos()
     {
@@ -61,7 +61,7 @@ class ZenApiService
                 $removed = true;
             }
 
-            $externalDojos[] = new Dojo(
+            $externalDojos[] = new CreateDojoCommand(
                 $externalDojo->id,
                 $externalDojo->creatorEmail,
                 $externalDojo->urlSlug,

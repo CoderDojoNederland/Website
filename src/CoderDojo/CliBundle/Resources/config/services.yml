@@ -4,8 +4,8 @@ services:
 
     coder_dojo.cli_bundle.service.sync_dojo_service:
         class: CoderDojo\CliBundle\Service\SyncDojoService
-        arguments: ["@coder_dojo.cli_bundle.service.zen_api_service", "@doctrine", "@coder_dojo.website_bundle.slack_service"]
+        arguments: ["@coder_dojo.cli_bundle.service.zen_api_service", "@doctrine", "@coder_dojo.website_bundle.slack_service", "@command_bus"]
 
     coder_dojo.cli_bundle.service.sync_event_service:
         class: CoderDojo\CliBundle\Service\SyncEventService
-        arguments: ["@coder_dojo.cli_bundle.service.zen_api_service", "@doctrine", "@coder_dojo.website_bundle.slack_service"]
+        arguments: ["@coder_dojo.cli_bundle.service.zen_api_service", "@doctrine", "@coder_dojo.website_bundle.slack_service", "@command_bus"]

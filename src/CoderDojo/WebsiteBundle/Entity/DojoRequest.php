@@ -35,7 +35,7 @@ class DojoRequest
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User", inversedBy="requests")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User", inversedBy="dojoRequests")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
