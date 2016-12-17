@@ -80,9 +80,13 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository("CoderDojoWebsiteBundle:DojoEvent");
+
+        $today = new \DateTime("now");
+        $today = $today->format('Y-m-d');
+
         $query = $repo->createQueryBuilder('d')
             ->where('d.date >= :today')
-            ->setParameter('today', new \DateTime("now"))
+            ->setParameter('today', $today)
             ->orderBy('d.date', 'ASC')
             ->getQuery()
             ->setMaxResults(15);
