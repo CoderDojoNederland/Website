@@ -81,7 +81,7 @@ class DefaultController extends Controller
 
         $repo = $em->getRepository("CoderDojoWebsiteBundle:DojoEvent");
         $query = $repo->createQueryBuilder('d')
-            ->where('d.date > :today')
+            ->where('d.date >= :today')
             ->setParameter('today', new \DateTime("now"))
             ->orderBy('d.date', 'ASC')
             ->getQuery()
