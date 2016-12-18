@@ -61,9 +61,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <!-- CSS Theme -->
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/themes/orange.css')}}" id="style_color">
     <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/themes/headers/header1-orange.css')}}" id="style_color-header-1">
+    <link rel="stylesheet" href="{{asset('bundles/coderdojowebsite/css/jquery-ui.css')}}" id="style_color-header-1">
 
     <!-- jQuery -->
     <script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/jquery-1.10.2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/jquery-ui.min.js')}}"></script>
     <!-- start Mixpanel -->
     <script type="text/javascript">
         (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");

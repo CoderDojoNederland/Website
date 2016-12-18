@@ -10,4 +10,12 @@
         </div>
     </div>
     {{ form_end(form) }}
+
+    <script type="application/javascript" language="JavaScript">
+        if ( $('#event_form_date')[0].type != 'date' ) {
+            $('#event_form_date').datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        }
+    </script>
 {% endblock dashboard_content %}
