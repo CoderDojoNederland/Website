@@ -2,6 +2,8 @@
 
 namespace CoderDojo\WebsiteBundle\Command;
 
+Use CoderDojo\WebsiteBundle\Entity\Dojo as Entity;
+
 class CreateDojoCommand
 {
     /**
@@ -79,12 +81,39 @@ class CreateDojoCommand
         $this->zenUrl = $zenUrl;
         $this->name = $name;
         $this->city = $city;
-        $this->lat = $lat;
-        $this->lon = $lon;
+        $this->lat = round($lat, 5);
+        $this->lon = round($lon, 5);
         $this->email = $email;
-        $this->website = $website;
-        $this->twitter = $twitter;
+        if (null === $website) {
+            $this->website = 'https://coderdojo.nl';
+        } else {
+            $this->website = $website;
+        }
+        $this->twitter = str_replace('@', '', $twitter);
+        $this->twitter = str_replace('https://twitter.com/', '', $this->twitter);
+        if ($this->twitter === ""){
+            $this->twitter = "coderdojonl";
+        }
         $this->removed = $removed;
+    }
+
+    public static function CreateFromEntity(Entity $entity)
+    {
+        $dojo = new self(
+            $entity->getzenId(),
+            $entity->getzenCreatorEmail(),
+            $entity->getzenUrl(),
+            $entity->getname(),
+            $entity->getcity(),
+            $entity->getlat(),
+            $entity->getlon(),
+            $entity->getemail(),
+            $entity->getwebsite(),
+            $entity->gettwitter(),
+            false
+        );
+
+        return $dojo;
     }
 
     /**

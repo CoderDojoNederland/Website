@@ -4,6 +4,7 @@ namespace CoderDojo\CliBundle\Service;
 
 use CL\Slack\Model\Attachment;
 use CL\Slack\Model\AttachmentField;
+use CoderDojo\CliBundle\Service\ZenModel\Dojo;
 use CoderDojo\WebsiteBundle\Command\CreateDojoCommand;
 use CoderDojo\WebsiteBundle\Command\RemoveDojoCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
@@ -116,8 +117,14 @@ class SyncDojoService
                 continue;
             }
 
+            $internalModel = CreateDojoCommand::CreateFromEntity($internalDojo);
+
             if (null !== $internalDojo) {
-                $this->updateInternalDojo($internalDojo, $externalDojo);
+                if ($externalDojo != $internalModel) {
+                    $this->updateInternalDojo($internalDojo, $externalDojo);
+                } else {
+                    // no action needed
+                }
 
                 continue;
             }
@@ -264,26 +271,41 @@ class SyncDojoService
      */
     private function notifySlack()
     {
+        if (
+            0 === $this->countNew &&
+            0 === $this->countUpdated &&
+            0 === $this->countRemoved &&
+            0 === count($this->unmatched)
+        ) {
+            return;
+        }
+
         $message = "Zen synchronizer just handled dojo's.";
         $attachments = [];
 
-        $attachment = new Attachment();
-        $attachment->setFallback($this->countNew . " dojo's added.");
-        $attachment->setText($this->countNew . " dojo's added.");
-        $attachment->setColor('good');
-        $attachments[] = $attachment;
+        if (0 < $this->countNew) {
+            $attachment = new Attachment();
+            $attachment->setFallback($this->countNew . " dojo's added.");
+            $attachment->setText($this->countNew . " dojo's added.");
+            $attachment->setColor('good');
+            $attachments[] = $attachment;
+        }
 
-        $attachment = new Attachment();
-        $attachment->setFallback($this->countUpdated . " dojo's updated.");
-        $attachment->setText($this->countUpdated . " dojo's updated.");
-        $attachment->setColor('warning');
-        $attachments[] = $attachment;
+        if (0 < $this->countUpdated) {
+            $attachment = new Attachment();
+            $attachment->setFallback($this->countUpdated . " dojo's updated.");
+            $attachment->setText($this->countUpdated . " dojo's updated.");
+            $attachment->setColor('warning');
+            $attachments[] = $attachment;
+        }
 
-        $attachment = new Attachment();
-        $attachment->setFallback($this->countRemoved . " dojo's removed.");
-        $attachment->setText($this->countRemoved . " dojo's removed.");
-        $attachment->setColor('danger');
-        $attachments[] = $attachment;
+        if (0 < $this->countRemoved) {
+            $attachment = new Attachment();
+            $attachment->setFallback($this->countRemoved . " dojo's removed.");
+            $attachment->setText($this->countRemoved . " dojo's removed.");
+            $attachment->setColor('danger');
+            $attachments[] = $attachment;
+        }
 
         $this->slackService->sendToChannel('#website-nl', $message, $attachments);
 

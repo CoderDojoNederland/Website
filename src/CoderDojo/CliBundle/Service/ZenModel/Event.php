@@ -2,6 +2,8 @@
 
 namespace CoderDojo\CliBundle\Service\ZenModel;
 
+use CoderDojo\WebsiteBundle\Entity\DojoEvent;
+
 class Event
 {
     /**
@@ -36,9 +38,17 @@ class Event
         $this->zenId = $zenId;
         $this->zenDojoId = $zenDojoId;
         $this->name = $name;
-        $this->startTime = $startTime;
+        $this->startTime = new \DateTime($startTime->format("Y-m-d"));
     }
 
+    public static function CreateFromEntity(DojoEvent $entity) {
+        return new self(
+            $entity->getZenId(),
+            $entity->getDojo()->getZenId(),
+            $entity->getName(),
+            $entity->getDate()
+        );
+    }
 
     /**
      * @return string

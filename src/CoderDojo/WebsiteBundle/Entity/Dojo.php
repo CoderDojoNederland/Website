@@ -189,7 +189,7 @@ class Dojo
      */
     public function getLat()
     {
-        return $this->lat;
+        return (float)$this->lat;
     }
 
     /**
@@ -205,7 +205,7 @@ class Dojo
      */
     public function getLon()
     {
-        return $this->lon;
+        return (float)$this->lon;
     }
 
     /**
@@ -249,12 +249,6 @@ class Dojo
      */
     public function setWebsite($website)
     {
-        if (null === $website) {
-            $this->website = 'https://coderdojo.nl';
-
-            return;
-        }
-
         $this->website = $website;
     }
 
@@ -271,8 +265,6 @@ class Dojo
      */
     public function setTwitter($twitter)
     {
-        $twitter = str_replace('@', '', $twitter);
-        $twitter = str_replace('https://twitter.com/', '', $twitter);
         $this->twitter = $twitter;
     }
 
@@ -371,7 +363,7 @@ class Dojo
      */
     public function setZenUrl($zenUrl)
     {
-        $this->zenUrl = 'https://zen.coderdojo.com/dojo/'.$zenUrl;
+        $this->zenUrl = $zenUrl;
     }
 
     /**

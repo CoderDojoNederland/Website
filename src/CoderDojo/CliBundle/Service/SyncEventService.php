@@ -3,6 +3,7 @@
 namespace CoderDojo\CliBundle\Service;
 
 use CL\Slack\Model\Attachment;
+use CoderDojo\CliBundle\Service\ZenModel\Event;
 use CoderDojo\WebsiteBundle\Command\CreateEventCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
@@ -110,12 +111,17 @@ class SyncEventService
             } else {
                 $progressbar->setMessage('Internal event found');
 
-                $internalEvent->setName($externalEvent->getName());
-                $internalEvent->setDate($externalEvent->getStartTime());
-                $internalEvent->setUrl($internalDojo->getZenUrl());
+                $internalModel = Event::CreateFromEntity($internalEvent);
+
+                if ($internalModel != $externalEvent) {
+                    $internalEvent->setName($externalEvent->getName());
+                    $internalEvent->setDate($externalEvent->getStartTime());
+                    $internalEvent->setUrl($internalDojo->getZenUrl());
+
+                    $countUpdated++;
+                }
 
                 $progressbar->advance();
-                $countUpdated++;
             }
         }
 
@@ -130,24 +136,33 @@ class SyncEventService
         $message = "Zen synchronizer just handled events.";
         $attachments = [];
 
-        $attachment = new Attachment();
-        $attachment->setFallback($countNew . " events added.");
-        $attachment->setText($countNew . " events added.");
-        $attachment->setColor('good');
-        $attachments[] = $attachment;
+        if (0 < $countNew){
+            $attachment = new Attachment();
+            $attachment->setFallback($countNew . " events added.");
+            $attachment->setText($countNew . " events added.");
+            $attachment->setColor('good');
+            $attachments[] = $attachment;
+        }
 
-        $attachment = new Attachment();
-        $attachment->setFallback($countUpdated . " events updated.");
-        $attachment->setText($countUpdated . " events updated.");
-        $attachment->setColor('warning');
-        $attachments[] = $attachment;
+        if (0 < $countUpdated) {
+            $attachment = new Attachment();
+            $attachment->setFallback($countUpdated . " events updated.");
+            $attachment->setText($countUpdated . " events updated.");
+            $attachment->setColor('warning');
+            $attachments[] = $attachment;
+        }
 
-        $attachment = new Attachment();
-        $attachment->setFallback($countNoMatch . " events not matched.");
-        $attachment->setText($countNoMatch . " events not matched.");
-        $attachment->setColor('danger');
-        $attachments[] = $attachment;
+        if (0 < $countNoMatch) {
+            $attachment = new Attachment();
+            $attachment->setFallback($countNoMatch . " events not matched.");
+            $attachment->setText($countNoMatch . " events not matched.");
+            $attachment->setColor('danger');
+            $attachments[] = $attachment;
+        }
 
+        if (0 === $countNew && 0 === $countUpdated && 0 === $countNoMatch) {
+            return;
+        }
         $this->slackService->sendToChannel('#website-nl', $message, $attachments);
     }
 
