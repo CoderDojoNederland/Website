@@ -98,12 +98,18 @@ class SyncDojoService
         foreach($externalDojos as $externalDojo) {
             $this->progressBar->setMessage('Handling ' . $externalDojo->getName());
 
+            /**
+             * remove if dojo is marked as removed
+             */
             if (true === $externalDojo->isRemoved()) {
                 $this->removeInternalDojo($externalDojo);
 
                 continue;
             }
 
+            /**
+             * Try to match a single internal dojo
+             */
             try {
                 $internalDojo = $this->getInternalDojo(
                     $externalDojo->getZenId(),
@@ -117,19 +123,27 @@ class SyncDojoService
                 continue;
             }
 
-            $internalModel = CreateDojoCommand::CreateFromEntity($internalDojo);
-
-            if (null !== $internalDojo) {
-                if ($externalDojo != $internalModel) {
-                    $this->updateInternalDojo($internalDojo, $externalDojo);
-                } else {
-                    // no action needed
-                }
+            /**
+             * If there is no internal dojo found, we need to create this one
+             */
+            if (null === $internalDojo) {
+                $this->createDojo($externalDojo);
 
                 continue;
             }
 
-            $this->createDojo($externalDojo);
+            /**
+             * No removal, no creation, one thing left, update!
+             */
+            $internalModel = CreateDojoCommand::CreateFromEntity($internalDojo);
+
+            if ($externalDojo != $internalModel) {
+                $this->updateInternalDojo($internalDojo, $externalDojo);
+
+                continue;
+            }
+
+            throw new \LogicException('An incoming dojo ('.$externalDojo->getName().') could not be matched to remove, update or create action.');
         }
 
         $this->progressBar->setMessage('Flushing');
