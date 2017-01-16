@@ -163,7 +163,7 @@ class SyncEventService
         if (0 === $countNew && 0 === $countUpdated && 0 === $countNoMatch) {
             return;
         }
-        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
+        $this->slackService->sendToChannel('#general', $message, $attachments);
     }
 
     /**

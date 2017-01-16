@@ -143,7 +143,7 @@ class SyncDojoService
                 continue;
             }
 
-            throw new \LogicException('An incoming dojo ('.$externalDojo->getName().') could not be matched to remove, update or create action.');
+            $this->progressBar->setMessage('No action needed for ' . $externalDojo->getName());
         }
 
         $this->progressBar->setMessage('Flushing');
@@ -321,7 +321,7 @@ class SyncDojoService
             $attachments[] = $attachment;
         }
 
-        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
+        $this->slackService->sendToChannel('#general', $message, $attachments);
 
         foreach($this->unmatched as $unmatched) {
             $attachment = new Attachment();

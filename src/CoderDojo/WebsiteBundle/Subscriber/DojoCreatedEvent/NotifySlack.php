@@ -61,6 +61,6 @@ class NotifySlack
         $attachment->addField($emailField);
         $attachment->addField($websiteField);
 
-        $this->slackService->sendToChannel('#website-nl', '', [$attachment]);
+        $this->slackService->sendToChannel('#general', '', [$attachment]);
     }
 }
