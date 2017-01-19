@@ -48,11 +48,12 @@ class PagesController extends Controller
 
     /**
      * @Route("/samenwerkingen/ziggo", name="ziggo")
-     */
+     *
     public function ziggoAction()
     {
         return $this->render('CoderDojoWebsiteBundle:Pages:Samenwerkingen/ziggo.html.twig');
     }
+    */
 
     /**
      * @Route("/samenwerkingen/eu-code-week", name="eucodeweek")

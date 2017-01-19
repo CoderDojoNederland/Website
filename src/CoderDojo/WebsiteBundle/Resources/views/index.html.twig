@@ -160,11 +160,6 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                     Code Qube On Tour
                                 </a>
                             </li>
-                            <li {% if app.request.get('_route') == 'ziggo' %}class="active"{% endif %}>
-                                <a href="{{ path('ziggo') }}">
-                                    Ziggo
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'contact'] %}active{% endif %}">
