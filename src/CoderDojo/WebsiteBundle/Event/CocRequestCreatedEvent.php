@@ -1,6 +1,6 @@
 <?php
 
-namespace CoderDojo\WebsiteBundle\Command;
+namespace CoderDojo\WebsiteBundle\Event;
 
 class CocRequestCreatedEvent
 {

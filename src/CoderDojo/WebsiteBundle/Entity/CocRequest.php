@@ -23,26 +23,43 @@ class CocRequest
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $letters;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $name;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     **/
+    private $birthdate;
+
+    /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $email;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="text")
      */
     private $notes;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      **/
     private $status;
 
@@ -63,17 +80,23 @@ class CocRequest
     private $requestedFor;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
      **/
     private $createdAt;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
      **/
     private $requestedAt;
 
     /**
-     * @var \DateTimeImmutable
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
      **/
     private $receivedAt;
 
@@ -82,15 +105,17 @@ class CocRequest
      * @param string $id
      * @param string $letters
      * @param string $name
+     * @param \DateTime $birthdate
      * @param string $email
      * @param string $notes
-     * @param User   $requestedBy
-     * @param Dojo   $requestedFor
+     * @param User $requestedBy
+     * @param Dojo $requestedFor
      */
     public function __construct(
         $id,
         $letters,
         $name,
+        \DateTime $birthdate,
         $email,
         $notes,
         User $requestedBy,
@@ -99,12 +124,13 @@ class CocRequest
         $this->id = $id;
         $this->letters = $letters;
         $this->name = $name;
+        $this->birthdate = $birthdate;
         $this->email = $email;
         $this->notes = $notes;
         $this->status = self::STATUS_CREATED;
         $this->requestedBy = $requestedBy;
         $this->requestedFor = $requestedFor;
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -156,7 +182,7 @@ class CocRequest
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -164,7 +190,7 @@ class CocRequest
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTime
      */
     public function getRequestedAt()
     {
@@ -172,7 +198,7 @@ class CocRequest
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return \DateTime
      */
     public function getReceivedAt()
     {
@@ -193,7 +219,7 @@ class CocRequest
             throw new \Exception('This COC has already been requested');
         }
 
-        $this->requestedAt = new \DateTimeImmutable();
+        $this->requestedAt = new \DateTime();
         $this->status = self::STATUS_REQUESTED;
     }
 
@@ -203,7 +229,15 @@ class CocRequest
             throw new \Exception('This COC has already been received');
         }
 
-        $this->receivedAt = new \DateTimeImmutable();
+        $this->receivedAt = new \DateTime();
         $this->status = self::STATUS_RECEIVED;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
     }
 }

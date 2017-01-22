@@ -18,6 +18,12 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_contact_form }
 
+    coder_dojo.form.coc_request:
+        class: CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type, alias: coderdojo_coc_request_form }
+
     coder_dojo.form.event:
         class: CoderDojo\WebsiteBundle\Form\Type\EventFormType
         tags:
@@ -26,6 +32,12 @@ services:
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
+
+    coder_dojo.website_bundle.handler.create_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\CreateCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\CreateCocRequestCommand"}
 
     coder_dojo.website_bundle.handler.create_dojo_handler:
         class: CoderDojo\WebsiteBundle\Handler\CreateDojoHandler

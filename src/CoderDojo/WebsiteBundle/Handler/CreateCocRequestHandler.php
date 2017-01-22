@@ -2,12 +2,12 @@
 
 namespace CoderDojo\WebsiteBundle\Handler;
 
-use CoderDojo\WebsiteBundle\Command\CocRequestCreatedEvent;
+use CoderDojo\WebsiteBundle\Event\CocRequestCreatedEvent;
 use CoderDojo\WebsiteBundle\Command\CreateCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use SimpleBus\Message\Recorder\RecordsMessages;
 
 class CreateCocRequestHandler
@@ -18,13 +18,13 @@ class CreateCocRequestHandler
     private $eventRecorder;
     
     /**
-     * @var EntityManagerInterface
+     * @var Registry
      */
     private $doctrine;
 
     public function __construct(
         RecordsMessages $eventRecorder,
-        EntityManagerInterface $doctrine
+        Registry $doctrine
     ) {
         $this->eventRecorder = $eventRecorder;
         $this->doctrine = $doctrine;
@@ -45,14 +45,15 @@ class CreateCocRequestHandler
             $command->getId(),
             $command->getLetters(),
             $command->getName(),
+            $command->getBirthdate(),
             $command->getEmail(),
             $command->getNotes(),
             $user,
             $dojo
         );
 
-        $this->doctrine->persist($cocRequest);
-        $this->doctrine->flush();
+        $this->doctrine->getManager()->persist($cocRequest);
+        $this->doctrine->getManager()->flush();
 
         $event = new CocRequestCreatedEvent(
             $cocRequest->getId(),

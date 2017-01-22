@@ -40,11 +40,17 @@ class CreateCocRequestCommand
     private $dojoId;
 
     /**
+     * @var \DateTime
+     */
+    private $birthdate;
+
+    /**
      * CreateCocRequestCommand constructor
      *
      * @param string $id
      * @param $letters
      * @param $name
+     * @param \DateTime $birthdate
      * @param $email
      * @param $notes
      * @param $userId
@@ -54,6 +60,7 @@ class CreateCocRequestCommand
         $id,
         $letters,
         $name,
+        \DateTime $birthdate,
         $email,
         $notes,
         $userId,
@@ -66,6 +73,7 @@ class CreateCocRequestCommand
         $this->notes = $notes;
         $this->userId = $userId;
         $this->dojoId = $dojoId;
+        $this->birthdate = $birthdate;
     }
     
     /**
@@ -122,5 +130,13 @@ class CreateCocRequestCommand
     public function getDojoId()
     {
         return $this->dojoId;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
     }
 }

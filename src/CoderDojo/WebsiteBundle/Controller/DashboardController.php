@@ -2,11 +2,14 @@
 
 namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Command\CreateCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\Claim;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
+use CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType;
 use CoderDojo\WebsiteBundle\Form\Type\EventFormType;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
@@ -573,9 +576,34 @@ class DashboardController extends Controller
     /**
      * @Route("/vog", name="dashboard-vog")
      */
-    public function vogAction()
+    public function vogAction(Request $request)
     {
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog.html.twig');
+        $form = $this->createForm(CocRequestFormType::class);
+        $form->handleRequest($request);
+
+        if ('POST' === $request->getMethod() && $form->isValid())
+        {
+            $id = Uuid::uuid4()->toString();
+            $data = $form->getData();
+
+            $command = new CreateCocRequestCommand(
+                $id,
+                $data['letters'],
+                $data['name'],
+                $data['birthdate'],
+                $data['email'],
+                $data['notes'],
+                $this->getUser()->getId(),
+                $data['dojo']
+            );
+
+            $this->get('command_bus')->handle($command);
+
+            $this->get('session')->getFlashBag()->add('success', 'Bedankt! We gaan zo snel mogelijk aan de slag om dit VOG aan te vragen.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog.html.twig', ['form'=>$form->createView()]);
     }
 
     /**
