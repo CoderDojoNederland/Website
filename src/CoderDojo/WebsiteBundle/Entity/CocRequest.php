@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class CocRequest
 {
     const STATUS_CREATED = 'created';
+    const STATUS_PREPARED = 'prepared';
     const STATUS_REQUESTED = 'requested';
     const STATUS_RECEIVED = 'received';
 
@@ -85,6 +86,13 @@ class CocRequest
      * @ORM\Column(type="datetime")
      **/
     private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     **/
+    private $preparedAt;
 
     /**
      * @var \DateTime
@@ -213,6 +221,16 @@ class CocRequest
         return $this->notes;
     }
 
+    public function prepared()
+    {
+        if (null !== $this->preparedAt) {
+            throw new \Exception('This COC has already been prepared');
+        }
+
+        $this->requestedAt = new \DateTime();
+        $this->status = self::STATUS_PREPARED;
+    }
+
     public function requested()
     {
         if (null !== $this->requestedAt) {
@@ -239,5 +257,18 @@ class CocRequest
     public function getBirthdate()
     {
         return $this->birthdate;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPreparedAt()
+    {
+        return $this->preparedAt;
     }
 }

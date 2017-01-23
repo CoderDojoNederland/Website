@@ -1,0 +1,46 @@
+{% extends "CoderDojoWebsiteBundle:Dashboard:index.html.twig" %}
+
+{% block dashboard_content %}
+    <h3>VOG's Beheren</h3>
+    <div class="row margin-bottom-20">
+        <div class="col-md-7">
+            <p>
+                Vul in dit formulier de gegevens van de vrijwilliger in waar je de VOG voor aanvraagt. Wij doen standaard een aanvraag
+                voor een gemiddelde vrijwilliger. Dat betekend dat de volgende onderdelen standaard gescreened zullen worden:
+            </p>
+            <ul>
+                <li>11 Bevoegdheid hebben tot het raadplegen en/of bewerken van systemen</li>
+                <li>12 Met gevoelige/vertrouwelijke informatie omgaan</li>
+                <li>37 Het beschikken over goederen</li>
+                <li>38 Het voorhanden hebben van stoffen, objecten en voorwerpen e.d., die bij oneigenlijk of onjuist gebruik, een risico vormen voor mens (en dier)</li>
+                <li>41 Het verlenen van diensten (advies, beveiliging, schoonmaak, catering, onderhoud, etc.)</li>
+                <li>43 Het verlenen van diensten in de persoonlijke leefomgeving</li>
+                <li>61 Het onderhouden/ombouwen/bedienen van (productie)machines en/of apparaten, voertuigen en/of luchtvaartuigen</li>
+                <li>84 Belast zijn met de zorg voor minderjarigen</li>
+                <li>85 Belast zijn met de zorg voor (hulpbehoevende) personen, zoals ouderen en gehandicapten</li>
+            </ul>
+            <p>
+                <strong>Let op:</strong> Is dit een vrijwilliger die meer verantwoordelijkheden heeft? Denk bijvoorbeeld aan omgaan financien
+                i.v.m. het beheer van een kas, geef dan in het opmerkingen veld om welke werkzaamheden het gaat en
+                welke extra checks er gedaan worden.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img src="{{ asset('/bundles/coderdojowebsite/img/vog.png') }}" style="width: 100%;"/>
+        </div>
+    </div>
+
+    <div class="row margin-bottom-20">
+        <div class="col-md-12">
+            {{ form_start(form, {'action': path('dashboard-vog-aanvragen'), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
+            {{ form_widget(form) }}
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10 right">
+                    <input type="submit" value="Aanvragen" class="btn-u btn-u-green" />
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock dashboard_content %}
