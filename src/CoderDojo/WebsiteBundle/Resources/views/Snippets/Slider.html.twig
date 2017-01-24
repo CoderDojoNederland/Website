@@ -1,38 +1,16 @@
+{% set images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]|shuffleMe %}
+
 <!--=== Slider ===-->
 <div class="layer_slider">
     <div id="layerslider-container-fw">
         <div id="layerslider" style="width: 100%; height: 500px; margin: 0px auto; ">
-            <!--First Slide-->
-            <div class="ls-layer" style="slidedirection: right;">
-
-                <img src="https://scontent-amt2-1.xx.fbcdn.net/hphotos-xla1/t31.0-8/12747278_1106987779358722_1874310223030521661_o.jpg" class="ls-bg" alt="MegaDojo">
-
-            </div>
-            <!--End First Slide-->
-
-            <!--Second Slide-->
-            <div class="ls-layer" style="slidedirection: right; ">
-
-                <img src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash4/t31.0-8/1796933_607820075977389_1649688681_o.jpg" class="ls-bg" alt="CoderDojo Rotterdam #2">
-
-            </div>
-            <!--End Second Slide-->
-
-            <!--Second Slide-->
-            <div class="ls-layer" style="slidedirection: right; ">
-
-                <img src="https://scontent-amt2-1.xx.fbcdn.net/hphotos-xpf1/t31.0-8/12747920_1106986019358898_8644838500463756948_o.jpg" class="ls-bg" alt="MegaDojo">
-
-            </div>
-            <!--End Second Slide-->
-
-            <!--Third Slide-->
-            <div class="ls-layer" style="slidedirection: right; ">
-
-                <img src="https://farm4.staticflickr.com/3821/11225375626_dc8f1143c9_h.jpg" class="ls-bg" alt="CoderDojo Rotterdam #2">
-
-            </div>
-            <!--End Third Slide-->
+            {% for image in images %}
+                <!--First Slide-->
+                <div class="ls-layer" style="slidedirection: right;">
+                    <img src="{{ asset("/bundles/coderdojowebsite/img/headers/header_#{ image }.jpg") }}" class="ls-bg">
+                </div>
+                <!--End First Slide-->
+            {% endfor %}
         </div>
     </div>
 </div><!--/layer_slider-->

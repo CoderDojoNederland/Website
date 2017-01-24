@@ -23,6 +23,12 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_event }
 
+    coder_dojo.twig_extension.random:
+        class: CoderDojo\WebsiteBundle\Twig\RandomExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
