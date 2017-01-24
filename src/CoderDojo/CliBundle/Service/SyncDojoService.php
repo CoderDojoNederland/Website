@@ -205,6 +205,16 @@ class SyncDojoService
         $internalDojo->setWebsite($externalDojo->getWebsite());
         $internalDojo->setTwitter($externalDojo->getTwitter());
 
+        /**
+         * Also update the url for child events if it changed.
+         * Make sure we only do it for Zen events to not overwrite custom events
+         */
+        foreach($internalDojo->getEvents() as $event) {
+            if (null != $event->getZenId()) {
+                $event->setUrl($externalDojo->getZenUrl());
+            }
+        }
+
         $this->countUpdated++;
         $this->progressBar->advance();
     }
