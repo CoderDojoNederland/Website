@@ -11,7 +11,7 @@ class DojoRepository extends EntityRepository
     /**
      * Fetch all dojos ordered by city
      *
-     * @return User[]
+     * @return Dojo[]
      */
     public function getSortedByCity()
     {

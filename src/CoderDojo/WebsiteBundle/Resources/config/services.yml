@@ -29,6 +29,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    coder_dojo.twig_extension.dojo:
+        class: CoderDojo\WebsiteBundle\Twig\DojoExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
