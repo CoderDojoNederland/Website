@@ -237,7 +237,7 @@ class CocRequest
             throw new \Exception('This COC has already been prepared');
         }
 
-        $this->requestedAt = new \DateTime();
+        $this->preparedAt = new \DateTime();
         $this->status = self::STATUS_PREPARED;
     }
 
