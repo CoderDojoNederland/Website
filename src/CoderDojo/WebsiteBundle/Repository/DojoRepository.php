@@ -54,12 +54,9 @@ class DojoRepository extends EntityRepository
         $qb = $this->createQueryBuilder('d');
 
         return $qb
-            ->where($qb->expr()->andX(
+            ->where($qb->expr()->orX(
                 $qb->expr()->eq('d.city', ':city'),
-                $qb->expr()->eq('d.email', ':email')
-            ))
-            ->orWhere($qb->expr()->andX(
-                $qb->expr()->eq('d.city', ':city'),
+                $qb->expr()->eq('d.email', ':email'),
                 $qb->expr()->eq('d.twitter', ':twitter')
             ))
             ->andWhere('d.zenId IS NULL')
