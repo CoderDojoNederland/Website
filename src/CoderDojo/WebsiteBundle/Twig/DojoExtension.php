@@ -47,6 +47,6 @@ class DojoExtension extends \Twig_Extension
 
     public function getName()
     {
-        return 'random_extension';
+        return 'dojo_extension';
     }
 }
