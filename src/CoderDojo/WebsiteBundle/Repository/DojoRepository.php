@@ -53,6 +53,10 @@ class DojoRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('d');
 
+        if ($twitter === 'coderdojonl') {
+            $twitter = '';
+        }
+
         return $qb
             ->where($qb->expr()->orX(
                 $qb->expr()->eq('d.city', ':city'),
