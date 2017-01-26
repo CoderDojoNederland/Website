@@ -90,7 +90,7 @@ class CocRequest
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      **/
     private $preparedAt;
 
@@ -221,16 +221,6 @@ class CocRequest
         return $this->notes;
     }
 
-    public function prepared()
-    {
-        if (null !== $this->preparedAt) {
-            throw new \Exception('This COC has already been prepared');
-        }
-
-        $this->requestedAt = new \DateTime();
-        $this->status = self::STATUS_PREPARED;
-    }
-
     public function requested()
     {
         if (null !== $this->requestedAt) {
@@ -239,6 +229,16 @@ class CocRequest
 
         $this->requestedAt = new \DateTime();
         $this->status = self::STATUS_REQUESTED;
+    }
+
+    public function prepared()
+    {
+        if (null !== $this->preparedAt) {
+            throw new \Exception('This COC has already been prepared');
+        }
+
+        $this->requestedAt = new \DateTime();
+        $this->status = self::STATUS_PREPARED;
     }
 
     public function received()

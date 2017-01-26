@@ -601,7 +601,7 @@ class DashboardController extends Controller
             $this->get('command_bus')->handle($command);
 
             $this->get('session')->getFlashBag()->add('success', 'Bedankt! We gaan zo snel mogelijk aan de slag om dit VOG aan te vragen.');
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('dashboard-vog', ['id'=>$data['dojo']]);
         }
 
         return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog-aanvragen.html.twig', ['form'=>$form->createView()]);
