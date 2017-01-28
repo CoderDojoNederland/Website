@@ -2,6 +2,8 @@
 
 namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Command\ShipCocRequestCommand;
+use CoderDojo\WebsiteBundle\Entity\CocRequest;
 use CoderDojo\WebsiteBundle\Form\Type\ContactFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -70,6 +72,24 @@ class DefaultController extends Controller
         return $this->render('CoderDojoWebsiteBundle:Pages:contact.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @Route("/vog/{id}/aangevraagd", name="vog-requested")
+     */
+    public function cocRequestedAction(CocRequest $cocRequest)
+    {
+        if (null !== $cocRequest->getRequestedAt()) {
+            $this->get('session')->getFlashBag()->add('error', 'Dit VOG heb je al aangevraagd.');
+
+            /**
+             * @TODO: HIER WAS JE GEBLEVEN!
+             */
+            return $this->redirectToRoute('bla');
+        }
+
+        $command = new ShipCocRequestCommand($cocRequest->getId());
+        $this->get('command_bus')->handle($command);
     }
 
     /**
