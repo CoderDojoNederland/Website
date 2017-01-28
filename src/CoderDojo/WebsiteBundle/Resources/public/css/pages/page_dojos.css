@@ -42,6 +42,11 @@
   transition: background-color, 300ms;
   border-bottom: 1px solid #ededed;
 }
+
+.dojo-row p {
+  margin:0;
+}
+
 .dojo-row:hover {
   background-color: #ededed;
 }
@@ -50,9 +55,19 @@
   margin-bottom: 5px;
 }
 
+[data-js-ref=list-upcoming-dojos],
 [data-js-ref=list-all-dojos] {
   max-height: 500px;
   overflow-y: scroll;
+}
+
+@media (max-width: 450px) {
+  [data-js-ref=list-upcoming-dojos],
+  [data-js-ref=list-all-dojos] {
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+  }
 }
 
 /* emptystate for no upcoming dojos */

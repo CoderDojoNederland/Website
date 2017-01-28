@@ -116,8 +116,13 @@
 
   DojosMapBackground.prototype.showInfoWindowForDojoId = function (dojoId) {
     var dojo = this.dojos[dojoId],
-      windowContent = "<strong>" + dojo.name + "</strong><br>" +
-        dojo.city + "<br>";
+      windowContent = "<h5>" + dojo.name + "</h5>" +
+        "<p>" + dojo.city + "</p>";
+
+    if(dojo.nextUrl) {
+        windowContent += '<p><strong>Volgende dojo</strong>: ' + dojo.nextDate + '</p>' +
+            '<p><a href="'+dojo.nextUrl+'" class="btn-u btn-u-green btn-u-small">Registreren</a></p>';
+    }
 
     // close and nullify info window if already existing
     if (this.infoWindow) {
