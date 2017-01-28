@@ -204,6 +204,7 @@ class SyncDojoService
         $internalDojo->setEmail($externalDojo->getEmail());
         $internalDojo->setWebsite($externalDojo->getWebsite());
         $internalDojo->setTwitter($externalDojo->getTwitter());
+        $internalDojo->setCity($externalDojo->getCity());
 
         /**
          * Also update the url for child events if it changed.
