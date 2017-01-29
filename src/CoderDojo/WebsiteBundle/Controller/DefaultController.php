@@ -82,14 +82,15 @@ class DefaultController extends Controller
         if (null !== $cocRequest->getRequestedAt()) {
             $this->get('session')->getFlashBag()->add('error', 'Dit VOG heb je al aangevraagd.');
 
-            /**
-             * @TODO: HIER WAS JE GEBLEVEN!
-             */
-            return $this->redirectToRoute('bla');
+            return $this->redirectToRoute('home');
         }
 
         $command = new ShipCocRequestCommand($cocRequest->getId());
         $this->get('command_bus')->handle($command);
+
+        $this->get('session')->getFlashBag()->add('success', 'Bedankt! We hebben jouw aanvraag genoteerd. Vergeet je niet om het VOG naar ons op te sturen?');
+
+        return $this->redirectToRoute('home');
     }
 
     /**

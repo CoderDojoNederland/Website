@@ -63,6 +63,12 @@ services:
         tags:
           - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\PrepareCocRequestCommand"}
 
+    coder_dojo.website_bundle.handler.ship_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\ShipCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\ShipCocRequestCommand"}
+
     coder_dojo.website_bundle.subscriber.dojo_created_event.notify_slack:
         class: CoderDojo\WebsiteBundle\Subscriber\DojoCreatedEvent\NotifySlack
         arguments: ["@coder_dojo.website_bundle.slack_service"]
