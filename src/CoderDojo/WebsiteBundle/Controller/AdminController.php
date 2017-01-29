@@ -3,6 +3,7 @@
 namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Command\PrepareCocRequestCommand;
+use CoderDojo\WebsiteBundle\Command\ReceiveCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -44,6 +45,28 @@ class AdminController extends Controller
         $this->get('command_bus')->handle($command);
 
         $this->get('session')->getFlashBag()->add('success', 'Dit vog is klaar gezet!');
+
+        return $this->redirectToRoute('admin-vog');
+    }
+
+    /**
+     * @Route("/vog/{id}/received", name="admin-vog-received")
+     *
+     * @param CocRequest $cocRequest
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function vogReceivedAction(CocRequest $cocRequest)
+    {
+        if (null !== $cocRequest->getReceivedAt()) {
+            $this->get('session')->getFlashBag()->add('error', 'Dit vog is al ontvangen!');
+
+            return $this->redirectToRoute('admin-vog');
+        }
+
+        $command = new ReceiveCocRequestCommand($cocRequest->getId());
+        $this->get('command_bus')->handle($command);
+
+        $this->get('session')->getFlashBag()->add('success', 'Dit vog is gemarkeerd als ontvangen!');
 
         return $this->redirectToRoute('admin-vog');
     }

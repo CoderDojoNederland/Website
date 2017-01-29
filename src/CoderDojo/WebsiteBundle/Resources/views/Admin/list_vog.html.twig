@@ -59,7 +59,7 @@
                             {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_PREPARED') %}
                                 <p class="text-warning">
                                     <span class="label label-warning"><i class="icon-flag"></i></span>
-                                    <strong>Staat klaar</strong>
+                                    <strong>Voorbereid</strong>
                                 </p>
                             {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
                                 <p class="text-info">
@@ -75,13 +75,43 @@
                         </td>
                         <td>
                             {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_CREATED') %}
-                                <a href="{{ path('admin-vog-prepared', {'id': coc.id}) }}" class="btn btn-xs btn-warning">Klaar zetten</a>
-                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_PREPARED') %}
-                                <a href="#" class="btn btn-xs btn-info">Verzonden</a>
-                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
-                                <a href="#" class="btn btn-xs btn-success">Ontvangen</a>
-                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_RECEIVED') %}
-                                <a href="#" class="btn btn-xs btn-default disabled">Voltooid</a>
+                                {% set created_label = 'warning' %}
+                                {% set created_status = '' %}
+                            {% else %}
+                                {% set created_label = 'default' %}
+                                {% set created_status = 'disabled' %}
+                            {% endif %}
+
+                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_PREPARED') %}
+                                {% set prepared_label = 'info' %}
+                                {% set prepared_status = '' %}
+                            {% else %}
+                                {% set prepared_label = 'default' %}
+                                {% set prepared_status = 'disabled' %}
+                            {% endif %}
+
+                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
+                                {% set requested_label = 'success' %}
+                                {% set requested_status = '' %}
+                            {% else %}
+                                {% set requested_label = 'default' %}
+                                {% set requested_status = 'disabled' %}
+                            {% endif %}
+
+                            {% if coc.status != constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_RECEIVED') %}
+                                <a href="{{ path('admin-vog-prepared', {'id': coc.id}) }}"
+                                   class="btn btn-xs btn-{{ created_label }} {{ created_status }}"
+                                >
+                                    <i class="icon-flag"></i>
+                                </a>
+                                <a href="{{ path('vog-requested', {'id': coc.id}) }}" class="btn btn-xs btn-{{ prepared_label }} {{ prepared_status }}">
+                                    <i class="icon-envelope"></i>
+                                </a>
+                                <a href="{{ path('admin-vog-received', {'id':coc.id}) }}" class="btn btn-xs btn-{{ requested_label }} {{ requested_status }}">
+                                    <i class="icon-ok"></i>
+                                </a>
+                            {% else %}
+                                <span class="label label-success">Voltooid</span>
                             {% endif %}
                         </td>
                     </tr>
