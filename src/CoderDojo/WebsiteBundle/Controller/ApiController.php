@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,7 +15,7 @@ class ApiController extends Controller
      * @Route("/api/dojo/{id}", name="api_dojo")
      * @ParamConverter("dojo", class="CoderDojoWebsiteBundle:Dojo")
      */
-    public function dojoAction(User $dojo)
+    public function dojoAction(Dojo $dojo)
     {
         return new Response(
             json_encode($this->serializeDojo($dojo)),
@@ -27,9 +28,9 @@ class ApiController extends Controller
      * @Route("/api/dojo/{id}/events", name="api_dojo_events")
      * @ParamConverter("dojo", class="CoderDojoWebsiteBundle:Dojo")
      */
-    public function dojoEventAction(User $dojo)
+    public function dojoEventAction(Dojo $dojo)
     {
-        $events = $dojo->getDojos();
+        $events = $dojo->getEvents();
 
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $jsonContent = $serializer->serialize($events, 'json');
@@ -80,25 +81,21 @@ class ApiController extends Controller
      * Serialize dojo manually due to FosUserBundle adding password and salt
      * @TODO: Seperate dojo from user account
      *
-     * @param User $dojo
+     * @param Dojo $dojo
      * @return array
      */
-    private function serializeDojo(User $dojo)
+    private function serializeDojo(Dojo $dojo)
     {
         return [
             "id" => $dojo->getId(),
             "email" => $dojo->getEmail(),
             "name" => $dojo->getName(),
-            "location" => $dojo->getLocation(),
-            "street" => $dojo->getStreet(),
-            "housenumber" => $dojo->getHousenumber(),
-            "postalcode" => $dojo->getPostalcode(),
             "city" => $dojo->getCity(),
             "lat" => $dojo->getLat(),
-            "long" => $dojo->getLong(),
-            "facebook" => $dojo->getFacebook(),
+            "long" => $dojo->getLon(),
             "twitter" => $dojo->getTwitter(),
-            "website" => $dojo->getFacebook()
+            "website" => $dojo->getWebsite(),
+            "zenUrl" => $dojo->getZenUrl()
         ];
     }
 }
