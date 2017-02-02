@@ -41,7 +41,7 @@ class SlackService
     public function sendToChannel($channel, $message, $attachments = [])
     {
         if ('prod' !== $this->kernel->getEnvironment()) {
-            $channel = "@chris";
+            $channel = "#website-nl";
         }
 
         $payload = new ChatPostMessagePayload();
