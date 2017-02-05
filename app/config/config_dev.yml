@@ -32,3 +32,6 @@ monolog:
 
 swiftmailer:
     delivery_address: chris@coderdojo.nl
+
+sentry:
+    dsn: ~

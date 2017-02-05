@@ -51,6 +51,12 @@ services:
         tags:
           - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\RemoveDojoCommand"}
 
+    coder_dojo.website_bundle.handler.remove_event_handler:
+        class: CoderDojo\WebsiteBundle\Handler\RemoveEventHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\RemoveEventCommand"}
+
     coder_dojo.website_bundle.handler.create_event_handler:
         class: CoderDojo\WebsiteBundle\Handler\CreateEventHandler
         arguments: ["@event_recorder", "@doctrine"]

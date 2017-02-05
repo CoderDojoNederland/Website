@@ -109,7 +109,7 @@ class ZenApiService
                 $externalEvent->dojoId,
                 $externalEvent->name,
                 new \DateTime($externalEvent->dates[0]->startTime),
-                $externalEvent->dojoId
+                $externalEvent->status
             );
         }
 
