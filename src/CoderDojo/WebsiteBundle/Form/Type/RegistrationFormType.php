@@ -38,6 +38,9 @@ class RegistrationFormType extends AbstractType
 
         $builder->add('phone', null, [
             'label' => 'Telefoon',
+            'attr' => [
+                'placeholder' => 'Wordt enkel gebruikt voor dingende zaken over jouw dojo(s)'
+            ],
             'constraints' => [
                 new NotBlank(),
                 new Length([
@@ -47,7 +50,13 @@ class RegistrationFormType extends AbstractType
             ]
         ]);
 
-        $builder->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'));
+        $builder->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array(
+            'label' => 'form.email',
+            'translation_domain' => 'FOSUserBundle',
+            'attr' => [
+                'placeholder' => 'Gebruik aub een persoonlijk emailadres'
+            ]
+        ));
         $builder->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
             'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
             'options' => array('translation_domain' => 'FOSUserBundle'),

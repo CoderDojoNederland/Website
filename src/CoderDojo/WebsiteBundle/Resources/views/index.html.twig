@@ -119,19 +119,24 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
-                                <a href="{{ path('setup') }}">
-                                    Start een Dojo
-                                </a>
-                            </li>
                             <li {% if app.request.get('_route') == 'mentors' %}class="active"{% endif %}>
                                 <a href="{{ path('mentors') }}">
                                     Word mentor
                                 </a>
                             </li>
+                            <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
+                                <a href="{{ path('setup') }}">
+                                    Start een Dojo
+                                </a>
+                            </li>
                             <li {% if app.request.get('_route') == 'material' %}class="active"{% endif %}>
                                 <a href="{{ path('material') }}">
                                     Materiaal
+                                </a>
+                            </li>
+                            <li {% if app.request.get('_route') == 'dashboard' %}class="active"{% endif %}>
+                                <a href="{{ path('dashboard') }}">
+                                    {% if app.user %}Dashboard{% else %}Inloggen / Beheren{% endif %}
                                 </a>
                             </li>
                         </ul>
