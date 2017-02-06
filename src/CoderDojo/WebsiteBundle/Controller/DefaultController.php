@@ -77,7 +77,7 @@ class DefaultController extends Controller
      */
     public function styleAction()
     {
-        $this->redirect('https://app.frontify.com/d/U9lF61SDuNiZ/coderdojo-nederland-styleguide');
+        return $this->redirect('https://app.frontify.com/d/U9lF61SDuNiZ/coderdojo-nederland-styleguide');
     }
 
     /**
