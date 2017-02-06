@@ -73,6 +73,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/style", name="style-guide")
+     */
+    public function styleAction()
+    {
+        $this->redirect('https://app.frontify.com/d/U9lF61SDuNiZ/coderdojo-nederland-styleguide');
+    }
+
+    /**
      * @return array
      */
     private function getUpComingDojos()
