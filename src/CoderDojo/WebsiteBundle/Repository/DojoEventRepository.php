@@ -10,15 +10,23 @@ class DojoEventRepository extends EntityRepository
     /**
      * Fetch all upcoming events
      *
+     * @param null $max
      * @return DojoEvent[]
      */
-    public function getAllUpcomingEvents()
+    public function getAllUpcomingEvents($max = null)
     {
-        return $this->createQueryBuilder('d')
-            ->having('d.date >= :today')
+        $return = $this->createQueryBuilder('e')
+            ->join('e.dojo', 'd')
+            ->having('e.date >= :today')
             ->setParameter('today', date('Y-m-d'))
-            ->orderBy('d.date', 'ASC')
-            ->getQuery()
-            ->getResult();
+            ->orderBy('e.date', 'ASC')
+            ->addOrderBy('d.city', 'ASC')
+            ->getQuery();
+
+        if ($max) {
+            $return->setMaxResults($max);
+        }
+
+        return $return->getResult();
     }
 }
