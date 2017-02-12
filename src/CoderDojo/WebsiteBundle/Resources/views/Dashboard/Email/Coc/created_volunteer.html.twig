@@ -1,13 +1,13 @@
 {% extends "CoderDojoWebsiteBundle:Snippets:_email.html.twig" %}
 
 {% block content %}
-    <p>Hi {{ coc.letters }} {{ coc.name }}</p>
+    <p>Hi {{ coc.letters }} {{ coc.name }},</p>
     <p style="font-weight: bold;">
         Dit is een belangrijk bericht omtrent het aanvragen van een gratis VOG, lees dit aandachtig door.
     </p>
     <p>
         Wij hebben van {{ coc.requestedBy.firstName }} {{ coc.requestedBy.lastName}} van
-        {{ coc.requestedFor.name }} een aanvraag ontvangen om voor jou een gratis VOG te regelen.
+        CoderDojo {{ coc.requestedFor.name }} een aanvraag ontvangen om voor jou een gratis VOG te regelen.
     </p>
     <p>
         Wij hebben de volgende gegevens van jou ontvangen:

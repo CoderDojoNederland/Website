@@ -1,0 +1,12 @@
+{% extends "CoderDojoWebsiteBundle:Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.requestedBy.firstname }},</p>
+    <p>
+        We hebben het VOG voor <strong>{{ coc.letters }} {{ coc.name }}</strong> verwerkt.
+        Daarmee is het proces voor deze aanvraag voltooid! Dit hebben we ook aan {{ coc.letters }} {{ coc.name }} laten weten.
+    </p>
+    <p>
+        Mocht je nog vragen hebben, neem dan gerust contact met ons op.
+    </p>
+{% endblock content %}

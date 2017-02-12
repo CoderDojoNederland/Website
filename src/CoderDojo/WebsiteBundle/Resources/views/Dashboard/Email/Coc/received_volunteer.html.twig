@@ -1,0 +1,15 @@
+{% extends "CoderDojoWebsiteBundle:Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.letters }} {{ coc.name }},</p>
+    <p>
+        We hebben jouw VOG in goede orde ontvangen en verwerkt.
+        Daarmee is het proces voor deze aanvraag voltooid! We hebben dit ook aan de dojo laten weten.
+    </p>
+    <p>
+        Wij wensen je alvast heel veel plezier en succes bij CoderDojo {{ coc.requestedFor.name }}!
+    </p>
+    <p>
+        Mocht je nog vragen hebben, neem dan gerust contact met ons op.
+    </p>
+{% endblock content %}
