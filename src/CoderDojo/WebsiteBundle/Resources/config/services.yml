@@ -80,3 +80,21 @@ services:
         arguments: ["@coder_dojo.website_bundle.slack_service"]
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\DojoCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_champion:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyChampion
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_foundation:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyFoundation
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
