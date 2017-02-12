@@ -101,13 +101,20 @@
                             {% if coc.status != constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_RECEIVED') %}
                                 <a href="{{ path('admin-vog-prepared', {'id': coc.id}) }}"
                                    class="btn btn-xs btn-{{ created_label }} {{ created_status }}"
+                                   title="Mark as Prepared"
                                 >
                                     <i class="icon-flag"></i>
                                 </a>
-                                <a href="{{ path('vog-requested', {'id': coc.id}) }}" class="btn btn-xs btn-{{ prepared_label }} {{ prepared_status }}">
+                                <a href="{{ path('vog-requested', {'id': coc.id}) }}"
+                                   class="btn btn-xs btn-{{ prepared_label }} {{ prepared_status }}"
+                                   title="Mark as requested"
+                                >
                                     <i class="icon-envelope"></i>
                                 </a>
-                                <a href="{{ path('admin-vog-received', {'id':coc.id}) }}" class="btn btn-xs btn-{{ requested_label }} {{ requested_status }}">
+                                <a href="{{ path('admin-vog-received', {'id':coc.id}) }}"
+                                   class="btn btn-xs btn-{{ requested_label }} {{ requested_status }}"
+                                   title="Mark as received"
+                                >
                                     <i class="icon-ok"></i>
                                 </a>
                             {% else %}
