@@ -1,0 +1,20 @@
+{% extends "CoderDojoWebsiteBundle:Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.letters }} {{ coc.name }},</p>
+    <p>
+        We hebben jouw gratis VOG aangevraagd bij het ministerie.
+        Als het goed is krijg je hier ook van de overheid bericht van.
+        Het is nu aan jou om zélf jouw VOG aan te vragen!
+    </p>
+    <p>
+        Zodra je jouw VOG thuis hebt ontvangen willen we je vragen om dit aan ons te laten weten.
+        Bewaar dit mailtje goed zodat je straks op onderstaande knop kan klikken.
+    </p>
+    <p>
+        <br/>
+        <a href="{{ path('vog-requested', {'id':coc.id}) }}" class="btn">
+            Ik heb mijn VOG thuis ontvangen
+        </a>
+    </p>
+{% endblock content %}

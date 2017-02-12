@@ -98,3 +98,30 @@ services:
             - "@doctrine"
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_volunteer:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyVolunteer
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_prepared_event.notify_volunteer:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestPreparedEvent\NotifyVolunteer
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestPreparedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_prepared_event.notify_champion:
+            class: CoderDojo\WebsiteBundle\Subscriber\CocRequestPreparedEvent\NotifyChampion
+            arguments:
+                - "@mailer"
+                - "@templating"
+                - "@doctrine"
+            tags:
+                - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestPreparedEvent"}

@@ -1,0 +1,19 @@
+{% extends "CoderDojoWebsiteBundle:Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.requestedBy.firstname }}</p>
+    <p>
+        We hebben het VOG voor <strong>{{ coc.letters }} {{ coc.name }}</strong> aangevraagd bij het ministerie.
+        De vrijwilliger is hier ook door ons en de overheid over gemailed.
+    </p>
+    <p>
+        Deze melding sturen we ook naar jou zodat je de vrijwilliger er zelf ook aan kan herinneren om het VOG aan te vragen.
+    </p>
+    <p>Volgende stappen:</p>
+    <ul>
+        <li style="text-decoration: line-through">Wij sturen een aanvraag naar de overheid</li>
+        <li>{{ coc.letters }} {{ coc.name }} vraagt het VOG aan</li>
+        <li>{{ coc.letters }} {{ coc.name }} stuurt het VOG naar ons</li>
+        <li>Wij markeren het VOG als ontvangen en voltooid</li>
+    </ul>
+{% endblock content %}
