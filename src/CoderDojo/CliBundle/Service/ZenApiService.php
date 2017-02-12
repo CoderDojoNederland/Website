@@ -61,11 +61,18 @@ class ZenApiService
                 $removed = true;
             }
 
+            /**
+             * Handle inconsistencies from Zen
+             */
+            $name = str_replace('CoderDojo ', '', $externalDojo->name);
+            $name = str_replace('Coderdojo ', '', $name);
+            $name = str_replace(' at ', ' @ ', $name);
+
             $externalDojos[] = new CreateDojoCommand(
                 $externalDojo->id,
                 $externalDojo->creatorEmail,
                 'https://zen.coderdojo.com/dojo/'.$externalDojo->urlSlug,
-                $externalDojo->name,
+                $name,
                 $city,
                 $externalDojo->geoPoint->lat,
                 $externalDojo->geoPoint->lon,
@@ -109,7 +116,7 @@ class ZenApiService
                 $externalEvent->dojoId,
                 $externalEvent->name,
                 new \DateTime($externalEvent->dates[0]->startTime),
-                $externalEvent->dojoId
+                $externalEvent->status
             );
         }
 

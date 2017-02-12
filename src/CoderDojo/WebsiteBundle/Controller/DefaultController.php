@@ -94,6 +94,14 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/style", name="style-guide")
+     */
+    public function styleAction()
+    {
+        return $this->redirect('https://app.frontify.com/d/U9lF61SDuNiZ/coderdojo-nederland-styleguide');
+    }
+
+    /**
      * @return array
      */
     private function getUpComingDojos()
@@ -102,17 +110,7 @@ class DefaultController extends Controller
 
         $repo = $em->getRepository("CoderDojoWebsiteBundle:DojoEvent");
 
-        $today = new \DateTime("now");
-        $today = $today->format('Y-m-d');
-
-        $query = $repo->createQueryBuilder('d')
-            ->where('d.date >= :today')
-            ->setParameter('today', $today)
-            ->orderBy('d.date', 'ASC')
-            ->getQuery()
-            ->setMaxResults(15);
-
-        $nextDojos = $query->getResult();
+        $nextDojos = $repo->getAllUpcomingEvents(15);
 
         return $nextDojos;
     }

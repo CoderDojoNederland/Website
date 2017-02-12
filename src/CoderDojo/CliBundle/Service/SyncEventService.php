@@ -5,6 +5,7 @@ namespace CoderDojo\CliBundle\Service;
 use CL\Slack\Model\Attachment;
 use CoderDojo\CliBundle\Service\ZenModel\Event;
 use CoderDojo\WebsiteBundle\Command\CreateEventCommand;
+use CoderDojo\WebsiteBundle\Command\RemoveEventCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
 use CoderDojo\WebsiteBundle\Service\SlackService;
@@ -71,6 +72,7 @@ class SyncEventService
         $countNew = 0;
         $countUpdated = 0;
         $countNoMatch = 0;
+        $countRemoved = 0;
 
         foreach($externalEvents as $externalEvent) {
             $progressbar->setMessage('Handling ' . $externalEvent->getName());
@@ -93,6 +95,13 @@ class SyncEventService
             }
 
             if (null === $internalEvent){
+                /**
+                 * Ignore if it is not a published event
+                 */
+                if (false === $externalEvent->isPublished()) {
+                    continue;
+                }
+
                 $progressbar->setMessage('No internal event found');
 
                 $command = new CreateEventCommand(
@@ -108,20 +117,43 @@ class SyncEventService
 
                 $progressbar->advance();
                 $countNew++;
-            } else {
+
+                continue;
+            }
+
+            if (null !== $internalDojo) {
                 $progressbar->setMessage('Internal event found');
 
                 $internalModel = Event::CreateFromEntity($internalEvent);
 
+                /**
+                 * Remove our version of this event if it is no longer published
+                 */
+                if (false === $externalEvent->isPublished()) {
+                    $command = new RemoveEventCommand($externalEvent->getZenId());
+                    $this->commandBus->handle($command);
+
+                    $countRemoved++;
+
+                    $progressbar->advance();
+
+                    continue;
+                }
+
+                /**
+                 * Check if an update is neccesary
+                 */
                 if ($internalModel != $externalEvent) {
                     $internalEvent->setName($externalEvent->getName());
                     $internalEvent->setDate($externalEvent->getStartTime());
                     $internalEvent->setUrl($internalDojo->getZenUrl());
 
                     $countUpdated++;
-                }
 
-                $progressbar->advance();
+                    $progressbar->advance();
+
+                    continue;
+                }
             }
         }
 
@@ -132,6 +164,7 @@ class SyncEventService
         $output->writeln($countNew . ' New events added');
         $output->writeln($countUpdated . ' Existing events updated');
         $output->writeln($countNoMatch . ' events could not be matched with a dojo');
+        $output->writeln($countRemoved . ' events removed');
 
         $message = "Zen synchronizer just handled events.";
         $attachments = [];
@@ -160,9 +193,18 @@ class SyncEventService
             $attachments[] = $attachment;
         }
 
-        if (0 === $countNew && 0 === $countUpdated && 0 === $countNoMatch) {
+        if (0 < $countRemoved) {
+            $attachment = new Attachment();
+            $attachment->setFallback($countRemoved . " events removed.");
+            $attachment->setText($countRemoved . " events removed.");
+            $attachment->setColor('danger');
+            $attachments[] = $attachment;
+        }
+
+        if (0 === $countNew && 0 === $countUpdated && 0 === $countNoMatch && 0 === $countRemoved) {
             return;
         }
+
         $this->slackService->sendToChannel('#general', $message, $attachments);
     }
 

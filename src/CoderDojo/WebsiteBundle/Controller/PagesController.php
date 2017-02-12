@@ -127,4 +127,12 @@ class PagesController extends Controller
     {
         return $this->render('CoderDojoWebsiteBundle:Pages:survey.html.twig');
     }
+
+    /**
+     * @Route("/coolest-projects", name="coolest-projects")
+     */
+    public function coolestProjectsAction()
+    {
+        return $this->render('CoderDojoWebsiteBundle:Pages:cooles-projects.html.twig');
+    }
 }

@@ -269,7 +269,7 @@ class Dojo
     }
 
     /**
-     * @return DojoEvent[]
+     * @return DojoEvent[]|ArrayCollection
      */
     public function getEvents()
     {
