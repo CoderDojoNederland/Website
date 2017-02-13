@@ -2,11 +2,15 @@
 
 namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Command\CreateCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\Claim;
+use CoderDojo\WebsiteBundle\Entity\CocRequest;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
+use CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType;
 use CoderDojo\WebsiteBundle\Form\Type\EventFormType;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
@@ -571,12 +575,55 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/vog", name="dashboard-vog")
+     * @Route("/vog/aanvragen", name="dashboard-vog-aanvragen")
      */
-    public function vogAction()
+    public function requestVogAction(Request $request)
     {
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog.html.twig');
+        $form = $this->createForm(CocRequestFormType::class);
+        $form->handleRequest($request);
+
+        if ('POST' === $request->getMethod() && $form->isValid())
+        {
+            $id = Uuid::uuid4()->toString();
+            $data = $form->getData();
+
+            $command = new CreateCocRequestCommand(
+                $id,
+                $data['letters'],
+                $data['name'],
+                $data['birthdate'],
+                $data['email'],
+                $data['notes'],
+                $this->getUser()->getId(),
+                $data['dojo']
+            );
+
+            $this->get('command_bus')->handle($command);
+
+            $this->get('session')->getFlashBag()->add('success', 'Bedankt! We gaan zo snel mogelijk aan de slag om dit VOG aan te vragen.');
+            return $this->redirectToRoute('dashboard-vog', ['id'=>$data['dojo']]);
+        }
+
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog-aanvragen.html.twig', ['form'=>$form->createView()]);
     }
+
+    /**
+     * @Route("/vog/{id}", name="dashboard-vog")
+     */
+    public function vogAction(Dojo $dojo)
+    {
+        if (false === $dojo->isOwner($this->getUser())) {
+            $this->get('session')->getFlashBag()->add('error', 'Zo te zien heb je geen rechten om voor deze VOG\'s te beheren.');
+            return $this->redirectToRoute('dashboard');
+        }
+
+        $cocs = $this->getDoctrine()->getRepository(CocRequest::class)->findBy([
+            'requestedFor' => $dojo
+        ]);
+
+        return $this->render('@CoderDojoWebsite/Dashboard/pages/vog.html.twig', ['cocs'=>$cocs]);
+    }
+
 
     /**
      * @return Response

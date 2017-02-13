@@ -18,6 +18,12 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_contact_form }
 
+    coder_dojo.form.coc_request:
+        class: CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type, alias: coderdojo_coc_request_form }
+
     coder_dojo.form.event:
         class: CoderDojo\WebsiteBundle\Form\Type\EventFormType
         tags:
@@ -38,6 +44,12 @@ services:
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
+
+    coder_dojo.website_bundle.handler.create_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\CreateCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\CreateCocRequestCommand"}
 
     coder_dojo.website_bundle.handler.create_dojo_handler:
         class: CoderDojo\WebsiteBundle\Handler\CreateDojoHandler
@@ -63,8 +75,98 @@ services:
         tags:
           - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\CreateEventCommand"}
 
+    coder_dojo.website_bundle.handler.prepare_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\PrepareCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\PrepareCocRequestCommand"}
+
+    coder_dojo.website_bundle.handler.ship_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\ShipCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\ShipCocRequestCommand"}
+
+    coder_dojo.website_bundle.handler.receive_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\ReceiveCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\ReceiveCocRequestCommand"}
+
     coder_dojo.website_bundle.subscriber.dojo_created_event.notify_slack:
         class: CoderDojo\WebsiteBundle\Subscriber\DojoCreatedEvent\NotifySlack
         arguments: ["@coder_dojo.website_bundle.slack_service"]
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\DojoCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_champion:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyChampion
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_foundation:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyFoundation
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_volunteer:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyVolunteer
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_prepared_event.notify_volunteer:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestPreparedEvent\NotifyVolunteer
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestPreparedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_prepared_event.notify_champion:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestPreparedEvent\NotifyChampion
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestPreparedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_shipped_event.notify_foundation:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestShippedEvent\NotifyFoundation
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestShippedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_received_event.notify_champion:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestReceivedEvent\NotifyChampion
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestReceivedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_received_event.notify_volunteer:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestReceivedEvent\NotifyVolunteer
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestReceivedEvent"}

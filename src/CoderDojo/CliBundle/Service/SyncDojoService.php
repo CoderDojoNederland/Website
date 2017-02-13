@@ -4,11 +4,9 @@ namespace CoderDojo\CliBundle\Service;
 
 use CL\Slack\Model\Attachment;
 use CL\Slack\Model\AttachmentField;
-use CoderDojo\CliBundle\Service\ZenModel\Dojo;
 use CoderDojo\WebsiteBundle\Command\CreateDojoCommand;
 use CoderDojo\WebsiteBundle\Command\RemoveDojoCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
-use CoderDojo\CliBundle\Service\ZenModel\Dojo as ExternalDojo;
 use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NonUniqueResultException;

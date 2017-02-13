@@ -1,0 +1,51 @@
+<html lang="en">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<head>
+    <style type="text/css">
+        html,body,table
+        {
+            font-family: 'Verdana', sans-serif;
+            font-size:12px;
+            color:#1f1f1f;
+            line-height:1.5em;
+        }
+        table {
+            margin:0;
+            padding:0;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .btn {
+            -webkit-border-radius: 7;
+            -moz-border-radius: 7;
+            border-radius: 7px;
+            font-family: 'Verdana', sans-serif;
+            color: #ffffff;
+            font-size: 16px;
+            background: #e67e22;
+            padding: 10px 20px 10px 20px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #cc6d1a;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div style="width:400px">
+    {% block content %}{% endblock content %}
+    <p>
+        Groetjes,<br/>
+        CoderDojo Nederland
+    </p>
+</div>
+<p style="margin:0px;">
+    <a href="http://www.coderdojo.nl" style="border:0px;text-decoration:none;">
+        <img src="http://www.coderdojo-rotterdam.nl/images/logonl.png" width="200" alt="CoderDojo Nederland"/>
+    </a>
+</p>
+</body>
+</html>
