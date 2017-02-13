@@ -621,9 +621,8 @@ class DashboardController extends Controller
             'requestedFor' => $dojo
         ]);
 
-        return $this->render('@CoderDojoWebsite/Dashboard/pages/vog.html.twig', ['cocs'=>$cocs]);
+        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog.html.twig', ['cocs'=>$cocs]);
     }
-
 
     /**
      * @return Response
