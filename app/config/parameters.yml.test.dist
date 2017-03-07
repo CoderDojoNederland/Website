@@ -18,3 +18,5 @@ parameters:
 
     # Api token for talking to slack
     slack_api_token: 1234
+
+    dev_email: 'dev@email.com'
