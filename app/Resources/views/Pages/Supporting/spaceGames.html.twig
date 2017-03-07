@@ -1,0 +1,57 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Space Games Kick Off &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Space Games Kick Off &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Help astronaut Andr&eacute; Kuipers zijn weg naar de ruimte te vinden met deze Scratch Space Challenges!
+{% endblock %}
+
+{% block fbdescription %}
+    Help astronaut Andr&eacute; Kuipers zijn weg naar de ruimte te vinden met deze Scratch Space Challenges!
+{% endblock %}
+
+{% block customjs %}
+    <script type="text/javascript">
+        mixpanel.track("View SpaceGames Page");
+    </script>
+{% endblock %}
+
+{% block content %}
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs margin-bottom-40">
+        <div class="container">
+            <h1 class="pull-left">Space Games Kick Off</h1>
+        </div>
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
+
+    <div class="container">
+        <!--Error Block-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="error-v1">
+                    <h1 style="text-align: center">Space Games Kickoff</h1>
+                    <br/>
+                    <p style="text-align: center;font-weight: bold;">Bekijk de introductie van André Kuipers</p>
+                    <div class="responsive-video">
+                        <iframe src="https://www.youtube.com/embed/M15YygHHskU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <br/>
+                    <div class="row tag-box tag-box-v5">
+                        <div class="col-md-8">
+                            <p>
+                                Heb je de opdracht nog niet?<br/>Download de PDF
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><a href="https://drive.google.com/file/d/0B6Zh9qiLPyU3MEk2M0RDTU5kbFU/view?usp=sharing" class="btn-u btn-u-lg btn-u-red"><i class="icon-file"></i> Download</a></p>
+                        </div>
+                    </div>
+                    <br/><br/>
+                </div>
+            </div>
+        </div>
+        <!--End Error Block-->
+    </div>
+{% endblock %}

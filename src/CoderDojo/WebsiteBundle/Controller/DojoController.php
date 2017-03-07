@@ -18,7 +18,7 @@ class DojoController extends Controller
         $dojos = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:Dojo")->getSortedByCity();
         $nextDojos = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getAllUpcomingEvents();
 
-        return $this->render('CoderDojoWebsiteBundle:Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos" => $nextDojos));
+        return $this->render(':Pages:dojos.html.twig', array("dojos" => $dojos, "nextdojos" => $nextDojos));
     }
 
     /**

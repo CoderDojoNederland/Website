@@ -39,7 +39,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('fos_user_profile_edit');
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/dashboard.html.twig');
+        return $this->render(':Dashboard:Pages/dashboard.html.twig');
     }
 
     /**
@@ -296,7 +296,7 @@ class DashboardController extends Controller
             }
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/mentor-requests.html.twig', ['requests' => $requests]);
+        return $this->render(':Dashboard:Pages/mentor-requests.html.twig', ['requests' => $requests]);
     }
 
     /**
@@ -425,14 +425,14 @@ class DashboardController extends Controller
 
                 return $this->redirectToRoute('dashboard-dojo-events', ['id'=>$dojo->getId()]);
             } else {
-                return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+                return $this->render(':Dashboard:Pages/events-add.html.twig', [
                     'form'=>$form->createView(),
                     'dojo' => $dojo
                 ]);
             }
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+        return $this->render(':Dashboard:Pages/events-add.html.twig', [
             'form'=>$form->createView(),
             'dojo' => $dojo
         ]);
@@ -474,14 +474,14 @@ class DashboardController extends Controller
 
                 return $this->redirectToRoute('dashboard-dojo-events', ['id'=>$dojo->getId()]);
             } else {
-                return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+                return $this->render(':Dashboard:Pages/events-add.html.twig', [
                     'form'=>$form->createView(),
                     'dojo' => $dojo
                 ]);
             }
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/events-add.html.twig', [
+        return $this->render(':Dashboard:Pages/events-add.html.twig', [
             'form'=>$form->createView(),
             'dojo' => $dojo
         ]);
@@ -514,7 +514,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('dashboard-dojo-events', ['id'=>$dojo->getId()]);
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/event-remove.html.twig', [
+        return $this->render(':Dashboard:Pages/event-remove.html.twig', [
             'dojo' => $dojo,
             'event' => $event
         ]);
@@ -533,7 +533,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('dashboard');
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/mentors.html.twig', [
+        return $this->render(':Dashboard:Pages/mentors.html.twig', [
             'dojo' => $dojo
         ]);
     }
@@ -568,7 +568,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('dashboard-dojo-mentors', ['id'=>$dojo->getId()]);
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/mentors-remove.html.twig', [
+        return $this->render(':Dashboard:Pages/mentors-remove.html.twig', [
             'dojo' => $dojo,
             'mentor' => $mentor
         ]);
@@ -604,7 +604,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('dashboard-vog', ['id'=>$data['dojo']]);
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog-aanvragen.html.twig', ['form'=>$form->createView()]);
+        return $this->render(':Dashboard:Pages/vog-aanvragen.html.twig', ['form'=>$form->createView()]);
     }
 
     /**
@@ -621,7 +621,7 @@ class DashboardController extends Controller
             'requestedFor' => $dojo
         ]);
 
-        return $this->render('CoderDojoWebsiteBundle:Dashboard:Pages/vog.html.twig', ['cocs'=>$cocs]);
+        return $this->render(':Dashboard:Pages/vog.html.twig', ['cocs'=>$cocs]);
     }
 
     /**

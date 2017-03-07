@@ -1,0 +1,9 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ mentor.firstName }},</p>
+
+    <p>
+        Je hebt nu toegang tot {{ dojo.name }}!
+    </p>
+{% endblock content %}

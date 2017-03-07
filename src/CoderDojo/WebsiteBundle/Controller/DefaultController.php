@@ -18,7 +18,7 @@ class DefaultController extends Controller
     {
         $dojos = $this->getUpComingDojos();
 
-        return $this->render('CoderDojoWebsiteBundle:Pages:index.html.twig', [
+        return $this->render(':Pages:index.html.twig', [
             'dojos' => $dojos
         ]);
     }
@@ -28,7 +28,7 @@ class DefaultController extends Controller
      */
     public function slackAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:slack.html.twig');
+        return $this->render(':Pages:slack.html.twig');
     }
 
     /**
@@ -69,7 +69,7 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('CoderDojoWebsiteBundle:Pages:contact.html.twig', array(
+        return $this->render(':Pages:contact.html.twig', array(
             'form' => $form->createView(),
         ));
     }
