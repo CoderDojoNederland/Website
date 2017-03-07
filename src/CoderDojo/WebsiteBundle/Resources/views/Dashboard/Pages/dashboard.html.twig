@@ -6,7 +6,7 @@
         <p>Er zijn nog geen dojo's aan jouw account gekoppeld.</p>
     {% endif %}
     {% for dojo in app.user.dojos %}
-        {% if dojo.id != 2 and dojo.id != 55 and dojo.id != 18 and dojo.id != 7 %}
+        {% if dojo.id != 2 and dojo.id != 55 and dojo.id != 18 and dojo.id != 7 and dojo.id != 20 %}
             {% set vogDisabled = 'disabled' %}
             {% set vogDisabledText = ' (Binnenkort Beschikbaar)' %}
         {% else %}
