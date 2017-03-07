@@ -119,7 +119,7 @@ class Claim
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getClaimedAt()
     {
