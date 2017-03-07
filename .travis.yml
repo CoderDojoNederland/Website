@@ -6,21 +6,20 @@ php:
 
 sudo: false
 
-cache:
-  directories:
-    - $HOME/.composer/cache
+#cache:
+#  directories:
+#    - $HOME/.composer/cache
 
-before_install:
-  - mysql -e 'create database coderdojonl;'
-  - cp app/config/parameters.yml.test.dist app/config/parameters.yml
-  - composer self-update
-  - composer require satooshi/php-coveralls:~0.6@stable
-  - phpunit -v
-
+#before_install:
+#  - mysql -e 'create database coderdojonl;'
+#  - cp app/config/parameters.yml.test.dist app/config/parameters.yml
+#  - composer self-update
+#  - composer require satooshi/php-coveralls:~0.6@stable
+#
 #install: composer install --prefer-dist --no-interaction
 
 script:
-  - phpunit -c --configuration phpunit.xml.dist --coverage-clover build/logs/clover.xml
+  - bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
 after_success:
   - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php bin/coveralls -v; fi;'
