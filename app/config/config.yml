@@ -37,7 +37,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - 'CoderDojoWebsiteBundle:Form:fields.html.twig'
+        - ':Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:

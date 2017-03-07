@@ -1,0 +1,68 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Samenwerkingen &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Samenwerkingen &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    CoderDojo Nederland werkt graag samen met andere organisaties. Ook dit jaar zijn er leuke partijen waar we mee samen werken waaronder Ziggo en de Code Qube.
+{% endblock %}
+
+{% block fbdescription %}
+    CoderDojo Nederland werkt graag samen met andere organisaties. Ook dit jaar zijn er leuke partijen waar we mee samen werken waaronder Ziggo en de Code Qube
+{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Samenwerkingen voor 2016</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container">
+
+    <div class="row margin-bottom-10">
+        <div class="col-md-12 margin-bottom-40">
+            <h2>Ambassadeurschap Ziggo</h2>
+        </div>
+        <div class="col-md-8">
+            <p class="margin-bottom-20">
+                Ziggo is ambassadeur van CoderDojo. Samen met CoderDojo en lokale partners heeft Ziggo de ambitie in 2016 minimaal 10.000 jongeren in Nederland kennis te laten maken met programmeren.
+                Ziggo wil jongeren de mogelijkheden van de digitale wereld zo optimaal mogelijk laten benutten en bereidt ze graag voor op hun toekomst door hen vroegtijdig kennis te laten maken met techniek. Door te programmeren leren kinderen logisch en creatief denken, ontdekken ze de mogelijkheden van technologie en wordt onze nieuwe creatieve generatie voorbereid op de banen van de toekomst. Op dit moment hebben veel jongeren nog te weinig vaardigheden voor toekomstige banen, waarbij IT centraal staat. De voorspelling is dat in 2020 in Europa ruim 800.000 banen niet ingevuld worden als we niets doen. Gelukkig werken allerlei partijen in Nederland en andere Europese landen samen om met elkaar op tijd klaar te zijn voor de toekomst.
+            </p>
+            <p>
+                Kijk voor meer informatie op de website van <a href="https://www.ziggo.nl/actueel/nieuws/jong-leren-coderen/" target="_blank">Ziggo</a>.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <a href="https://www.ziggo.com/nl/newsroom/publicaties/3998/ziggo-ondersteunt-coderdojo-rsquo-s-tijdens-codeweek" target="_blank"><img src="{{ asset('bundles/coderdojowebsite/img/ziggo.png') }}" style="width: 100%;" alt="Ziggo"/></a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row margin-bottom-40">
+        <div class="col-md-12 margin-bottom-40">
+            <h2>Code Qube On Tour</h2>
+        </div>
+        <div class="col-md-4" style="text-align: center;">
+            <a href="http://www.codeqube.nl" target="_blank"><img src="{{ asset('bundles/coderdojowebsite/img/codeqube_notext.png') }}" style="width: 50%;" alt="CodeQube"/></a>
+        </div>
+        <div class="col-md-8">
+            <p class="margin-bottom-20">
+                De Code Qube is een voortgekomen uit een afstudeerproject van twee studenten CMD aan de Avans Hogeschool Breda. Tijdens de ontwikkeling van het concept zijn ze al een aantal keer bij de Dojo
+                in Rotterdam langs geweest om het product te testen. Nadat ze met succes zijn afgestudeerd hebben ze besloten om door te gaan en de CodeQube op de markt te brengen.
+                Omdat CoderDojo Nederland volledig achter dit product staat en het belangrijk vind dat dit op de markt komt gaat de CodeQube in 2016 op tour door het hele land.
+                Bij 20 dojo's zal de CodeQube langs komen om een middag HTML les voor kinderen te verzorgen.
+            </p>
+            <p>
+                Kijk voor meer informatie op de website van <a href="http://www.codeqube.nl" target="_blank">CodeQube</a>.
+            </p>
+        </div>
+    </div>
+
+</div><!--/container-->
+<!--=== End Content Part ===-->
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.requestedBy.firstname }},</p>
+    <p>We hebben jouw aanvraag voor een VOG goed ontvangen. Hieronder zie je een overzicht:</p>
+    <table>
+        <tr>
+            <td><strong>Voorletters</strong></td>
+            <td>{{ coc.letters }}</td>
+        </tr>
+        <tr>
+            <td><strong>Achternaam</strong></td>
+            <td>{{ coc.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email</strong></td>
+            <td>{{ coc.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Geboortedatum</strong></td>
+            <td>{{ coc.birthdate|date('d/m/Y') }}</td>
+        </tr>
+        <tr>
+            <td><strong>Opmerkingen</strong></td>
+            <td>{{ coc.notes }}</td>
+        </tr>
+        <tr>
+            <td><strong>Dojo</strong></td>
+            <td>{{ coc.requestedFor.name }}</td>
+        </tr>
+    </table>
+    <p>Klopt er iets niet? Geef dan zo snel mogelijk antwoord op deze mail zodat wij het recht kunnen zetten!</p>
+    <p>Volgende stappen:</p>
+    <ul>
+        <li>Wij sturen een aanvraag naar de overheid</li>
+        <li>{{ coc.letters }} {{ coc.name }} vraagt het VOG aan</li>
+        <li>{{ coc.letters }} {{ coc.name }} stuurt het VOG naar ons</li>
+        <li>Wij markeren het VOG als ontvangen en voltooid</li>
+    </ul>
+    <p>In principe hoef je als champion nu niks meer te doen dan alleen wachten op het bericht dat wij het VOG in goede orde hebben ontvangen en verwerkt.</p>
+{% endblock content %}

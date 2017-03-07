@@ -16,7 +16,7 @@ class PagesController extends Controller
      */
     public function setupAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Meehelpen/setup.html.twig');
+        return $this->render(':Pages:Meehelpen/setup.html.twig');
     }
 
     /**
@@ -24,7 +24,7 @@ class PagesController extends Controller
      */
     public function mentorAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Meehelpen/mentor.html.twig');
+        return $this->render(':Pages:Meehelpen/mentor.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class PagesController extends Controller
      */
     public function materialAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Meehelpen/material.html.twig');
+        return $this->render(':Pages:Meehelpen/material.html.twig');
     }
 
     /******************
@@ -43,7 +43,7 @@ class PagesController extends Controller
      */
     public function codeQubeAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Samenwerkingen/codeqube.html.twig');
+        return $this->render(':Pages:Samenwerkingen/codeqube.html.twig');
     }
 
     /**
@@ -51,7 +51,7 @@ class PagesController extends Controller
      *
     public function ziggoAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Samenwerkingen/ziggo.html.twig');
+        return $this->render(':Pages:Samenwerkingen/ziggo.html.twig');
     }
     */
 
@@ -60,7 +60,7 @@ class PagesController extends Controller
      */
     public function euCodeWeekAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Samenwerkingen/codeweekEU.html.twig');
+        return $this->render(':Pages:Samenwerkingen/codeweekEU.html.twig');
     }
 
     /**
@@ -68,7 +68,7 @@ class PagesController extends Controller
      */
     public function booksAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Samenwerkingen/books.html.twig');
+        return $this->render(':Pages:Samenwerkingen/books.html.twig');
     }
 
     /******************
@@ -80,7 +80,7 @@ class PagesController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Achtergrond/about.html.twig');
+        return $this->render(':Pages:Achtergrond/about.html.twig');
     }
 
     /**
@@ -88,7 +88,7 @@ class PagesController extends Controller
      */
     public function foundationAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Achtergrond/stichting.html.twig');
+        return $this->render(':Pages:Achtergrond/stichting.html.twig');
     }
 
     /**
@@ -96,7 +96,7 @@ class PagesController extends Controller
      */
     public function newsletterAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Achtergrond/newsletter.html.twig');
+        return $this->render(':Pages:Achtergrond/newsletter.html.twig');
     }
 
     /******************
@@ -108,7 +108,7 @@ class PagesController extends Controller
      */
     public function spaceGamesAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Supporting/spaceGames.html.twig');
+        return $this->render(':Pages:Supporting/spaceGames.html.twig');
     }
 
 
@@ -117,7 +117,7 @@ class PagesController extends Controller
      */
     public function ziggodomeAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:Supporting/ziggodome.html.twig');
+        return $this->render(':Pages:Supporting/ziggodome.html.twig');
     }
 
     /**
@@ -125,7 +125,7 @@ class PagesController extends Controller
      */
     public function surveyAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:survey.html.twig');
+        return $this->render(':Pages:survey.html.twig');
     }
 
     /**
@@ -133,6 +133,6 @@ class PagesController extends Controller
      */
     public function coolestProjectsAction()
     {
-        return $this->render('CoderDojoWebsiteBundle:Pages:cooles-projects.html.twig');
+        return $this->render(':Pages:cooles-projects.html.twig');
     }
 }

@@ -22,7 +22,7 @@ class AdminController extends Controller
         /** @var CocRequest[] $cocs */
         $cocs = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:CocRequest')->findAll();
 
-        return $this->render('CoderDojoWebsiteBundle:Admin:list_vog.html.twig', [
+        return $this->render(':Admin:list_vog.html.twig', [
             'cocs' => $cocs
         ]);
     }

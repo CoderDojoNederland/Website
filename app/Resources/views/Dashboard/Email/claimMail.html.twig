@@ -1,0 +1,31 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ dojo.name }},</p>
+
+    <p>
+        Er is een verzoek gedaan om {{ dojo.name }} te claimen op coderdojo.nl.
+    </p>
+    <table>
+        <tr>
+            <td><strong>Mentor:</strong></td>
+            <td>{{ user.firstname }} {{ user.lastname }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Telefoon:</strong></td>
+            <td>{{ user.phone }}</td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+    <p style="text-align: center;">
+        <a href="{{ url('dashboard-claim-dojo-verify', {'dojoId' : dojo.id, 'hash': claim.hash }) }}" class="btn">Geef {{ user.firstname }} toegang</a>
+    </p>
+    <p>&nbsp;</p>
+    <p>
+        Is deze claim niet bij jou bekend? Dan hoef je niks te doen, dit verzoekt verloopt automatisch na 24h.
+    </p>
+{% endblock content %}

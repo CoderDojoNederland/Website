@@ -1,0 +1,37 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi CoderDojo Nederland,</p>
+    <p>Er is een nieuwe VOG aanvraag aangemaakt!</p>
+    <table>
+        <tr>
+            <td><strong>Voorletters</strong></td>
+            <td>{{ coc.letters }}</td>
+        </tr>
+        <tr>
+            <td><strong>Achternaam</strong></td>
+            <td>{{ coc.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Email</strong></td>
+            <td>{{ coc.email }}</td>
+        </tr>
+        <tr>
+            <td><strong>Geboortedatum</strong></td>
+            <td>{{ coc.birthdate|date('d/m/Y') }}</td>
+        </tr>
+        <tr>
+            <td><strong>Opmerkingen</strong></td>
+            <td>{{ coc.notes }}</td>
+        </tr>
+        <tr>
+            <td><strong>Dojo</strong></td>
+            <td>{{ coc.requestedFor.name }}</td>
+        </tr>
+    </table>
+    <p style="text-align: center;">
+        <br/>
+        <a href="{{ url('admin-vog')}}" class="btn">Naar admin</a>
+        <a href="https://mijn.justis.nl/vog/vogorganisatie/inloggen.htm" class="btn">Aanvragen</a>
+    </p>
+{% endblock content %}
