@@ -15,8 +15,9 @@ before_install:
   - cp app/config/parameters.yml.test.dist app/config/parameters.yml
   - composer self-update
   - composer require satooshi/php-coveralls:~0.6@stable
+  - phpunit -v
 
-install: composer install --prefer-dist --no-interaction
+#install: composer install --prefer-dist --no-interaction
 
 script:
   - phpunit -c --configuration phpunit.xml.dist --coverage-clover build/logs/clover.xml
