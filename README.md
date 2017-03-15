@@ -1,5 +1,3 @@
-signed commit test
-
 # CoderDojo Nederland Website
 
 [![Build Status](https://travis-ci.org/CoderDojoNederland/website.svg?branch=master)](https://travis-ci.org/CoderDojoNederland/website)
