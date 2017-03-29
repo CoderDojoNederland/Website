@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function listVogAction()
     {
         /** @var CocRequest[] $cocs */
-        $cocs = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:CocRequest')->findAll();
+        $cocs = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:CocRequest')->findBy([], ['createdAt' => 'DESC']);
 
         return $this->render(':Admin:list_vog.html.twig', [
             'cocs' => $cocs
