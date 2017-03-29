@@ -55,7 +55,7 @@ class NotifyVolunteer
             ->setContentType('text/html')
             ->setBody(
                 $this->templating->render(
-                    'CoderDojoWebsiteBundle:Dashboard/Email/Coc:prepared_volunteer.html.twig',
+                    ':Dashboard/Email/Coc:prepared_volunteer.html.twig',
                     array(
                         'coc' => $coc
                     )
