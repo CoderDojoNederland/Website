@@ -45,7 +45,6 @@ class CreateCocRequestHandler
             $command->getId(),
             $command->getLetters(),
             $command->getName(),
-            $command->getBirthdate(),
             $command->getEmail(),
             $command->getNotes(),
             $user,

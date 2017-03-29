@@ -591,7 +591,6 @@ class DashboardController extends Controller
                 $id,
                 $data['letters'],
                 $data['name'],
-                $data['birthdate'],
                 $data['email'],
                 $data['notes'],
                 $this->getUser()->getId(),
