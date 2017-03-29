@@ -56,7 +56,7 @@ class NotifyChampion
             ->setContentType('text/html')
             ->setBody(
                 $this->templating->render(
-                    'CoderDojoWebsiteBundle:Dashboard:Email/Coc/received_champion.html.twig',
+                    ':Dashboard:Email/Coc/received_champion.html.twig',
                     array(
                         'coc' => $coc
                     )

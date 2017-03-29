@@ -55,7 +55,7 @@ class NotifyFoundation
             ->setContentType('text/html')
             ->setBody(
                 $this->templating->render(
-                    'CoderDojoWebsiteBundle:Dashboard:Email/Coc/shipped_foundation.html.twig',
+                    ':Dashboard:Email/Coc/shipped_foundation.html.twig',
                     array(
                         'coc' => $coc
                     )
