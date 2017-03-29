@@ -39,7 +39,7 @@ class RegistrationFormType extends AbstractType
         $builder->add('phone', null, [
             'label' => 'Telefoon',
             'attr' => [
-                'placeholder' => 'Wordt enkel gebruikt voor dingende zaken over jouw dojo(s)'
+                'placeholder' => 'Wordt enkel gebruikt voor dringende zaken over jouw dojo(s)'
             ],
             'constraints' => [
                 new NotBlank(),

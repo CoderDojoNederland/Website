@@ -37,13 +37,6 @@ class CocRequest
     private $name;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     **/
-    private $birthdate;
-
-    /**
      * @var string
      *
      * @ORM\Column(type="string")
@@ -113,7 +106,6 @@ class CocRequest
      * @param string $id
      * @param string $letters
      * @param string $name
-     * @param \DateTime $birthdate
      * @param string $email
      * @param string $notes
      * @param User $requestedBy
@@ -123,7 +115,6 @@ class CocRequest
         $id,
         $letters,
         $name,
-        \DateTime $birthdate,
         $email,
         $notes,
         User $requestedBy,
@@ -132,7 +123,6 @@ class CocRequest
         $this->id = $id;
         $this->letters = $letters;
         $this->name = $name;
-        $this->birthdate = $birthdate;
         $this->email = $email;
         $this->notes = $notes;
         $this->status = self::STATUS_CREATED;
@@ -249,14 +239,6 @@ class CocRequest
 
         $this->receivedAt = new \DateTime();
         $this->status = self::STATUS_RECEIVED;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthdate()
-    {
-        return $this->birthdate;
     }
 
     public function getStatus()

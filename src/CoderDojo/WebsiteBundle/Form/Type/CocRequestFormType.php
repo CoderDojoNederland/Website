@@ -49,10 +49,6 @@ class CocRequestFormType extends AbstractType
             ->add('name', TextType::class, array(
                 'label' => 'Achternaam'
             ))
-            ->add('birthdate', DateType::class, array(
-                'label' => 'Geboortedatum',
-                'widget'=>'single_text'
-            ))
             ->add('email', EmailType::class, [
                 'label' => 'Email'
             ])
