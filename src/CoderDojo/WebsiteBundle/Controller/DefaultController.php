@@ -52,7 +52,7 @@ class DefaultController extends Controller
                     ->setContentType('text/html')
                     ->setBody(
                         $this->renderView(
-                            'CoderDojoWebsiteBundle::contactmail.html.twig',
+                            '::contactmail.html.twig',
                             array(
                                 'naam' => $form->get('naam')->getData(),
                                 'email' => $form->get('email')->getData(),
