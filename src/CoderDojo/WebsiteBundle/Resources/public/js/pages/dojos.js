@@ -189,7 +189,6 @@
         $('[data-tab-ref=all-dojos]').removeClass('active');
         $('[data-js-ref=list-upcoming-dojos]').removeClass('hidden');
         $('[data-js-ref=list-all-dojos]').addClass('hidden');
-        mixpanel.track('View Upcoming Dojos');
         break;
 
       case 'all-dojos':
@@ -198,7 +197,6 @@
         $('[data-js-ref=list-upcoming-dojos]').addClass('hidden');
         $('[data-js-ref=list-all-dojos]').removeClass('hidden');
         mapBackground.resetFocus();
-        mixpanel.track('View All Dojos');
         break;
       }
     });
@@ -224,6 +222,4 @@
       window.location = a.attr("href");
     }
   }
-
-  mixpanel.track('View All Dojos');
 }());
