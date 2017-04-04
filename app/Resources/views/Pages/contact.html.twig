@@ -11,16 +11,6 @@
     Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
 {% endblock %}
 
-{% block customjs %}
-    <script type="text/javascript">
-        mixpanel.track("View Contact Page");
-
-        mixpanel.track_forms("#contactform", "Email Sent", {
-            'Dojo Name': $('#contact_ontvanger').find('option:selected').text()
-        });
-    </script>
-{% endblock %}
-
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
