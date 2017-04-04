@@ -4,15 +4,7 @@
 <script type="text/javascript">
     $('#dojoeventlist a').on('click', function(e){
         var el = $(e.target);
-
-        mixpanel.track("Register for dojo", {
-            "Dojo Name": el.data('dojo'),
-            "Dojo Event Date": el.data('dojo-date'),
-            "Registration Location": 'homepage'
-        });
     });
-
-    mixpanel.track("View Homepage");
 </script>
 {% endblock %}
 
