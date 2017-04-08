@@ -11,9 +11,9 @@ parameters:
     # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
-    mailer_host:       smtp.mandrillapp.com
-    mailer_user:       chris@coderdojo.nl
-    mailer_password:   insert-password
+    mailer_host:       smtp.mailgun.org
+    mailer_user:       postmaster@sandbox988ea66b7a98450f9b55998cc8101822.mailgun.org
+    mailer_password:   4b95df5909f4dcee83273e0652b9c095
     mailer_port:       587
 
     # A secret key that's used to generate certain security-related tokens
@@ -25,3 +25,5 @@ parameters:
 
     # Sentry key
     sentry: "https://public:secret@sentry.io/119482"
+
+    dev_email: 'dev@email.com'

@@ -30,8 +30,8 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-#swiftmailer:
-#    delivery_address: chris@coderdojo.nl
+swiftmailer:
+    delivery_address: '%dev_email%'
 
 # Don't log to sentry on dev environment
 sentry:
