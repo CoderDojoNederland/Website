@@ -46,7 +46,7 @@ class CocRequest
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $notes;
 
@@ -107,7 +107,7 @@ class CocRequest
      * @param string $letters
      * @param string $name
      * @param string $email
-     * @param string $notes
+     * @param string|null $notes
      * @param User $requestedBy
      * @param Dojo $requestedFor
      */
@@ -116,7 +116,7 @@ class CocRequest
         $letters,
         $name,
         $email,
-        $notes,
+        $notes=null,
         User $requestedBy,
         Dojo $requestedFor
     ) {
@@ -204,7 +204,7 @@ class CocRequest
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getNotes()
     {
