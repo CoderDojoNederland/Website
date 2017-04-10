@@ -52,7 +52,7 @@ class CocRequestFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => [
-                    'placeholder' => 'Let op, dit moet een persoonlijk emailadres zijn.'
+                    'placeholder' => 'Let op, dit moet een persoonlijk emailadres zijn, niet van de dojo (@coderdojo-[stad].nl)'
                 ]
             ])
             ->add('notes', TextareaType::class, [
