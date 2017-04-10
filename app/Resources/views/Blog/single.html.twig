@@ -1,0 +1,18 @@
+{% extends ":Blog:index.html.twig" %}
+
+{% block articles %}
+    <div class="blog margin-bottom-40">
+        <h2><a href="#">{{ article.title|capitalize }}</a></h2>
+        <div class="blog-post-tags">
+            <ul class="list-unstyled list-inline blog-info">
+                <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
+                <li><i class="icon-user"></i> {{ article.author.name }}</li>
+                <li><i class="icon-tags"></i> <a href="{{ path('blog_category', {'category':category.slug}) }}">{{ article.category.title|capitalize }}</a></li>
+            </ul>
+        </div>
+        <div class="blog-img">
+            <img class="img-responsive" src="{{ article.image }}" alt="">
+        </div>
+        {{ article.body|raw }}
+    </div>
+{% endblock articles %}

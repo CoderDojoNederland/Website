@@ -1,0 +1,44 @@
+{% extends ":Blog:index.html.twig" %}
+
+{% block articles %}
+    {% for article in articles %}
+        <div class="row blog blog-medium margin-bottom-40">
+            <div class="col-md-5">
+                <img class="img-responsive" src="{{ article.image }}" alt="{{ article.title }}">
+            </div>
+            <div class="col-md-7">
+                <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
+                    <h2>{{ article.title|capitalize }}</h2>
+                </a>
+                <ul class="list-unstyled list-inline blog-info">
+                    <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
+                    <li><i class="icon-user"></i> {{ article.author.name }}</li>
+                    <li><i class="icon-tags"></i> {{ article.category.title }}</li>
+                </ul>
+                <p>{{ article.body|truncate(300, true)|striptags }}</p>
+                <p><a class="btn-u btn-u-small" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}"><i class="icon-location-arrow"></i> Read More</a></p>
+            </div>
+        </div>
+
+        {% if not loop.last %}
+            <hr class="margin-bottom-40">
+        {% endif %}
+    {% endfor %}
+{% endblock articles %}
+
+{% block pagination %}
+    <div class="text-center">
+        <ul class="pagination">
+            <li><a href="#">«</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li class="active"><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">»</a></li>
+        </ul>
+    </div>
+{% endblock pagination %}

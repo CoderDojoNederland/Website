@@ -1,0 +1,68 @@
+{% extends "::index.html.twig" %}
+
+{% block content %}
+    <div class="breadcrumbs margin-bottom-40">
+        <div class="container">
+            <h1 class="pull-left">Nieuws</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="{{ path('blog_index') }}">Home</a></li>
+                {% if category is defined %}
+                    <li><a href="{{ path('blog_category', {'category':category.slug}) }}">{{ category.title }}</a></li>
+                {% endif %}
+                {% if article is defined %}
+                    <li class="active">{{ article.title }}</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div><!--/breadcrumbs-->
+
+    <!--=== Content Part ===-->
+    <div class="container">
+        <div class="row blog-page">
+            <!-- Left Sidebar -->
+            <div class="col-md-9 md-margin-bottom-40">
+
+                <!--Blog Posts-->
+                {% block articles %}{% endblock articles %}
+                <!--End Blog Posts-->
+
+                <!--Pagination-->
+                {% block pagination %}{% endblock pagination %}
+                <!--End Pagination-->
+            </div>
+            <!-- End Left Sidebar -->
+
+            <!-- Right Sidebar -->
+            <div class="col-md-3">
+                <!-- Posts -->
+                <div class="categories margin-bottom-40">
+                    <div class="headline headline-md"><h2>Categorieen</h2></div>
+                    <ul class="list-unstyled margin-bottom-30">
+                        <li>
+                            <a href="#">Wereldwijd (18)</a>
+                        </li>
+                        <li>
+                            <a href="#">Organisatie (12)</a>
+                        </li>
+                        <li>
+                            <a href="#">Events (4)</a>
+                        </li>
+                        <li>
+                            <a href="#">Dojo's aan het woord (23)</a>
+                        </li>
+                    </ul>
+                </div><!--/posts-->
+                <!-- End Posts -->
+            </div>
+            <!-- End Right Sidebar -->
+        </div><!--/row-->
+    </div><!--/container-->
+{% endblock %}
+
+{% block description %}
+    Lees hier het laatste nieuws over CoderDojo binnen Nederland. Hier vind je ook vertaalde artikelen van coderdojo.com
+{% endblock %}
+
+{% block fbdescription %}
+    Lees hier het laatste nieuws over CoderDojo binnen Nederland. Hier vind je ook vertaalde artikelen van coderdojo.com
+{% endblock %}
