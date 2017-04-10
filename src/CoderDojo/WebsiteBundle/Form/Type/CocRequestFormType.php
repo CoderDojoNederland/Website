@@ -50,13 +50,17 @@ class CocRequestFormType extends AbstractType
                 'label' => 'Achternaam'
             ))
             ->add('email', EmailType::class, [
-                'label' => 'Email'
+                'label' => 'Email',
+                'attr' => [
+                    'placeholder' => 'Let op, dit moet een persoonlijk emailadres zijn, niet van de dojo (@coderdojo-[stad].nl)'
+                ]
             ])
             ->add('notes', TextareaType::class, [
                 'label' => 'Opmerkingen',
                 'attr' => [
                     'placeholder' => 'Let op, dit wordt ook met de vrijwilliger gedeeld!'
-                ]
+                ],
+                'required' => false
             ])
             ->add('dojo', ChoiceType::class, array(
                 'label' => 'Dojo',
