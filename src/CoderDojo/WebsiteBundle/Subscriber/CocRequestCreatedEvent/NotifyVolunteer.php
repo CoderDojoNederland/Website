@@ -51,7 +51,7 @@ class NotifyVolunteer
             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
             ->setReplyTo('contact@coderdojo.nl')
             ->setTo($coc->getEmail(), $coc->getLetters().' '.$coc->getName())
-            ->setBcc('chris+vog@coderdojo.nl')
+            ->setBcc('chris+vogrequest@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
                 $this->templating->render(
