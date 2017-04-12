@@ -41,6 +41,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setLastName('Lastname');
         $user->setPhone('0000000000');
         $user->setEnabled(true);
+        $user->addRole('ROLE_ADMIN');
 
         $encoder = $this->container
             ->get('security.encoder_factory')

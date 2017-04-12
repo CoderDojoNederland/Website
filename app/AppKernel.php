@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
             new CoderDojo\CliBundle\CoderDojoCliBundle(),
             new CoderDojo\WebsiteBundle\CoderDojoWebsiteBundle(),
+            new CoderDojo\AdminBundle\AdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
