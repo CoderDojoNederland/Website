@@ -41,6 +41,7 @@ class CategoryController extends Controller
     public function newAction(Request $request)
     {
         $form = $this->createForm(CategoryType::class);
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

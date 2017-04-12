@@ -10,9 +10,13 @@
                 </div>
 
                 <div class="x_content">
-                    {{ form_start(form) }}
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                     {{ form_widget(form) }}
-                    <input type="submit" value="Create" />
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input type="submit" value="Opslaan" class="btn btn-success" />
+                        </div>
+                    </div>
                     {{ form_end(form) }}
                 </div>
             </div>
