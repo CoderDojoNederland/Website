@@ -2,8 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\DataFixtures\ORM;
 
-use CoderDojo\BlogBundle\Entity\Author;
-use CoderDojo\BlogBundle\Entity\Category;
+use CoderDojo\WebsiteBundle\Entity\Category;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

@@ -2,9 +2,9 @@
 
 namespace CoderDojo\WebsiteBundle\DataFixtures\ORM;
 
-use CoderDojo\BlogBundle\Entity\Article;
-use CoderDojo\BlogBundle\Entity\Author;
-use CoderDojo\BlogBundle\Entity\Category;
+use CoderDojo\WebsiteBundle\Entity\Article;
+use CoderDojo\WebsiteBundle\Entity\Category;
+use CoderDojo\WebsiteBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -43,7 +43,7 @@ class LoadArticleData extends AbstractFixture implements FixtureInterface, Conta
                 'image' => 'http://lorempixel.com/800/600',
                 'publishedAt' => '-2 days',
                 'category' => 'category_organisation',
-                'author' => 'author_bill',
+                'author' => 'user',
                 'reference' => 'article_1'
             ],
             [
@@ -52,13 +52,13 @@ class LoadArticleData extends AbstractFixture implements FixtureInterface, Conta
                 'image' => 'http://lorempixel.com/1000/400?v=2',
                 'publishedAt' => '-1 week',
                 'category' => 'category_worldwide',
-                'author' => 'author_james',
+                'author' => 'user',
                 'reference' => 'article_2'
             ],
         ];
 
         foreach ($articles as $article) {
-            /** @var Author $author */
+            /** @var User $author */
             $author = $this->getReference($article['author']);
             /** @var Category $category */
             $category = $this->getReference($article['category']);

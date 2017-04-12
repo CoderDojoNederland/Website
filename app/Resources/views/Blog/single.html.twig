@@ -6,7 +6,7 @@
         <div class="blog-post-tags">
             <ul class="list-unstyled list-inline blog-info">
                 <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
-                <li><i class="icon-user"></i> {{ article.author.name }}</li>
+                <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
                 <li><i class="icon-tags"></i> <a href="{{ path('blog_category', {'category':category.slug}) }}">{{ article.category.title|capitalize }}</a></li>
             </ul>
         </div>

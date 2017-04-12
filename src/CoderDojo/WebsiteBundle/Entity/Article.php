@@ -1,13 +1,13 @@
 <?php
 
-namespace CoderDojo\BlogBundle\Entity;
+namespace CoderDojo\WebsiteBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="CoderDojo\BlogBundle\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="CoderDojo\WebsiteBundle\Repository\ArticleRepository")
  */
 class Article
 {
@@ -57,16 +57,16 @@ class Article
     /**
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="CoderDojo\BlogBundle\Entity\Category", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(referencedColumnName="uuid")
      */
     private $category;
 
     /**
-     * @var Author
+     * @var User
      *
-     * @ORM\ManyToOne(targetEntity="CoderDojo\BlogBundle\Entity\Author", inversedBy="articles")
-     * @ORM\JoinColumn(referencedColumnName="uuid")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User", inversedBy="articles")
+     * @ORM\JoinColumn(referencedColumnName="id")
      */
     private $author;
 
@@ -77,9 +77,9 @@ class Article
      * @param           $image
      * @param \DateTime $publishedAt
      * @param Category  $category
-     * @param Author    $author
+     * @param User    $author
      */
-    public function __construct($uuid, $title, $body, $image, \DateTime $publishedAt, Category $category, Author $author)
+    public function __construct($uuid, $title, $body, $image, \DateTime $publishedAt, Category $category, User $author)
     {
         $this->uuid = $uuid;
         $this->title = $title;
@@ -197,7 +197,7 @@ class Article
     }
 
     /**
-     * @return Author
+     * @return User
      */
     public function getAuthor()
     {
@@ -205,9 +205,9 @@ class Article
     }
 
     /**
-     * @param Author $author
+     * @param User $author
      */
-    public function setAuthor(Author $author)
+    public function setAuthor(User $author)
     {
         $this->author = $author;
     }

@@ -12,7 +12,7 @@
                 </a>
                 <ul class="list-unstyled list-inline blog-info">
                     <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
-                    <li><i class="icon-user"></i> {{ article.author.name }}</li>
+                    <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
                     <li><i class="icon-tags"></i> {{ article.category.title }}</li>
                 </ul>
                 <p>{{ article.body|truncate(300, true)|striptags }}</p>

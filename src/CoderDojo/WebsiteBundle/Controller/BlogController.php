@@ -1,7 +1,9 @@
 <?php
 
-namespace CoderDojo\BlogBundle\Controller;
+namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Entity\Article;
+use CoderDojo\WebsiteBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,14 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @Route("/nieuws")
  */
-class ViewController extends Controller
+class BlogController extends Controller
 {
     /**
      * @Route("/", name="blog_index")
      */
     public function indexAction()
     {
-        $articles = $this->getDoctrine()->getRepository('BlogBundle:Article')->findAll();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
 
         return $this->render(':Blog:list.html.twig', [
             'articles' => $articles
@@ -28,11 +30,11 @@ class ViewController extends Controller
      */
     public function categoryAction($category)
     {
-        $category = $this->getDoctrine()->getRepository('BlogBundle:Category')->findOneBy([
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy([
             'slug' => $category
         ]);
 
-        $articles = $this->getDoctrine()->getRepository('BlogBundle:Article')->findBy(
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
             [
                 'category' => $category
             ]
@@ -52,11 +54,11 @@ class ViewController extends Controller
      */
     public function viewArticleAction($category, $slug)
     {
-        $category = $this->getDoctrine()->getRepository('BlogBundle:Category')->findOneBy([
+        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy([
             'slug' => $category
         ]);
 
-        $article = $this->getDoctrine()->getRepository('BlogBundle:Article')->findOneBy([
+        $article = $this->getDoctrine()->getRepository(Article::class)->findOneBy([
             'category' => $category,
             'slug' => $slug
         ]);

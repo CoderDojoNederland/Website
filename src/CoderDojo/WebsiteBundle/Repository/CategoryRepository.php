@@ -1,6 +1,6 @@
 <?php
 
-namespace CoderDojo\BlogBundle\Repository;
+namespace CoderDojo\WebsiteBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

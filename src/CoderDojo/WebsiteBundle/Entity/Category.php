@@ -1,6 +1,6 @@
 <?php
 
-namespace CoderDojo\BlogBundle\Entity;
+namespace CoderDojo\WebsiteBundle\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="CoderDojo\BlogBundle\Repository\AuthorRepository")
+ * @ORM\Entity(repositoryClass="CoderDojo\WebsiteBundle\Repository\CategoryRepository")
  */
-class Author
+class Category
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ class Author
      *
      * @ORM\Column(type="string")
      */
-    private $name;
+    private $title;
 
     /**
      * @var string
@@ -37,20 +37,20 @@ class Author
     /**
      * @var Article[]
      *
-     * @ORM\OneToMany(targetEntity="CoderDojo\BlogBundle\Entity\Article", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="CoderDojo\WebsiteBundle\Entity\Article", mappedBy="category")
      */
     private $articles;
 
     /**
      * @param string $uuid
-     * @param string $name
+     * @param string $title
      */
-    public function __construct($uuid, $name)
+    public function __construct($uuid, $title)
     {
         $this->uuid = $uuid;
-        $this->name = $name;
+        $this->title = $title;
         $slugger = new Slugify();
-        $this->slug = $slugger->slugify($name);
+        $this->slug = $slugger->slugify($title);
         $this->articles = new ArrayCollection();
     }
 
@@ -73,17 +73,17 @@ class Author
     /**
      * @return string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 
     /**
