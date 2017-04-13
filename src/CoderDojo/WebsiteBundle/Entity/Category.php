@@ -117,4 +117,9 @@ class Category
     {
         $this->articles->add($article);
     }
+
+    public function __toString()
+    {
+        return $this->getUuid();
+    }
 }

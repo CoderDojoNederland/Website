@@ -72,28 +72,27 @@ class ArticleController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing category entity.
+     * Displays a form to edit an existing article entity.
      *
-     * @Route("/{id}/edit", name="admin_blog_category_edit")
+     * @Route("/{id}/edit", name="admin_blog_article_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Category $category)
+    public function editAction(Request $request, Article $article)
     {
-        $editForm = $this->createForm(CategoryType::class, $category);
+        $editForm = $this->createForm(ArticleType::class, $article);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $category->setTitle($editForm->get('title')->getData());
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->get('session')->getFlashBag()->add('success', 'Categorie opgeslagen!');
+            $this->get('session')->getFlashBag()->add('success', 'Artikel opgeslagen!');
 
-            return $this->redirectToRoute('admin_blog_category_index');
+            return $this->redirectToRoute('admin_blog_article_index');
         }
 
-        return $this->render('AdminBundle:Blog/Category:edit.html.twig', array(
-            'category' => $category,
+        return $this->render('AdminBundle:Blog/Article:edit.html.twig', array(
+            'article' => $article,
             'edit_form' => $editForm->createView()
         ));
     }
@@ -116,7 +115,7 @@ class ArticleController extends Controller
             $this->getDoctrine()->getManager()->remove($category);
             $this->getDoctrine()->getManager()->flush();
 
-            $this->get('session')->getFlashBag()->add('success', 'De categorie is verwijderd!');
+            $this->get('session')->getFlashBag()->add('success', 'Het artikel is verwijderd!');
 
             return $this->redirectToRoute('admin_blog_category_index');
         }

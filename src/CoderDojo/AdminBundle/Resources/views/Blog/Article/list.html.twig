@@ -39,7 +39,7 @@
                                         <td>{{ article.slug }}</td>
                                         <td>{{ article.publishedAt|localizeddate }}</td>
                                         <td class=" last">
-                                            <a href="{{ path('admin_blog_category_edit', {'id':article.uuid}) }}" class="btn btn-warning btn-xs">
+                                            <a href="{{ path('admin_blog_article_edit', {'id':article.uuid}) }}" class="btn btn-warning btn-xs">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
                                             <a href="{{ path('admin_blog_category_delete', {'id':article.uuid}) }}" class="btn btn-danger btn-xs">

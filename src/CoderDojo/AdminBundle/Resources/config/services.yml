@@ -1,8 +1,6 @@
 services:
   admin.form.article:
     class: CoderDojo\AdminBundle\Form\Type\ArticleType
-    arguments:
-      - '@doctrine'
     tags:
       - { name: form.type, alias: admin_form_article }
 
