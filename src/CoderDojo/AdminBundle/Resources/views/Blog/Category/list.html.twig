@@ -42,7 +42,7 @@
                                             <a href="{{ path('admin_blog_category_edit', {'id':category.uuid}) }}" class="btn btn-warning btn-xs">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-xs">
+                                            <a href="{{ path('admin_blog_category_delete', {'id':category.uuid}) }}" class="btn btn-danger btn-xs">
                                                 <span class="fa fa-trash"></span>
                                             </a>
                                         </td>

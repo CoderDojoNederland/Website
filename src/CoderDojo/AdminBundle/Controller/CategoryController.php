@@ -87,4 +87,32 @@ class CategoryController extends Controller
             'edit_form' => $editForm->createView()
         ));
     }
+
+    /**
+     * Delete a category
+     *
+     * @Route("/{id}/delete", name="admin_blog_category_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteAction(Request $request, Category $category)
+    {
+        if (count($category->getArticles())) {
+            $this->get('session')->getFlashBag()->add('error', 'Deze cetegorie bevat nog artikelen.');
+
+            return $this->redirectToRoute('admin_blog_category_index');
+        }
+
+        if ($request->getMethod() === "POST") {
+            $this->getDoctrine()->getManager()->remove($category);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'De categorie is verwijderd!');
+
+            return $this->redirectToRoute('admin_blog_category_index');
+        }
+
+        return $this->render('AdminBundle:Blog/Category:delete.html.twig', [
+            'category' => $category
+        ]);
+    }
 }
