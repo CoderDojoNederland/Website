@@ -50,7 +50,7 @@ class Article
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $publishedAt;
 
@@ -79,7 +79,7 @@ class Article
      * @param Category  $category
      * @param User    $author
      */
-    public function __construct($uuid, $title, $body, $image, \DateTime $publishedAt, Category $category, User $author)
+    public function __construct($uuid, $title, $body, $image, \DateTime $publishedAt = null, Category $category = null, User $author)
     {
         $this->uuid = $uuid;
         $this->title = $title;

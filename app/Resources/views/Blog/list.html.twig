@@ -15,7 +15,7 @@
                     <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
                     <li><i class="icon-tags"></i> {{ article.category.title }}</li>
                 </ul>
-                <p>{{ article.body|truncate(300, true)|striptags }}</p>
+                <p>{{ article.body|striptags|truncate(300, true)|raw }}</p>
                 <p><a class="btn-u btn-u-small" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}"><i class="icon-location-arrow"></i> Read More</a></p>
             </div>
         </div>

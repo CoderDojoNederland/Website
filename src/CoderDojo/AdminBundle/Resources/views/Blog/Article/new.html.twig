@@ -1,0 +1,42 @@
+{% extends 'AdminBundle::index.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Artikelen</h2>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    {{ form_widget(form) }}
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input type="submit" value="Opslaan" class="btn btn-success" />
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block custom_js %}
+    <script type="application/javascript" language="JavaScript">
+        CKEDITOR.replace( 'coderdojo_websitebundle_category[body]',{
+            customConfig: '/js/ckeditor_config.js'
+        });
+
+        $(document).ready(function() {
+            $('#coderdojo_websitebundle_category_publishedAt').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+{% endblock %}
