@@ -4,7 +4,7 @@
     {% for article in articles %}
         <div class="row blog blog-medium margin-bottom-40">
             <div class="col-md-5">
-                <img class="img-responsive" src="{{ article.image }}" alt="{{ article.title }}">
+                <img class="img-responsive" src="{{ asset("/articles/#{article.image}") }}" alt="{{ article.title }}">
             </div>
             <div class="col-md-7">
                 <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">

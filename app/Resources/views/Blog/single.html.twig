@@ -11,7 +11,7 @@
             </ul>
         </div>
         <div class="blog-img">
-            <img class="img-responsive" src="{{ article.image }}" alt="">
+            <img class="img-responsive" src="{{ asset("/articles/#{article.image}") }}" alt="{{ article.title }}">
         </div>
         {{ article.body|raw }}
     </div>

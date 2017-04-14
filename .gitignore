@@ -14,5 +14,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/articles/
 /.idea
 /.vagrant
