@@ -34,6 +34,7 @@
         CKEDITOR.plugins.addExternal('widgetselection','/js/ckeditor/widgetselection/');
         CKEDITOR.plugins.addExternal('lineutils','/js/ckeditor/lineutils/');
         CKEDITOR.plugins.addExternal('notification','/js/ckeditor/notification/');
+        CKEDITOR.config.contentsCss = '/css/ckeditor.css' ;
         CKEDITOR.replace( 'coderdojo_websitebundle_article[body]',{
             customConfig: '/js/ckeditor_config.js',
             extraPlugins: 'uploadimage'

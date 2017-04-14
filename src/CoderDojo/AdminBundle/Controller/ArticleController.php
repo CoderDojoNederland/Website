@@ -107,6 +107,8 @@ class ArticleController extends Controller
                 $article->setImage($image);
             }
 
+            $article->setSlug($editForm->get('slug')->getData());
+
             $this->getDoctrine()->getManager()->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'Artikel opgeslagen!');

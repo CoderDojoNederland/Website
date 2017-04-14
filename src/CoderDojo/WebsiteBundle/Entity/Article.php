@@ -195,6 +195,14 @@ class Article
     }
 
     /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
      * @return Category
      */
     public function getCategory()

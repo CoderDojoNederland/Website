@@ -1,0 +1,12 @@
+@import '../bundles/coderdojowebsite/plugins/bootstrap/css/bootstrap.css';
+@import '../bundles/coderdojowebsite/css/style.css';
+@import '../bundles/coderdojowebsite/css/pages/blog.css';
+@import '../bundles/coderdojowebsite/css/themes/orange.css';
+@import '../bundles/coderdojowebsite/css/app.css';
+
+body {
+    width: 848px;
+    color: #555;
+    line-height: 1.6;
+
+}

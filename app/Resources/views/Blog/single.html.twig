@@ -1,18 +1,41 @@
 {% extends ":Blog:index.html.twig" %}
 
+{% block title %}{{ article.title }} | Nieuws | CoderDojo Nederland{% endblock title %}
+{% block fbtitle %}{{ article.title }} | Nieuws | CoderDojo Nederland{% endblock fbtitle %}
+{% block description %}{{ article.body|striptags|truncate(300, true)|raw }}{% endblock description %}
+{% block fbdescription %}{{ article.body|striptags|truncate(300, true)|raw }}{% endblock fbdescription %}
+{% block og_image %}https://www.coderdojo.nl{{asset("articles/#{article.image}")}}{% endblock %}
+{% block custom_headers %}
+    <meta property="og:type"   content="article" />
+    <meta property="og:url"    content="{{ url('blog_single', {'category':article.category.slug, 'slug':article.slug}) }}" />
+    <meta property="authod" content="{{ article.author.firstName }} {{ article.author.lastName }}"/>
+{% endblock custom_headers %}
+
 {% block articles %}
-    <div class="blog margin-bottom-40">
-        <h2><a href="#">{{ article.title|capitalize }}</a></h2>
-        <div class="blog-post-tags">
-            <ul class="list-unstyled list-inline blog-info">
-                <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
-                <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
-                <li><i class="icon-tags"></i> <a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ article.category.title|capitalize }}</a></li>
-            </ul>
+
+        <div class="blog blog-single margin-bottom-40">
+            <h2><a href="#">{{ article.title|capitalize }}</a></h2>
+            <div class="blog-post-tags">
+                <ul class="list-unstyled list-inline blog-info">
+                    <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
+                    <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
+                    <li><i class="icon-tags"></i> <a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ article.category.title|capitalize }}</a></li>
+                </ul>
+            </div>
+            <div class="blog-img">
+                <img class="img-responsive" src="{{ asset("/articles/#{article.image}") }}" alt="{{ article.title }}">
+            </div>
+
+            <div class="margin-bottom-30">
+                {{ article.body|raw }}
+            </div>
+
+            <footer>
+                <div class="addthis_inline_share_toolbox"></div>
+            </footer>
         </div>
-        <div class="blog-img">
-            <img class="img-responsive" src="{{ asset("/articles/#{article.image}") }}" alt="{{ article.title }}">
-        </div>
-        {{ article.body|raw }}
-    </div>
+
 {% endblock articles %}
+{% block customjs %}
+    <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f11e34318a0365"></script>
+{% endblock customjs %}
