@@ -3,7 +3,6 @@
 namespace CoderDojo\AdminBundle\Controller;
 
 use CoderDojo\AdminBundle\Form\Type\ArticleType;
-use CoderDojo\AdminBundle\Form\Type\CategoryType;
 use CoderDojo\WebsiteBundle\Entity\Article;
 use CoderDojo\WebsiteBundle\Entity\Category;
 use Ramsey\Uuid\Uuid;
@@ -12,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -33,6 +33,22 @@ class ArticleController extends Controller
 
         return $this->render('AdminBundle:Blog/Article:list.html.twig', [
             'articles' => $articles,
+        ]);
+    }
+
+    /**
+     * @Route("/upload-image", name="admin_blog_article_upload_image")
+     * @Method({"POST"})
+     */
+    public function imageUploadAction(Request $request)
+    {
+        $uploadedFile = $request->files->get('upload');
+        $filename = $this->uploadHeader($uploadedFile);
+
+        return new JsonResponse([
+            'uploaded' => 1,
+            'filename' => $filename,
+            'url' => '/articles/'.$filename
         ]);
     }
 
@@ -86,8 +102,10 @@ class ArticleController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $image = $this->uploadHeader($editForm->get('image')->getData());
-            $article->setImage($image);
+            if($editForm->get('image')->getData()) {
+                $image = $this->uploadHeader($editForm->get('image')->getData());
+                $article->setImage($image);
+            }
 
             $this->getDoctrine()->getManager()->flush();
 

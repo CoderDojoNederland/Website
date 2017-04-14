@@ -26,8 +26,17 @@
 
 {% block custom_js %}
     <script type="application/javascript" language="JavaScript">
+        CKEDITOR.plugins.addExternal('uploadimage','/js/ckeditor/uploadimage/');
+        CKEDITOR.plugins.addExternal('uploadwidget','/js/ckeditor/uploadwidget/');
+        CKEDITOR.plugins.addExternal('filetools','/js/ckeditor/filetools/');
+        CKEDITOR.plugins.addExternal('widget','/js/ckeditor/widget/');
+        CKEDITOR.plugins.addExternal('notificationaggregator','/js/ckeditor/notificationaggregator/');
+        CKEDITOR.plugins.addExternal('widgetselection','/js/ckeditor/widgetselection/');
+        CKEDITOR.plugins.addExternal('lineutils','/js/ckeditor/lineutils/');
+        CKEDITOR.plugins.addExternal('notification','/js/ckeditor/notification/');
         CKEDITOR.replace( 'coderdojo_websitebundle_article[body]',{
-            customConfig: '/js/ckeditor_config.js'
+            customConfig: '/js/ckeditor_config.js',
+            extraPlugins: 'uploadimage'
         });
 
         $(document).ready(function() {
