@@ -18,7 +18,7 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(['published'=>true],['publishedAt'=>'DESC']);
 
         return $this->render(':Blog:list.html.twig', [
             'articles' => $articles

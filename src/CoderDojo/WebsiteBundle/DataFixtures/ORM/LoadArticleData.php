@@ -36,26 +36,23 @@ class LoadArticleData extends AbstractFixture implements FixtureInterface, Conta
      */
     public function load(ObjectManager $manager)
     {
-        $articles = [
-            [
-                'title' => 'Some Awesome Title',
+        $articles = [];
+
+        for ($i = 0; $i < 40; $i++) {
+            $rand = rand(1,5);
+            $published = rand(0,1);
+
+            $articles[] = [
+                'title' => 'Some Awesome Title '.$i,
                 'body' => 'Lorem Ipsum Dolor Sit Amet. ',
-                'image' => 'http://lorempixel.com/800/600',
-                'publishedAt' => '-2 days',
-                'category' => 'category_organisation',
+                'image' => 'http://lorempixel.com/800/600?v='.$i,
+                'publishedAt' => '-'.$i.' days',
+                'category' => 'category_'.$rand,
+                'reference' => 'article_'.$i,
+                'published' => $published,
                 'author' => 'user',
-                'reference' => 'article_1'
-            ],
-            [
-                'title' => 'Another Super Cool Blog',
-                'body' => 'Lorem Ipsum Dolor Sit Amet. ',
-                'image' => 'http://lorempixel.com/1000/400?v=2',
-                'publishedAt' => '-1 week',
-                'category' => 'category_worldwide',
-                'author' => 'user',
-                'reference' => 'article_2'
-            ],
-        ];
+            ];
+        }
 
         foreach ($articles as $article) {
             /** @var User $author */
@@ -74,10 +71,13 @@ class LoadArticleData extends AbstractFixture implements FixtureInterface, Conta
                 $article['title'],
                 $body,
                 $article['image'],
-                new \DateTime($article['publishedAt']),
                 $category,
                 $author
             );
+
+            if($article['published']) {
+                $entity->publish(new \DateTime($article['publishedAt']));
+            }
 
             $this->setReference($article['reference'], $entity);
             $manager->persist($entity);

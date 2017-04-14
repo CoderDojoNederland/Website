@@ -26,8 +26,8 @@
                             <thead>
                             <tr class="headings">
                                 <th class="column-title">Titel </th>
-                                <th class="column-title">Slug </th>
-                                <th class="column-title">Online </th>
+                                <th class="column-title">Auteur </th>
+                                <th class="column-title">Status </th>
                                 <th class="column-title no-link last"><span class="nobr">Action</span></th>
                             </tr>
                             </thead>
@@ -36,13 +36,29 @@
                                 {% for article in articles %}
                                     <tr class="{% if loop.index is odd %}even{% else %}odd{% endif %} pointer">
                                         <td>{{ article.title }}</td>
-                                        <td>{{ article.slug }}</td>
-                                        <td>{{ article.publishedAt|localizeddate }}</td>
+                                        <td>{{ article.author.firstName }} {{ article.author.lastName }}</td>
+                                        <td>
+                                            {% if article.published %}
+                                                {{ article.publishedAt|localizeddate }}
+                                                <span class="label label-success">online</span>
+                                            {% else %}
+                                                <span class="label label-danger">offline</span>
+                                            {% endif %}
+                                        </td>
                                         <td class=" last">
                                             <a href="{{ path('admin_blog_article_edit', {'id':article.uuid}) }}" class="btn btn-warning btn-xs">
                                                 <span class="fa fa-pencil"></span>
                                             </a>
-                                            <a href="{{ path('admin_blog_category_delete', {'id':article.uuid}) }}" class="btn btn-danger btn-xs">
+                                            {% if article.published %}
+                                                <a href="{{ path('admin_blog_article_unpublish', {'id':article.uuid}) }}" class="btn btn-warning btn-xs" title="Offline halen">
+                                                    <span class="fa fa-lock"></span>
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ path('admin_blog_article_publish', {'id':article.uuid}) }}" class="btn btn-success btn-xs" title="Publiceren">
+                                                    <span class="fa fa-unlock"></span>
+                                                </a>
+                                            {% endif %}
+                                            <a href="{{ path('admin_blog_article_delete', {'id':article.uuid}) }}" class="btn btn-danger btn-xs">
                                                 <span class="fa fa-trash"></span>
                                             </a>
                                         </td>

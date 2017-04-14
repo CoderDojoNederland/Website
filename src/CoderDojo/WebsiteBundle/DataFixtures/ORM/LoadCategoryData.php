@@ -37,11 +37,23 @@ class LoadCategoryData extends AbstractFixture implements FixtureInterface, Cont
         $categories = [
             [
                 'title' => 'Wereldwijd',
-                'reference' => 'category_worldwide'
+                'reference' => 'category_1'
             ],
             [
                 'title' => 'Organisatie',
-                'reference' => 'category_organisation'
+                'reference' => 'category_2'
+            ],
+            [
+                'title' => 'Promotie',
+                'reference' => 'category_3'
+            ],
+            [
+                'title' => 'Materiaal',
+                'reference' => 'category_4'
+            ],
+            [
+                'title' => 'Verhalen',
+                'reference' => 'category_5'
             ]
         ];
 

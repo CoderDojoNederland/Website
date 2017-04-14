@@ -27,7 +27,7 @@ class ArticleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $articles = $em->getRepository('CoderDojoWebsiteBundle:Article')->findAll();
+        $articles = $em->getRepository('CoderDojoWebsiteBundle:Article')->findBy([],['createdAt'=>'DESC']);
 
         return $this->render('AdminBundle:Blog/Article:list.html.twig', [
             'articles' => $articles,
@@ -52,7 +52,6 @@ class ArticleController extends Controller
                 $form->get('title')->getData(),
                 $form->get('body')->getData(),
                 'image.png',
-                $form->get('publishedAt')->getData() ? new \DateTime($form->get('publishedAt')->getData()) : null,
                 $this->getDoctrine()->getRepository(Category::class)->find($form->get('category')->getData()),
                 $this->getUser()
             );
@@ -100,28 +99,50 @@ class ArticleController extends Controller
     /**
      * Delete a category
      *
-     * @Route("/{id}/delete", name="admin_blog_category_delete")
+     * @Route("/{id}/delete", name="admin_blog_article_delete")
      * @Method({"GET", "POST"})
      */
-    public function deleteAction(Request $request, Category $category)
+    public function deleteAction(Request $request, Article $article)
     {
-        if (count($category->getArticles())) {
-            $this->get('session')->getFlashBag()->add('error', 'Deze cetegorie bevat nog artikelen.');
-
-            return $this->redirectToRoute('admin_blog_category_index');
-        }
-
         if ($request->getMethod() === "POST") {
-            $this->getDoctrine()->getManager()->remove($category);
+            $this->getDoctrine()->getManager()->remove($article);
             $this->getDoctrine()->getManager()->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'Het artikel is verwijderd!');
 
-            return $this->redirectToRoute('admin_blog_category_index');
+            return $this->redirectToRoute('admin_blog_article_index');
         }
 
-        return $this->render('AdminBundle:Blog/Category:delete.html.twig', [
-            'category' => $category
+        return $this->render('AdminBundle:Blog/Article:delete.html.twig', [
+            'article' => $article
         ]);
+    }
+
+    /**
+     * @Route("/{id}/publish", name="admin_blog_article_publish")
+     * @Method({"GET"})
+     */
+    public function publishAction(Article $article)
+    {
+        $article->publish();
+        $this->getDoctrine()->getManager()->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'Het artikel is gepuliceerd!');
+
+        return $this->redirectToRoute('admin_blog_article_index');
+    }
+
+    /**
+     * @Route("/{id}/unpublish", name="admin_blog_article_unpublish")
+     * @Method({"GET"})
+     */
+    public function unPublishAction(Article $article)
+    {
+        $article->unPublish();
+        $this->getDoctrine()->getManager()->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'Het artikel is offline!');
+
+        return $this->redirectToRoute('admin_blog_article_index');
     }
 }

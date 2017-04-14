@@ -50,6 +50,13 @@ class Article
     /**
      * @var \DateTime
      *
+     * @ORM\Column(type="boolean", options={"default":false})
+     */
+    private $published;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $publishedAt;
@@ -71,15 +78,21 @@ class Article
     private $author;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
      * @param           $uuid
      * @param           $title
      * @param           $body
      * @param           $image
-     * @param \DateTime $publishedAt
      * @param Category  $category
      * @param User    $author
      */
-    public function __construct($uuid, $title, $body, $image, \DateTime $publishedAt = null, Category $category = null, User $author)
+    public function __construct($uuid, $title, $body, $image, Category $category, User $author)
     {
         $this->uuid = $uuid;
         $this->title = $title;
@@ -87,9 +100,10 @@ class Article
         $this->slug = $slugger->slugify($title);
         $this->body = $body;
         $this->image = $image;
-        $this->publishedAt = $publishedAt;
         $this->category = $category;
         $this->author = $author;
+        $this->createdAt = new \DateTime();
+        $this->published = false;
     }
 
     /**
@@ -210,5 +224,47 @@ class Article
     public function setAuthor(User $author)
     {
         $this->author = $author;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param \DateTime $when
+     */
+    public function publish(\DateTime $when = null)
+    {
+        $this->published = true;
+
+        if ($this->publishedAt) {
+            return;
+        }
+
+        $this->publishedAt = $when ?: new \DateTime();
+    }
+
+    /**
+     * @param bool $withDate
+     */
+    public function unPublish($withDate = false)
+    {
+        $this->published = false;
+
+        if ($withDate) {
+            $this->publishedAt = null;
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

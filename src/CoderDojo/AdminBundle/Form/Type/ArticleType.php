@@ -21,13 +21,6 @@ class ArticleType extends AbstractType
             ->add('slug')
             ->add('body', TextareaType::class)
             ->add('image', FileType::class, ['required' => false, 'mapped'=>false])
-            ->add('publishedAt', DateType::class, [
-                'attr' => [
-                    'class'=>'date-picker form-control'
-                ],
-                'required'=> false,
-                'widget' => 'single_text'
-            ])
             ->add('category', EntityType::class, [
                 'class' => 'CoderDojo\WebsiteBundle\Entity\Category',
                 'choice_label' => 'title',
