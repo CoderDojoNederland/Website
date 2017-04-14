@@ -7,7 +7,7 @@
             <ul class="pull-right breadcrumb">
                 <li><a href="{{ path('blog_index') }}">Home</a></li>
                 {% if category is defined %}
-                    <li><a href="{{ path('blog_category', {'category':category.slug}) }}">{{ category.title }}</a></li>
+                    <li><a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ category.title }}</a></li>
                 {% endif %}
                 {% if article is defined %}
                     <li class="active">{{ article.title }}</li>

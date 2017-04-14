@@ -4,8 +4,12 @@ namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Entity\Article;
 use CoderDojo\WebsiteBundle\Entity\Category;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -16,33 +20,42 @@ class BlogController extends Controller
     /**
      * @Route("/", name="blog_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(['published'=>true],['publishedAt'=>'DESC']);
+        $qb = $this->getDoctrine()->getRepository(Article::class)->getPublishedQueryBuilder();
+        $adapter = new DoctrineORMAdapter($qb);
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage(6);
+
+        if($request->query->get('page')){
+            $pager->setCurrentPage($request->query->get('page'));
+        }
 
         return $this->render(':Blog:list.html.twig', [
-            'articles' => $articles
+            'articles' => $pager->getCurrentPageResults(),
+            'pager' => $pager
         ]);
     }
 
     /**
-     * @Route("/{category}", name="blog_category")
+     * @Route("/{slug}", name="blog_category")
+     * @ParamConverter("category", class="CoderDojoWebsiteBundle:Category", options={"slug" = "slug"})
      */
-    public function categoryAction($category)
+    public function categoryAction(Request $request, Category $category)
     {
-        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy([
-            'slug' => $category
-        ]);
+        $qb = $this->getDoctrine()->getRepository(Article::class)->getPublishedQueryBuilder($category);
+        $adapter = new DoctrineORMAdapter($qb);
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage(6);
 
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(
-            [
-                'category' => $category
-            ]
-        );
+        if($request->query->get('page')){
+            $pager->setCurrentPage($request->query->get('page'));
+        }
 
         return $this->render(':Blog:list.html.twig', [
-            'articles' => $articles,
-            'category' => $category
+            'articles' => $pager->getCurrentPageResults(),
+            'category' => $category,
+            'pager' => $pager
         ]);
     }
 

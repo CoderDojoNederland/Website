@@ -28,7 +28,15 @@
 
 {% block pagination %}
     <div class="text-center">
-        <ul class="pagination">
+        {{ pagerfanta(
+            pager,
+            'twitter_bootstrap3',
+            {
+                'prev_message':'Vorige',
+                'next_message':'Volgende'
+            }
+        ) }}
+        <!--<ul class="pagination">
             <li><a href="#">«</a></li>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
@@ -39,6 +47,6 @@
             <li><a href="#">7</a></li>
             <li><a href="#">8</a></li>
             <li><a href="#">»</a></li>
-        </ul>
+        </ul>-->
     </div>
 {% endblock pagination %}

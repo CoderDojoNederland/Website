@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new CoderDojo\CliBundle\CoderDojoCliBundle(),
             new CoderDojo\WebsiteBundle\CoderDojoWebsiteBundle(),
             new CoderDojo\AdminBundle\AdminBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
