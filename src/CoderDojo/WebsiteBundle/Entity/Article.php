@@ -72,7 +72,7 @@ class Article
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\User")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     private $author;

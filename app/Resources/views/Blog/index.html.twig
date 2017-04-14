@@ -5,7 +5,7 @@
         <div class="container">
             <h1 class="pull-left">Nieuws</h1>
             <ul class="pull-right breadcrumb">
-                <li><a href="{{ path('blog_index') }}">Home</a></li>
+                <li><a href="{{ path('blog_index') }}">Nieuws</a></li>
                 {% if category is defined %}
                     <li><a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ category.title }}</a></li>
                 {% endif %}
@@ -35,23 +35,7 @@
             <!-- Right Sidebar -->
             <div class="col-md-3 col-md-push-1">
                 <!-- Posts -->
-                <div class="categories margin-bottom-40">
-                    <div class="headline headline-md"><h2>Categorieen</h2></div>
-                    <ul class="list-unstyled margin-bottom-30">
-                        <li>
-                            <a href="#">Wereldwijd (18)</a>
-                        </li>
-                        <li>
-                            <a href="#">Organisatie (12)</a>
-                        </li>
-                        <li>
-                            <a href="#">Events (4)</a>
-                        </li>
-                        <li>
-                            <a href="#">Dojo's aan het woord (23)</a>
-                        </li>
-                    </ul>
-                </div><!--/posts-->
+                {{ render(controller('CoderDojoWebsiteBundle:Blog:renderCategoryWidget')) }}
                 <!-- End Posts -->
             </div>
             <!-- End Right Sidebar -->

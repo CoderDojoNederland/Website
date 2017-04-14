@@ -81,4 +81,13 @@ class BlogController extends Controller
             'category' => $category
         ]);
     }
+
+    public function renderCategoryWidgetAction()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        return $this->render(':Blog:_categories.html.twig', [
+            'categories' => $categories
+        ]);
+    }
 }
