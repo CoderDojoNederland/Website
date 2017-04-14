@@ -15,5 +15,6 @@
 /vendor/
 /web/bundles/
 /web/articles/
+/web/vendors/
 /.idea
 /.vagrant

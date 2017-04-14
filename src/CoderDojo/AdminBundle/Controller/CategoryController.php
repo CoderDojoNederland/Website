@@ -97,7 +97,7 @@ class CategoryController extends Controller
     public function deleteAction(Request $request, Category $category)
     {
         if (count($category->getArticles())) {
-            $this->get('session')->getFlashBag()->add('error', 'Deze cetegorie bevat nog artikelen.');
+            $this->get('session')->getFlashBag()->add('error', 'Deze categorie bevat nog artikelen.');
 
             return $this->redirectToRoute('admin_blog_category_index');
         }
