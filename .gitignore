@@ -1,5 +1,6 @@
 /app/config/parameters.yml
 /build/
+/config/coderdojo_deploy
 /phpunit.xml
 /var/*
 !/var/cache
