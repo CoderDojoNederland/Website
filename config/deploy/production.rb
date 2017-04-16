@@ -5,7 +5,7 @@ server 'beta.coderdojo.nl',
     ssh_options: {
         forward_agent: false,
         auth_methods: ["publickey"],
-        keys: ["~/.ssh/coderdojo_deploy"]
+        keys: ["config/coderdojo_deploy"]
     }
 
 
