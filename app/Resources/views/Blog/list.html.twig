@@ -16,7 +16,8 @@
                     <li><i class="icon-tags"></i> {{ article.category.title }}</li>
                 </ul>
                 <p>{{ article.body|striptags|truncate(300, true)|raw }}</p>
-                <p><a class="btn-u btn-u-small" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}"><i class="icon-location-arrow"></i> Read More</a></p>
+                <p>
+                    <a class="btn-u btn-u-small" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">Lees Meer</a></p>
             </div>
         </div>
 
