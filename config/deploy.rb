@@ -12,8 +12,7 @@ set :symfony_console_flags, "--no-debug"
 
 set :slackistrano, {
   channel: '#website-nl',
-  team: 'coderdojonederland',
-  token: ENV['SLACK_TOKEN']
+  webhook: ENV['SLACK_WEBHOOK']
 }
 
 # Default value for default_env is {}
