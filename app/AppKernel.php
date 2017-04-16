@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
             new SimpleBus\SymfonyBridge\SimpleBusEventBusBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new CoderDojo\CliBundle\CoderDojoCliBundle(),
             new CoderDojo\WebsiteBundle\CoderDojoWebsiteBundle(),
             new CoderDojo\AdminBundle\AdminBundle(),

@@ -113,3 +113,14 @@ coder_dojo_website:
 
 sentry:
     dsn: "%sentry%"
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        article_image:
+            quality: 75
+            filters:
+                thumbnail: { size : [336, 213], mode : outbound }

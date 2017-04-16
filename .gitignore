@@ -17,5 +17,6 @@
 /web/bundles/
 /web/articles/
 /web/vendors/
+/web/media/cache/
 /.idea
 /.vagrant
