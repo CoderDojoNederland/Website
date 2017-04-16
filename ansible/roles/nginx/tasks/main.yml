@@ -1,0 +1,35 @@
+---
+- name: install python-software-properties
+  apt: pkg=python-software-properties state=installed cache_valid_time=3600 update_cache=yes
+
+- name: Add key
+  apt_key: keyserver=keyserver.ubuntu.com id=8B3981E7A6852F782CC4951600A6F0A3C300EE8C
+
+- name: add nginx ppa
+  apt_repository: repo=ppa:nginx/stable
+
+- name: Install nginx
+  apt: pkg=nginx state=installed cache_valid_time=3600 update_cache=yes
+  register: nginx_installed
+
+- name: Stop Nginx after installation
+  action: service name=nginx state=restarted
+  when: nginx_installed.changed
+
+- name: Add log directory
+  file: path=/var/logs/nginx state=directory owner=www-data group=www-data mode=0777
+
+- name: Update ACL for logs/nginx dir
+  acl: name=/var/logs/nginx entity=www-data etype=user permissions=rwx default=yes state=present
+
+
+# Main configuration
+- name: Copy nginx configuration
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: remove default config
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Copy frontend configuration
+  template: src=frontend.conf dest=/etc/nginx/sites-enabled/frontend
+  notify: reload nginx

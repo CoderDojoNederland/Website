@@ -1,0 +1,18 @@
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+
+alias ls='ls -l --color=auto'
+
+export PS1="\n\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u \[\e[1;33m\]\h.dev\[\e[00m\] \[\e[01;34m\]\w\[\e[00m\]\n\$ "
+
+alias phpunit='/home/vagrant/app/current/vendor/phpunit/phpunit/phpunit -c /home/vagrant/app/current/app'
+alias sf='php /vagrant/bin/console'
+
+alias cc='sf cache:clear'
+
+if [ -f ~/.mydircolors ] ; then
+  export LS_COLORS=`dircolors -b ~/.mydircolors`
+fi
+
+cd /vagrant

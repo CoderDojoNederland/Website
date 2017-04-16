@@ -1,0 +1,55 @@
+---
+php_ppa: "ppa:ondrej/php"
+php_packages:
+  - php7.1-common
+  - php7.1-cli
+  - php7.1-calendar
+  - php7.1-cgi
+  - php7.1-ctype
+  - php7.1-curl
+  - php7.1-dom
+  - php7.1-exif
+  - php7.1-fileinfo
+  - php7.1-fpm
+  - php7.1-ftp
+  - php7.1-gd
+  - php7.1-gettext
+  - php7.1-iconv
+  - php7.1-intl
+  - php7.1-json
+  - php7.1-mbstring
+  - php7.1-mcrypt
+  - php7.1-mysql
+  - php7.1-opcache
+  - php7.1-pdo
+  - php7.1-pgsql
+  - php7.1-phar
+  - php7.1-posix
+  - php7.1-readline
+  - php7.1-shmop
+  - php7.1-simplexml
+  - php7.1-sockets
+  - php7.1-sysvmsg
+  - php7.1-sysvsem
+  - php7.1-sysvshm
+  - php7.1-sqlite3
+  - php7.1-tokenizer
+  - php7.1-wddx
+  - php7.1-xml
+  - php7.1-xmlreader
+  - php7.1-xmlwriter
+  - php7.1-zip
+  - php-xml
+php_timezone: Europe/Amsterdam
+php_upload_max_filesize: "20M"
+php_post_max_size: "20M"
+php_memory_limit: "1024M"
+php_max_execution_time: 60
+
+php_opcache_enable: 0
+php_opcache_revalidate_freq: 0
+php_opcache_opcache_validate_timestamps: 1
+php_opcache_max_accelerated_files: 20000
+php_opcache_memory_consumption: 192
+php_opcache_interned_strings_buffer: 16
+php_opcache_fast_shutdown: 1
