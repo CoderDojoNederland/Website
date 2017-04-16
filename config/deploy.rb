@@ -15,6 +15,3 @@ set :slackistrano, {
   team: 'coderdojonederland',
   token: ENV['SLACK_TOKEN']
 }
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
