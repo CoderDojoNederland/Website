@@ -8,5 +8,4 @@ require 'slackistrano/capistrano'
 require 'capistrano/bower'
 install_plugin Capistrano::SCM::Git
 
-# Load custom tasks from `lib/capistrano/tasks` if you have any defined
-Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
+Dir.glob('config/capistrano_tasks/*.rake').each { |r| import r }
