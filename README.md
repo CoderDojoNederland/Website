@@ -48,7 +48,7 @@ The easy way is to use the Vagrant setup we have provided. This is a predefined 
 2. Install [Vagrant](https://www.vagrantup.com/downloads.html)*
 3. Add `127.0.0.1 coderdojo.nl.dev` to your hosts file ([see how](http://support.hostgator.com/articles/general-help/technical/how-do-i-change-my-hosts-file))
 4. From the root of the project directory run `vagrant up` (the first time can take a while, grab a coffee)
-5. Open your browser and go to http://coderdojo.nl.dev:8080/app_dev.php
+5. Open your browser and go to http://coderdojo.nl.dev:8080
 
 That's it! You should now be looking at de dev version of the website.
 
@@ -62,7 +62,7 @@ From here on you can just work on the the project, all files are automatically s
 
 In order to develop on the website locally you need to have a couple of things up and running:
 
-- PHP 5.6 (minimum)
+- PHP 7.1 (minimum)
 - MySQL
 - Apache
 
