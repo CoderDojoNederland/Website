@@ -1,32 +1,21 @@
 language: php
-# trigger build
 php:
-  - 7.1
-
+- 7.1
 branches:
-  only: 
-    - master
-
+  only:
+  - master
 sudo: false
-
 cache:
   directories:
-    - $HOME/.composer/cache
-
+  - "$HOME/.composer/cache"
 before_install:
-#  - mysql -e 'create database coderdojonl;'
-#  - cp app/config/parameters.yml.test.dist app/config/parameters.yml
-  - composer self-update
-  - composer require satooshi/php-coveralls:~0.6@stable
-
+- composer self-update
+- composer require satooshi/php-coveralls:~0.6@stable
 install: composer install --prefer-dist --no-interaction --no-scripts
-
 script:
-  - bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
-
+- bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 after_success:
-#  - sh -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php bin/coveralls -v; fi;'
-  - echo $DEPLOY_KEY >> ~/.ssh/coderdojo_deploy
-  - gem install net-ssh -v '4.1.0'
-  - bundle install
-  - bundle exec cap production deploy
+- ./config/deploy.sh
+env:
+  global:
+  - secure: gHklOYvmA3/juQHnSuUb/h48Ke+QmNSPxfBAeERGr05y7O457yZPs7+3ZkpTXlff1lnTLQfhk04hI47OvXwRMNlKNZQZhy1ELL1YdrqeRYHzbCp1VxqHHwocN/lQU6l1QEfUTpo80eDV5DMXbgYNdqZbQxEp7nseJTXOoWZ9q1CfMBGOAC0O47ge+aMh2p3OZrSWrBFnnEx/xVeF6Orth+Xx/1z20E9A1W/HqnK8sglvDwcI0Y/UqLQLIqrdKDZxgIAbjl7zjVqMRbJDXkbsiHFoyCiYEPtsrQMg25zX3PxLiwhAOBaxgrZIzxomKbgGAKN128xlnGmTPAvsHet+25HgsUWI21A/xhD6nFe8ZIAdQl+T9PPJjMb/eNOltahTjADMgN6Mr8mkuhCqaFD6RTJ7bEfTizksqrZgB84bftGG13vGbVH53zVCo49478BksNyVo/0JuFtVmfjYvCQwPX9/2S1M+3scYpun294m55g7iKKmlvxCiGgyVr+k5dqEWJ6sB3JM4M+f4VZa4UmumnuVIIqWf6GEZ4qUSyg0tT9ukkRPap04jB9/Gw/dXZH0/1htynhxLc9e2oeRsQ0dvXxjOSoNjA0wioVZQxPcx6ZcgLhONj+YvldiAu+Glu4zTQoykC1AoBNoUR0esUAszgY35BXtruX6ZSu6qbxkNCo=
