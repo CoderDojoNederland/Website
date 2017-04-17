@@ -1,0 +1,41 @@
+{% extends ":Blog:index.html.twig" %}
+
+{% block articles %}
+    {% for article in articles %}
+        <div class="row blog blog-medium margin-bottom-40">
+            <div class="col-md-5">
+                <img class="img-responsive" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image') }}" alt="{{ article.title }}">
+            </div>
+            <div class="col-md-7">
+                <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
+                    <h2>{{ article.title|capitalize }}</h2>
+                </a>
+                <ul class="list-unstyled list-inline blog-info">
+                    <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
+                    <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
+                    <li><i class="icon-tags"></i> {{ article.category.title }}</li>
+                </ul>
+                <p>{{ article.body|striptags|truncate(315, true)|raw }}</p>
+                <p>
+                    <a class="btn-u btn-u-small" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">Lees Meer</a></p>
+            </div>
+        </div>
+
+        {% if not loop.last %}
+            <hr class="margin-bottom-40">
+        {% endif %}
+    {% endfor %}
+{% endblock articles %}
+
+{% block pagination %}
+    <div class="text-center">
+        {{ pagerfanta(
+            pager,
+            'twitter_bootstrap3',
+            {
+                'prev_message':'Vorige',
+                'next_message':'Volgende'
+            }
+        ) }}
+    </div>
+{% endblock pagination %}

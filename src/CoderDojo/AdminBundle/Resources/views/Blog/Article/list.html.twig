@@ -1,0 +1,74 @@
+{% extends 'AdminBundle::index.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Artikelen</h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_blog_article_new') }}">
+                                <i class="fa fa-plus"></i> Nieuw
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title">Titel </th>
+                                <th class="column-title">Auteur </th>
+                                <th class="column-title">Status </th>
+                                <th class="column-title no-link last"><span class="nobr">Action</span></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for article in articles %}
+                                    <tr class="{% if loop.index is odd %}even{% else %}odd{% endif %} pointer">
+                                        <td>{{ article.title }}</td>
+                                        <td>{{ article.author.firstName }} {{ article.author.lastName }}</td>
+                                        <td>
+                                            {% if article.published %}
+                                                {{ article.publishedAt|localizeddate }}
+                                                <span class="label label-success">online</span>
+                                            {% else %}
+                                                <span class="label label-danger">offline</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class=" last">
+                                            <a href="{{ path('admin_blog_article_edit', {'id':article.uuid}) }}" class="btn btn-warning btn-xs">
+                                                <span class="fa fa-pencil"></span>
+                                            </a>
+                                            {% if article.published %}
+                                                <a href="{{ path('admin_blog_article_unpublish', {'id':article.uuid}) }}" class="btn btn-warning btn-xs" title="Offline halen">
+                                                    <span class="fa fa-lock"></span>
+                                                </a>
+                                            {% else %}
+                                                <a href="{{ path('admin_blog_article_publish', {'id':article.uuid}) }}" class="btn btn-success btn-xs" title="Publiceren">
+                                                    <span class="fa fa-unlock"></span>
+                                                </a>
+                                            {% endif %}
+                                            <a href="{{ path('admin_blog_article_delete', {'id':article.uuid}) }}" class="btn btn-danger btn-xs">
+                                                <span class="fa fa-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

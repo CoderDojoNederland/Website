@@ -1,5 +1,6 @@
 /app/config/parameters.yml
 /build/
+/config/coderdojo_deploy
 /phpunit.xml
 /var/*
 !/var/cache
@@ -14,5 +15,8 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/articles/
+/web/vendors/
+/web/media/cache/
 /.idea
 /.vagrant

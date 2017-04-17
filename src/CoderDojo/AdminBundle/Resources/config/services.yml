@@ -1,0 +1,10 @@
+services:
+  admin.form.article:
+    class: CoderDojo\AdminBundle\Form\Type\ArticleType
+    tags:
+      - { name: form.type, alias: admin_form_article }
+
+  admin.form.category:
+    class: CoderDojo\AdminBundle\Form\Type\CategoryType
+    tags:
+      - { name: form.type, alias: admin_form_category }

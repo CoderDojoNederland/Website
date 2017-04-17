@@ -5,7 +5,7 @@ set :application, "coderdojo-website"
 set :repo_url, "git@github.com:CoderDojoNederland/Website.git"
 
 set :linked_files, ["app/config/parameters.yml"]
-set :linked_dirs, ["var/logs"]
+set :linked_dirs, ["var/logs", "web/articles", "web/media/cache"]
 
 set :symfony_console_path, "bin/console"
 set :symfony_console_flags, "--no-debug"
@@ -15,5 +15,4 @@ set :slackistrano, {
   webhook: ENV['SLACK_WEBHOOK']
 }
 
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+after 'deploy:publishing', 'coderdojo:migrate'

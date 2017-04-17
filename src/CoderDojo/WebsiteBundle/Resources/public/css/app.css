@@ -965,3 +965,59 @@ i.style-switcher-btn-option:hover {
    margin:0 !important;
    vertical-align: bottom !important;
 }
+
+.blog-medium h2 {
+   margin-top: 0;
+}
+
+.blog-medium a:hover {
+   text-decoration: none;
+}
+
+.blog-medium a h2 {
+   border-bottom: 2px solid #fff;
+   width: auto;
+   display: inline-block;
+}
+
+.blog-medium a:hover h2 {
+   color: #e67e22;
+   border-bottom: 2px solid #e67e22;
+}
+
+.blog-page .blog-single h2 {
+   font-size: 20px;
+   margin-top: 30px;
+   font-weight: bold !important;
+   color: #e67e22;
+   margin-bottom: 0;
+}
+
+.blog-page .blog-single > h2 {
+   margin-top:0;
+}
+
+.blog-page .blog-single h2 a {
+   color: #e67e22;
+   font-weight: bold !important;
+}
+
+.blog-single p,
+.blog-single ul,
+.blog-single li {
+   font-size: 16px;
+}
+
+.img-left {
+   float: left;
+   margin-right: 10px;
+   margin-bottom: 10px;
+   margin-top: 5px;
+}
+
+.img-right {
+   float: right;
+   margin-left: 10px;
+   margin-bottom: 10px;
+   margin-top: 5px;
+}

@@ -1,0 +1,20 @@
+---
+- name: Create SHM cache folder
+  file: path=/run/shm/coderdojo/cache state=directory mode=0777
+
+- name: Create SHM log folder
+  file: path=/run/shm/coderdojo/logs state=directory mode=0777
+
+- name: Create SHM session folder
+  file: path=/run/shm/coderdojo/sessions state=directory mode=0777
+
+- name: Copy .bash_profile
+  template: src=bash_profile.j2 dest=/home/vagrant/.bash_profile owner=vagrant group=vagrant mode=0644
+
+- shell: php /vagrant/bin/console doctrine:schema:update --force
+
+- shell: php /vagrant/bin/console doctrine:fixtures:load --no-interaction
+
+- shell: php /vagrant/bin/console assets:install /vagrant/web --symlink
+
+- debug: msg="Install seems to have finished! Go on, have a look."

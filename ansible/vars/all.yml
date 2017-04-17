@@ -1,0 +1,30 @@
+---
+username: 'vagrant'
+group: 'vagrant'
+home: '/home/vagrant'
+server:
+    install: '1'
+    timezone: Europe/Amsterdam
+    locale: en_US.UTF-8
+vagrant_local:
+    install: '1'
+    vm: { base_box: trusty64, hostname: default, ip: 127.0.0.1, memory: '1024', sharedfolder: ./, syncType: nfs }
+nginx:
+    install: '1'
+    docroot: /vagrant/web
+    servername: coderdojo.nl.dev
+mysql:
+    install: '1'
+    root_password: supersafe
+    database: coderdojonl
+    user: coderdojo
+    password: supersafe
+    dump: ''
+    pma_db: phpmyadmin
+    pma_username: phpmyadmin
+    pma_password: supersafe
+    pma_version: 4.4.15.2
+redis:
+    install: '1'
+    port: '6379'
+

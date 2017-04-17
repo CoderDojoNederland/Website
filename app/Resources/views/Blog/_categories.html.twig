@@ -1,0 +1,10 @@
+<div class="categories margin-bottom-40">
+    <div class="headline headline-md"><h2>Categorieen</h2></div>
+    <ul class="list-unstyled blog-tags margin-bottom-30">
+        {% for category in categories %}
+        <li>
+            <a href="{{ path('blog_category', {'slug': category.slug}) }}"><i class="icon-tags"></i> {{ category.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div><!--/posts-->
