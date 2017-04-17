@@ -27,3 +27,5 @@ parameters:
     sentry: "https://public:secret@sentry.io/119482"
 
     dev_email: 'dev@email.com'
+
+    articles_root: "%kernel.root_dir%/../web"

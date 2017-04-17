@@ -115,6 +115,10 @@ sentry:
     dsn: "%sentry%"
 
 liip_imagine:
+    loaders:
+        default:
+          filesystem:
+            data_root: "%articles_root%"
     resolvers:
         default:
             web_path: ~
