@@ -169,6 +169,7 @@
                     {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}
                 </div>
                 <div class="col-md-2" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                    <span itemprop="name" content="{{event.dojo.name}}"></span>
                     <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                         <span itemprop="name">{{ event.dojo.city }}</span>
                     </div>
@@ -178,7 +179,7 @@
                 </div>
             </div>
             {% endfor %}
-            <div class="row margin-bottom-5" itemscope itemtype="http://schema.org/Event">
+            <div class="row margin-bottom-5">
                 <div class="col-md-9">
                 </div>
                 <div class="col-md-3 right">

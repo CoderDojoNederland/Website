@@ -80,7 +80,7 @@ class DefaultController extends Controller
     public function cocRequestedAction(CocRequest $cocRequest)
     {
         if (null !== $cocRequest->getRequestedAt()) {
-            $this->get('session')->getFlashBag()->add('error', 'Dit VOG heb je al aangevraagd.');
+            $this->get('session')->getFlashBag()->add('error', 'Dit VOG heb je al gemarkeerd als verzonden.');
 
             return $this->redirectToRoute('home');
         }
@@ -88,7 +88,7 @@ class DefaultController extends Controller
         $command = new ShipCocRequestCommand($cocRequest->getId());
         $this->get('command_bus')->handle($command);
 
-        $this->get('session')->getFlashBag()->add('success', 'Bedankt! We hebben jouw aanvraag genoteerd. Vergeet je niet om het VOG naar ons op te sturen?');
+        $this->get('session')->getFlashBag()->add('success', 'Bedankt! We hebben jouw verzending genoteerd. Zodra we jouw VOG ontvangen en verwerkt hebben laten we dit per email weten!');
 
         return $this->redirectToRoute('home');
     }
