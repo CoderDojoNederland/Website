@@ -17,7 +17,7 @@
             <div class="blog-img">
                 <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
                     <img class="img-responsive" itemprop="image" src="{{ asset("/articles/#{article.image}") }}" alt="{{ article.title }}">
-                    <meta itemprop="url" content="https://google.com/thumbnail1.jpg">
+                    <meta itemprop="url" content="{{ app.request.schemeAndHttpHost }}{{ asset("/articles/#{article.image}") }}">
                     <meta itemprop="width" content="800">
                     <meta itemprop="height" content="800">
                 </span>
