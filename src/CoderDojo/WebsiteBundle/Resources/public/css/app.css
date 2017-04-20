@@ -1022,6 +1022,10 @@ i.style-switcher-btn-option:hover {
    font-weight: bold !important;
 }
 
+.blog-page .blog-single address {
+   display: inline;
+}
+
 .blog-single p,
 .blog-single ul,
 .blog-single li {
