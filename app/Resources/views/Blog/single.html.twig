@@ -4,7 +4,7 @@
 {% block fbtitle %}{{ article.title }} | Nieuws | CoderDojo Nederland{% endblock fbtitle %}
 {% block description %}{{ article.body|striptags|truncate(300, true)|raw }}{% endblock description %}
 {% block fbdescription %}{{ article.body|striptags|truncate(300, true)|raw }}{% endblock fbdescription %}
-{% block og_image %}https://www.coderdojo.nl{{asset("articles/#{article.image}")}}{% endblock %}
+{% block og_image %}{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}{% endblock %}
 {% block custom_headers %}
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url('blog_single', {'category':article.category.slug, 'slug':article.slug}) }}" />
@@ -16,7 +16,7 @@
         <div class="blog blog-single margin-bottom-40" itemscope itemtype="http://schema.org/Article">
             <div class="blog-img">
                 <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <img class="img-responsive" itemprop="image" src="{{ asset("/articles/#{article.image}") }}" alt="{{ article.title }}">
+                    <img class="img-responsive" itemprop="image" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}" alt="{{ article.title }}">
                     <meta itemprop="url" content="{{ app.request.schemeAndHttpHost }}{{ asset("/articles/#{article.image}") }}">
                     <meta itemprop="width" content="1200">
                     <meta itemprop="height" content="630">
