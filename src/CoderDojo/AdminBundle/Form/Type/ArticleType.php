@@ -26,8 +26,8 @@ class ArticleType extends AbstractType
                 'mapped'=>false,
                 'constraints' => [
                     new Image([
-                        'minWidth' => 630,
-                        'minHeight' => 1200,
+                        'minWidth' => 1200,
+                        'minHeight' => 630,
                         'allowPortrait' => false,
                         'allowSquare' => false
                     ])
