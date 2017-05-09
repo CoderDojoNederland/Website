@@ -8,5 +8,5 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'insert', items: [ 'Image', 'HorizontalRule', 'SpecialChar' ] },
         { name: 'document', items: [ 'Source' ] }
     ];
-    config.uploadUrl = '/app_dev.php/admin/nieuws/artikel/upload-image';
+    config.uploadUrl = '/admin/nieuws/artikel/upload-image';
 };

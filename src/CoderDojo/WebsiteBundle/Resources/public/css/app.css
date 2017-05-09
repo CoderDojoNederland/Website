@@ -985,6 +985,26 @@ i.style-switcher-btn-option:hover {
    border-bottom: 2px solid #e67e22;
 }
 
+.blog .blog-img {
+   margin-top: 0 !important;
+}
+
+@media (min-width: 992px) {
+   .blog .blog-title {
+      margin-top: -47px;
+      background: #fff;
+   }
+
+   .blog .blog-img {
+      margin-bottom: 0 !important;
+   }
+
+   .blog .blog-img .blog-title h2 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+   }
+}
+
 .blog-page .blog-single h2 {
    font-size: 20px;
    margin-top: 30px;
@@ -1002,10 +1022,18 @@ i.style-switcher-btn-option:hover {
    font-weight: bold !important;
 }
 
+.blog-page .blog-single address {
+   display: inline;
+}
+
 .blog-single p,
 .blog-single ul,
 .blog-single li {
-   font-size: 16px;
+   font-size: 14px;
+}
+
+.blog .addthis_inline_share_toolbox {
+   text-align: center;
 }
 
 .img-left {
