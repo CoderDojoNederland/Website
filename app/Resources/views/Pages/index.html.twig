@@ -155,6 +155,33 @@
 
     <hr class="margin-bottom-50">
 
+    <!-- news articles -->
+    <div class="row latest-articles">
+        <div class="col-md-12">
+            <h2 class="margin-bottom-20">Laatste Nieuws</h2>
+        </div>
+        {% for article in articles %}
+            <div class="col-md-3">
+                <div class="thumbnails">
+                    <img class="img-responsive" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}">
+                    <div class="caption">
+                        <h3><a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">{{ article.title|title }}</a></h3>
+                        <p><small>
+                            <i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}&nbsp;|&nbsp;
+                            <i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}
+                        </small>
+                        </p>
+                        <p>{{ article.body|striptags|truncate(150) }}</p>
+                        <p><a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}" class="btn-u btn-u-small">Lees meer</a></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- end news articles -->
+
+    <hr class="margin-bottom-50">
+
     <!--Service Block-->
     <div class="row promo-service" id="dojoeventlist">
         <div class="col-md-12">

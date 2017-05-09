@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Repository;
 
+use CoderDojo\WebsiteBundle\Entity\Article;
 use CoderDojo\WebsiteBundle\Entity\Category;
 use Doctrine\ORM\EntityRepository;
 
@@ -23,5 +24,18 @@ class ArticleRepository extends EntityRepository
         $qb->orderBy('a.publishedAt', 'DESC');
 
         return $qb;
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function getLatest(int $amount)
+    {
+        $qb = $this->createQueryBuilder('a')
+                   ->where('a.published = true')
+                   ->setMaxResults($amount)
+                   ->orderBy('a.publishedAt', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 }
