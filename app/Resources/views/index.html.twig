@@ -130,28 +130,10 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown {% if app.request.get('_route') in ['codeqube','ziggo', 'eucodeweek'] %}active{% endif %}">
+                    <li class="dropdown {% if app.request.get('_route') in ['blog_index','blog_category', 'blog_single'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Samenwerkingen
-                            <i class="icon-angle-down"></i>
+                            Nieuws
                         </a>
-                        <ul class="dropdown-menu">
-                            <li {% if app.request.get('_route') == 'books' %}class="active"{% endif %}>
-                                <a href="{{ path('books') }}">
-                                    Verdien het CoderDojo Boek
-                                </a>
-                            </li>
-                            <li {% if app.request.get('_route') == 'eucodeweek' %}class="active"{% endif %}>
-                                <a href="{{ path('eucodeweek') }}">
-                                    EU CodeWeek 2016
-                                </a>
-                            </li>
-                            <li {% if app.request.get('_route') == 'codeqube' %}class="active"{% endif %}>
-                                <a href="{{ path('codeqube') }}">
-                                    Code Qube On Tour
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'contact'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
