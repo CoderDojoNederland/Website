@@ -171,7 +171,7 @@
                             <i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}
                         </small>
                         </p>
-                        <p>{{ article.body|striptags|truncate(150) }}</p>
+                        <p>{{ article.body|striptags|truncate(150, true)|raw }}</p>
                         <p><a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}" class="btn-u btn-u-small">Lees meer</a></p>
                     </div>
                 </div>
