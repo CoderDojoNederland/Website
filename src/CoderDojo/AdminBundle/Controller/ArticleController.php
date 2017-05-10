@@ -13,6 +13,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/nieuws/artikel")
@@ -190,5 +191,20 @@ class ArticleController extends Controller
         $uploadedFile->move($destination, $uploadedFile->getClientOriginalName());
 
         return $uploadedFile->getClientOriginalName();
+    }
+
+    /**
+     * @Route("/{id}/preview", name="admin_blog_preview")
+     * @param $id
+     * @return Response
+     */
+    public function previewArticleAction(string $id)
+    {
+        $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
+
+        return $this->render(':Blog:single.html.twig', [
+            'article' => $article,
+            'category' => $article->getCategory()
+        ]);
     }
 }
