@@ -9,4 +9,5 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'document', items: [ 'Source' ] }
     ];
     config.uploadUrl = '/admin/nieuws/artikel/upload-image';
+    config.allowedContent = true;
 };
