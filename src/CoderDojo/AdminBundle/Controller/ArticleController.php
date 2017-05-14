@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,6 +65,10 @@ class ArticleController extends Controller
         $form = $this->createForm(ArticleType::class);
         $form->remove('slug');
         $form->handleRequest($request);
+
+        if ($form->get('image')->getData() === null) {
+            $form->get('image')->addError(new FormError('Header Foto is verplicht.'));
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $this->uploadHeader($form->get('image')->getData());
