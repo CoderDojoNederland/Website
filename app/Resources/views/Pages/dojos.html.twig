@@ -19,24 +19,48 @@
   <script>
     window.dojos = {};
     {% for dojo in dojos %}
-    {%  set next = dojo|nextEvent %}
+        {% set next = dojo|nextEvent %}
 
-      dojos[{{dojo.id}}] = {
-        id:           {{dojo.id}},
-        name:         "{{dojo.name}}",
-        city:         "{{dojo.city}}",
-        twitter:      "{{dojo.twitter}}",
-        website:      "{{dojo.website}}",
-          {% if next %}
-          nextUrl:        "{{ next.url }}",
-          nextDate:       "{{ next.date|date('d/m/Y') }}",
-          {% endif %}
-        geo: {
-          lat: {{dojo.lat}},
-          long: {{dojo.lon}}
-        }
-      }
+        dojos[{{dojo.id}}] = {
+            id:           {{dojo.id}},
+            name:         "{{dojo.name}}",
+            city:         "{{dojo.city}}",
+            twitter:      "{{dojo.twitter}}",
+            website:      "{{dojo.website}}",
+              {% if next %}
+              nextUrl:        "{{ next.url }}",
+              nextDate:       "{{ next.date|date('d/m/Y') }}",
+              {% endif %}
+            geo: {
+              lat: {{dojo.lat}},
+              long: {{dojo.lon}}
+            }
+        };
     {% endfor %}
+
+    function trackRegisterClickEvent() {
+        ga('send', 'event', 'dojo_interest', 'register_from_dojopage');
+    }
+
+    function trackSwitchDojoListEvent() {
+        ga('send', 'event', 'dojo_interest', 'switch_to_dojo_list');
+    }
+
+    function trackSwitchEventListEvent() {
+        ga('send', 'event', 'dojo_interest', 'switch_to_event_list');
+    }
+
+    function trackDojoEmailClickEvent() {
+        ga('send', 'event', 'dojo_interest', 'dojo_email_click');
+    }
+
+    function trackDojoWebsiteClickEvent() {
+        ga('send', 'event', 'dojo_interest', 'dojo_website_click');
+    }
+
+    function trackDojoTwitterClickEvent() {
+        ga('send', 'event', 'dojo_interest', 'dojo_twitter_click');
+    }
   </script>
 
   <script type="text/javascript" src="{{asset('bundles/coderdojowebsite/js/pages/dojos.js')}}"></script>
@@ -58,8 +82,8 @@
 
                 <div class="panel-heading">
                   <ul class="nav nav-tabs">
-                    <li role="presentation" class="active" data-tab-ref="upcoming-dojos"><a href="#"><i class="icon-calendar"></i>&nbsp;&nbsp;Komende dojo&apos;s</a></li>
-                    <li role="presentation" data-tab-ref="all-dojos"><a href="#"><i class="icon-list"></i>&nbsp;&nbsp;Alle Dojo&apos;s</a></li>
+                    <li role="presentation" class="active" data-tab-ref="upcoming-dojos"><a href="#" onclick="trackSwitchEventListEvent()"><i class="icon-calendar"></i>&nbsp;&nbsp;Komende dojo&apos;s</a></li>
+                    <li role="presentation" data-tab-ref="all-dojos"><a href="#" onclick="trackSwitchDojoListEvent()"><i class="icon-list"></i>&nbsp;&nbsp;Alle Dojo&apos;s</a></li>
                   </ul>
                 </div>
 
@@ -77,9 +101,9 @@
                         </div>
                         <div class="col-xs-2" style="">
                           {% if event.type == 'zen' %}
-                            <a href="{{ event.dojo.zenUrl }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                            <a href="{{ event.dojo.zenUrl }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="glyphicon glyphicon-arrow-right"></span></a>
                           {% else %}
-                            <a href="{{ event.url }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                            <a href="{{ event.url }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="glyphicon glyphicon-arrow-right"></span></a>
                           {% endif %}
                         </div>
                       </div>
@@ -110,9 +134,9 @@
                         <!-- dojos contact buttons -->
                         <div class="col-xs-4">
                           <p class="contact-info" style="text-align: right;">
-                            <a href="mailto:{{ dojo.email }}" title="Email"><i class="icon-envelope"></i></a>&nbsp;
-                            <a href="{{ dojo.website }}" title="Website"><i class="icon-globe"></i></a>&nbsp;
-                            <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter"><i class="icon-twitter"></i></a>&nbsp
+                            <a href="mailto:{{ dojo.email }}" title="Email" onclick="trackDojoEmailClickEvent()"><i class="icon-envelope"></i></a>&nbsp;
+                            <a href="{{ dojo.website }}" title="Website" onclick="trackDojoWebsiteClickEvent()"><i class="icon-globe"></i></a>&nbsp;
+                            <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter" onclick="trackDojoTwitterClickEvent()"><i class="icon-twitter"></i></a>&nbsp
                           </p>
                         </div>
                   </div>

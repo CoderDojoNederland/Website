@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <a itemprop="url" href="{{ event.url }}" target="_blank" data-dojo="{{ event.dojo.name }}" data-dojo-date="{{ event.date|date("Y/m/d") }}" class="btn btn-success btn-block btn-xs">Reserveer</a>
+                    <a itemprop="url" href="{{ event.url }}" target="_blank" data-dojo="{{ event.dojo.name }}" data-dojo-date="{{ event.date|date("Y/m/d") }}" class="btn btn-success btn-block btn-xs" onClick="trackEventClick()">Reserveer</a>
                 </div>
             </div>
             {% endfor %}
@@ -241,4 +241,12 @@
     <!--End Service Block-->
 </div>
 <!-- End Content Part -->
+{% endblock %}
+
+{% block customjs %}
+    <script type="text/javascript">
+        function trackEventClick() {
+            ga('send', 'event', 'dojo_interest', 'register_from_homepage');
+        }
+    </script>
 {% endblock %}
