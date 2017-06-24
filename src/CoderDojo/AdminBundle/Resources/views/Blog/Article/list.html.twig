@@ -28,6 +28,7 @@
                                 <th class="column-title">Titel </th>
                                 <th class="column-title">Auteur </th>
                                 <th class="column-title">Status </th>
+                                <th class="column-title">(De)Publiceren </th>
                                 <th class="column-title no-link last"><span class="nobr">Action</span></th>
                             </tr>
                             </thead>
@@ -45,21 +46,26 @@
                                                 <span class="label label-danger">offline</span>
                                             {% endif %}
                                         </td>
-                                        <td class=" last">
-                                            <a href="{{ path('admin_blog_article_edit', {'id':article.uuid}) }}" class="btn btn-warning btn-xs">
-                                                <span class="fa fa-pencil"></span>
-                                            </a>
+                                        <td>
                                             {% if article.published %}
                                                 <a href="{{ path('admin_blog_article_unpublish', {'id':article.uuid}) }}" class="btn btn-warning btn-xs" title="Offline halen">
-                                                    <span class="fa fa-lock"></span>
+                                                    <span class="fa fa-lock"></span> Depubliceren
                                                 </a>
                                             {% else %}
                                                 <a href="{{ path('admin_blog_article_publish', {'id':article.uuid}) }}" class="btn btn-success btn-xs" title="Publiceren">
-                                                    <span class="fa fa-unlock"></span>
+                                                    <span class="fa fa-unlock"></span> Publiceren
                                                 </a>
                                             {% endif %}
+                                        </td>
+                                        <td class=" last">
+                                            <a href="{{ path('admin_blog_preview', {'id':article.uuid}) }}" class="btn btn-default btn-xs" title="Preview">
+                                                <span class="fa fa-eye"></span> Preview
+                                            </a>
+                                            <a href="{{ path('admin_blog_article_edit', {'id':article.uuid}) }}" class="btn btn-warning btn-xs">
+                                                <span class="fa fa-pencil"></span> Bewerken
+                                            </a>
                                             <a href="{{ path('admin_blog_article_delete', {'id':article.uuid}) }}" class="btn btn-danger btn-xs">
-                                                <span class="fa fa-trash"></span>
+                                                <span class="fa fa-trash"></span> Verwijderen
                                             </a>
                                         </td>
                                     </tr>

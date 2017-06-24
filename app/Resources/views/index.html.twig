@@ -7,6 +7,7 @@
 
     <!-- Meta -->
     <meta charset="utf-8">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block description %}Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers!
 Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% endblock %}">
@@ -130,28 +131,10 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown {% if app.request.get('_route') in ['codeqube','ziggo', 'eucodeweek'] %}active{% endif %}">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-                            Samenwerkingen
-                            <i class="icon-angle-down"></i>
+                    <li class="dropdown {% if app.request.get('_route') in ['blog_index','blog_category', 'blog_single'] %}active{% endif %}">
+                        <a href="{{ path('blog_index') }}">
+                            Nieuws
                         </a>
-                        <ul class="dropdown-menu">
-                            <li {% if app.request.get('_route') == 'books' %}class="active"{% endif %}>
-                                <a href="{{ path('books') }}">
-                                    Verdien het CoderDojo Boek
-                                </a>
-                            </li>
-                            <li {% if app.request.get('_route') == 'eucodeweek' %}class="active"{% endif %}>
-                                <a href="{{ path('eucodeweek') }}">
-                                    EU CodeWeek 2016
-                                </a>
-                            </li>
-                            <li {% if app.request.get('_route') == 'codeqube' %}class="active"{% endif %}>
-                                <a href="{{ path('codeqube') }}">
-                                    Code Qube On Tour
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="dropdown {% if app.request.get('_route') in ['foundation', 'about', 'contact'] %}active{% endif %}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
@@ -288,7 +271,6 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
         Index.initLayerSlider();
     });
 </script>
-{% block customjs %}{% endblock %}
 <script type="text/javascript">
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -298,6 +280,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     ga('create', 'UA-46279882-1', 'coderdojo.nl');
     ga('send', 'pageview');
 </script>
+{% block customjs %}{% endblock %}
 <script src="//static.getclicky.com/js" type="text/javascript"></script>
 <script type="text/javascript">try{ clicky.init(100946382); }catch(e){}</script>
 <noscript><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100946382ns.gif" /></noscript>

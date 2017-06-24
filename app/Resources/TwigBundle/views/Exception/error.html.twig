@@ -1,5 +1,9 @@
 {% extends "::index.html.twig" %}
 
+{% block robots %}
+{% if status_code > 400 and status_code < 500 %}noindex, nofollow{% else %}{{ parent() }}{% endif %}
+{% endblock %}
+
 {% block content %}
     <!--=== Breadcrumbs ===-->
     <div class="breadcrumbs margin-bottom-40">
