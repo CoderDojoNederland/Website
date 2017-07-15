@@ -205,7 +205,7 @@ class SyncEventService
             return;
         }
 
-        $this->slackService->sendToChannel('#general', $message, $attachments);
+        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
     }
 
     /**
