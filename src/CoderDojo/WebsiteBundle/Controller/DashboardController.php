@@ -10,10 +10,12 @@ use CoderDojo\WebsiteBundle\Entity\DojoRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
 use CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType;
 use CoderDojo\WebsiteBundle\Form\Type\EventFormType;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -597,7 +599,14 @@ class DashboardController extends Controller
                 $data['dojo']
             );
 
-            $this->get('command_bus')->handle($command);
+            try {
+                $this->get('command_bus')->handle($command);
+            } catch (UniqueConstraintViolationException $e) {
+                $this->get('session')->getFlashBag()->add('error', 'Er is al een VOG op dit emailadres aangemaakt.');
+                $form->get('email')->addError(new FormError('Er is al een VOG op dit emailadres aangevraagd'));
+
+                return $this->render(':Dashboard:Pages/vog-aanvragen.html.twig', ['form'=>$form->createView()]);
+            }
 
             $this->get('session')->getFlashBag()->add('success', 'Bedankt! We gaan zo snel mogelijk aan de slag om dit VOG aan te vragen.');
             return $this->redirectToRoute('dashboard-vog', ['id'=>$data['dojo']]);

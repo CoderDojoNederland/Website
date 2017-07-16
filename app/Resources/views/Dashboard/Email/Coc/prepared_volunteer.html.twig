@@ -4,24 +4,30 @@
     <p>Hi {{ coc.letters }} {{ coc.name }},</p>
     <p>
         We hebben jouw gratis VOG aangevraagd bij het ministerie.
-        Als het goed is krijg je hier ook van de overheid bericht van.
-        Het is nu aan jou om zélf jouw VOG aan te vragen!
+        Je hebt van noreplyjustis@minvenj.nl een email ontvangen met een unieke code om jouw VOG aan te vragen.
     </p>
     <p>
-        Zodra je jouw VOG thuis hebt ontvangen moet je <strong>het origineel</strong> naar ons opsturen. Dat doe je naar het volgende adres:<br/>
-        CoderDojo Nederland<br/>
+        <strong>Let op!</strong> Deze code is slechts 30 dagen geldig, daarna moeten wij een nieuwe code voor je aanvragen.
+        Laat ons via onderstaande knop weten dat je jouw VOG aangevraagd hebt, anders blijf je reminders van ons krijgen.
+    </p>
+    <p>
+        <br/>
+        <a href="{{ url('vog-requested', {'id':coc.id}) }}" class="btn">
+            Ik heb mijn VOG aangevraagd
+        </a>
+        <br/><br/>
+    </p>
+    <p>
+        Zodra je jouw VOG thuis hebt ontvangen moet je <strong>het origineel</strong> naar ons opsturen.
+        Dat doe je naar het volgende adres:
+    </p>
+    <p>
+        <strong>CoderDojo Nederland</strong><br/>
         T.a.v. Christian Vermeulen<br/>
         Wolphaertsbocht 90b<br/>
         3082AS Rotterdam
     </p>
     <p>
-        Wil je ons ook laten weten wanneer je hem op de bus gedaan heb door op onderstaande knop te klikken?
-    </p>
-    <p>
-        <br/>
-        <a href="{{ url('vog-requested', {'id':coc.id}) }}" class="btn">
-            Ik heb mijn VOG opgestuurd
-        </a>
-        <br/><br/>
+        Mocht je nog vragen hebben, laat het ons gerust weten!
     </p>
 {% endblock content %}

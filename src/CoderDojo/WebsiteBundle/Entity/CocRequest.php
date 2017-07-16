@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="email_uidx", columns={"email"})})
  */
 class CocRequest
 {
@@ -39,7 +40,7 @@ class CocRequest
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $email;
 

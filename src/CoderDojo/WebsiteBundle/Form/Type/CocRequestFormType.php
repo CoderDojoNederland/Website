@@ -44,7 +44,7 @@ class CocRequestFormType extends AbstractType
     {
         $builder
             ->add('letters', TextType::class, array(
-                'label' => 'Voorletters'
+                'label' => 'Voornaam'
             ))
             ->add('name', TextType::class, array(
                 'label' => 'Achternaam'

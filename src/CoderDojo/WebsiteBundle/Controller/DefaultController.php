@@ -4,6 +4,7 @@ namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Command\ShipCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
+use CoderDojo\WebsiteBundle\Entity\User;
 use CoderDojo\WebsiteBundle\Form\Type\ContactFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -82,7 +83,7 @@ class DefaultController extends Controller
     public function cocRequestedAction(CocRequest $cocRequest)
     {
         if (null !== $cocRequest->getRequestedAt()) {
-            $this->get('session')->getFlashBag()->add('error', 'Dit VOG heb je al gemarkeerd als verzonden.');
+            $this->get('session')->getFlashBag()->add('error', 'Dit VOG heb je al gemarkeerd als aangevraagd.');
 
             return $this->redirectToRoute('home');
         }
@@ -90,7 +91,12 @@ class DefaultController extends Controller
         $command = new ShipCocRequestCommand($cocRequest->getId());
         $this->get('command_bus')->handle($command);
 
-        $this->get('session')->getFlashBag()->add('success', 'Bedankt! We hebben jouw verzending genoteerd. Zodra we jouw VOG ontvangen en verwerkt hebben laten we dit per email weten!');
+        $this->get('session')->getFlashBag()->add('success', 'Bedankt! We hebben jouw aanvraag genoteerd. Vergeet niet om het originele VOG per post naar ons door te sturen!');
+
+        $user = $this->getUser();
+        if ($user && $user->hasRole('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin-vog');
+        }
 
         return $this->redirectToRoute('home');
     }
