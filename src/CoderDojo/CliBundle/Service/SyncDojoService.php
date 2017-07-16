@@ -330,7 +330,7 @@ class SyncDojoService
             $attachments[] = $attachment;
         }
 
-        $this->slackService->sendToChannel('#general', $message, $attachments);
+        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
 
         foreach($this->unmatched as $unmatched) {
             $attachment = new Attachment();

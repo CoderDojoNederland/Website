@@ -41,6 +41,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    coder_dojo.website_bundle.repository.dojo:
+        class: Doctrine\ORM\EntityRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - CoderDojo\WebsiteBundle\Entity\Dojo
+
     coder_dojo.website_bundle.slack_service:
         class: CoderDojo\WebsiteBundle\Service\SlackService
         arguments: ["%slack_api_token%", "@kernel"]
@@ -98,6 +104,14 @@ services:
         arguments: ["@coder_dojo.website_bundle.slack_service"]
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\DojoCreatedEvent"}
+
+    coder_dojo.website_bundle.subscriber.event_created_event.notify_slack:
+        class: CoderDojo\WebsiteBundle\Subscriber\EventCreatedEvent\NotifySlack
+        arguments:
+          - "@coder_dojo.website_bundle.slack_service"
+          - "@coder_dojo.website_bundle.repository.dojo"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\EventCreatedEvent"}
 
     coder_dojo.website_bundle.subscriber.coc_request_created_event.notify_champion:
         class: CoderDojo\WebsiteBundle\Subscriber\CocRequestCreatedEvent\NotifyChampion
