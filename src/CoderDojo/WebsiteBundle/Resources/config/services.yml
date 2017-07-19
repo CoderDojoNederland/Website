@@ -158,14 +158,14 @@ services:
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestPreparedEvent"}
 
-    coder_dojo.website_bundle.subscriber.coc_request_shipped_event.notify_foundation:
-        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestShippedEvent\NotifyFoundation
-        arguments:
-            - "@mailer"
-            - "@templating"
-            - "@doctrine"
-        tags:
-            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestShippedEvent"}
+#    coder_dojo.website_bundle.subscriber.coc_request_shipped_event.notify_foundation:
+#        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestShippedEvent\NotifyFoundation
+#        arguments:
+#            - "@mailer"
+#            - "@templating"
+#            - "@doctrine"
+#        tags:
+#            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestShippedEvent"}
 
     coder_dojo.website_bundle.subscriber.coc_request_received_event.notify_champion:
         class: CoderDojo\WebsiteBundle\Subscriber\CocRequestReceivedEvent\NotifyChampion
