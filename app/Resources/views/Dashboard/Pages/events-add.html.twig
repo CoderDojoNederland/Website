@@ -2,6 +2,15 @@
 
 {% block dashboard_content %}
 <h3>Events toevoegen</h3>
+    <div class="alert alert-info">
+        <p>
+            <strong>Eventbrite integratie op Zen</strong><br/>
+            Vanaf nu kun je jouw Eventbrite account koppelen aan Zen zodat ook Eventbrite events automatisch op coderdojo.nl verschijnen!
+        </p>
+        <p>
+            <a href="/nieuws/dojo-support/eventbrite-integratie-op-zen" class="btn btn-sm btn-warning">Stap Nu Over!</a>
+        </p>
+    </div>
     {{ form_start(form, { 'action': '#', 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
     {{ form_widget(form) }}
     <div class="form-group">
