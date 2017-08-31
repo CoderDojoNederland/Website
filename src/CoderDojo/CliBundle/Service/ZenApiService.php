@@ -48,7 +48,7 @@ class ZenApiService
                 $city = $externalDojo->place;
             }
 
-            $city = explode(" ", $city);
+            $city = explode(",", $city);
             $city = array_pop($city);
 
             $removed = false;
