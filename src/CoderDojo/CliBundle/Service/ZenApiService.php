@@ -50,6 +50,11 @@ class ZenApiService
 
             $city = explode(",", $city);
             $city = array_pop($city);
+            
+            // Bug from Google API - Will be fixed by CDF Later
+            if (preg_match('/Breezand/', $city)) {
+                $city = 'Breezand';
+            }
 
             $removed = false;
 
