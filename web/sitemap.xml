@@ -1,137 +1,165 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
     <url>
         <loc>https://coderdojo.nl/</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>1.00</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/dojos</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/meehelpen/opstarten</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/meehelpen/mentor-worden</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/meehelpen/materiaal</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://coderdojo.nl/login</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/informatie/nieuwsbrief</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/informatie/over-de-stichting</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/informatie/over-coderdojo</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/contact</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/slack-community</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://coderdojo.nl/nieuws/events/coderdojo-cafe-3-23-juni-2017</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://coderdojo.nl/nieuws/algemeen/help-coderdojo-nederland-om-2000-te-winnen</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://coderdojo.nl/nieuws/internationaal/coderdojo-fuseert-met-raspberry-pi</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://coderdojo.nl/nieuws/events/kom-naar-de-eudojo-17-oktober-in-brussel</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://coderdojo.nl/nieuws/algemeen/drie-keer-drie-kennemerwaard</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://coderdojo.nl/nieuws/dojo-support/eventbrite-integratie-op-zen</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://coderdojo.nl/nieuws/dojo-support/van-puzzelstukjes-tot-android-app</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://coderdojo.nl/nieuws/events/joris-vertelt-over-coolest-project-2017</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/register/</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://coderdojo.nl/nieuws/events/coolest-projects-belgie-2017</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://coderdojo.nl/nieuws/events/coderdojo-cafe-3-23-juni-2017</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
-        <loc>https://coderdojo.nl/nieuws/algemeen/drie-keer-drie-delft</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://coderdojo.nl/nieuws/internationaal/coderdojo-fuseert-met-raspberry-pi</loc>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/?page=2</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/dojo-support</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/events</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/internationaal</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/algemeen</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.64</priority>
     </url>
     <url>
+        <loc>https://coderdojo.nl/nieuws/algemeen/drie-keer-drie-kennemerwaard</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.51</priority>
+    </url>
+    <url>
+        <loc>https://coderdojo.nl/nieuws/dojo-support/van-puzzelstukjes-tot-android-app</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.51</priority>
+    </url>
+    <url>
+        <loc>https://coderdojo.nl/nieuws/events/coolest-projects-belgie-2017</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.51</priority>
+    </url>
+    <url>
+        <loc>https://coderdojo.nl/nieuws/algemeen/drie-keer-drie-delft</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.51</priority>
+    </url>
+    <url>
         <loc>https://coderdojo.nl/nieuws/dojo-support/dojo-s-ontvangen-mogelijk-geen-emails</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.51</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/dojo-support/vraag-een-gratis-vog-aan-voor-vrijwilligers</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.51</priority>
     </url>
     <url>
         <loc>https://coderdojo.nl/nieuws/?page=1</loc>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
         <priority>0.51</priority>
     </url>
 </urlset>
