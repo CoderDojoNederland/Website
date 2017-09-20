@@ -156,7 +156,9 @@
         {% for article in articles %}
             <div class="col-md-3">
                 <div class="thumbnails">
-                    <img class="img-responsive" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}">
+                    <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
+                        <img class="img-responsive" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}">
+                    </a>
                     <div class="caption">
                         <h3><a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">{{ article.title|title }}</a></h3>
                         <p><small>

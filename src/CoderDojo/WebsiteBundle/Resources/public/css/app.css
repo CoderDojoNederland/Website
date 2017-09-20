@@ -32,6 +32,7 @@ a:active {
 a:hover {
    color: #72c02c;
    text-decoration: underline;
+   border: none;
 }
 
 h1, h2, h3, h4, h5 {
@@ -39,6 +40,7 @@ h1, h2, h3, h4, h5 {
    text-shadow: none;
    font-weight: normal !important;
    font-family: 'Open Sans', sans-serif;
+   line-height: 1.5em;
 }
 h1 i, h2 i, h3 i, h4 i, h5 i {
    margin-right: 7px;
@@ -1050,7 +1052,6 @@ i.style-switcher-btn-option:hover {
 
 .latest-articles .thumbnails h3 a:hover {
    color: #e67e22;
-   border-bottom: 1px solid #e67e22;
    display:inline-block;
    width:auto;
 }
