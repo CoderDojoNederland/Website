@@ -602,7 +602,10 @@ class DashboardController extends Controller
             try {
                 $this->get('command_bus')->handle($command);
             } catch (UniqueConstraintViolationException $e) {
-                $this->get('session')->getFlashBag()->add('error', 'Er is al een VOG op dit emailadres aangemaakt.');
+                $this->get('session')->getFlashBag()->add(
+                    'error',
+                    ' Er is al een VOG op dit emailadres aangevraagd. Mogelijk is dat al bij een andere dojo gedaan. Als de aanvraag vervallen is (na 30 dagen) neem dan contact met ons op, vraag géén nieuwe aan!'
+                );
                 $form->get('email')->addError(new FormError('Er is al een VOG op dit emailadres aangevraagd'));
 
                 return $this->render(':Dashboard:Pages/vog-aanvragen.html.twig', ['form'=>$form->createView()]);
