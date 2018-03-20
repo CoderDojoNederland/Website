@@ -47,15 +47,6 @@ class PagesController extends Controller
     }
 
     /**
-     * @Route("/samenwerkingen/ziggo", name="ziggo")
-     *
-    public function ziggoAction()
-    {
-        return $this->render(':Pages:Samenwerkingen/ziggo.html.twig');
-    }
-    */
-
-    /**
      * @Route("/samenwerkingen/eu-code-week", name="eucodeweek")
      */
     public function euCodeWeekAction()
@@ -111,28 +102,19 @@ class PagesController extends Controller
         return $this->render(':Pages:Supporting/spaceGames.html.twig');
     }
 
-
-    /**
-     * @Route("/ziggodome", name="ZiggoDome")
-     */
-    public function ziggodomeAction()
-    {
-        return $this->render(':Pages:Supporting/ziggodome.html.twig');
-    }
-
-    /**
-     * @Route("/survey", name="survey")
-     */
-    public function surveyAction()
-    {
-        return $this->render(':Pages:survey.html.twig');
-    }
-
     /**
      * @Route("/coolest-projects", name="coolest-projects")
      */
     public function coolestProjectsAction()
     {
-        return $this->render(':Pages:cooles-projects.html.twig');
+        return $this->render(':Pages:Supporting/coolest-projects.html.twig');
+    }
+
+    /**
+     * @Route("/ehbo-cursus", name="ehbo-cursus")
+     */
+    public function firstAidAction()
+    {
+        return $this->render(':Pages:Supporting/first-aid.html.twig');
     }
 }
