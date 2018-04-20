@@ -47,12 +47,16 @@ class ContactFormType extends AbstractType
     {
         $builder
             ->add('naam', TextType::class, array(
+                'label' => 'Naam:',
                 'attr' => array(
                     'pattern'     => '.{2,}'
                 )
             ))
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'label' => 'Email:'
+            ])
             ->add('ontvanger', ChoiceType::class, [
+                'label' => 'Ontvanger:',
                 'empty_data' => '- Kies een dojo -',
                 'mapped' => false,
                 'choices' => $this->buildChoices(),

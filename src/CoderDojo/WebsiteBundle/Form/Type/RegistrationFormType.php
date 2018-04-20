@@ -2,12 +2,13 @@
 
 namespace CoderDojo\WebsiteBundle\Form\Type;
 
-use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Url;
 
 /**
  * Class RegistrationFormType
@@ -44,21 +45,21 @@ class RegistrationFormType extends AbstractType
             'constraints' => [
                 new NotBlank(),
                 new Length([
-                    "min" => 10,
-                    "max" => 10
+                    'min' => 10,
+                    'max' => 10
                 ])
             ]
         ]);
 
-        $builder->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array(
+        $builder->add('email', EmailType::class, array(
             'label' => 'form.email',
             'translation_domain' => 'FOSUserBundle',
             'attr' => [
                 'placeholder' => 'Gebruik aub een persoonlijk emailadres'
             ]
         ));
-        $builder->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
-            'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
+        $builder->add('plainPassword', RepeatedType::class, array(
+            'type' => PasswordType::class,
             'options' => array('translation_domain' => 'FOSUserBundle'),
             'first_options' => array('label' => 'form.password'),
             'second_options' => array('label' => 'form.password_confirmation'),
