@@ -1,6 +1,6 @@
 ---
 - name: install python-software-properties
-  apt: pkg=python-software-properties state=installed cache_valid_time=3600 update_cache=yes
+  apt: pkg=python-software-properties state=present cache_valid_time=3600 update_cache=yes
 
 - name: Add key
   apt_key: keyserver=keyserver.ubuntu.com id=8B3981E7A6852F782CC4951600A6F0A3C300EE8C
@@ -9,7 +9,7 @@
   apt_repository: repo=ppa:nginx/stable
 
 - name: Install nginx
-  apt: pkg=nginx state=installed cache_valid_time=3600 update_cache=yes
+  apt: pkg=nginx state=present cache_valid_time=3600 update_cache=yes
   register: nginx_installed
 
 - name: Stop Nginx after installation
@@ -22,8 +22,22 @@
 - name: Update ACL for logs/nginx dir
   acl: name=/var/logs/nginx entity=www-data etype=user permissions=rwx default=yes state=present
 
+- name: Creates csr directory
+  file: path=/etc/ssl/certs state=directory
+
+- name: Creates challenges directory
+  file: path=/etc/ssl/private state=directory
 
 # Main configuration
+- name: Copy crt
+  template: src=coderdojo.local.crt dest=/etc/ssl/certs/coderdojo.local.crt
+
+- name: Copy key
+  template: src=coderdojo.local.key dest=/etc/ssl/private/coderdojo.local.key
+
+- name: Copy dhparam
+  template: src=dhparam.pem dest=/etc/ssl/certs/dhparam.pem
+
 - name: Copy nginx configuration
   template: src=nginx.conf dest=/etc/nginx/nginx.conf
 

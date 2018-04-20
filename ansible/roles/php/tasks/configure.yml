@@ -5,8 +5,8 @@
 - stat: path=/etc/php/7.1/cli/php.ini
   register: phpcli
 
-- include: php-fpm.yml
+- import_tasks: php-fpm.yml
   when: phpfpm.stat.exists
 
-- include: php-cli.yml
+- import_tasks: php-cli.yml
   when: phpcli.stat.exists

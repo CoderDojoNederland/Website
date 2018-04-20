@@ -8,11 +8,11 @@ server:
     locale: en_US.UTF-8
 vagrant_local:
     install: '1'
-    vm: { base_box: trusty64, hostname: default, ip: 127.0.0.1, memory: '1024', sharedfolder: ./, syncType: nfs }
+    vm: { base_box: xenial64, hostname: default, ip: 127.0.0.1, memory: '1024', sharedfolder: ./, syncType: nfs }
 nginx:
     install: '1'
     docroot: /vagrant/web
-    servername: coderdojo.nl.dev
+    servername: coderdojo.local
 mysql:
     install: '1'
     root_password: supersafe

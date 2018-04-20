@@ -24,18 +24,23 @@ end
 
 Vagrant.configure("2") do |config|
 
-    config.vm.box = "ubuntu/trusty64"
+    config.vm.box = "ubuntu/xenial64"
 
     config.vm.network "forwarded_port", guest: 80, host: 8080
+    config.vm.network "forwarded_port", guest: 443, host: 4433
     config.vm.network "forwarded_port", guest: 5432, host: 5433
-    config.vm.network 'private_network', ip: '192.168.254.188'
+    config.vm.network 'private_network', ip: '192.168.254.2'
 
     config.vm.provider "virtualbox" do |vb|
         vb.memory = "1024"
         vb.name = "coderdojo-website"
     end
 
-    config.vm.synced_folder './', '/vagrant', id: 'application', type: "nfs"
+    config.vm.synced_folder './', '/vagrant',
+        id: 'application',
+        type: "nfs",
+        nfs_version: 2,
+        nfs_udp: true
 
     # If ansible is in your path it will provision from your HOST machine
     # If ansible is not found in the path it will be instaled in the VM and provisioned from there

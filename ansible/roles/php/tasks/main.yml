@@ -36,4 +36,4 @@
   notify:
     - restart php7-fpm
 
-- include: configure.yml
+- import_tasks: configure.yml
