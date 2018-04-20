@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/CoderDojoNederland/Website.svg?branch=master)](https://travis-ci.org/CoderDojoNederland/Website)
 [![Coverage Status](https://coveralls.io/repos/CoderDojoNederland/website/badge.svg?branch=master&service=github)](https://coveralls.io/github/CoderDojoNederland/website?branch=master)
+![CodeShip Status](https://codeship.com/projects/213733/status?branch=master)
 
 http://www.coderdojo.nl
 
