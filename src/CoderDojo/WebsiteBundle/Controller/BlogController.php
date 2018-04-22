@@ -39,7 +39,7 @@ class BlogController extends Controller
 
     /**
      * @Route("/{slug}", name="blog_category")
-     * @ParamConverter("category", class="CoderDojoWebsiteBundle:Category", options={"slug" = "slug"})
+     * @ParamConverter("category", class="CoderDojoWebsiteBundle:Category", options={"mapping": {"slug" = "slug"}})
      */
     public function categoryAction(Request $request, Category $category)
     {
