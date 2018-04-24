@@ -26,8 +26,8 @@ Vagrant.configure("2") do |config|
 
     config.vm.box = "ubuntu/xenial64"
 
-    config.vm.network "forwarded_port", guest: 80, host: 8080
-    config.vm.network "forwarded_port", guest: 443, host: 4433
+    config.vm.network "forwarded_port", guest: 80, host: 80
+    config.vm.network "forwarded_port", guest: 443, host: 443
     config.vm.network "forwarded_port", guest: 5432, host: 5433
     config.vm.network 'private_network', ip: '192.168.254.2'
 

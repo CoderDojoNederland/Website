@@ -302,7 +302,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * @Route("/mentor-requests/{id}", name="dashboard-mentor-requests-accept")
+     * @Route("/mentor-requests/{id}/accept", name="dashboard-mentor-requests-accept")
      */
     public function mentorAcceptAction($id)
     {
@@ -348,6 +348,36 @@ class DashboardController extends Controller
         $this->get('mailer')->send($message);
 
         $this->get('session')->getFlashBag()->add('success', sprintf('We hebben %s aan %s toegevoegd.', $mentor->getFirstName(), $dojo->getName()));
+
+        return $this->redirectToRoute('dashboard-mentor-requests');
+    }
+
+    /**
+     * @Route("/mentor-requests/{id}/deny", name="dashboard-mentor-requests-deny")
+     */
+    public function mentorDenyAction($id)
+    {
+        $mentorRequest = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:DojoRequest')->find($id);
+
+        if (null === $mentorRequest) {
+            $this->get('session')->getFlashBag()->add('error', 'Dit verzoek kon niet worden gevonden om te weigeren.');
+
+            return $this->redirectToRoute('dashboard-mentor-requests');
+        }
+
+        if (false === $mentorRequest->getDojo()->getOwners()->contains($this->getUser())) {
+            $this->get('session')->getFlashBag()->add('error', 'Je bent niet gemachtigd om dit verzoek te weigeren.');
+
+            return $this->redirectToRoute('dashboard-mentor-requests');
+        }
+
+        $mentor = $mentorRequest->getUser();
+        $dojo = $mentorRequest->getDojo();
+
+        $this->getDoctrine()->getManager()->remove($mentorRequest);
+        $this->getDoctrine()->getManager()->flush();
+
+        $this->get('session')->getFlashBag()->add('success', sprintf('Het verzoek van %s voor %s is geweigerd.', $mentor->getFirstName(), $dojo->getName()));
 
         return $this->redirectToRoute('dashboard-mentor-requests');
     }

@@ -27,7 +27,10 @@
                     <th>{{ mentorRequest.user.lastname|capitalize }}</th>
                     <th>{{ mentorRequest.user.email }}</th>
                         <th>{{ mentorRequest.user.phone }}</th>
-                        <th><a href="{{ path('dashboard-mentor-requests-accept', {'id': mentorRequest.id}) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Accepteren</a></th>
+                        <th>
+                            <a href="{{ path('dashboard-mentor-requests-accept', {'id': mentorRequest.id}) }}" class="btn btn-success btn-xs" onclick="return confirm('Weet je zeker dat je {{ mentorRequest.user.firstname|capitalize }} wilt accepteren?')"><i class="icon-ok"></i> Accepteren</a>
+                            <a href="{{ path('dashboard-mentor-requests-deny', {'id': mentorRequest.id}) }}" class="btn btn-danger btn-xs" onclick="return confirm('Weet je zeker dat je {{ mentorRequest.user.firstname|capitalize }} wilt weigeren?')"><i class="icon-trash"></i> Weigeren</a>
+                        </th>
                     </tr>
                 {% endfor %}
             </tbody>
