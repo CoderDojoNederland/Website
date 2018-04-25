@@ -202,24 +202,5 @@
     });
 
   });
-  
-  $('#dojoeventlist a').on('click', function(e){
-    var cb = generate_callback($(this));
-    e.preventDefault();
-    var el = $(e.target);
 
-    mixpanel.track("Register for dojo", {
-      "Dojo Name": el.data('dojo'),
-      "Dojo Event Date": el.data('dojo-date'),
-      "Registration Location": 'dojo page'
-    });
-
-    setTimeout(cb, 500);
-  });
-
-  function generate_callback(a) {
-    return function() {
-      window.location = a.attr("href");
-    }
-  }
 }());
