@@ -3,6 +3,7 @@
 namespace CoderDojo\WebsiteBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -58,6 +59,7 @@ class RegistrationFormType extends AbstractType
                 'placeholder' => 'Gebruik aub een persoonlijk emailadres'
             ]
         ));
+
         $builder->add('plainPassword', RepeatedType::class, array(
             'type' => PasswordType::class,
             'options' => array('translation_domain' => 'FOSUserBundle'),
@@ -65,6 +67,15 @@ class RegistrationFormType extends AbstractType
             'second_options' => array('label' => 'form.password_confirmation'),
             'invalid_message' => 'fos_user.password.mismatch',
         ));
+
+        $builder->add('consent', CheckboxType::class, [
+            'label' => 'Ik ga akkoord met de verwerking van mijn gegevens volgens de Privacy Verklaring.',
+            'label_attr' => [
+                'class' => 'col-lg-9 checkbox-label'
+            ],
+            'required' => true,
+            'mapped' => false
+        ]);
     }
 
     public function getParent()
