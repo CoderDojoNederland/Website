@@ -117,4 +117,12 @@ class PagesController extends Controller
     {
         return $this->render(':Pages:Supporting/first-aid.html.twig');
     }
+
+    /**
+     * @Route("/privacy", name="privacy")
+     */
+    public function privacyAction()
+    {
+        return $this->render(':Pages:privacy.html.twig');
+    }
 }
