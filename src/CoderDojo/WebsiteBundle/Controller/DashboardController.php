@@ -30,6 +30,12 @@ class DashboardController extends Controller
      */
     public function dashboardAction()
     {
+        if (null === $this->getUser()->getDateTimeAcceptedPrivacy()) {
+            $this->get('session')->getFlashBag()->add('warning', 'Vanwege de nieuwe privacy wetgeving moet je eerst akkoord gaan met onze privacy verklaring.');
+
+            return $this->redirectToRoute('dashboard-accepteer-privacy');
+        }
+
         if (
             true === empty($this->getUser()->getFirstName()) ||
             true === empty($this->getUser()->getLastName()) ||
@@ -40,12 +46,6 @@ class DashboardController extends Controller
             $this->get('session')->getFlashBag()->add('success', $text);
 
             return $this->redirectToRoute('fos_user_profile_edit');
-        }
-
-        if (null === $this->getUser()->getDateTimeAcceptedPrivacy()) {
-            $this->get('session')->getFlashBag()->add('warning', 'Vanwege de nieuwe privacy wetgeving moet je eerst akkoord gaan met onze privacy verklaring.');
-
-            return $this->redirectToRoute('dashboard-accepteer-privacy');
         }
 
         return $this->render(':Dashboard:Pages/dashboard.html.twig');
