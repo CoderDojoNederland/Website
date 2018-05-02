@@ -10,6 +10,7 @@ use CoderDojo\WebsiteBundle\Entity\DojoRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
 use CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType;
 use CoderDojo\WebsiteBundle\Form\Type\EventFormType;
+use CoderDojo\WebsiteBundle\Form\Type\PrivacyFormType;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,6 +30,12 @@ class DashboardController extends Controller
      */
     public function dashboardAction()
     {
+        if (null === $this->getUser()->getDateTimeAcceptedPrivacy()) {
+            $this->get('session')->getFlashBag()->add('warning', 'Vanwege de nieuwe privacy wetgeving moet je eerst akkoord gaan met onze privacy verklaring.');
+
+            return $this->redirectToRoute('dashboard-accepteer-privacy');
+        }
+
         if (
             true === empty($this->getUser()->getFirstName()) ||
             true === empty($this->getUser()->getLastName()) ||
@@ -42,6 +49,31 @@ class DashboardController extends Controller
         }
 
         return $this->render(':Dashboard:Pages/dashboard.html.twig');
+    }
+
+    /**
+     * @Route("/privacy-accepteren", name="dashboard-accepteer-privacy")
+     */
+    public function acceptAction(Request $request)
+    {
+        $form = $this->createForm(PrivacyFormType::class);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $this->getUser()->setDateTimeAcceptedPrivacy(new \DateTime);
+                $this->getDoctrine()->getManager()->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Bedankt, we hebben het geregistreerd!');
+
+                return $this->redirectToRoute('dashboard');
+            }
+        }
+
+        return $this->render(':Dashboard:Pages/accepteer-privacy.html.twig', [
+            'form'=>$form->createView(),
+        ]);
     }
 
     /**

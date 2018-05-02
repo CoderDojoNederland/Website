@@ -69,6 +69,10 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <!-- jQuery -->
     <script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/jquery-1.10.2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('bundles/coderdojowebsite/plugins/jquery-ui.min.js')}}"></script>
+
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 </head>
 
 <body>
@@ -228,6 +232,8 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                         &nbsp;|&nbsp;
                         <a href="{{ path('fos_user_registration_register') }}">Registreren</a>
                     {% endif %}
+                    &nbsp;|&nbsp;
+                    <a href="{{ path('privacy') }}">Privacy Verklaring</a>
                 </p>
             </div>
             <div class="col-sm-12 col-md-3">
@@ -281,6 +287,28 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     ga('send', 'pageview');
     ga('set', 'forceSSL', true);
     ga('set', 'anonymizeIp', true);
+</script>
+<script>
+    window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#ffffff"
+                },
+                "button": {
+                    "background": "#e67e22",
+                    "text": "#ffffff"
+                }
+            },
+            "theme": "classic",
+            "position": "bottom",
+            "content": {
+                "message": "Deze website gebruikt cookies om te zorgen voor de best mogelijke ervaring. Door gebruik te maken van de website ga je akkoord met het plaatsen van deze cookies.",
+                "dismiss": "Akkoord!",
+                "link": "Meer informatie",
+                "href": "{{ path('privacy') }}"
+            }
+        })});
 </script>
 {% block customjs %}{% endblock %}
 <script src="//static.getclicky.com/js" type="text/javascript"></script>

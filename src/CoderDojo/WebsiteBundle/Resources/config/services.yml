@@ -12,6 +12,11 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_user_profile }
 
+    coder_dojo.form.accept_privacy:
+        class: CoderDojo\WebsiteBundle\Form\Type\PrivacyFormType
+        tags:
+            - { name: form.type, alias: coderdojo_privacy_form }
+
     coder_dojo.form.contact:
         class: CoderDojo\WebsiteBundle\Form\Type\ContactFormType
         arguments: ['@doctrine']

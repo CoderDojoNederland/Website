@@ -58,11 +58,18 @@ class User extends BaseUser
      **/
     private $claims;
 
+    /**
+     * @var \DateTimeImmutable
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateTimeAcceptedPrivacy;
+
     public function __construct()
     {
         parent::__construct();
         $this->dojos = new ArrayCollection();
         $this->dojoRequests = new ArrayCollection();
+        $this->dateTimeAcceptedPrivacy = new \DateTime;
     }
 
     /**
@@ -195,5 +202,21 @@ class User extends BaseUser
     public function addClaim($claim)
     {
         $this->claims = $claim;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getDateTimeAcceptedPrivacy()
+    {
+        return $this->dateTimeAcceptedPrivacy;
+    }
+
+    /**
+     * @param \DateTimeImmutable $dateTimeAcceptedPrivacy
+     */
+    public function setDateTimeAcceptedPrivacy($dateTimeAcceptedPrivacy)
+    {
+        $this->dateTimeAcceptedPrivacy = $dateTimeAcceptedPrivacy;
     }
 }

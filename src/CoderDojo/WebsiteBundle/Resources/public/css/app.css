@@ -1069,3 +1069,9 @@ i.style-switcher-btn-option:hover {
    margin-bottom: 10px;
    margin-top: 5px;
 }
+
+.form-horizontal .control-label.checkbox-label {
+   text-align: left;
+   padding-top:0;
+   float: none;
+}

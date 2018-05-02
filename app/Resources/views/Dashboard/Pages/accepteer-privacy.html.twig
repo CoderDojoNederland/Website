@@ -1,0 +1,26 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <div class="panel panel-green margin-bottom-40">
+        <div class="panel-heading">
+            <h3 class="panel-title margin-bottom-10">Privacy Verklaring Accepteren</h3>
+        </div>
+        <div class="panel-body">
+            {{ form_start(form, {'method': 'post', 'action': path('dashboard-accepteer-privacy'), 'attr': {'class': 'fos_user_registration_register form-horizontal'}}) }}
+            <div class="form-group">
+                <div class="col-lg-offset-1 col-lg-10">
+                    {{ form_widget(form.consent) }}
+                    <label class="required control-label" for="coderdojo_user_profile_consent">
+                        Ik ga akkoord met de verwerking van mijn gegevens volgens de <a href="{{ path('privacy') }}" target="_blank">Privacy Verklaring</a>.
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-1 col-lg-10">
+                    <input type="submit" value="Accepteren" class="btn btn-block btn-success" />
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock fos_user_content %}

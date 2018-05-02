@@ -1,0 +1,60 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ user.firstName }},</p>
+    <p>
+        Zoals je ongetwijfeld weet zal vanaf 25 mei nieuwe wetgeving op het gebied van privacy in werking treden. Ook
+        voor coderdojo.nl heeft dit de nodige gevolgen! Wij hebben ons best gedaan om dit zo goed mogelijk te implementeren.
+        De laatste stap is zorgen dat we de juiste toestemming hebben om data te mogen verwerken.
+    </p>
+    <h3>Wat betekent dit voor jou?</h3>
+    <p>
+        Gelukkig is het voor coderdojo.nl allemaal niet zo heel noemenswaardig. Het belangrijkste wat je moet weten is wélke
+        gegevens we hebben van je en waarom. In jouw geval is dat als volgt:
+    </p>
+    <table>
+        {% if user.firstName %}
+        <tr>
+            <td><strong>Naam:</strong></td>
+            <td>{{ user.firstName|capitalize }} {{ user.lastName|capitalize }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>{{ user.email }}</td>
+        </tr>
+        {% if user.phone %}
+        <tr>
+            <td><strong>Telefoon:</strong></td>
+            <td>{{ user.phone }}</td>
+        </tr>
+        {% endif %}
+    </table>
+    {% if user.dojos|length > 0 %}
+        <p>Jouw account is ook aan de volgende dojo&apos;s gekoppeld:</p>
+        <ul>
+            {% for dojo in user.dojos %}
+                <li>{{ dojo.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h3>Wat moet je doen?</h3>
+    <p>
+        Wij hebben jouw akkoord nodig om deze gegevens te mogen verwerken. Zodra je <a href="{{ url('dashboard') }}">in logt</a>
+        zullen wij je vragen om akkoord te gaan met onze <a href="{{ url('privacy') }}">Privacy Verklaring</a>.
+        Mocht je niet akkoord willen gaan neem dan contact met ons op om jouw account te verwijderen.
+    </p>
+    <p style="text-align: center;">
+        <a href="{{ url('dashboard') }}" class="btn">Inloggen</a><br/><br/>
+    </p>
+    {% if user.dojos|length > 0 %}
+        <p style="font-style: italic;">
+            <strong>Let op:</strong> Gezien jouw account aan dojo&apos;s gekoppeld is kan deze niet direct verwijderd worden.
+            Eerst moeten deze ontkoppeld worden, wat pas kan gebeuren als zich een vervangende champion aan dient of als jij niet
+            de champion (geweest) bent.
+        </p>
+    {% endif %}
+    <p>
+        Hopelijk hebben wij alles zo duidelijk uit kunnen leggen. Mocht je toch nog vragen hebben dan beantwoorden wij die natuurlijk met alle plezier.
+    </p>
+{% endblock content %}

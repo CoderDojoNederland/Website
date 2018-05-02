@@ -16,7 +16,7 @@
     no_dev: no
     working_dir: /vagrant
 
-- shell: php /vagrant/bin/console doctrine:schema:update --force
+- shell: php /vagrant/bin/console doctrine:migrations:migrate --no-interaction
 
 - shell: php /vagrant/bin/console doctrine:fixtures:load --no-interaction
 
