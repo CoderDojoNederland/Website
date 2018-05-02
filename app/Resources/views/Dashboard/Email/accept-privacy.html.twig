@@ -1,6 +1,10 @@
 {% extends ":Snippets:_email.html.twig" %}
 
 {% block content %}
+    <p style="font-style: italic;">
+        Eerder vandaag stuurden wij onderstaande mail, helaas met de verkeerde links. Deze zijn nu recht gezet! Excuus voor het ongemak.
+    </p>
+    <hr/>
     <p>Hi {{ user.firstName }},</p>
     <p>
         Zoals je ongetwijfeld weet zal vanaf 25 mei nieuwe wetgeving op het gebied van privacy in werking treden. Ook
@@ -40,12 +44,12 @@
     {% endif %}
     <h3>Wat moet je doen?</h3>
     <p>
-        Wij hebben jouw akkoord nodig om deze gegevens te mogen verwerken. Zodra je <a href="{{ url('dashboard') }}">in logt</a>
-        zullen wij je vragen om akkoord te gaan met onze <a href="{{ url('privacy') }}">Privacy Verklaring</a>.
+        Wij hebben jouw akkoord nodig om deze gegevens te mogen verwerken. Zodra je <a href="https://coderdojo.nl{{ path('dashboard') }}">in logt</a>
+        zullen wij je vragen om akkoord te gaan met onze <a href="https://coderdojo.nl{{ path('privacy') }}">Privacy Verklaring</a>.
         Mocht je niet akkoord willen gaan neem dan contact met ons op om jouw account te verwijderen.
     </p>
     <p style="text-align: center;">
-        <a href="{{ url('dashboard') }}" class="btn">Inloggen</a><br/><br/>
+        <a href="https://coderdojo.nl{{ path('dashboard') }}" class="btn">Inloggen</a><br/><br/>
     </p>
     {% if user.dojos|length > 0 %}
         <p style="font-style: italic;">
