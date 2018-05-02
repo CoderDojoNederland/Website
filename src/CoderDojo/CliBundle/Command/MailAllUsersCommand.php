@@ -21,7 +21,7 @@ class MailAllUsersCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $repository = $this->getContainer()->get('doctrine')->getRepository('CoderDojoWebsiteBundle:User');
-        $users = $repository->findBy([], ['id' => 'ASC']);
+        $users = $repository->findBy(['privacyMailSent' => false], ['id' => 'ASC']);
 
         $bar = new ProgressBar($output);
         $bar->setFormat('%current% of %max%'.PHP_EOL.'[%bar%] %percent:3s%%'.PHP_EOL.'%message% '.PHP_EOL);
@@ -51,6 +51,9 @@ class MailAllUsersCommand extends ContainerAwareCommand
 
             if (!$input->getOption('dry-run')) {
                 $this->getContainer()->get('mailer')->send($message);
+                $user->setPrivacyMailSent(true);
+                $this->getContainer()->get('doctrine')->getManager()->persist($user);
+                $this->getContainer()->get('doctrine')->getManager()->flush();
             }
 
             $bar->advance();

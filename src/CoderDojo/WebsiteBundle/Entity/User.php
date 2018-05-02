@@ -64,6 +64,12 @@ class User extends BaseUser
      */
     private $dateTimeAcceptedPrivacy;
 
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean")
+     */
+    private $privacyMailSent = false;
+
     public function __construct()
     {
         parent::__construct();
@@ -218,5 +224,21 @@ class User extends BaseUser
     public function setDateTimeAcceptedPrivacy($dateTimeAcceptedPrivacy)
     {
         $this->dateTimeAcceptedPrivacy = $dateTimeAcceptedPrivacy;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPrivacyMailSent(): bool
+    {
+        return $this->privacyMailSent;
+    }
+
+    /**
+     * @param bool $privacyMailSent
+     */
+    public function setPrivacyMailSent(bool $privacyMailSent): void
+    {
+        $this->privacyMailSent = $privacyMailSent;
     }
 }
