@@ -95,7 +95,7 @@ class DefaultController extends Controller
 
         $user = $this->getUser();
         if ($user && $user->hasRole('ROLE_ADMIN')) {
-            return $this->redirectToRoute('admin-vog');
+            return $this->redirectToRoute('coc_requested');
         }
 
         return $this->redirectToRoute('home');
