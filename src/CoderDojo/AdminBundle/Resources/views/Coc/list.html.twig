@@ -79,6 +79,12 @@
                                                         Voorbereid
                                                     </span>
                                                 </p>
+                                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_EXPIRED') %}
+                                                <p class="text-info">
+                                                    <span class="label label-danger"><i class="icon-ban-circle"></i>
+                                                        Verlopen
+                                                    </span>
+                                                </p>
                                             {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
                                                 <p class="text-info">
                                                     <span class="label label-info"><i class="icon-envelope"></i>
@@ -108,6 +114,14 @@
                                             {% else %}
                                                 {% set prepared_label = 'default' %}
                                                 {% set prepared_status = 'disabled' %}
+                                            {% endif %}
+
+                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_EXPIRED') %}
+                                                {% set created_label = 'warning' %}
+                                                {% set created_status = '' %}
+                                            {% else %}
+                                                {% set created_label = 'default' %}
+                                                {% set created_status = 'disabled' %}
                                             {% endif %}
 
                                             {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}

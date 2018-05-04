@@ -13,6 +13,7 @@ class CocRequest
     const STATUS_CREATED = 'created';
     const STATUS_PREPARED = 'prepared';
     const STATUS_REQUESTED = 'requested';
+    const STATUS_EXPIRED = 'expired';
     const STATUS_RECEIVED = 'received';
 
     /**
@@ -93,6 +94,13 @@ class CocRequest
      *
      * @ORM\Column(type="datetime", nullable=true)
      **/
+    private $expiresAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     **/
     private $requestedAt;
 
     /**
@@ -101,6 +109,13 @@ class CocRequest
      * @ORM\Column(type="datetime", nullable=true)
      **/
     private $receivedAt;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     **/
+    private $expiryReminderSent;
 
     /**
      * CocRequest constructor.
@@ -191,6 +206,22 @@ class CocRequest
     /**
      * @return \DateTime
      */
+    public function getPreparedAt()
+    {
+        return $this->preparedAt;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getExpiresAt(): ?\DateTime
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
     public function getRequestedAt()
     {
         return $this->requestedAt;
@@ -212,6 +243,27 @@ class CocRequest
         return $this->notes;
     }
 
+    /**
+     * @return bool
+     */
+    public function isExpiryReminderSent(): bool
+    {
+        return $this->expiryReminderSent;
+    }
+
+    public function expiryReminderSent(): void
+    {
+        $this->expiryReminderSent = true;
+    }
+
+    public function prepared()
+    {
+        $this->preparedAt = new \DateTime();
+        $this->expiresAt = new \DateTime('+ 30 days');
+        $this->expiryReminderSent = false;
+        $this->status = self::STATUS_PREPARED;
+    }
+
     public function requested()
     {
         if (null !== $this->requestedAt) {
@@ -219,17 +271,8 @@ class CocRequest
         }
 
         $this->requestedAt = new \DateTime();
+        $this->expiresAt = null;
         $this->status = self::STATUS_REQUESTED;
-    }
-
-    public function prepared()
-    {
-        if (null !== $this->preparedAt) {
-            throw new \Exception('This COC has already been prepared');
-        }
-
-        $this->preparedAt = new \DateTime();
-        $this->status = self::STATUS_PREPARED;
     }
 
     public function received()
@@ -245,13 +288,5 @@ class CocRequest
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getPreparedAt()
-    {
-        return $this->preparedAt;
     }
 }

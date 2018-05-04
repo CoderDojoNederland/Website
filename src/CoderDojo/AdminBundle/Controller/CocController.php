@@ -71,6 +71,29 @@ class CocController extends Controller
     }
 
     /**
+     * @Route("/verlopen", name="coc_expired")
+     */
+    public function expiredAction()
+    {
+        /** @var CocRequest $cocs */
+        $cocs = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:CocRequest')->findBy(
+            [
+                'status' => 'expired'
+            ],
+            [
+                'createdAt' => 'DESC'
+            ]);
+
+        return $this->render(
+            'AdminBundle:Coc:list.html.twig',
+            [
+                'title' => 'VOG\'s - Verlopen',
+                'cocs' => $cocs
+            ]
+        );
+    }
+
+    /**
      * @Route("/verzonden", name="coc_requested")
      */
     public function requestedAction()
@@ -124,12 +147,6 @@ class CocController extends Controller
      */
     public function vogPreparedAction(CocRequest $cocRequest)
     {
-        if (null !== $cocRequest->getPreparedAt()) {
-            $this->get('session')->getFlashBag()->add('error', 'Dit vog is al klaar gezet!');
-
-            return $this->redirectToRoute('coc_created');
-        }
-
         $command = new PrepareCocRequestCommand($cocRequest->getId());
         $this->get('command_bus')->handle($command);
 
