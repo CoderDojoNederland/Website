@@ -15,11 +15,51 @@
 
     <div class="container">
         <!--Error Block-->
-        <div class="row">
+        <div class="row margin-bottom-30">
             <div class="col-md-8 col-md-offset-2">
                 <div class="error-v1">
-                    <h1 style="text-align: center">Deze pagina konden we niet vinden!</h1>
-                    <br/>
+                    <h1 style="text-align: center">Deze pagina konden we niet vinden!<br/>Misschien helpt dit je op weg...</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row margin-bottom-30">
+            <div class="col-md-4">
+                <a href="{{ path('blog_index') }}" class="no-underline">
+                    <div class="servive-block servive-block-in margin-bottom-20">
+                        <div class="servive-block-in servive-block-colored servive-block-yellow">
+                            <h4>Nieuws</h4>
+                            <p><i class="icon-bullhorn"></i></p>
+                            <p><br>Het laatste nieuws over CoderDojo in Nederland.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ path('material') }}" class="no-underline">
+                    <div class="servive-block servive-block-in margin-bottom-20">
+                        <div class="servive-block-in servive-block-colored servive-block-blue">
+                            <h4>Lesmateriaal</h4>
+                            <p><i class="icon-book"></i></p>
+                            <p><br>Van sushi cards tot workshops</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ path('dojos') }}" class="no-underline">
+                    <div class="servive-block servive-block-in margin-bottom-20">
+                        <div class="servive-block-in servive-block-colored servive-block-green">
+                            <h4>Locaties / Agenda</h4>
+                            <p><i class="icon-globe"></i></p>
+                            <p><br>Waar en wanneer vinden dojos plaats.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row margin-bottom-50">
+            <div class="col-md-8 col-md-offset-2">
                     <div class="row tag-box tag-box-v5">
                         <div class="col-md-8">
                             <p>
@@ -30,15 +70,10 @@
                             <p><a href="https://github.com/coderdojonederland/website" class="btn-u btn-u-lg btn-u-red"><i class="icon-github"></i> Naar GitHub</a></p>
                         </div>
                     </div>
-                    <br/>
-                    <p style="text-align: center;font-weight: bold;">Als je 2 minuten de tijd hebt, kun je hier de aftermovie van de MegaDojo zien!</p>
-                    <div class="responsive-video">
-                        <iframe src="https://www.youtube.com/embed/0jneeKZFJEU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <br/><br/><br/>
                 </div>
             </div>
         </div>
+
         <!--End Error Block-->
     </div>
 {% endblock %}

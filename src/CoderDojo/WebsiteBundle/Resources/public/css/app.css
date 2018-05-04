@@ -1075,3 +1075,7 @@ i.style-switcher-btn-option:hover {
    padding-top:0;
    float: none;
 }
+
+a:hover.no-underline {
+   text-decoration: none;
+}

@@ -9,8 +9,10 @@ use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @Route("/nieuws")
@@ -61,20 +63,21 @@ class BlogController extends Controller
 
     /**
      * @Route("/{category}/{slug}", name="blog_single")
+     * @ParamConverter("category", class="CoderDojoWebsiteBundle:Category", options={"mapping": {"category" = "slug"}})
      * @param $category
      * @param $slug
      * @return Response
      */
-    public function viewArticleAction($category, $slug)
+    public function viewArticleAction(Category $category, string $slug)
     {
-        $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy([
-            'slug' => $category
-        ]);
-
         $article = $this->getDoctrine()->getRepository(Article::class)->findOneBy([
             'category' => $category,
             'slug' => $slug
         ]);
+
+        if ($article === null) {
+            throw new HttpException(401, 'Het artikel is niet gevonden.');
+        }
 
         return $this->render(':Blog:single.html.twig', [
             'article' => $article,
