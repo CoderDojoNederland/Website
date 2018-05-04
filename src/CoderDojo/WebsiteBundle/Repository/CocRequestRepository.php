@@ -22,4 +22,19 @@ class CocRequestRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return CocRequest[]
+     */
+    public function getInNeedOfReminder()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.expiresAt < :oneWeek')
+            ->andWhere('c.expiryReminderSent = false')
+            ->andWhere('c.status != :expired')
+            ->setParameter('oneWeek', new \DateTime('+7 days'))
+            ->setParameter('expired', CocRequest::STATUS_EXPIRED)
+            ->getQuery()
+            ->getResult();
+    }
 }

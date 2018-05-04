@@ -1,0 +1,16 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.requestedBy.firstname }},</p>
+    <p>
+        De VOG aanvraag voor <strong>{{ coc.letters }} {{ coc.name }}</strong> zal over 7 dagen verlopen.
+        Als deze vrijwilliger de aanvraag niet voltooid dan kunnen wij deze niet verwerken. We zullen dan een nieuwe aanvraag moeten doen.
+    </p>
+    <p>
+        Zou jij zo vriendelijk willen zijn om {{ coc.letters }} {{ coc.name }} persoonlijk ook nog een keer te herinneren?
+        Wij hebben {{ coc.letters }} {{ coc.name }} ook een email gestuurd met een herinnering.
+    </p>
+    <p>
+        Mocht je nog vragen hebben, neem dan gerust contact met ons op.
+    </p>
+{% endblock content %}
