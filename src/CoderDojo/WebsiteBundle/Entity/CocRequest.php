@@ -5,7 +5,7 @@ namespace CoderDojo\WebsiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="CoderDojo\WebsiteBundle\Repository\CocRequestRepository")
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="email_uidx", columns={"email"})})
  */
 class CocRequest
@@ -262,6 +262,11 @@ class CocRequest
         $this->expiresAt = new \DateTime('+ 30 days');
         $this->expiryReminderSent = false;
         $this->status = self::STATUS_PREPARED;
+    }
+
+    public function expired()
+    {
+        $this->status = self::STATUS_EXPIRED;
     }
 
     public function requested()

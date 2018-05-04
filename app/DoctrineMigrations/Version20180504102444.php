@@ -18,7 +18,6 @@ class Version20180504102444 extends AbstractMigration
         $this->addSql('ALTER TABLE coc_request ADD expires_at DATETIME DEFAULT NULL');
         $this->addSql('ALTER TABLE coc_request ADD expiry_reminder_sent BOOLEAN DEFAULT FALSE');
         $this->addSql('UPDATE coc_request SET expires_at = DATE_ADD(prepared_at, INTERVAL 30 DAY) WHERE status = \'prepared\'');
-        $this->addSql('UPDATE coc_request SET status = \'expired\' WHERE expires_at < NOW()');
     }
 
     public function down(Schema $schema)

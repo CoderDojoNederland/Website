@@ -1,0 +1,21 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.letters }} {{ coc.name }},</p>
+    <p>
+        We kunnen de aanvraag van jouw VOG helaas niet verder verwerken omdat jouw aanvraag bij het ministerie verlopen is.
+        Vorige week heb je hier als het goed is nog een reminder over ontvangen.
+    </p>
+    <p>
+        Van het moment dat wij jouw aanvraag klaar zetten (zie onze email op {{ coc.preparedAt|date('d/m/Y') }} om {{ coc.preparedAt|date('H:i') }}h)
+        heb je 30 dagen de tijd om je aanvraag bij het ministerie te doen. Helaas zijn die 30 dagen nu verlopen waardoor je geen VOG meer aan kunt vragen.
+    </p>
+    <p>
+        <strong>Wat nu?</strong><br/>
+        Als er nog steeds een VOG voor jou aangevraagd moet worden kun je het beste contact opnemen met de champion van jouw dojo ({{ coc.requestedBy.firstname }} {{ coc.requestedBy.lastname }}).
+        Hij/Zij kan ons dan vragen om een nieuwe aanvraag klaar te zetten bij het ministerie zodat je opnieuw 30 dagen de tijd hebt.
+    </p>
+    <p>
+        Mocht je nog vragen hebben, neem dan gerust contact met ons op.
+    </p>
+{% endblock content %}
