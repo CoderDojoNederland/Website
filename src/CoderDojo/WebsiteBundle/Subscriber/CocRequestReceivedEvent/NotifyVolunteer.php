@@ -47,7 +47,7 @@ class NotifyVolunteer
         $coc = $this->doctrine->getRepository(CocRequest::class)->find($event->getId());
 
         $message = \Swift_Message::newInstance()
-            ->setSubject(sprintf('Jouw VOG Aanvraag is Voltooid'))
+            ->setSubject(sprintf('✅ Jouw VOG Aanvraag is Voltooid'))
             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
             ->setReplyTo('contact@coderdojo.nl')
             ->setTo($coc->getEmail(), $coc->getLetters().' '.$coc->getName())
