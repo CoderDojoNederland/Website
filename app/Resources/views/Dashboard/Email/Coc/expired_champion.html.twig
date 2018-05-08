@@ -1,0 +1,18 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.requestedBy.firstname }},</p>
+    <p>
+        We hebben helaas slecht nieuws, het VOG voor <strong>{{ coc.letters }} {{ coc.name }}</strong> is niet op tijd aangevraagd.
+        Nadat wij de aanvraag bij het ministerie hebben klaar gezet is deze 30 dagen geldig. Deze zijn inmiddels verstreken waardoor het
+        niet meer mogelijk is om de aanvraag te voltooien. Dit hebben we ook aan {{ coc.letters }} {{ coc.name }} laten weten.
+    </p>
+    <p>
+        <strong>Wat nu?</strong><br/>
+        Als je nog steeds wilt dat er voor {{ coc.letters }} {{ coc.name }} een VOG komt, laat het ons dan weten middels een reply op deze mail.
+        Wij zullen dan de aanvraag opnieuw klaar zetten zodat {{ coc.letters }} {{ coc.name }} weer 30 dagen de tijd heeft.
+    </p>
+    <p>
+        Mocht je nog vragen hebben, neem dan gerust contact met ons op.
+    </p>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ coc.letters }} {{ coc.name }},</p>
+    <p>
+        We hebben op verzoek van {{ coc.requestedBy.firstname }} {{ coc.requestedBy.lastname }} voor jou een VOG aanvraag bij de overheid klaar gezet.
+        Deze aanvraag moet je zelf nog uitvoeren voordat je daadwerkelijk een VOG krijgt. Je had hier 30 dagen de tijd voor (zie onze email op {{ coc.preparedAt|date('d/m/Y') }}).
+    </p>
+    <p>
+        <strong>Je hebt nu nog 7 dagen de tijd!</strong>
+    </p>
+    <p>
+        Je hebt op {{ coc.preparedAt|date('d/m/Y') }} een email gehad van noreplyjustis@minvenj.nl. Daarin staat de link om jouw VOG aan te kunnen vragen.]
+        Als je dit niet doet binnen de komende 7 dagen zal je geen VOG meer kunnen krijgen. Wij zullen dan een nieuwe aanvraag moeten doen.
+    </p>
+    <p>
+        Mocht je nog vragen hebben, neem dan gerust contact met ons op.
+    </p>
+{% endblock content %}

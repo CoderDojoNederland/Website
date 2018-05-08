@@ -47,7 +47,7 @@ class NotifyChampion
         $coc = $this->doctrine->getRepository(CocRequest::class)->find($event->getId());
 
         $message = \Swift_Message::newInstance()
-            ->setSubject(sprintf('We hebben jouw VOG aanvraag ontvangen'))
+            ->setSubject(sprintf('✅ We hebben jouw VOG aanvraag ontvangen'))
             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
             ->setReplyTo('contact@coderdojo.nl')
             ->setTo($coc->getRequestedBy()->getEmail())

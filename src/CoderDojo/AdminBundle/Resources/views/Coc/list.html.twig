@@ -1,0 +1,167 @@
+{% extends 'AdminBundle::index.html.twig' %}
+
+{% block content %}
+    <div class="row">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="col-md-12 margin-bottom-30">
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ flashMessage }}
+                </div>
+            </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="col-md-12 margin-bottom-30">
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="col-md-12 margin-bottom-30">
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{ flashMessage }}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>{{ title }}</h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title">Dojo </th>
+                                <th class="column-title">Aanvrager </th>
+                                <th class="column-title">Voorletters </th>
+                                <th class="column-title">Achternaam </th>
+                                <th class="column-title">Email </th>
+                                <th class="column-title">Opmerkingen </th>
+                                <th class="column-title">Status </th>
+                                <th class="column-title no-link last" width="120"><span class="nobr">Action</span></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for coc in cocs %}
+                                    <tr>
+                                        <td>{{ coc.requestedFor.name }}</td>
+                                        <td>{{ coc.requestedBy.firstName }} {{ coc.requestedBy.lastName }}</td>
+                                        <td>{{ coc.letters }}</td>
+                                        <td>{{ coc.name }}</td>
+                                        <td>{{ coc.email }}</td>
+                                        <td>{{ coc.notes }}</td>
+                                        <td>
+                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_CREATED') %}
+                                                <p class="text-muted">
+                                                    <span class="label label-default"><i class="icon-asterisk"></i>
+                                                        Aangemaakt
+                                                    </span>
+                                                </p>
+                                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_PREPARED') %}
+                                                <p class="text-warning">
+                                                    <span class="label label-warning"><i class="icon-flag"></i>
+                                                        Voorbereid
+                                                    </span>
+                                                </p>
+                                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_EXPIRED') %}
+                                                <p class="text-info">
+                                                    <span class="label label-danger"><i class="icon-ban-circle"></i>
+                                                        Verlopen
+                                                    </span>
+                                                </p>
+                                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
+                                                <p class="text-info">
+                                                    <span class="label label-info"><i class="icon-envelope"></i>
+                                                        Aangevraagd
+                                                    </span>
+                                                </p>
+                                            {% elseif coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_RECEIVED') %}
+                                                <p class="text-success">
+                                                    <span class="label label-success"><i class="icon-ok"></i>
+                                                        Ontvangen
+                                                    </span>
+                                                </p>
+                                            {% endif %}
+                                        </td>
+                                        <td width="100">
+                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_CREATED') %}
+                                                {% set created_label = 'warning' %}
+                                                {% set created_status = '' %}
+                                            {% else %}
+                                                {% set created_label = 'default' %}
+                                                {% set created_status = 'disabled' %}
+                                            {% endif %}
+
+                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_PREPARED') %}
+                                                {% set prepared_label = 'info' %}
+                                                {% set prepared_status = '' %}
+                                            {% else %}
+                                                {% set prepared_label = 'default' %}
+                                                {% set prepared_status = 'disabled' %}
+                                            {% endif %}
+
+                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_EXPIRED') %}
+                                                {% set created_label = 'warning' %}
+                                                {% set created_status = '' %}
+                                            {% else %}
+                                                {% set created_label = 'default' %}
+                                                {% set created_status = 'disabled' %}
+                                            {% endif %}
+
+                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
+                                                {% set requested_label = 'success' %}
+                                                {% set requested_status = '' %}
+                                            {% else %}
+                                                {% set requested_label = 'default' %}
+                                                {% set requested_status = 'disabled' %}
+                                            {% endif %}
+
+                                            {% if coc.status != constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_RECEIVED') %}
+                                                <a href="{{ path('admin-vog-prepared', {'id': coc.id}) }}"
+                                                   class="btn btn-xs btn-{{ created_label }} {{ created_status }}"
+                                                   title="Mark as Prepared"
+                                                >
+                                                    <i class="fa fa-flag"></i>
+                                                </a>
+                                                <a href="{{ path('vog-requested', {'id': coc.id}) }}"
+                                                   class="btn btn-xs btn-{{ prepared_label }} {{ prepared_status }}"
+                                                   title="Mark as requested"
+                                                >
+                                                    <i class="fa fa-envelope"></i>
+                                                </a>
+                                                <a href="{{ path('admin-vog-received', {'id':coc.id}) }}"
+                                                   class="btn btn-xs btn-{{ requested_label }} {{ requested_status }}"
+                                                   title="Mark as received"
+                                                >
+                                                    <i class="fa fa-thumbs-up"></i>
+                                                </a>
+                                            {% else %}
+                                                <span class="label label-success">Voltooid</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

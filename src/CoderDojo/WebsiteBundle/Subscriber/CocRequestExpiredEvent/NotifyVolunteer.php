@@ -1,9 +1,9 @@
 <?php
 
-namespace CoderDojo\WebsiteBundle\Subscriber\CocRequestReceivedEvent;
+namespace CoderDojo\WebsiteBundle\Subscriber\CocRequestExpiredEvent;
 
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
-use CoderDojo\WebsiteBundle\Event\CocRequestReceivedEvent;
+use CoderDojo\WebsiteBundle\Event\CocRequestExpiredEvent;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Swift_Mailer;
 use Symfony\Bundle\TwigBundle\TwigEngine;
@@ -41,13 +41,13 @@ class NotifyVolunteer
         $this->doctrine = $doctrine;
     }
 
-    public function notify(CocRequestReceivedEvent $event)
+    public function notify(CocRequestExpiredEvent $event)
     {
         /** @var CocRequest $coc */
         $coc = $this->doctrine->getRepository(CocRequest::class)->find($event->getId());
 
         $message = \Swift_Message::newInstance()
-            ->setSubject(sprintf('✅ Jouw VOG Aanvraag is Voltooid'))
+            ->setSubject(sprintf('🚫 VOG Aanvraag Verlopen'))
             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
             ->setReplyTo('contact@coderdojo.nl')
             ->setTo($coc->getEmail(), $coc->getLetters().' '.$coc->getName())
@@ -55,7 +55,7 @@ class NotifyVolunteer
             ->setContentType('text/html')
             ->setBody(
                 $this->templating->render(
-                    ':Dashboard/Email/Coc:received_volunteer.html.twig',
+                    ':Dashboard/Email/Coc:expired_volunteer.html.twig',
                     array(
                         'coc' => $coc
                     )

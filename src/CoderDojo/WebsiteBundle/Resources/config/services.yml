@@ -92,6 +92,12 @@ services:
         tags:
           - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\PrepareCocRequestCommand"}
 
+    coder_dojo.website_bundle.handler.expire_coc_request_handler:
+        class: CoderDojo\WebsiteBundle\Handler\ExpireCocRequestHandler
+        arguments: ["@event_recorder", "@doctrine"]
+        tags:
+          - { name: command_handler, handles: "CoderDojo\\WebsiteBundle\\Command\\ExpireCocRequestCommand"}
+
     coder_dojo.website_bundle.handler.ship_coc_request_handler:
         class: CoderDojo\WebsiteBundle\Handler\ShipCocRequestHandler
         arguments: ["@event_recorder", "@doctrine"]
@@ -189,3 +195,21 @@ services:
             - "@doctrine"
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestReceivedEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_expired_event.notify_champion:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestExpiredEvent\NotifyChampion
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestExpiredEvent"}
+
+    coder_dojo.website_bundle.subscriber.coc_request_expired_event.notify_volunteer:
+        class: CoderDojo\WebsiteBundle\Subscriber\CocRequestExpiredEvent\NotifyVolunteer
+        arguments:
+            - "@mailer"
+            - "@templating"
+            - "@doctrine"
+        tags:
+            - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestExpiredEvent"}
