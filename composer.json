@@ -14,7 +14,7 @@
         "php": ">=7.1",
         "cleentfaar/slack": "0.20.*",
         "cocur/slugify": "^2.5",
-        "components/jquery": "1.10",
+        "components/jquery": "3.3.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
