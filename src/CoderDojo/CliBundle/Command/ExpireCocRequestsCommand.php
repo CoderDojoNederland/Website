@@ -49,7 +49,7 @@ class ExpireCocRequestsCommand extends ContainerAwareCommand
         if ($bar->getProgress() > 0) {
             $this->getContainer()->get('coder_dojo.website_bundle.slack_service')->sendToChannel(
                 '#website-nl',
-                sprintf('🚫 Er zijn %d VOG\'s verlopen')
+                sprintf('🚫 Er zijn %d VOG\'s verlopen', $bar->getProgress())
             );
         }
     }
