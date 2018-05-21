@@ -119,9 +119,6 @@
                                             {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_EXPIRED') %}
                                                 {% set created_label = 'warning' %}
                                                 {% set created_status = '' %}
-                                            {% else %}
-                                                {% set created_label = 'default' %}
-                                                {% set created_status = 'disabled' %}
                                             {% endif %}
 
                                             {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
