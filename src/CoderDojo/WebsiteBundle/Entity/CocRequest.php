@@ -259,6 +259,8 @@ class CocRequest
     public function prepared()
     {
         $this->preparedAt = new \DateTime();
+        $this->requestedAt = null;
+        $this->receivedAt = null;
         $this->expiresAt = new \DateTime('+ 30 days');
         $this->expiryReminderSent = false;
         $this->status = self::STATUS_PREPARED;
