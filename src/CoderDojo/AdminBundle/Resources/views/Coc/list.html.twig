@@ -121,7 +121,10 @@
                                                 {% set created_status = '' %}
                                             {% endif %}
 
-                                            {% if coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED') %}
+                                            {% if
+                                                coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_REQUESTED')
+                                                or coc.status == constant('CoderDojo\\WebsiteBundle\\Entity\\CocRequest::STATUS_EXPIRED')
+                                            %}
                                                 {% set requested_label = 'success' %}
                                                 {% set requested_status = '' %}
                                             {% else %}
