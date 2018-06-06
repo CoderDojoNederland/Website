@@ -278,7 +278,6 @@ class CocRequest
         }
 
         $this->requestedAt = new \DateTime();
-        $this->expiresAt = null;
         $this->status = self::STATUS_REQUESTED;
     }
 
@@ -289,6 +288,7 @@ class CocRequest
         }
 
         $this->receivedAt = new \DateTime();
+        $this->expiresAt = null;
         $this->status = self::STATUS_RECEIVED;
     }
 
