@@ -40,7 +40,7 @@ class RemindCocRequestsCommand extends ContainerAwareCommand
                 ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
                 ->setReplyTo('contact@coderdojo.nl')
                 ->setTo($request->getRequestedBy()->getEmail())
-                ->setBcc('chris+accept-privacy@coderdojo.nl')
+                ->setBcc('chris+vogrequest@coderdojo.nl')
                 ->setContentType('text/html')
                 ->setBody(
                      $this->getContainer()->get('templating')->render(
