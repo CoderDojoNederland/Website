@@ -4,7 +4,7 @@
 .content-wrapper {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 200px);
 }
 
 /* override some bootstrap styles */
@@ -21,9 +21,16 @@
 }
 
 /* the map in the background */
-.map {
-	width: 100%;
+.mapboxgl-map {
+	width: calc(100% - 500px);
 	height: 100%;
+    left: 500px;
+    position: absolute !important;
+}
+
+.dojos {
+  height: 100%;
+  width: 500px;
   position: absolute;
 }
 
@@ -57,7 +64,7 @@
 
 [data-js-ref=list-upcoming-dojos],
 [data-js-ref=list-all-dojos] {
-  max-height: 500px;
+  max-height: calc(100vh - 252px);
   overflow-y: scroll;
 }
 
@@ -73,4 +80,16 @@
 /* emptystate for no upcoming dojos */
 .empty {
   text-align: center;
+}
+
+.marker {
+  background-image: url('/bundles/coderdojowebsite/img/markers/orange.png');
+  background-size: cover;
+  width: 16px;
+  height: 23px;
+  cursor: pointer;
+}
+
+.marker.active {
+  background-image: url('/bundles/coderdojowebsite/img/markers/blue.png');
 }

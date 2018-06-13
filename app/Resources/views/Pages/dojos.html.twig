@@ -13,8 +13,12 @@
 
 {% block og_image %}http://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/og-dojos.png')}}{% endblock %}
 
+{% block customcss %}
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+{% endblock %}
+
 {% block customjs %}
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy7V91eQVB-Uo70MTNxv-oErLPkgKtWJM"></script>
 
   <script>
     window.dojos = {};
@@ -68,87 +72,84 @@
 
 {% block content %}
 <div class="content-wrapper">
+    <div class="dojos">
+        <div class="panel panel-orange">
 
-  <div id="all-dojos-map" class="map hidden-xs">
-  </div>
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active" data-tab-ref="upcoming-dojos"><a href="#" onclick="trackSwitchEventListEvent()"><i class="icon-calendar"></i>&nbsp;&nbsp;Agenda</a></li>
+                    <li role="presentation" data-tab-ref="all-dojos"><a href="#" onclick="trackSwitchDojoListEvent()"><i class="icon-list"></i>&nbsp;&nbsp;Locaties</a></li>
+                </ul>
+            </div>
 
-  <div class="container">
+            <div class="panel-body" id="dojoeventlist" data-js-ref="list-upcoming-dojos">
 
-
-    <div class="row margin-bottom-30 dojo-selector">
-        <div class="col-md-5 col-xs-12">
-            <!--Orange Panels-->
-            <div class="panel panel-orange">
-
-                <div class="panel-heading">
-                  <ul class="nav nav-tabs">
-                    <li role="presentation" class="active" data-tab-ref="upcoming-dojos"><a href="#" onclick="trackSwitchEventListEvent()"><i class="icon-calendar"></i>&nbsp;&nbsp;Komende dojo&apos;s</a></li>
-                    <li role="presentation" data-tab-ref="all-dojos"><a href="#" onclick="trackSwitchDojoListEvent()"><i class="icon-list"></i>&nbsp;&nbsp;Alle Dojo&apos;s</a></li>
-                  </ul>
-                </div>
-
-                <div class="panel-body" id="dojoeventlist" data-js-ref="list-upcoming-dojos">
-
-                  <!-- various dojo rows -->
-                  {% if nextdojos|length > 0 %}
-                      {% for event in nextdojos %}
-                      <div class="row dojo-row" data-dojo-id="{{event.dojo.id}}">
-                        <div class="col-xs-5">
-                          <strong>{{event.dojo.city|capitalize}}</strong>
+                <!-- various dojo rows -->
+                {% if nextdojos|length > 0 %}
+                    {% for event in nextdojos %}
+                        <div class="row dojo-row" data-dojo-id="{{event.dojo.id}}">
+                            <div class="col-xs-5">
+                                <strong>{{event.dojo.city|capitalize}}</strong>
+                            </div>
+                            <div class="col-xs-5">
+                                {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
+                            </div>
+                            <div class="col-xs-2" style="">
+                                {% if event.type == 'zen' %}
+                                    <a href="{{ event.dojo.zenUrl }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                                {% else %}
+                                    <a href="{{ event.url }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="glyphicon glyphicon-arrow-right"></span></a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="col-xs-5">
-                          {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
+                    {% endfor %}
+                {% else %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p class="empty">
+                                Er zijn momenteel geen edities gepland
+                            </p>
                         </div>
-                        <div class="col-xs-2" style="">
-                          {% if event.type == 'zen' %}
-                            <a href="{{ event.dojo.zenUrl }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="glyphicon glyphicon-arrow-right"></span></a>
-                          {% else %}
-                            <a href="{{ event.url }}" target="_blank" class="btn-u btn-u-small btn-u-green" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="glyphicon glyphicon-arrow-right"></span></a>
-                          {% endif %}
-                        </div>
-                      </div>
-                      {% endfor %}
-                  {% else %}
-                  <div class="row">
-                    <div class="col-xs-12">
-                      <p class="empty">
-                        Er zijn momenteel geen edities gepland
-                      </p>
                     </div>
-                  </div>
-                  {% endif %}
+                {% endif %}
+            </div>
 
-
-
-                </div>
-
-                <div class="panel-body hidden" id="dojolist" data-js-ref="list-all-dojos">
-                  <!-- various dojo rows -->
-                  {% for dojo in dojos %}
-                  <div class="row dojo-row" data-dojo-id="{{dojo.id}}">
+            <div class="panel-body hidden" id="dojolist" data-js-ref="list-all-dojos">
+                <!-- various dojo rows -->
+                {% for dojo in dojos %}
+                    <div class="row dojo-row" data-dojo-id="{{dojo.id}}">
                         <!-- general dojo information -->
                         <div class="col-xs-8" style="white-space: nowrap;overflow: hidden;">
-                          <p>{{dojo.name}}</p>
+                            <p>{{dojo.name}}</p>
                         </div>
 
                         <!-- dojos contact buttons -->
                         <div class="col-xs-4">
-                          <p class="contact-info" style="text-align: right;">
-                            <a href="mailto:{{ dojo.email }}" title="Email" onclick="trackDojoEmailClickEvent()"><i class="icon-envelope"></i></a>&nbsp;
-                            <a href="{{ dojo.website }}" title="Website" onclick="trackDojoWebsiteClickEvent()"><i class="icon-globe"></i></a>&nbsp;
-                            <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter" onclick="trackDojoTwitterClickEvent()"><i class="icon-twitter"></i></a>&nbsp
-                          </p>
+                            <p class="contact-info" style="text-align: right;">
+                                <a href="mailto:{{ dojo.email }}" title="Email" onclick="trackDojoEmailClickEvent()"><i class="icon-envelope"></i></a>&nbsp;
+                                <a href="{{ dojo.website }}" title="Website" onclick="trackDojoWebsiteClickEvent()"><i class="icon-globe"></i></a>&nbsp;
+                                <a href="http://twitter.com/{{ dojo.twitter }}" title="Twitter" onclick="trackDojoTwitterClickEvent()"><i class="icon-twitter"></i></a>&nbsp
+                            </p>
                         </div>
-                  </div>
-                  {% endfor %}
-
-                </div>
+                    </div>
+                {% endfor %}
 
             </div>
-            <!--End Orange Panels-->
+
         </div>
+        <!--End Orange Panels-->
+    </div>
+
+    <div id="all-dojos-map" class="map hidden-xs"></div>
+
+    {#
+  <div class="row margin-bottom-30 dojo-selector">
+        <div class="col-md-5 col-xs-12">
+            <!--Orange Panels-->
+
       </div>
     </div>
+    #}
 </div>
 
 {% endblock %}
