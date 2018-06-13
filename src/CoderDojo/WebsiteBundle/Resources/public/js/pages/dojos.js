@@ -8,7 +8,7 @@
     DojosMapBackground.prototype.initializeMap = function (dojos) {
         var mapOptions = {
             container: 'all-dojos-map',
-            style: 'mapbox://styles/mapbox/streets-v10',
+            style: 'mapbox://styles/coderdojonl/cjidfvej506vb2spnj0fb21ga',
             minZoom: 5,
             maxZoom: 15,
             center: [5.291266, 52.132633],
@@ -45,8 +45,7 @@
         el.className = 'marker';
         el.id = 'marker';
 
-        var windowContent = '<h5>' + dojo.name + '</h5>' +
-                            '<p>' + dojo.city + '</p>';
+        var windowContent = '<h5>' + dojo.name + '</h5>';
 
         if(dojo.nextUrl) {
             windowContent += '<p><strong>Volgende dojo</strong>: ' + dojo.nextDate + '</p>' +
@@ -93,17 +92,15 @@
             zoom: 13
         });
 
-        if(this.lastPopup) {
-            this.lastPopup.togglePopup();
-        }
+        this.closePopups();
 
         dojo.geo.marker.togglePopup();
-
-        this.lastPopup = dojo.geo.marker;
     };
 
     // reset the focus and show all dojos in the Netherlands
     DojosMapBackground.prototype.resetFocus = function () {
+        this.closePopups();
+
         this.map.flyTo({
             center: [5.291266, 52.132633],
             zoom: 7
@@ -112,7 +109,7 @@
 
     DojosMapBackground.prototype.closePopups = function () {
         $.map(this.dojos, function (dojo) {
-            dojo.geo.marker.getPopup().open();
+            dojo.geo.marker.getPopup().remove();
         }.bind(this));
     };
 
