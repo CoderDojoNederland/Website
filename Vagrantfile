@@ -37,17 +37,14 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.synced_folder './', '/vagrant',
-        id: 'application',
-        type: "nfs",
-        nfs_version: 2,
-        nfs_udp: true
+        :nfs => true,
+        :mount_options => ['actimeo=2','fsc']
 
     # If ansible is in your path it will provision from your HOST machine
     # If ansible is not found in the path it will be instaled in the VM and provisioned from there
     if which('ansible-playbook')
         config.vm.provision "ansible" do |ansible|
             ansible.playbook = "ansible/playbook.yml"
-            ansible.inventory_path = "ansible/inventories/dev"
             ansible.limit = 'all'
         end
     else
