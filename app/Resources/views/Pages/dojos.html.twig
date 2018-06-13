@@ -82,12 +82,19 @@
                 </ul>
             </div>
 
-            <div class="panel-body" id="dojoeventlist" data-js-ref="list-upcoming-dojos">
+            <div class="panel-body">
+                <div class="row search-row">
+                    <div class="col-12">
+                        <input type="text" class="form-control input-lg" id="city-search" placeholder="Zoek locatie">
+                    </div>
+                </div>
+            </div>
 
+            <div class="panel-body" id="dojoeventlist" data-js-ref="list-upcoming-dojos">
                 <!-- various dojo rows -->
                 {% if nextdojos|length > 0 %}
                     {% for event in nextdojos %}
-                        <div class="row dojo-row" data-dojo-id="{{event.dojo.id}}">
+                        <div class="row dojo-row" data-dojo-id="{{event.dojo.id}}" data-dojo-city="{{ event.dojo.city }}">
                             <div class="col-xs-5">
                                 <strong>{{event.dojo.city|capitalize}}</strong>
                             </div>
@@ -117,7 +124,7 @@
             <div class="panel-body hidden" id="dojolist" data-js-ref="list-all-dojos">
                 <!-- various dojo rows -->
                 {% for dojo in dojos %}
-                    <div class="row dojo-row" data-dojo-id="{{dojo.id}}">
+                    <div class="row dojo-row" data-dojo-id="{{dojo.id}}" data-dojo-city="{{ dojo.city }}">
                         <!-- general dojo information -->
                         <div class="col-xs-8" style="white-space: nowrap;overflow: hidden;">
                             <p>{{dojo.name}}</p>

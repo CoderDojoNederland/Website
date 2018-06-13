@@ -50,12 +50,17 @@
   border-bottom: 1px solid #ededed;
 }
 
+.search-row {
+  padding: 0 15px;
+}
+
 .dojo-row p {
   margin:0;
 }
 
 .dojo-row:hover {
   background-color: #ededed;
+  cursor: pointer;
 }
 
 .contact-info > a:nth-child(1) {
@@ -64,7 +69,7 @@
 
 [data-js-ref=list-upcoming-dojos],
 [data-js-ref=list-all-dojos] {
-  max-height: calc(100vh - 252px);
+  height: calc(100vh - 327px);
   overflow-y: scroll;
 }
 

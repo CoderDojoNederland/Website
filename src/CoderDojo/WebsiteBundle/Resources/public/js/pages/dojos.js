@@ -134,6 +134,7 @@
             var dojoId = $(this).data('dojo-id');
             //mapBackground.closePopups();
             mapBackground.focusOnDojoWithId(dojoId);
+            mapBackground.activateMarkerForDojoId(dojoId);
         });
 
         // logic to control the tabs in the list
@@ -146,6 +147,8 @@
                     $('[data-tab-ref=all-dojos]').removeClass('active');
                     $('[data-js-ref=list-upcoming-dojos]').removeClass('hidden');
                     $('[data-js-ref=list-all-dojos]').addClass('hidden');
+                    mapBackground.closePopups();
+                    mapBackground.resetFocus();
                     break;
 
                 case 'all-dojos':
@@ -153,11 +156,24 @@
                     $('[data-tab-ref=upcoming-dojos]').removeClass('active');
                     $('[data-js-ref=list-upcoming-dojos]').addClass('hidden');
                     $('[data-js-ref=list-all-dojos]').removeClass('hidden');
+                    mapBackground.closePopups();
                     mapBackground.resetFocus();
                     break;
             }
         });
 
+        $('#city-search').on('keyup paste', function(){
+            $('[data-dojo-city]').each(function(key, el){
+                var city = $(el).data('dojo-city');
+                var matches = new RegExp($('#city-search').val(), 'i').exec(city);
+
+                if(matches === null) {
+                    $(el).addClass('hidden');
+                } else {
+                    $(el).removeClass('hidden');
+                }
+            });
+        });
     });
 
 }());
