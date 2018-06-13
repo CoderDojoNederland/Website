@@ -181,12 +181,19 @@
     <!--Service Block-->
     <div class="row promo-service" id="dojoeventlist">
         <div class="col-md-12">
-            <h2 class="margin-bottom-20">Komende Dojos</h2>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="margin-bottom-20">Komende Dojos</h2>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <br/>
+                    <input type="text" class="form-control" id="city-search" placeholder="Filter locatie">
+                </div>
+            </div>
             {% for event in dojos %}
-            <div class="row margin-bottom-5" itemscope itemtype="http://schema.org/Event">
+            <div class="row margin-bottom-5 event-row" itemscope itemtype="http://schema.org/Event" data-dojo-city="{{ event.dojo.city }}">
                 <div class="col-md-4" itemprop="name">
-                    {{ event.dojo.name }}
+                    {{ event.dojo.name|truncate(50) }}
                 </div>
                 <div class="col-md-3" itemprop="startDate" content="{{ event.date|date('Y-m-d') }}">
                     {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}
@@ -250,5 +257,18 @@
         function trackEventClick() {
             ga('send', 'event', 'dojo_interest', 'register_from_homepage');
         }
+
+        $('#city-search').on('keyup paste', function(){
+            $('[data-dojo-city]').each(function(key, el){
+                var city = $(el).data('dojo-city');
+                var matches = new RegExp($('#city-search').val(), 'i').exec(city);
+
+                if(matches === null) {
+                    $(el).addClass('hidden');
+                } else {
+                    $(el).removeClass('hidden');
+                }
+            });
+        });
     </script>
 {% endblock %}

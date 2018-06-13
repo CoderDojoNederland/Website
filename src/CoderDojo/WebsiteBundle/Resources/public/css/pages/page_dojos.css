@@ -60,7 +60,7 @@
 }
 
 /* individual dojo rows in overview */
-.dojo-row {
+.panel .dojo-row {
   transition: background-color, 300ms;
   border-bottom: 1px solid #ededed;
 }
@@ -69,11 +69,11 @@
   padding: 0 15px;
 }
 
-.dojo-row p {
+.panel .dojo-row p {
   margin:0;
 }
 
-.dojo-row:hover {
+.panel .dojo-row:hover {
   background-color: #ededed;
   cursor: pointer;
 }
