@@ -34,6 +34,21 @@
   position: absolute;
 }
 
+.reset {
+  width: 32px;
+  height: 32px;
+  background-image: url('/bundles/coderdojowebsite/img/reset.png');
+  background-size: cover;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 9000;
+}
+
+.reset:hover {
+  cursor: pointer;
+}
+
 /* the selector box containing the dojos */
 .dojo-selector {
   padding-top: 40px;
@@ -73,7 +88,17 @@
   overflow-y: scroll;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 767px) {
+  .dojos {
+    height: auto;
+    width: auto;
+    position: relative;
+  }
+
+  .panel {
+    margin-bottom: 0;
+  }
+
   [data-js-ref=list-upcoming-dojos],
   [data-js-ref=list-all-dojos] {
     height: auto;

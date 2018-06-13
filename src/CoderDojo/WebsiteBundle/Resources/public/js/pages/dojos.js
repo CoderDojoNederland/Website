@@ -174,6 +174,10 @@
                 }
             });
         });
+
+        $('.reset').click(function(){
+            mapBackground.resetFocus();
+        });
     });
 
 }());
