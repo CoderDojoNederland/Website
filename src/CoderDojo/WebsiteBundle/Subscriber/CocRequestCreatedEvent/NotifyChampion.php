@@ -52,7 +52,7 @@ class NotifyChampion
             ->setReplyTo('contact@coderdojo.nl')
             ->setTo($coc->getRequestedBy()->getEmail())
             ->setCc($coc->getRequestedFor()->getEmail())
-            ->setBcc('chris+vogrequest@coderdojo.nl')
+            ->setBcc('website+vogrequest@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
                 $this->templating->render(
