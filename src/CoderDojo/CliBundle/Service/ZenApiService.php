@@ -102,10 +102,10 @@ class ZenApiService
             'Content-Type' => 'application/json'
         ];
 
-        $events = []
+        $events = [];
         foreach($dojoZenIds as $dojoId) {
-          $response = $this->client->request('GET', 'https://zen.coderdojo.com/api/3.0/dojos/'.$dojoId.'/events', [
-              'headers' => $headers,
+          $response = $this->client->request('GET', 'https://zen.coderdojo.com/api/3.0/dojos/'.$dojoId.'/events?query[status]=published', [
+              'headers' => $headers
           ]);
           $jsonResponse = json_decode($response->getBody()->getContents());
           $events = array_merge($events, $jsonResponse->results);
