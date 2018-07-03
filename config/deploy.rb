@@ -15,4 +15,6 @@ set :slackistrano, {
   webhook: ENV['SLACK_WEBHOOK']
 }
 
+set :yarn_bin, :node_modules/yarn/bin/yarn
+
 after 'deploy:publishing', 'coderdojo:migrate'

@@ -13,7 +13,7 @@ if [[ $TRAVIS_PULL_REQUEST = "false" ]] && [[ $TRAVIS_BRANCH = 'master' ]]; then
     echo 'preparing Capistrano'
     bundle install
 
-    npm install -g yarn
+    npm install yarn
 
     echo 'Deploying!'
     bundle exec cap production deploy
