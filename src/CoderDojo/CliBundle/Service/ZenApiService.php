@@ -102,16 +102,14 @@ class ZenApiService
             'Content-Type' => 'application/json'
         ];
 
-        $dojoList = json_encode($dojoZenIds);
-
-        $body = '{"query":{"dojo_id": {"in$":'.$dojoList.'}}}';
-
-        $response = $this->client->request('POST', 'https://zen.coderdojo.com/api/2.0/events/search', [
-            'headers' => $headers,
-            'body' => $body
-        ]);
-
-        $events = json_decode($response->getBody()->getContents());
+        $events = [];
+        foreach($dojoZenIds as $dojoId) {
+          $response = $this->client->request('GET', 'https://zen.coderdojo.com/api/3.0/dojos/'.$dojoId.'/events?query[status]=published', [
+              'headers' => $headers
+          ]);
+          $jsonResponse = json_decode($response->getBody()->getContents());
+          $events = array_merge($events, $jsonResponse->results);
+        }
 
         $externalEvents = [];
 
@@ -120,7 +118,7 @@ class ZenApiService
                 $externalEvent->id,
                 $externalEvent->dojoId,
                 $externalEvent->name,
-                new \DateTime($externalEvent->dates[0]->startTime),
+                new \DateTime($externalEvent->startTime),
                 $externalEvent->status
             );
         }
