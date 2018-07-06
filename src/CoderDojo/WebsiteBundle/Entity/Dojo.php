@@ -111,6 +111,12 @@ class Dojo
     private $claims;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $province;
+
+    /**
      * Dojo constructor.
      * @param $zenId
      * @param $name
@@ -120,6 +126,7 @@ class Dojo
      * @param $email
      * @param $website
      * @param $twitter
+     * @param string|null $province
      * @param User $owner
      */
     public function __construct(
@@ -131,6 +138,7 @@ class Dojo
         $email,
         $website,
         $twitter,
+        $province = null,
         User $owner = null
     ) {
         $this->zenId = $zenId;
@@ -150,6 +158,8 @@ class Dojo
         if (null != $owner) {
             $this->owners->add($owner);
         }
+
+        $this->province = $province;
     }
 
     /**
@@ -422,5 +432,21 @@ class Dojo
     public function addClaim($claim)
     {
         $this->claims = $claim;
+    }
+
+    /**
+     * @param string $province
+     */
+    public function setProvince(string $province): void
+    {
+        $this->province = $province;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getProvince(): ?string
+    {
+        return $this->province;
     }
 }

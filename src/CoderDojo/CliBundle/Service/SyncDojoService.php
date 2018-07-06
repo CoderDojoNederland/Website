@@ -10,6 +10,7 @@ use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NonUniqueResultException;
+use GuzzleHttp\Client;
 use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -135,7 +136,7 @@ class SyncDojoService
              */
             $internalModel = CreateDojoCommand::CreateFromEntity($internalDojo);
 
-            if ($externalDojo != $internalModel) {
+            if ($externalDojo != $internalModel || $internalDojo->getProvince() === null) {
                 $this->updateInternalDojo($internalDojo, $externalDojo);
 
                 continue;
@@ -211,6 +212,21 @@ class SyncDojoService
         foreach($internalDojo->getEvents() as $event) {
             if (null != $event->getZenId()) {
                 $event->setUrl($externalDojo->getZenUrl());
+            }
+        }
+
+        $client = new Client();
+        $response = $client->get(
+            'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$internalDojo->getLat().','.$internalDojo->getLon().'&sensor=false&key=AIzaSyBy7V91eQVB-Uo70MTNxv-oErLPkgKtWJM'
+        );
+        $result = json_decode($response->getBody()->getContents(), true);
+        $components = $result['results'][0]['address_components'];
+        foreach($components as $component) {
+            $levels = array_values($component['types']);
+            foreach($levels as $key => $value) {
+                if ($value === 'administrative_area_level_1') {
+                    $internalDojo->setProvince($component['long_name']);
+                }
             }
         }
 

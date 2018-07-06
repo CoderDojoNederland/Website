@@ -95,7 +95,8 @@ class ApiController extends Controller
             "long" => $dojo->getLon(),
             "twitter" => $dojo->getTwitter(),
             "website" => $dojo->getWebsite(),
-            "zenUrl" => $dojo->getZenUrl()
+            "zenUrl" => $dojo->getZenUrl(),
+            "province" => $dojo->getProvince()
         ];
     }
 }
