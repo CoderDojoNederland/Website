@@ -16,3 +16,4 @@ set :slackistrano, {
 }
 
 after 'deploy:publishing', 'coderdojo:migrate'
+after 'deploy:publishing', 'coderdojo:bower_symlink'
