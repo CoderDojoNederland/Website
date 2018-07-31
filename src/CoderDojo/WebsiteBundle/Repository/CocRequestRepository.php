@@ -31,8 +31,10 @@ class CocRequestRepository extends EntityRepository
         return $this->createQueryBuilder('c')
             ->where('c.expiresAt < :oneWeek')
             ->andWhere('c.expiryReminderSent = false')
-            ->andWhere('c.status = :expired')
+            ->andWhere('c.status != :received')
+            ->andWhere('c.status != :expired')
             ->setParameter('oneWeek', new \DateTime('+7 days'))
+            ->setParameter('received', CocRequest::STATUS_RECEIVED)
             ->setParameter('expired', CocRequest::STATUS_EXPIRED)
             ->getQuery()
             ->getResult();
