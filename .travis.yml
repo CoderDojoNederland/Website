@@ -10,10 +10,9 @@ cache:
   - "$HOME/.composer/cache"
 before_install:
 - composer self-update
-- composer require satooshi/php-coveralls:~0.6@stable --no-scripts
 install: composer install --prefer-dist --no-interaction --no-scripts
 script:
-- bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
+- bin/phpunit -c phpunit.xml.dist
 after_success:
 - ./config/deploy.sh
 env:
