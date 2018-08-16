@@ -10,4 +10,4 @@ server 'coderdojo.nl',
 
 set :pty, true
 
-set :deploy_to, '/coderdojo/website'
+set :deploy_to, '/home/coderdojo/coderdojo.nl'
