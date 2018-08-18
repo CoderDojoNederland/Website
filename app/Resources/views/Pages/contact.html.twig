@@ -11,6 +11,10 @@
     Neem contact met ons op en wij zullen proberen zo snel mogelijk jouw vraag te beantwoorden!
 {% endblock %}
 
+{% block custom_headers %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock custom_headers %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -39,6 +43,14 @@
                         </div>
 
                     {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('danger') %}
+
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+
+                    {% endfor %}
                     <p>
                         Heb je een vraag of suggestie? Neem dan via dit formulier contact ons op.<br/>
                         Wij doen ons uiterste best om zo snel mogelijk te antwoorden!
@@ -47,6 +59,7 @@
                         {{ form_widget(form) }}
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
+                                <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
                                 <input type="submit" value="Verzenden" class="btn-u btn-u-green" />
                             </div>
                         </div>
