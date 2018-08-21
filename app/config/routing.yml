@@ -60,6 +60,13 @@ codeweek-alias:
         route: eucodeweek
         permanent: true
 
+vog-alias:
+    path: /vog
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /nieuws/dojo-support/vraag-een-gratis-vog-aan-voor-vrijwilligers
+        permanent: true
+
 coder_dojo_website:
     resource: "@CoderDojoWebsiteBundle/Controller"
     type:     annotation
