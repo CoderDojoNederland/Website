@@ -104,7 +104,7 @@ class ZenApiService
 
         $events = [];
         foreach($dojoZenIds as $dojoId) {
-          $response = $this->client->request('GET', 'https://zen.coderdojo.com/api/3.0/dojos/'.$dojoId.'/events?query[status]=published', [
+          $response = $this->client->request('GET', 'https://zen.coderdojo.com/api/3.0/dojos/'.$dojoId.'/events', [
               'headers' => $headers
           ]);
           $jsonResponse = json_decode($response->getBody()->getContents());
