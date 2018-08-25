@@ -88,7 +88,8 @@ class SyncDojoService
 
         $this->progressBar = $this->newProgressBar($output);
 
-        $externalDojos = $this->zen->getDojos();
+        $externalDojos = $this->zen->getNlDojos();
+        $externalDojos = array_merge($externalDojos, $this->zen->getBeDojos());
 
         $this->progressBar->start(count($externalDojos));
         $this->progressBar->setMessage('Iterating dojos...');
