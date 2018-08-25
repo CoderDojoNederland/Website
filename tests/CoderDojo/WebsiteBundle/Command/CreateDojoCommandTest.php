@@ -20,6 +20,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
             'dojo@email.com',
             'https://dojo.nl',
             'mydojo',
+            'NL',
             false
         );
 
@@ -33,6 +34,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('dojo@email.com', $command->getEmail());
         $this->assertSame('https://dojo.nl', $command->getWebsite());
         $this->assertSame('mydojo', $command->getTwitter());
+        $this->assertSame('NL', $command->getCountry());
         $this->assertFalse($command->isRemoved());
     }
 
@@ -52,6 +54,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
             'dojo@email.com',
             null,
             'mydojo',
+            'NL',
             false
         );
 
@@ -74,6 +77,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
             'dojo@email.com',
             null,
             '@mydojo',
+            'NL',
             false
         );
 
@@ -90,6 +94,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
             'dojo@email.com',
             null,
             'https://twitter.com/mydojo',
+            'NL',
             false
         );
 
@@ -106,6 +111,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
             'dojo@email.com',
             null,
             '',
+            'NL',
             false
         );
 
