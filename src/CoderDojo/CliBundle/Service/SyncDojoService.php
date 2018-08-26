@@ -137,7 +137,7 @@ class SyncDojoService
              */
             $internalModel = CreateDojoCommand::CreateFromEntity($internalDojo);
 
-            if ($externalDojo != $internalModel || $internalDojo->getProvince() === null) {
+            if ($externalDojo != $internalModel || $internalDojo->getProvince() === null || $internalDojo->getCountry() === null) {
                 $this->updateInternalDojo($internalDojo, $externalDojo);
 
                 continue;
@@ -168,7 +168,7 @@ class SyncDojoService
      * @param $email
      * @return InternalDojo|null
      */
-    private function getInternalDojo($zenId, $city, $twitter, $email)
+    private function getInternalDojo($zenId, $city, $twitter, $email): InternalDojo
     {
         $internalDojo = $this->doctrine
             ->getRepository('CoderDojoWebsiteBundle:Dojo')
@@ -205,6 +205,7 @@ class SyncDojoService
         $internalDojo->setWebsite($externalDojo->getWebsite());
         $internalDojo->setTwitter($externalDojo->getTwitter());
         $internalDojo->setCity($externalDojo->getCity());
+        $internalDojo->setCountry($externalDojo->getCountry());
 
         /**
          * Also update the url for child events if it changed.
