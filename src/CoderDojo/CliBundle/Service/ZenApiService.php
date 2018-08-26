@@ -5,6 +5,8 @@ namespace CoderDojo\CliBundle\Service;
 use CoderDojo\CliBundle\Service\ZenModel\Event;
 use CoderDojo\WebsiteBundle\Command\CreateDojoCommand;
 use GuzzleHttp\Client;
+use League\Geotools\Coordinate\Coordinate;
+use League\Geotools\Polygon\Polygon;
 
 class ZenApiService
 {
@@ -13,9 +15,19 @@ class ZenApiService
      */
     private $client;
 
-    public function __construct()
+    /**
+     * @var string
+     */
+    private $kernelRootDir;
+
+    /**
+     * ZenApiService constructor.
+     * @param string $kernelRootDir
+     */
+    public function __construct(string $kernelRootDir)
     {
         $this->client = new Client();
+        $this->kernelRootDir = $kernelRootDir;
     }
 
     /**
@@ -23,7 +35,7 @@ class ZenApiService
      *
      * @return CreateDojoCommand[]
      */
-    public function getDojos()
+    public function getNlDojos()
     {
         $headers = [
             'Content-Type' => 'application/json'
@@ -39,56 +51,47 @@ class ZenApiService
         $dojos = json_decode($response->getBody()->getContents());
         $dojos = $dojos->Netherlands;
 
-        $externalDojos = [];
+        return $this->dojoToCommand($dojos);
+    }
 
-        foreach ($dojos as $externalDojo) {
-            try{
-                $city = $externalDojo->placeName;
-            } catch (\Exception $e) {
-                $city = $externalDojo->place;
-            }
+    public function getBeDojos()
+    {
+        $headers = [
+            'Content-Type' => 'application/json'
+        ];
 
-            $city = explode(",", $city);
-            $city = array_pop($city);
-            
-            // Bug from Google API - Will be fixed by CDF Later
-            if (preg_match('/Breezand/', $city)) {
-                $city = 'Breezand';
-            }
+        $body = '{"query":{"verified": 1, "deleted": 0, "alpha2": "BE"}}';
 
-            $removed = false;
+        $response = $this->client->request('POST', 'https://zen.coderdojo.com/api/2.0/dojos/by-country', [
+            'headers' => $headers,
+            'body' => $body
+        ]);
 
-            if (4 === $externalDojo->stage) {
-                $removed = true;
-            }
+        $dojos = json_decode($response->getBody()->getContents());
+        $dojos = $dojos->Belgium;
 
-            if (1 === $externalDojo->deleted) {
-                $removed = true;
-            }
-
-            /**
-             * Handle inconsistencies from Zen
-             */
-            $name = str_replace('CoderDojo ', '', $externalDojo->name);
-            $name = str_replace('Coderdojo ', '', $name);
-            $name = str_replace(' at ', ' @ ', $name);
-
-            $externalDojos[] = new CreateDojoCommand(
-                $externalDojo->id,
-                $externalDojo->creatorEmail,
-                'https://zen.coderdojo.com/dojo/'.$externalDojo->urlSlug,
-                $name,
-                $city,
-                $externalDojo->geoPoint->lat,
-                $externalDojo->geoPoint->lon,
-                $externalDojo->email,
-                $externalDojo->website,
-                $externalDojo->twitter,
-                $removed
-            );
+        $kml = file_get_contents($this->kernelRootDir.'/kml/be-border.kml');
+        $polygonArray = \geoPHP::load($kml, 'kml')->asArray();
+        $polygon = new Polygon();
+        
+        foreach($polygonArray[0] as $polygonPoint)
+        {
+            $point = new Coordinate([$polygonPoint[1], $polygonPoint[0]]);
+            $polygon->add($point);
         }
 
-        return $externalDojos;
+        $belgianDojos = [];
+
+        foreach($dojos as $dojo)
+        {
+            $point = new Coordinate([$dojo->geoPoint->lat, $dojo->geoPoint->lon]);
+
+            if ($polygon->pointInPolygon($point)) {
+                $belgianDojos[] = $dojo;
+            }
+        }
+
+        return $this->dojoToCommand($belgianDojos);
     }
 
     /**
@@ -124,5 +127,64 @@ class ZenApiService
         }
 
         return $externalEvents;
+    }
+
+    /**
+     * @param $dojos
+     * @return array
+     */
+    private function dojoToCommand($dojos): array
+    {
+        $externalDojos = [];
+
+        foreach ($dojos as $externalDojo) {
+            try {
+                $city = $externalDojo->placeName;
+            } catch (\Exception $e) {
+                $city = $externalDojo->place;
+            }
+
+            $city = explode(",", $city);
+            $city = array_pop($city);
+
+            // Bug from Google API - Will be fixed by CDF Later
+            if (preg_match('/Breezand/', $city)) {
+                $city = 'Breezand';
+            }
+
+            $removed = false;
+
+            if (4 === $externalDojo->stage) {
+                $removed = true;
+            }
+
+            if (1 === $externalDojo->deleted) {
+                $removed = true;
+            }
+
+            /**
+             * Handle inconsistencies from Zen
+             */
+            $name = str_replace('CoderDojo ', '', $externalDojo->name);
+            $name = str_replace('Coderdojo ', '', $name);
+            $name = str_replace(' at ', ' @ ', $name);
+
+            $externalDojos[] = new CreateDojoCommand(
+                $externalDojo->id,
+                $externalDojo->creatorEmail,
+                'https://zen.coderdojo.com/dojo/' . $externalDojo->urlSlug,
+                $name,
+                $city,
+                $externalDojo->geoPoint->lat,
+                $externalDojo->geoPoint->lon,
+                $externalDojo->email,
+                $externalDojo->website,
+                $externalDojo->twitter,
+                $externalDojo->country->alpha2,
+                $removed
+            );
+        }
+
+        return $externalDojos;
     }
 }

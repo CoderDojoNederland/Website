@@ -48,6 +48,7 @@ class CreateDojoHandler
             $command->getEmail(),
             $command->getWebsite(),
             $command->getTwitter(),
+            $command->getCountry(),
             $province
         );
 

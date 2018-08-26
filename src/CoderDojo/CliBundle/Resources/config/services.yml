@@ -1,6 +1,8 @@
 services:
     coder_dojo.cli_bundle.service.zen_api_service:
         class: CoderDojo\CliBundle\Service\ZenApiService
+        arguments:
+          - '%kernel.root_dir%'
 
     coder_dojo.cli_bundle.service.sync_dojo_service:
         class: CoderDojo\CliBundle\Service\SyncDojoService

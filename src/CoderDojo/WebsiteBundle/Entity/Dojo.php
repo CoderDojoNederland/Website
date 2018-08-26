@@ -112,6 +112,12 @@ class Dojo
 
     /**
      * @var string|null
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $province;
@@ -126,6 +132,7 @@ class Dojo
      * @param $email
      * @param $website
      * @param $twitter
+     * @param $country
      * @param string|null $province
      * @param User $owner
      */
@@ -138,6 +145,7 @@ class Dojo
         $email,
         $website,
         $twitter,
+        $country,
         $province = null,
         User $owner = null
     ) {
@@ -160,6 +168,7 @@ class Dojo
         }
 
         $this->province = $province;
+        $this->country = $country;
     }
 
     /**
@@ -448,5 +457,21 @@ class Dojo
     public function getProvince(): ?string
     {
         return $this->province;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param null|string $country
+     */
+    public function setCountry(?string $country): void
+    {
+        $this->country = $country;
     }
 }
