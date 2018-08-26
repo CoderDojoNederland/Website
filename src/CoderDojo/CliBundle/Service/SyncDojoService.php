@@ -168,7 +168,7 @@ class SyncDojoService
      * @param $email
      * @return InternalDojo|null
      */
-    private function getInternalDojo($zenId, $city, $twitter, $email): InternalDojo
+    private function getInternalDojo($zenId, $city, $twitter, $email): ?InternalDojo
     {
         $internalDojo = $this->doctrine
             ->getRepository('CoderDojoWebsiteBundle:Dojo')
