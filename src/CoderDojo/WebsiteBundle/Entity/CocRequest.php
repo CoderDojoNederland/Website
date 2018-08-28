@@ -71,7 +71,7 @@ class CocRequest
      * @var Dojo
      *
      * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Dojo")
-     * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id", nullable=true)
      */
     private $requestedFor;
 
@@ -295,5 +295,10 @@ class CocRequest
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function removeFromDojo()
+    {
+        $this->requestedFor = null;
     }
 }
