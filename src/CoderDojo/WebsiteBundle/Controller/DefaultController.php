@@ -49,7 +49,7 @@ class DefaultController extends Controller
             if ($form->isValid()) {
 
                 $captcha = $request->get('g-recaptcha-response');
-                if(false === $this->isCaptchaValid($captcha)) {
+                if($captcha === null || false === $this->isCaptchaValid($captcha)) {
                     $this->get('session')->getFlashBag()->add('danger', 'De captcha validatie is mislukt!');
 
                     return $this->render(':Pages:contact.html.twig', array(
