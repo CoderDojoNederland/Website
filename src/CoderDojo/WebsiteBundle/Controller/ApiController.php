@@ -20,7 +20,7 @@ class ApiController extends Controller
         return new Response(
             json_encode($this->serializeDojo($dojo)),
             200,
-            ['Access-Control-Allow-Origin' => '*']
+            ['Access-Control-Allow-Origin' => '*', 'Content-Type' => 'applciation/json']
         );
     }
 
@@ -38,7 +38,7 @@ class ApiController extends Controller
         return new Response(
             $jsonContent,
             200,
-            ['Access-Control-Allow-Origin' => '*']
+            ['Access-Control-Allow-Origin' => '*', 'Content-Type' => 'applciation/json']
         );
     }
 
