@@ -2,6 +2,7 @@
 
 namespace CoderDojo\WebsiteBundle\Controller;
 
+use CoderDojo\WebsiteBundle\Entity\Dojo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -47,11 +48,12 @@ class PagesController extends Controller
     }
 
     /**
-     * @Route("/samenwerkingen/eu-code-week", name="eucodeweek")
+     * @Route("/codeweek", name="codeweek")
      */
     public function euCodeWeekAction()
     {
-        return $this->render(':Pages:Samenwerkingen/codeweekEU.html.twig');
+        $events = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getCodeWeek2018Events();
+        return $this->render(':Pages:codeweek.html.twig', ['events' => $events]);
     }
 
     /**
