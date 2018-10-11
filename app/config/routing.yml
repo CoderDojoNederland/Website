@@ -53,12 +53,12 @@ codeqube-alias:
         route: codeqube
         permanent: true
 
-#codeweek-alias:
-#    path: /codeweek
-#    defaults:
-#        _controller: FrameworkBundle:Redirect:redirect
-#        route: eucodeweek
-#        permanent: true
+codeweek-alias:
+    path: /samenwerkingen/eu-code-week
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: codeweek
+        permanent: true
 
 vog-alias:
     path: /vog
