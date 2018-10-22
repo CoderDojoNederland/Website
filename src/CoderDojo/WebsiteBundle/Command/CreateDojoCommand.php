@@ -62,6 +62,11 @@ class CreateDojoCommand
     private $removed;
 
     /**
+     * @var string
+     */
+    private $country;
+
+    /**
      * @param string $zenId
      * @param string $zenCreatorEmail
      * @param string $zenUrl
@@ -72,9 +77,10 @@ class CreateDojoCommand
      * @param string $email
      * @param string $website
      * @param string $twitter
-     * @param bool   $removed
+     * @param $country
+     * @param bool $removed
      */
-    public function __construct($zenId, $zenCreatorEmail, $zenUrl, $name, $city, $lat, $lon, $email, $website, $twitter, $removed)
+    public function __construct($zenId, $zenCreatorEmail, $zenUrl, $name, $city, $lat, $lon, $email, $website, $twitter, $country, $removed)
     {
         $this->zenId = $zenId;
         $this->zenCreatorEmail = $zenCreatorEmail;
@@ -95,6 +101,7 @@ class CreateDojoCommand
             $this->twitter = "coderdojonl";
         }
         $this->removed = $removed;
+        $this->country = $country;
     }
 
     public static function CreateFromEntity(Entity $entity)
@@ -110,6 +117,7 @@ class CreateDojoCommand
             $entity->getemail(),
             $entity->getwebsite(),
             $entity->gettwitter(),
+            $entity->getCountry(),
             false
         );
 
@@ -202,5 +210,13 @@ class CreateDojoCommand
     public function isRemoved()
     {
         return $this->removed;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
     }
 }

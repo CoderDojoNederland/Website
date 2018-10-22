@@ -35,7 +35,7 @@ class CocController extends Controller
                 'status' => 'created'
             ],
             [
-                'createdAt' => 'DESC'
+                'name' => 'ASC'
             ]);
 
         return $this->render(
@@ -58,7 +58,7 @@ class CocController extends Controller
                 'status' => 'prepared'
             ],
             [
-                'createdAt' => 'DESC'
+                'name' => 'ASC'
             ]);
 
         return $this->render(
@@ -81,7 +81,7 @@ class CocController extends Controller
                 'status' => 'expired'
             ],
             [
-                'createdAt' => 'DESC'
+                'name' => 'ASC'
             ]);
 
         return $this->render(
@@ -104,7 +104,7 @@ class CocController extends Controller
                 'status' => 'requested'
             ],
             [
-                'createdAt' => 'DESC'
+                'name' => 'ASC'
             ]);
 
         return $this->render(
@@ -127,7 +127,7 @@ class CocController extends Controller
                 'status' => 'received'
             ],
             [
-                'createdAt' => 'DESC'
+                'name' => 'ASC'
             ]);
 
         return $this->render(

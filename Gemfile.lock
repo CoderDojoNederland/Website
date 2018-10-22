@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/capistrano/symfony.git
-  revision: b0d7009c70b0677c3d8af759ab6c612bb5893024
+  revision: 2661b4abd4b504bee7bc23de103a2322fe122ee8
   specs:
-    capistrano-symfony (1.0.0.rc2)
+    capistrano-symfony (1.0.0.rc3)
       capistrano (~> 3.1)
       capistrano-composer (~> 0.0.3)
       capistrano-file-permissions (~> 1.0)
@@ -10,27 +10,29 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    airbrussh (1.1.2)
+    airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    capistrano (3.8.0)
+    capistrano (3.11.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bower (1.1.0)
-      capistrano (~> 3.0)
     capistrano-composer (0.0.6)
       capistrano (>= 3.0.0.pre)
     capistrano-file-permissions (1.0.0)
       capistrano (~> 3.0)
-    i18n (0.8.1)
+    capistrano-yarn (2.0.2)
+      capistrano (~> 3.0)
+    concurrent-ruby (1.0.5)
+    i18n (1.1.0)
+      concurrent-ruby (~> 1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (4.1.0)
-    rake (12.0.0)
-    slackistrano (3.1.1)
-      capistrano (>= 3.5.0)
-    sshkit (1.12.0)
+    net-ssh (5.0.2)
+    rake (12.3.1)
+    slackistrano (3.8.2)
+      capistrano (>= 3.8.1)
+    sshkit (1.17.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
 
@@ -39,9 +41,9 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (~> 3.8)
-  capistrano-bower
   capistrano-symfony (~> 1.0.0.rc1)!
-  slackistrano (~> 3.1, >= 3.1.1)
+  capistrano-yarn
+  slackistrano (~> 3.8, >= 3.8.0)
 
 BUNDLED WITH
-   1.14.6
+   1.16.0

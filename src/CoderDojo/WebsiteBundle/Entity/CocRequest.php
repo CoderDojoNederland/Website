@@ -71,7 +71,7 @@ class CocRequest
      * @var Dojo
      *
      * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Dojo")
-     * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="dojo_id", referencedColumnName="id", nullable=true)
      */
     private $requestedFor;
 
@@ -259,6 +259,8 @@ class CocRequest
     public function prepared()
     {
         $this->preparedAt = new \DateTime();
+        $this->requestedAt = null;
+        $this->receivedAt = null;
         $this->expiresAt = new \DateTime('+ 30 days');
         $this->expiryReminderSent = false;
         $this->status = self::STATUS_PREPARED;
@@ -276,7 +278,6 @@ class CocRequest
         }
 
         $this->requestedAt = new \DateTime();
-        $this->expiresAt = null;
         $this->status = self::STATUS_REQUESTED;
     }
 
@@ -287,11 +288,17 @@ class CocRequest
         }
 
         $this->receivedAt = new \DateTime();
+        $this->expiresAt = null;
         $this->status = self::STATUS_RECEIVED;
     }
 
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function removeFromDojo()
+    {
+        $this->requestedFor = null;
     }
 }

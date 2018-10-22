@@ -10,6 +10,7 @@ use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
 use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NonUniqueResultException;
+use GuzzleHttp\Client;
 use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -87,7 +88,8 @@ class SyncDojoService
 
         $this->progressBar = $this->newProgressBar($output);
 
-        $externalDojos = $this->zen->getDojos();
+        $externalDojos = $this->zen->getNlDojos();
+        $externalDojos = array_merge($externalDojos, $this->zen->getBeDojos());
 
         $this->progressBar->start(count($externalDojos));
         $this->progressBar->setMessage('Iterating dojos...');
@@ -135,7 +137,7 @@ class SyncDojoService
              */
             $internalModel = CreateDojoCommand::CreateFromEntity($internalDojo);
 
-            if ($externalDojo != $internalModel) {
+            if ($externalDojo != $internalModel || $internalDojo->getProvince() === null || $internalDojo->getCountry() === null) {
                 $this->updateInternalDojo($internalDojo, $externalDojo);
 
                 continue;
@@ -166,7 +168,7 @@ class SyncDojoService
      * @param $email
      * @return InternalDojo|null
      */
-    private function getInternalDojo($zenId, $city, $twitter, $email)
+    private function getInternalDojo($zenId, $city, $twitter, $email): ?InternalDojo
     {
         $internalDojo = $this->doctrine
             ->getRepository('CoderDojoWebsiteBundle:Dojo')
@@ -203,6 +205,7 @@ class SyncDojoService
         $internalDojo->setWebsite($externalDojo->getWebsite());
         $internalDojo->setTwitter($externalDojo->getTwitter());
         $internalDojo->setCity($externalDojo->getCity());
+        $internalDojo->setCountry($externalDojo->getCountry());
 
         /**
          * Also update the url for child events if it changed.
@@ -211,6 +214,21 @@ class SyncDojoService
         foreach($internalDojo->getEvents() as $event) {
             if (null != $event->getZenId()) {
                 $event->setUrl($externalDojo->getZenUrl());
+            }
+        }
+
+        $client = new Client();
+        $response = $client->get(
+            'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$internalDojo->getLat().','.$internalDojo->getLon().'&sensor=false&key=AIzaSyBy7V91eQVB-Uo70MTNxv-oErLPkgKtWJM'
+        );
+        $result = json_decode($response->getBody()->getContents(), true);
+        $components = $result['results'][0]['address_components'];
+        foreach($components as $component) {
+            $levels = array_values($component['types']);
+            foreach($levels as $key => $value) {
+                if ($value === 'administrative_area_level_1') {
+                    $internalDojo->setProvince($component['long_name']);
+                }
             }
         }
 

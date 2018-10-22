@@ -19,16 +19,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <img src="https://gallery.mailchimp.com/8ec0b28920a640e210372bee9/images/5fec8587-4aef-49f6-b043-7f25c529dd4a.jpg" width="200" style="float: left;margin-right:20px;margin-bottom: 10px;margin-top:10px;" alt="Codestarter Sponsort CoderDojo" class="unplugged"/>
-                    <span style="line-height:1.5em;"><strong>Nieuwe Sponsor! Codestarter ❤️ CoderDojo</strong></span>
+                    <img src="{{asset('bundles/coderdojowebsite/img/codeweek2018.jpg')}}" width="200" style="float: left;margin-right:20px;margin-bottom: 10px;margin-top:10px;" alt="Rootnet Sponsort CoderDojo" class="unplugged"/>
+                    <span style="line-height:1.5em;"><strong>CodeWeek 2018 - 6 t/m 21 oktober</strong></span>
                     <p>
-                        Codestarter geeft in 2018 een financiële impuls aan de activiteiten van CoderDojo om zo nog meer
-                        kinderen op een laagdrempelige manier te leren programmeren. Programmeren is tegenwoordig net zo
-                        belangrijk als taal, rekenen en Engels.
+                        Het is weer bijna tijd voor de CodeWeek! Dit jaar valt hij van 6 t/m 21 oktober. Tijdens deze
+                        week kun je op heel veel plekken terecht voor verschillende leuke technische uitdagingen. Ook
+                        bij CoderDojo kun je natuurlijk terecht! Check of er ook bij jouw een dojo actief is!
                     </p>
                 </div>
                 <div class="col-md-3">
-                    <a href="/nieuws/algemeen/nieuwe-sponsor-codestarter-coderdojo" class="btn-buy hover-effect">Lees Meer</a>
+                    <a href="{{ path('codeweek') }}" class="btn-buy hover-effect">Lees Meer</a>
                 </div>
             </div>
         </div>
@@ -181,12 +181,19 @@
     <!--Service Block-->
     <div class="row promo-service" id="dojoeventlist">
         <div class="col-md-12">
-            <h2 class="margin-bottom-20">Komende Dojos</h2>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="margin-bottom-20">Komende Dojos</h2>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <br/>
+                    <input type="text" class="form-control" id="city-search" placeholder="Filter locatie">
+                </div>
+            </div>
             {% for event in dojos %}
-            <div class="row margin-bottom-5" itemscope itemtype="http://schema.org/Event">
+            <div class="row margin-bottom-5 event-row" itemscope itemtype="http://schema.org/Event" data-dojo-city="{{ event.dojo.city }}">
                 <div class="col-md-4" itemprop="name">
-                    {{ event.dojo.name }}
+                    {{ event.dojo.name|truncate(50) }}
                 </div>
                 <div class="col-md-3" itemprop="startDate" content="{{ event.date|date('Y-m-d') }}">
                     {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}
@@ -220,23 +227,33 @@
             <h2 class="margin-bottom-20">CoderDojo Nederland Is Verbonden Met</h2>
 
             <div class="row">
-                <div class="col-md-2 col-md-push-2 text-center margin-bottom-20">
-                    <a href="https://ec.europa.eu/digital-single-market/en/digital-skills-jobs-coalition" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/dsjc_member.png') }}" height="125" alt="Digital Skill And Jobs Coalition Member" title="Digital Skill And Jobs Coalition Member"/>
-                    </a>
-                </div>
+                <div class="col-md-2 text-center">&nbsp;</div>
 
-                <div class="col-md-2 col-md-push-2 text-center">
-                    <a href="https://www.mediawijzer.net/" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/mediawijzer.png') }}" height="125" alt="Aangesloten bij Mediawijzer" title="Aangesloten bij Mediawijzer"/>
-                    </a>
-                </div>
-
-                <div class="col-md-2 col-md-push-2 text-center">
+                <div class="col-md-2 text-center">
                     <a href="https://coderdojo.nl/nieuws/algemeen/nieuwe-sponsor-codestarter-coderdojo" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/codestarter.png') }}" height="60" alt="Sponsoring door Codestarter" title="Sponsoring door Codestarter" style="margin-top: 30px;"/>
+                        <img src="{{ asset('/bundles/coderdojowebsite/img/codestarter.png') }}" width="100%" alt="Sponsoring door Codestarter" title="Sponsoring door Codestarter" style="margin-top: 30px;"/>
                     </a>
                 </div>
+
+                <div class="col-md-2 text-center">
+                    <a href="https://coderdojo.nl/nieuws/algemeen/nieuwe-sponsor-rootnet-coderdojo" target="_blank">
+                        <img src="{{ asset('/bundles/coderdojowebsite/img/rootnet.png') }}" width="100%" alt="Sponsoring door Rootnet" title="Sponsoring door Rootnet" style="margin-top: 30px;"/>
+                    </a>
+                </div>
+
+                <div class="col-md-2 text-center">
+                    <a href="https://ec.europa.eu/digital-single-market/en/digital-skills-jobs-coalition" target="_blank">
+                        <img src="{{ asset('/bundles/coderdojowebsite/img/dsjc_member.png') }}" width="100%" alt="Digital Skill And Jobs Coalition Member" title="Digital Skill And Jobs Coalition Member"/>
+                    </a>
+                </div>
+
+                <div class="col-md-2 text-center">
+                    <a href="https://www.mediawijzer.net/" target="_blank">
+                        <img src="{{ asset('/bundles/coderdojowebsite/img/mediawijzer.png') }}" width="100%" alt="Aangesloten bij Mediawijzer" title="Aangesloten bij Mediawijzer"/>
+                    </a>
+                </div>
+
+                <div class="col-md-2 text-center">&nbsp;</div>
             </div>
         </div>
     </div>
@@ -250,5 +267,18 @@
         function trackEventClick() {
             ga('send', 'event', 'dojo_interest', 'register_from_homepage');
         }
+
+        $('#city-search').on('keyup paste', function(){
+            $('[data-dojo-city]').each(function(key, el){
+                var city = $(el).data('dojo-city');
+                var matches = new RegExp($('#city-search').val(), 'i').exec(city);
+
+                if(matches === null) {
+                    $(el).addClass('hidden');
+                } else {
+                    $(el).removeClass('hidden');
+                }
+            });
+        });
     </script>
 {% endblock %}

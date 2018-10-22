@@ -54,10 +54,17 @@ codeqube-alias:
         permanent: true
 
 codeweek-alias:
-    path: /codeweek
+    path: /samenwerkingen/eu-code-week
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: eucodeweek
+        route: codeweek
+        permanent: true
+
+vog-alias:
+    path: /vog
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /nieuws/dojo-support/vraag-een-gratis-vog-aan-voor-vrijwilligers
         permanent: true
 
 coder_dojo_website:

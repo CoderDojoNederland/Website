@@ -6,6 +6,7 @@ use CoderDojo\WebsiteBundle\Command\ShipCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
 use CoderDojo\WebsiteBundle\Entity\User;
 use CoderDojo\WebsiteBundle\Form\Type\ContactFormType;
+use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,18 +41,29 @@ class DefaultController extends Controller
     public function contactAction(Request $request)
     {
         $form = $this->createForm(ContactFormType::class);
+        $reCaptchaSiteKey = $this->container->getParameter('recaptcha_site');
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
 
             if ($form->isValid()) {
 
+                $captcha = $request->get('g-recaptcha-response');
+                if($captcha === null || false === $this->isCaptchaValid($captcha)) {
+                    $this->get('session')->getFlashBag()->add('danger', 'De captcha validatie is mislukt!');
+
+                    return $this->render(':Pages:contact.html.twig', array(
+                        'form' => $form->createView(),
+                        'recaptcha_site_key' => $reCaptchaSiteKey
+                    ));
+                }
+
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
                     ->setFrom('contact@coderdojo.nl', $form->get('naam')->getData())
                     ->setReplyTo($form->get('email')->getData())
                     ->setTo($form->get('ontvanger')->getData())
-                    ->setBcc('chris+websiteform@coderdojo.nl')
+                    ->setBcc('website+websiteform@coderdojo.nl')
                     ->setContentType('text/html')
                     ->setBody(
                         $this->renderView(
@@ -74,7 +86,27 @@ class DefaultController extends Controller
 
         return $this->render(':Pages:contact.html.twig', array(
             'form' => $form->createView(),
+            'recaptcha_site_key' => $reCaptchaSiteKey
         ));
+    }
+
+    private function isCaptchaValid(string $value): bool
+    {
+        $client = new Client();
+        $response = $client->request(
+            'POST',
+            'https://www.google.com/recaptcha/api/siteverify',
+            [
+                'form_params' => [
+                    'secret' => $this->container->getParameter('recaptcha_secret'),
+                    'response' => $value
+                ]
+            ]
+        );
+
+        $result = json_decode($response->getBody()->getContents());
+
+        return($result->success && $response->getStatusCode() === 200);
     }
 
     /**

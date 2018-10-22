@@ -20,3 +20,5 @@ parameters:
     slack_api_token: 1234
 
     dev_email: 'dev@email.com'
+    recaptcha_secret: 'abc'
+    recaptcha_site: 'abc'

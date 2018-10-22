@@ -29,3 +29,5 @@ parameters:
     dev_email: 'dev@email.com'
 
     articles_root: "%kernel.root_dir%/../web"
+    recaptcha_secret: 'abc'
+    recaptcha_site: 'abc'

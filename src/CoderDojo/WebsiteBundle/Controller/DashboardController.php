@@ -225,7 +225,7 @@ class DashboardController extends Controller
             ->setSubject(sprintf('%s wilt %s claimen', $this->getUser()->getFirstname(), $dojo->getName()))
             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
             ->setTo($dojo->getEmail())
-            ->setBcc('chris+dojorequest@coderdojo.nl')
+            ->setBcc('website+dojorequest@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
@@ -293,7 +293,7 @@ class DashboardController extends Controller
             ->setFrom('contact@coderdojo.nl', sprintf('%s %s', $this->getUser()->getFirstname(), $this->getUser()->getLastname()))
             ->setReplyTo($this->getUser()->getEmail())
             ->setTo($dojo->getEmail())
-            ->setBcc('chris+dojorequest@coderdojo.nl')
+            ->setBcc('website+dojorequest@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
@@ -365,7 +365,7 @@ class DashboardController extends Controller
             ->setFrom('no-reply@coderdojo.nl', 'CoderDojo Nederland')
             ->setReplyTo('contact@coderdojo.nl')
             ->setTo($mentor->getEmail())
-            ->setBcc('chris+dojorequest@coderdojo.nl')
+            ->setBcc('website+dojorequest@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(
