@@ -87,6 +87,11 @@ class CreateDojoHandler
             'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$lat.','.$lon.'&sensor=false&key=AIzaSyBy7V91eQVB-Uo70MTNxv-oErLPkgKtWJM'
         );
         $result = json_decode($response->getBody()->getContents(), true);
+
+        if (count($result['results']) === 0) {
+            return null;
+        }
+
         $components = $result['results'][0]['address_components'];
         foreach($components as $component) {
             $levels = array_values($component['types']);

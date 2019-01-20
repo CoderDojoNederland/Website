@@ -217,17 +217,21 @@ class SyncDojoService
             }
         }
 
-        $client = new Client();
-        $response = $client->get(
-            'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$internalDojo->getLat().','.$internalDojo->getLon().'&sensor=false&key=AIzaSyBy7V91eQVB-Uo70MTNxv-oErLPkgKtWJM'
-        );
-        $result = json_decode($response->getBody()->getContents(), true);
-        $components = $result['results'][0]['address_components'];
-        foreach($components as $component) {
-            $levels = array_values($component['types']);
-            foreach($levels as $key => $value) {
-                if ($value === 'administrative_area_level_1') {
-                    $internalDojo->setProvince($component['long_name']);
+        if ($internalDojo->getProvince() === null) {
+            $client = new Client();
+            $response = $client->get(
+                'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$internalDojo->getLat().','.$internalDojo->getLon().'&sensor=false&key=AIzaSyBy7V91eQVB-Uo70MTNxv-oErLPkgKtWJM'
+            );
+            $result = json_decode($response->getBody()->getContents(), true);
+            if (count($result['results']) > 0) {
+                $components = $result['results'][0]['address_components'];
+                foreach($components as $component) {
+                    $levels = array_values($component['types']);
+                    foreach($levels as $key => $value) {
+                        if ($value === 'administrative_area_level_1') {
+                            $internalDojo->setProvince($component['long_name']);
+                        }
+                    }
                 }
             }
         }
