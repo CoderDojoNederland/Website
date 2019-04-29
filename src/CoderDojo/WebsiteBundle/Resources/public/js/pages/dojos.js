@@ -8,7 +8,8 @@
     DojosMapBackground.prototype.initializeMap = function (dojos) {
         var mapOptions = {
             container: 'all-dojos-map',
-            style: 'mapbox://styles/coderdojonl/cjidfvej506vb2spnj0fb21ga',
+            //style: 'mapbox://styles/coderdojonl/cjidfvej506vb2spnj0fb21ga',
+            style: 'mapbox://styles/coderdojonl/cjv2gy5nv82411frynn4lrb1j',
             minZoom: 5,
             maxZoom: 15,
             center: [5.291266, 52.132633],
