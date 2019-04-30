@@ -70,4 +70,21 @@ class DojoRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * @param string $country
+     *
+     * @return int
+     */
+    public function countForCountry(string $country): int
+    {
+        $qb = $this->createQueryBuilder('d');
+
+        return $qb
+            ->select('count(d.id)')
+            ->where('d.country = :country')
+            ->setParameter('country', $country)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
