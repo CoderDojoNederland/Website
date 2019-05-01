@@ -1,0 +1,28 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ member.firstName }},</p>
+    <p>
+        Jij bent lid van de CoderDojo Nederland Club van 100. Geweldig! We willen je graag laten weten dat het weer tijd
+        is om een donatie te doen zoals je bij je lidmaatschap hebt toegezegd.
+    </p>
+    {% if member.interval == 'yearly' %}
+        <p>
+            <strong>Je hebt gekozen om elk jaar <strong>&euro; 100,-</strong> bij te dragen aan CoderDojo Nederland.</strong>
+        </p>
+    {% elseif member.interval == 'semi-yearly' %}
+        <p>
+            <strong>Je hebt gekozen om elk half jaar <strong>&euro; 50,-</strong> bij te dragen aan CoderDojo Nederland.</strong>
+        </p>
+    {% elseif member.interval == 'quarterly' %}
+        <p>
+            <strong>Je hebt gekozen om elk kwartaal <strong>&euro; 25,-</strong> bij te dragen aan CoderDojo Nederland.</strong>
+        </p>
+    {% endif %}
+    <p>
+        Betalen kan met iDeal of PayPal.
+    </p>
+    <p style="text-align: center;">
+        <a href="{{ url('club_of_100_payment', {'uuid': donation.uuid }) }}" class="btn">Ik betaal direct online!</a>
+    </p>
+{% endblock content %}

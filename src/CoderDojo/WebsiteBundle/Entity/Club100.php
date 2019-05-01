@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace CoderDojo\WebsiteBundle\Entity;
 
 use Assert\Assertion;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -109,9 +111,16 @@ class Club100
      **/
     private $avatar;
 
+    /**
+     * @var Donation[]|Collection
+     * @ORM\OneToMany(targetEntity="CoderDojo\WebsiteBundle\Entity\Donation", mappedBy="member")
+     **/
+    private $donations;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->donations = new ArrayCollection();
     }
 
     /**
@@ -331,5 +340,21 @@ class Club100
     public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
+    }
+
+    /**
+     * @return Donation[]|Collection
+     */
+    public function getDonations()
+    {
+        return $this->donations;
+    }
+
+    /**
+     * @param Donation $donation
+     */
+    public function addDonation(Donation $donation): void
+    {
+        $this->donations->add($donation);
     }
 }

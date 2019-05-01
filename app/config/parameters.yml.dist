@@ -31,3 +31,5 @@ parameters:
     articles_root: "%kernel.root_dir%/../web"
     recaptcha_secret: 'abc'
     recaptcha_site: 'abc'
+
+    mollie_key: xxx

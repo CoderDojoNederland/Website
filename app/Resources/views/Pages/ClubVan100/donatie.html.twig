@@ -1,0 +1,57 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Club van 100 &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Club van 100 &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Steun CoderDojo Nederland door lid te worden van de club van 100! Dit betekend dat jij elk jaar
+    eenmalig &euro;100,- over maakt naar CoderDojo Nederland. Deze club bestaat uit 100 mensen / bedrijven
+    waardoor de stichting zeker is van een jaarlijks inkomen.
+{% endblock %}
+
+{% block fbdescription %}
+    Steun CoderDojo Nederland door lid te worden van de club van 100! Dit betekend dat jij elk jaar
+    eenmalig &euro;100,- over maakt naar CoderDojo Nederland. Deze club bestaat uit 100 mensen / bedrijven
+    waardoor de stichting zeker is van een jaarlijks inkomen.
+{% endblock %}
+
+{# @TODO: Create club of 100 image #}
+{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/fb-club100.jpg')}}{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Club van 100</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container">
+    <div class="row margin-bottom-30">
+        <div class="col-md-8 col-md-push-2">
+
+            <div style="text-align: center;width:100%;">
+                <img src="https://media1.giphy.com/media/1euO5up0bfLaofrU5a/200w.gif?cid=c94812d05cc9e72168526e7a73b4851d&rid=200w.gif" style="width:50%;"/>
+            </div>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            <h1>Bedankt!</h1>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            <p>
+                Bedankt voor je betaling! Zodra we van onze betaalprovider door hebben gekregen dat deze gelukt is zullen
+                we je dit per mail laten weten.
+            </p>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+        </div>
+    </div><!--/row-->
+
+</div><!--/container-->
+<!--=== End Content Part ===-->
+{% endblock %}

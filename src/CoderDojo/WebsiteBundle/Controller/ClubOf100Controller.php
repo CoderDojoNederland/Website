@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Entity\Club100;
+use CoderDojo\WebsiteBundle\Entity\Donation;
+use CoderDojo\WebsiteBundle\Entity\Payment;
 use CoderDojo\WebsiteBundle\Form\Type\ClubOf100FormType;
+use Mollie\Api\MollieApiClient;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
@@ -13,6 +16,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @Route(path="/club-van-100")
@@ -80,6 +84,14 @@ class ClubOf100Controller extends Controller
     }
 
     /**
+     * @Route(name="club_of_100_paid", path="/betaald")
+     */
+    public function paidAction(): Response
+    {
+        return $this->render(':Pages:ClubVan100/donatie.html.twig');
+    }
+
+    /**
      * @Route(name="club_of_100_confirm", path="/bevestigen/{hash}")
      */
     public function confirmAction(string $hash): Response
@@ -106,6 +118,88 @@ class ClubOf100Controller extends Controller
         $total = count($repository->findBy(['confirmed' => true]));
 
         return $this->render(':Pages:ClubVan100/members.html.twig', ['members' => $members, 'total' => $total]);
+    }
+
+    /**
+     * @Route(name="club_of_100_payment", path="/donatie/{uuid}")
+     */
+    public function createPaymentAction(string $uuid): Response
+    {
+        $repository = $this->get('doctrine')->getRepository(Donation::class);
+        /** @var Donation $donation */
+        $donation = $repository->findOneBy(['uuid' => $uuid]);
+
+        $mollie = new MollieApiClient();
+        $mollie->setApiKey($this->getParameter('mollie_key'));
+
+        $interval = $donation->getMember()->getInterval();
+
+        switch($interval){
+            case Club100::INTERVAL_YEARLY:
+                $value = '100.00';
+                break;
+            case Club100::INTERVAL_SEMI_YEARLY:
+                $value = '50.00';
+                break;
+            case Club100::INTERVAL_QUARTERLY:
+                $value = '25.00';
+                break;
+            default:
+                throw new \Exception('Unknown interval');
+        }
+
+        $molliePayment = $mollie->payments->create(
+            [
+                'amount' => [
+                    'currency' => 'EUR',
+                    'value' => $value
+                ],
+                'description' => 'Donatie aan Stichting CoderDojo Nederland.',
+                'redirectUrl' => $this->generateUrl('club_of_100_paid', [],UrlGeneratorInterface::ABSOLUTE_URL),
+                //'webhookUrl' => $this->generateUrl('club_of_100_thanks', ['webhook' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL),
+                'webhookUrl' => 'https://99d2617f.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook',
+                'locale' => 'nl_NL'
+            ]
+        );
+
+        $payment = new Payment($donation, $molliePayment->id, $molliePayment->status, $molliePayment->getCheckoutUrl());
+        $this->get('doctrine')->getManager()->persist($payment);
+        $this->get('doctrine')->getManager()->flush();
+
+        return $this->redirect($payment->getCheckoutUrl());
+    }
+
+    /**
+     * @Route(name="club_of_100_webhook", path="/donatie/{uuid}/webhook")
+     */
+    public function updatePaymentAction(Request $request, string $uuid): Response
+    {
+        $molliePaymentId = $request->request->get('id');
+        $repository = $this->get('doctrine')->getRepository(Donation::class);
+        $paymentRepository = $this->get('doctrine')->getRepository(Payment::class);
+        /** @var Payment $payment */
+        $payment = $paymentRepository->findOneBy(['mollieId' => $molliePaymentId]);
+        /** @var Donation $donation */
+        $donation = $repository->findOneBy(['uuid' => $uuid]);
+
+        $mollie = new MollieApiClient();
+        $mollie->setApiKey($this->getParameter('mollie_key'));
+
+        $molliePayment = $mollie->payments->get($molliePaymentId);
+
+        if ($molliePayment->status === $payment->getStatus()) {
+            return new Response('ok');
+        }
+
+        $payment->setStatus($molliePayment->status);
+
+        if($payment->getStatus() === 'paid') {
+            $donation->setPayment($payment);
+        }
+
+        $this->get('doctrine')->getManager()->flush();
+
+        return new Response('ok');
     }
 
     private function sendWelcomeEmail(Club100 $member): void

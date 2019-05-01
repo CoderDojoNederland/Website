@@ -25,6 +25,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "league/geotools": "^0.8.0",
         "liip/imagine-bundle": "^1.7",
+        "mollie/mollie-api-php": "^2.0",
         "pagerfanta/pagerfanta": "^1.0",
         "phayes/geophp": "^1.2",
         "ramsey/uuid": "^3.5",
