@@ -43,7 +43,7 @@
             </div>
 
             {% if members|length < total %}
-                <p style="font-style: italic;text-align: center;margin-top:5px;">Op deze pagina zie je {{ members|length }} leden. Daarnaast zijn er ook nog {{ total - members|length }} leden die niet publiek bekend gemaakt wensen te worden.</p>
+                <p style="font-style: italic;text-align: center;margin-top:5px;">Op deze pagina zie je {{ members|length }} van de {{ total }} leden. De overige leden wensen anoniem te blijven.</p>
             {% endif %}
 
             <div class="clearfix margin-bottom-50"></div>
@@ -55,7 +55,13 @@
             {% for member in members %}
                 <div class="col-lg-12">
                     <div class="col-lg-3">
-                        <img src="{{ asset('/club-100-avatars/' ~ member.avatar) }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
+                        {% if member.avatar %}
+                            {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar) %}
+                        {% else %}
+                            {% set avatarUrl = asset('/bundles/coderdojowebsite/img/no-avatar.png') %}
+                        {% endif %}
+
+                        <img src="{{ avatarUrl }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
                     </div>
                     <div class="col-lg-9">
                         <h3>{{ member.firstName }} {{ member.lastName }}</h3>
