@@ -1,0 +1,114 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Leden - Club van 100 &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Leden - Club van 100 &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Steun CoderDojo Nederland door lid te worden van de club van 100! Dit betekend dat jij elk jaar
+    eenmalig &euro;100,- over maakt naar CoderDojo Nederland. Deze club bestaat uit 100 mensen / bedrijven
+    waardoor de stichting zeker is van een jaarlijks inkomen.
+{% endblock %}
+
+{% block fbdescription %}
+    Steun CoderDojo Nederland door lid te worden van de club van 100! Dit betekend dat jij elk jaar
+    eenmalig &euro;100,- over maakt naar CoderDojo Nederland. Deze club bestaat uit 100 mensen / bedrijven
+    waardoor de stichting zeker is van een jaarlijks inkomen.
+{% endblock %}
+
+{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/fb-club100.jpg')}}{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Huidige leden van de Club van 100</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container">
+    <div class="row margin-bottom-30">
+        <div class="col-md-8 col-md-push-2">
+
+            <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            <div class="row tag-box tag-box-v5">
+                <div class="col-md-8">
+                    <h3>
+                        Wil je ook lid worden?
+                    </h3>
+                </div>
+                <div class="col-md-4">
+                    <p><a href="{{ path('club_of_100') }}" class="btn-u btn-u-lg btn-u-orange"><i class="icon-pencil"></i> Meld Je Aan</a></p>
+                </div>
+            </div>
+
+            <div class="clearfix margin-bottom-50"></div>
+
+            <div style="width: 100%; height: 50px; border: 1px solid #888888; position: relative;">
+                <div style="height: 100%; width: {{ members|length }}%; background: #e67e22;position:absolute;left:0;"></div>
+                <div style="position: absolute; top:3px;left:0;right:0; width: 100px;margin:auto;">
+                    <p style="font-size: 24px;font-weight: bold">{{ members|length }}/100</p>
+                </div>
+            </div>
+
+            <div class="clearfix margin-bottom-50"></div>
+
+            <h2 style="text-align: center">Dit zijn momenteel onze kickass leden!</h2>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            {% for member in members %}
+                <div class="col-lg-12">
+                    <div class="col-lg-3">
+                        <img src="{{ asset('/club-100-avatars/' ~ member.avatar) }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
+                    </div>
+                    <div class="col-lg-9">
+                        <h3>{{ member.firstName }} {{ member.lastName }}</h3>
+                        <p style="font-style: italic;">
+                            &ldquo;{{ member.reason }}&bdquo;
+                        </p>
+                        {% if member.memberType != 'none' or member.twitter != '' or member.company != '' %}
+                            <p style="font-size: 12px; border-top: 1px solid #888888;border-bottom: 1px solid #888888;padding:5px 0;">
+                                {% if member.memberType == 'volunteer' %}
+                                    <strong>Connectie:</strong> Vrijwilliger |
+                                {% elseif member.memberType == 'parent' %}
+                                    <strong>Connectie:</strong> Ouder |
+                                {% endif %}
+                                {% if member.twitter != '' %}
+                                    <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a> |
+                                {% endif %}
+                                {% if member.company != '' %}
+                                    Bedrijf: {{ member.company }}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="clearfix margin-bottom-20"></div>
+            {% endfor %}
+
+            <div class="clearfix margin-bottom-30"></div>
+
+            <div class="row tag-box tag-box-v5">
+                <div class="col-md-8">
+                    <h3>
+                        Wil je ook lid worden?
+                    </h3>
+                </div>
+                <div class="col-md-4">
+                    <p><a href="{{ path('club_of_100') }}" class="btn-u btn-u-lg btn-u-orange"><i class="icon-pencil"></i> Meld Je Aan</a></p>
+                </div>
+            </div>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+        </div>
+    </div><!--/row-->
+
+</div><!--/container-->
+<!--=== End Content Part ===-->
+{% endblock %}

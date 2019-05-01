@@ -94,6 +94,18 @@ class ClubOf100Controller extends Controller
         return $this->render(':Pages:ClubVan100/confirmed.html.twig');
     }
 
+    /**
+     * @Route(name="club_of_100_showcase", path="/leden")
+     */
+    public function showcaseAction(): Response
+    {
+        $repository = $this->get('doctrine')->getRepository(Club100::class);
+        /** @var Club100[] $members */
+        $members = $repository->findBy(['confirmed' => true, 'public' => true]);
+
+        return $this->render(':Pages:ClubVan100/members.html.twig', ['members' => $members]);
+    }
+
     private function sendWelcomeEmail(Club100 $member): void
     {
         /**
