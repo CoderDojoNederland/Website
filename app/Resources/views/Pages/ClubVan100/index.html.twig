@@ -75,6 +75,19 @@
 
             <div class="clearfix margin-bottom-20"></div>
 
+            {% if form.vars.errors|length > 0 %}
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <p>
+                        <strong>We kunnen je formulier niet verwerken</strong>
+                    {% for error in form.vars.errors %}
+                        <br/>{{ error.message }}
+                    {% endfor %}
+                    </p>
+                </div>
+            {% endif %}
+
+
             {{ form_start(form, { 'attr': { 'class': 'form-horizontal' } }) }}
             <div class="form-group">
                 <div class="col-lg-12">
