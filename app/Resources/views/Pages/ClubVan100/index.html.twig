@@ -1,0 +1,118 @@
+{% extends "::index.html.twig" %}
+
+{% block title %}Club van 100 &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Club van 100 &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Steun CoderDojo Nederland door lid te worden van de club van 100! Dit betekend dat jij elk jaar
+    eenmalig &euro;100,- over maakt naar CoderDojo Nederland. Deze club bestaat uit 100 mensen / bedrijven
+    waardoor de stichting zeker is van een jaarlijks inkomen.
+{% endblock %}
+
+{% block fbdescription %}
+    Steun CoderDojo Nederland door lid te worden van de club van 100! Dit betekend dat jij elk jaar
+    eenmalig &euro;100,- over maakt naar CoderDojo Nederland. Deze club bestaat uit 100 mensen / bedrijven
+    waardoor de stichting zeker is van een jaarlijks inkomen.
+{% endblock %}
+
+{# @TODO: Create club of 100 image #}
+{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/slack.jpg')}}{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+    <div class="container">
+        <h1 class="pull-left">Club van 100</h1>
+    </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container">
+    <div class="row margin-bottom-30">
+        <div class="col-md-8 col-md-push-2">
+            <h1>Wordt lid van de club van 100!</h1>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            <img src="{{ asset('/bundles/coderdojowebsite/img/slack.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
+
+            <div class="clearfix margin-bottom-30"></div>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            <h2>Wat is de club van 100?</h2>
+
+            <p>
+                CoderDojo Nederland is een stichting die op non-profit basis werkt. Dat betekent dus dat wij op geen
+                enkele manier winst maken. Om onze taken goed uit te voeren moeten wel helaas wél de nodige kosten maken.
+                Sinds onze start in 2015 hebben we twee keer een financiële donatie gekregen, eenmaal van
+                Elastic en eenmaal van CodeStarter. Deze donaties hebben ons geholpen de dojo gemeenschap in Nederland
+                op te zetten.
+            </p>
+            <p>
+                Ondanks dat dit heel behulpzaam is, maakt dit ons wel erg afhankelijk van steeds een dergelijke partij
+                te vinden. Veel beter zou zijn om zelfstandig onze stichting van een jaarlijks inkomen te voorzien. Op
+                die manier weten we van te voren waar we aan toe zijn en kunnen we de besteding van ons budget verder
+                vooruit plannen.
+            </p>
+            <p>
+                De manier om dit te doen is door een club van 100 op te richten. Dit zijn 100 mensen / bedrijven die
+                elk jaar &euro; 100,- aan CoderDojo Nederland doneren. Als lid van deze club kom je (indien gewenst) in
+                onze hall of fame van de club van 100. Zo kan iedereen zien wie de awesome dragers van CoderDojo Nederland
+                zijn!
+            </p>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            <h2>Wordt nu lid van de Club van 100!</h2>
+
+            <p>
+                Wil je lid worden van de Club van 100? Super tof, je bent van harte welkom! Middels onderstaande formulier
+                kun je je aanmelden. Wij sturen je dan elk jaar per email een berichtje als het tijd is om te betalen met
+                de nodige gegevens om het geld over te maken naar ons.
+            </p>
+
+            <div class="clearfix margin-bottom-20"></div>
+
+            {{ form_start(form, { 'attr': { 'class': 'form-horizontal' } }) }}
+            <div class="form-group">
+                <div class="col-lg-12">
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.reason) }}
+                    {{ form_row(form.public) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.subscription) }}
+                        <div class="col-lg-10">
+                            {{ form_widget(form.subscription) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            {{ form_widget(form.consent) }}
+                            <label class="required control-label" for="club_of100_form_consent">
+                                Ik ga akkoord met de verwerking van mijn gegevens volgens de <a href="{{ path('privacy') }}" target="_blank">Privacy Verklaring</a>.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input type="submit" value="Ik wordt lid!" class="btn btn-block btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+            <div class="clearfix margin-bottom-20"></div>
+
+        </div>
+    </div><!--/row-->
+
+</div><!--/container-->
+<!--=== End Content Part ===-->
+{% endblock %}

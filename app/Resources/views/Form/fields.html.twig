@@ -47,10 +47,12 @@
 {%- endblock choice_widget -%}
 
 {%- block choice_widget_expanded -%}
-    <div {{ block('widget_container_attributes') }}>
+    <div>
         {% for child in form %}
-            {{- form_widget(child) -}}
-            {{- form_label(child) -}}
+            <div style="display: block;height: auto;">
+                {{- form_widget(child) -}}
+                <label style="margin-left: 10px;" for="{{ child.vars.id }}">{{ child.vars.label }}</label>
+            </div>
         {% endfor %}
     </div>
 {%- endblock choice_widget_expanded -%}
@@ -227,7 +229,9 @@
         {%- if label is empty -%}
             {% set label = name|humanize %}
         {%- endif -%}
-            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-lg-2 control-label')|trim}) %}
+
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-lg-2 control-label')|trim}) %}
+
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
     {%- endif -%}
 {%- endblock form_label -%}
