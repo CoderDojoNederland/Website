@@ -8,7 +8,9 @@ use CoderDojo\WebsiteBundle\Entity\Club100;
 use CoderDojo\WebsiteBundle\Form\Type\ClubOf100FormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -43,6 +45,20 @@ class ClubOf100Controller extends Controller
             $member->setReason($form->get('reason')->getData());
             $member->setPublic($form->get('public')->getData() === '1');
             $member->setInterval($form->get('subscription')->getData());
+            $member->setMemberType($form->get('type')->getData());
+
+            if (empty($form->get('twitter')->getData()) === false) {
+                $member->setTwitter($form->get('twitter')->getData());
+            }
+
+            if (empty($form->get('company')->getData()) === false) {
+                $member->setCompany($form->get('company')->getData());
+            }
+
+            if (empty($form->get('avatar')->getData()) === false) {
+                $avatar = $this->uploadAvatar($form->get('avatar')->getData(), $member);
+                $member->setAvatar($avatar);
+            }
 
             $this->get('doctrine')->getManager()->persist($member);
             $this->get('doctrine')->getManager()->flush();
@@ -94,5 +110,37 @@ class ClubOf100Controller extends Controller
             );
 
         $this->get('mailer')->send($message);
+    }
+
+    /**
+     * @param UploadedFile $uploadedFile
+     * @param Club100      $member
+     *
+     * @return string
+     */
+    private function uploadAvatar(UploadedFile $uploadedFile, Club100 $member): string
+    {
+        $kernel = $this->get('kernel')->getRootDir();
+        $destination = $kernel . '/../web/club-100-avatars';
+
+        $filesystem = new Filesystem();
+
+        if(!$filesystem->exists($destination)) {
+            $filesystem->mkdir($destination);
+        }
+
+        $filename = sprintf(
+            '%s_%s_%d.%s',
+            $member->getFirstName(),
+            $member->getLastName(),
+            time(),
+            $uploadedFile->getClientOriginalExtension()
+        );
+        $filename = str_replace(' ', '', $filename);
+        $filename = strtolower($filename);
+
+        $uploadedFile->move($destination, $filename);
+
+        return $filename;
     }
 }

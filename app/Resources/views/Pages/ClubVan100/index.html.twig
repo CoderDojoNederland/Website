@@ -16,7 +16,7 @@
 {% endblock %}
 
 {# @TODO: Create club of 100 image #}
-{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/slack.jpg')}}{% endblock %}
+{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/fb-club100.jpg')}}{% endblock %}
 
 {% block content %}
 <!--=== Breadcrumbs ===-->
@@ -31,17 +31,14 @@
 <div class="container">
     <div class="row margin-bottom-30">
         <div class="col-md-8 col-md-push-2">
-            <h1>Wordt lid van de club van 100!</h1>
 
-            <div class="clearfix margin-bottom-20"></div>
-
-            <img src="{{ asset('/bundles/coderdojowebsite/img/slack.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
+            <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
 
             <div class="clearfix margin-bottom-30"></div>
 
             <div class="clearfix margin-bottom-20"></div>
 
-            <h2>Wat is de club van 100?</h2>
+            <h2>100 leden doneren &euro; 100 per jaar</h2>
 
             <p>
                 CoderDojo Nederland is een stichting die op non-profit basis werkt. Dat betekent dus dat wij op geen
@@ -51,8 +48,8 @@
                 op te zetten.
             </p>
             <p>
-                Ondanks dat dit heel behulpzaam is, maakt dit ons wel erg afhankelijk van steeds een dergelijke partij
-                te vinden. Veel beter zou zijn om zelfstandig onze stichting van een jaarlijks inkomen te voorzien. Op
+                Hoewel we heel dankbaar zijn voor die hulp, maakt het ons erg afhankelijk van kortlopende en/of
+                eenmalige donaties. Veel beter zou zijn om zelfstandig onze stichting van een jaarlijks inkomen te voorzien. Op
                 die manier weten we van te voren waar we aan toe zijn en kunnen we de besteding van ons budget verder
                 vooruit plannen.
             </p>
@@ -69,7 +66,7 @@
 
             <p>
                 <strong>Lid worden</strong><br/>
-                Als je besluit om lid te worden kun je je via onderstaand formulier aanmelden. Je krijft dan een email
+                Als je besluit om lid te worden kun je je via onderstaand formulier aanmelden. Je krijgt dan een email
                 van ons met daarin een link om je aanmelding te bevestigen. Vanaf dat moment ben je officieel 1 van de
                 club van 100!
             </p>
@@ -89,7 +86,7 @@
 
             <div class="clearfix margin-bottom-20"></div>
 
-            <h2>Wordt nu lid van de Club van 100!</h2>
+            <h2>Word nu lid van de Club van 100!</h2>
 
             <p>
                 Wil je lid worden van de Club van 100? Super tof, je bent van harte welkom! Middels onderstaande formulier
@@ -98,6 +95,8 @@
             </p>
 
             <div class="clearfix margin-bottom-20"></div>
+
+            <p class="small" style="font-style: italic;">Velden met een * zijn verplicht.</p>
 
             {% if form.vars.errors|length > 0 %}
                 <div class="alert alert-danger">
@@ -118,7 +117,10 @@
                     {{ form_row(form.firstName) }}
                     {{ form_row(form.lastName) }}
                     {{ form_row(form.email) }}
-                    {{ form_row(form.reason) }}
+                    {{ form_row(form.twitter) }}
+                    {{ form_row(form.company) }}
+                    {{ form_row(form.type) }}
+                    {{ form_row(form.avatar) }}
                     {{ form_row(form.public) }}
 
                     <div class="form-group">
@@ -127,6 +129,8 @@
                             {{ form_widget(form.subscription) }}
                         </div>
                     </div>
+
+                    {{ form_row(form.reason) }}
 
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
@@ -138,7 +142,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
-                            <input type="submit" value="Ik wordt lid!" class="btn btn-block btn-success" />
+                            <input type="submit" value="Ik word lid!" class="btn btn-block btn-success" />
                         </div>
                     </div>
                 </div>

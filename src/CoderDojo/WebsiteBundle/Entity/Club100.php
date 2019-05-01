@@ -56,6 +56,24 @@ class Club100
     private $hash;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
+     **/
+    private $twitter;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
+     **/
+    private $company;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     **/
+    private $memberType;
+
+    /**
      * @var bool
      * @ORM\Column(type="boolean")
      */
@@ -84,6 +102,12 @@ class Club100
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
+     **/
+    private $avatar;
 
     public function __construct()
     {
@@ -243,5 +267,69 @@ class Club100
     public function setConfirmed(bool $confirmed): void
     {
         $this->confirmed = $confirmed;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string|null $twitter
+     */
+    public function setTwitter(?string $twitter): void
+    {
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string|null $company
+     */
+    public function setCompany(?string $company): void
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMemberType(): string
+    {
+        return $this->memberType;
+    }
+
+    /**
+     * @param string $memberType
+     */
+    public function setMemberType(string $memberType): void
+    {
+        $this->memberType = $memberType;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string|null $avatar
+     */
+    public function setAvatar(?string $avatar): void
+    {
+        $this->avatar = $avatar;
     }
 }
