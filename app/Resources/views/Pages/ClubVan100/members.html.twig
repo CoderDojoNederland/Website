@@ -35,25 +35,16 @@
 
             <div class="clearfix margin-bottom-20"></div>
 
-            <div class="row tag-box tag-box-v5">
-                <div class="col-md-8">
-                    <h3>
-                        Wil je ook lid worden?
-                    </h3>
-                </div>
-                <div class="col-md-4">
-                    <p><a href="{{ path('club_of_100') }}" class="btn-u btn-u-lg btn-u-orange"><i class="icon-pencil"></i> Meld Je Aan</a></p>
-                </div>
-            </div>
-
-            <div class="clearfix margin-bottom-50"></div>
-
             <div style="width: 100%; height: 50px; border: 1px solid #888888; position: relative;">
-                <div style="height: 100%; width: {{ members|length }}%; background: #e67e22;position:absolute;left:0;"></div>
+                <div style="height: 100%; width: {{ total }}%; background: #e67e22;position:absolute;left:0;"></div>
                 <div style="position: absolute; top:3px;left:0;right:0; width: 100px;margin:auto;">
-                    <p style="font-size: 24px;font-weight: bold">{{ members|length }}/100</p>
+                    <p style="font-size: 24px;font-weight: bold">{{ total }}/100</p>
                 </div>
             </div>
+
+            {% if members|length < total %}
+                <p style="font-style: italic;text-align: center;margin-top:5px;">Op deze pagina zie je {{ members|length }} leden. Daarnaast zijn er ook nog {{ total - members|length }} leden die niet publiek bekend gemaakt wensen te worden.</p>
+            {% endif %}
 
             <div class="clearfix margin-bottom-50"></div>
 

@@ -103,7 +103,9 @@ class ClubOf100Controller extends Controller
         /** @var Club100[] $members */
         $members = $repository->findBy(['confirmed' => true, 'public' => true]);
 
-        return $this->render(':Pages:ClubVan100/members.html.twig', ['members' => $members]);
+        $total = count($repository->findBy(['confirmed' => true]));
+
+        return $this->render(':Pages:ClubVan100/members.html.twig', ['members' => $members, 'total' => $total]);
     }
 
     private function sendWelcomeEmail(Club100 $member): void
