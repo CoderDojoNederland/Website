@@ -17,8 +17,7 @@
 
     {% if member.interval == 'yearly' %}
         <p>
-            Je hebt gekozen om <strong>jaarlijks</strong> te doneren. Jouw volgende donatiemoment zou pas zijn op
-            {{ nextDonation|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y") }}. Als je er voor kiest om nu al
+            Je hebt gekozen om <strong>jaarlijks</strong> te doneren. Als je er voor kiest om nu al
             te doneren, dan ben je voor dit jaar al klaar!
         </p>
     {% elseif member.interval == 'semi-yearly' %}
