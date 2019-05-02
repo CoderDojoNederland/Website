@@ -33,3 +33,5 @@ parameters:
     recaptcha_site: 'abc'
 
     mollie_key: xxx
+    router.request_context.host: 'coderdojo.nl'
+    router.request_context.scheme: 'https'
