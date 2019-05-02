@@ -60,6 +60,10 @@ class NextDonationFinder
      */
     public static function shouldSendFirstRequest(Club100 $member): bool
     {
+        if ($member->getInterval() === Club100::INTERVAL_YEARLY) {
+            return true;
+        }
+
         $next = self::findNextDonation($member);
         $diff = $next->diff(Carbon::today()->startOfDay());
 
