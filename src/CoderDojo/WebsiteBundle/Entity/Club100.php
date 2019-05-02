@@ -83,7 +83,7 @@ class Club100
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     private $reason;
 
