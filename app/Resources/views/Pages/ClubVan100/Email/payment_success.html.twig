@@ -1,0 +1,21 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi {{ member.firstName }},</p>
+    {% if member.interval == 'yearly' %}
+        <p>
+            We hebben jouw donatie van <strong>&euro; 100,-</strong> goed ontvangen!
+        </p>
+    {% elseif member.interval == 'semi-yearly' %}
+        <p>
+            We hebben jouw donatie van <strong>&euro; 50,-</strong> goed ontvangen!
+        </p>
+    {% elseif member.interval == 'quarterly' %}
+        <p>
+            We hebben jouw donatie van <strong>&euro; 25,-</strong> goed ontvangen!
+        </p>
+    {% endif %}
+    <p style="text-align: center;">
+        <img src="https://media2.giphy.com/media/l3q2wJsC23ikJg9xe/200w.gif?cid=c94812d05cca9e396b4262574d95c0f8&rid=200w.gif"/>
+    </p>
+{% endblock content %}

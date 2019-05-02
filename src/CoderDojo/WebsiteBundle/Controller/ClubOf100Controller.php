@@ -193,8 +193,10 @@ class ClubOf100Controller extends Controller
 
         $payment->setStatus($molliePayment->status);
 
-        if($payment->getStatus() === 'paid') {
+        if ($payment->getStatus() === 'paid') {
             $donation->setPayment($payment);
+
+            $this->sendSuccessMail($donation);
         }
 
         $this->get('doctrine')->getManager()->flush();
@@ -202,6 +204,9 @@ class ClubOf100Controller extends Controller
         return new Response('ok');
     }
 
+    /**
+     * @param Club100 $member
+     */
     private function sendWelcomeEmail(Club100 $member): void
     {
         /**
@@ -216,6 +221,27 @@ class ClubOf100Controller extends Controller
             ->setBody(
                 $this->renderView(':Pages:ClubVan100/Email/welcome.html.twig', ['member' => $member])
             );
+
+        $this->get('mailer')->send($message);
+    }
+
+    /**
+     * @param Donation $donation
+     */
+    private function sendSuccessMail(Donation $donation): void
+    {
+        /**
+         * Send email to dojo contact address
+         */
+        $message = \Swift_Message::newInstance()
+         ->setSubject('Donatie geslaagd')
+         ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
+         ->setTo($donation->getMember()->getEmail())
+         ->setBcc('website+club100@coderdojo.nl')
+         ->setContentType('text/html')
+         ->setBody(
+             $this->renderView(':Pages:ClubVan100/Email/payment_success.html.twig', ['member' => $donation->getMember()])
+         );
 
         $this->get('mailer')->send($message);
     }
