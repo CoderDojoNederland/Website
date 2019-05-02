@@ -175,6 +175,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             Slack Community
                         </a>
                     </li>
+                    <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
+                        <a href="{{ path('club_of_100') }}">
+                            <i class="icon icon-trophy"></i>&nbsp;Club van 100
+                        </a>
+                    </li>
                     <!--
                     <li>
                         <ul class="social-icons social-icons-color">
