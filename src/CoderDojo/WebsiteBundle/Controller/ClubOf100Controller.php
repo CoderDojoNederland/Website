@@ -170,16 +170,25 @@ class ClubOf100Controller extends Controller
 
         switch($interval){
             case Club100::INTERVAL_YEARLY:
+                $description = 'Jaarlijkse donatie aan CoderDojo Nederland.';
                 $value = '100.00';
                 break;
             case Club100::INTERVAL_SEMI_YEARLY:
+                $description = 'Halfjaarlijkse donatie aan CoderDojo Nederland.';
                 $value = '50.00';
                 break;
             case Club100::INTERVAL_QUARTERLY:
+                $description = 'Kwartaallijkse donatie aan CoderDojo Nederland.';
                 $value = '25.00';
                 break;
             default:
                 throw new \Exception('Unknown interval');
+        }
+
+        if ($this->getParameter('kernel.environment') === 'prod') {
+            $webhook = $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL);
+        } else {
+            $webhook = 'https://e6de8ac3.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook';
         }
 
         $molliePayment = $mollie->payments->create(
@@ -188,10 +197,9 @@ class ClubOf100Controller extends Controller
                     'currency' => 'EUR',
                     'value' => $value
                 ],
-                'description' => 'Donatie aan Stichting CoderDojo Nederland.',
+                'description' => $description,
                 'redirectUrl' => $this->generateUrl('club_of_100_paid', [],UrlGeneratorInterface::ABSOLUTE_URL),
-                'webhookUrl' => $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL),
-                //'webhookUrl' => 'https://e6de8ac3.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook',
+                'webhookUrl' => $webhook,
                 'locale' => 'nl_NL'
             ]
         );
