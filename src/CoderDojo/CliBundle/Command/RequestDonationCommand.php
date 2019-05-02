@@ -6,6 +6,7 @@ use CoderDojo\WebsiteBundle\Command\ExpireCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\Club100;
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
 use CoderDojo\WebsiteBundle\Entity\Donation;
+use CoderDojo\WebsiteBundle\Service\NextDonationFinder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,11 +29,8 @@ class RequestDonationCommand extends ContainerAwareCommand
     {
         $repository = $this->getContainer()->get('doctrine')->getRepository(Club100::class);
         $donationRepository = $this->getContainer()->get('doctrine')->getRepository(Donation::class);
-
         $interval = $input->getArgument('interval');
-        $quarter = $interval === 'yearly' ? null : ceil((new \DateTime())->format('m') / 3);
-
-        $members = $repository->findBy(['interval' => $interval]);
+        $members = $repository->findBy(['confirmed' => true, 'interval' => $interval]);
 
         $bar = new ProgressBar($output);
         $bar->setFormat('%current% of %max%'.PHP_EOL.'[%bar%] %percent:3s%%'.PHP_EOL.'%message% '.PHP_EOL);
@@ -42,17 +40,22 @@ class RequestDonationCommand extends ContainerAwareCommand
         $bar->setMessage('Getting started');
         $bar->start(count($members));
 
-        $year     = (new \DateTime())->format('Y');
-
         /** @var Club100 $member */
         foreach($members as $member) {
-            $existing = $donationRepository->findOneBy(['member' => $member, 'year' => $year, 'quarter' => $quarter]);
+            $donation = new Donation($member);
+
+            $existing = $donationRepository->findOneBy(
+                [
+                    'member' => $member,
+                    'year' => $donation->getYear(),
+                    'quarter' => $donation->getQuarter()
+                ]
+            );
 
             if ($existing) {
                 continue;
             }
 
-            $donation = new Donation($member, $year, $quarter);
             $this->getContainer()->get('doctrine')->getManager()->persist($donation);
             $this->getContainer()->get('doctrine')->getManager()->flush();
 

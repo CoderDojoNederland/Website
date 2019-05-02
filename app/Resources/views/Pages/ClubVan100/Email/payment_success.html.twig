@@ -1,20 +1,19 @@
 {% extends ":Snippets:_email.html.twig" %}
 
+{% if member.interval == 'yearly' %}
+    {% set amount = 100 %}
+{% elseif member.interval == 'semi-yearly' %}
+    {% set amount = 50 %}
+{% elseif member.interval == 'quarterly' %}
+    {% set amount = 25 %}
+{% endif %}
+
 {% block content %}
     <p>Hi {{ member.firstName }},</p>
-    {% if member.interval == 'yearly' %}
-        <p>
-            We hebben jouw donatie van <strong>&euro; 100,-</strong> goed ontvangen!
-        </p>
-    {% elseif member.interval == 'semi-yearly' %}
-        <p>
-            We hebben jouw donatie van <strong>&euro; 50,-</strong> goed ontvangen!
-        </p>
-    {% elseif member.interval == 'quarterly' %}
-        <p>
-            We hebben jouw donatie van <strong>&euro; 25,-</strong> goed ontvangen!
-        </p>
-    {% endif %}
+    <p>
+        We hebben jouw donatie van <strong>&euro; {{ amount }}</strong> goed ontvangen! Enorm bedankt, dankzij jou bijdrage kan CoderDojo in
+        Nederland blijven bestaan en verder groeien.
+    </p>
     <p style="text-align: center;">
         <img src="https://media2.giphy.com/media/l3q2wJsC23ikJg9xe/200w.gif?cid=c94812d05cca9e396b4262574d95c0f8&rid=200w.gif"/>
     </p>

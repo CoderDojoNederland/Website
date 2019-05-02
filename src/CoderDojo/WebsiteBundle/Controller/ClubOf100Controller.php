@@ -8,6 +8,7 @@ use CoderDojo\WebsiteBundle\Entity\Club100;
 use CoderDojo\WebsiteBundle\Entity\Donation;
 use CoderDojo\WebsiteBundle\Entity\Payment;
 use CoderDojo\WebsiteBundle\Form\Type\ClubOf100FormType;
+use CoderDojo\WebsiteBundle\Service\NextDonationFinder;
 use Mollie\Api\MollieApiClient;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -100,8 +102,40 @@ class ClubOf100Controller extends Controller
         /** @var Club100 $member */
         $member = $repository->findOneBy(['hash' => $hash]);
 
+        if ($member === null) {
+            throw new NotFoundHttpException('No club 100 member with hash '.$hash.' was found');
+        }
+
         $member->setConfirmed(true);
         $this->get('doctrine')->getManager()->flush();
+
+        if (NextDonationFinder::shouldSendFirstRequest($member)) {
+            $donation = new Donation($member);
+            $this->get('doctrine')->getManager()->persist($donation);
+            $this->get('doctrine')->getManager()->flush();
+            $this->get('doctrine')->getManager()->refresh($donation);
+
+            /**
+             * Send email to dojo contact address
+             */
+            $message = \Swift_Message::newInstance()
+             ->setSubject('Je eerste donatie')
+             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
+             ->setTo($member->getEmail())
+             ->setBcc('website+club100@coderdojo.nl')
+             ->setContentType('text/html')
+             ->setBody(
+                 $this->renderView(':Pages:ClubVan100/Email/first_donation.html.twig',
+                   [
+                       'member' => $member,
+                       'nextDonation' => NextDonationFinder::findNextDonation($member),
+                       'donation' => $donation
+                   ]
+                 )
+             );
+
+            $this->get('mailer')->send($message);
+        }
 
         return $this->render(':Pages:ClubVan100/confirmed.html.twig');
     }
@@ -156,8 +190,8 @@ class ClubOf100Controller extends Controller
                 ],
                 'description' => 'Donatie aan Stichting CoderDojo Nederland.',
                 'redirectUrl' => $this->generateUrl('club_of_100_paid', [],UrlGeneratorInterface::ABSOLUTE_URL),
-                'webhookUrl' => $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL),
-                //'webhookUrl' => 'https://99d2617f.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook',
+                //'webhookUrl' => $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL),
+                'webhookUrl' => 'https://e6de8ac3.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook',
                 'locale' => 'nl_NL'
             ]
         );

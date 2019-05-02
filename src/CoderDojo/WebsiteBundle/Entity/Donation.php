@@ -62,14 +62,14 @@ class Donation
 
     /**
      * @param Club100 $member
-     * @param int     $year
-     * @param int     $quarter
      */
-    public function __construct(Club100 $member, int $year, int $quarter = null)
+    public function __construct(Club100 $member)
     {
+        $year = (int) (new \DateTime())->format('Y');
+        $quarter = $member->getInterval() === 'yearly' ? null : ceil((new \DateTime())->format('m') / 3);
         $this->member = $member;
         $this->year = $year;
-        $this->quarter = $quarter;
+        $this->quarter = (int) $quarter;
         $this->uuid = Uuid::uuid4()->toString();
     }
 

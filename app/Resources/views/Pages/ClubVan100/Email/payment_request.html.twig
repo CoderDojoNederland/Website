@@ -19,10 +19,11 @@
             Je hebt gekozen om elk kwartaal <strong>&euro; 25,-</strong> bij te dragen aan CoderDojo Nederland.
         </p>
     {% endif %}
-    <p>
-        Betalen kan met iDeal of PayPal.
-    </p>
+
     <p style="text-align: center;">
         <a href="{{ url('club_of_100_payment', {'uuid': donation.uuid }) }}" class="btn">Ik betaal direct online!</a>
+    </p>
+    <p style="font-style: italic;text-align: center">
+        Betalen kan met iDeal of PayPal.
     </p>
 {% endblock content %}
