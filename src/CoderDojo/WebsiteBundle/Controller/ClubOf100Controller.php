@@ -190,8 +190,8 @@ class ClubOf100Controller extends Controller
                 ],
                 'description' => 'Donatie aan Stichting CoderDojo Nederland.',
                 'redirectUrl' => $this->generateUrl('club_of_100_paid', [],UrlGeneratorInterface::ABSOLUTE_URL),
-                //'webhookUrl' => $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL),
-                'webhookUrl' => 'https://e6de8ac3.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook',
+                'webhookUrl' => $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL),
+                //'webhookUrl' => 'https://e6de8ac3.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook',
                 'locale' => 'nl_NL'
             ]
         );
