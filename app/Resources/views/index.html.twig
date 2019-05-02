@@ -175,10 +175,24 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             Slack Community
                         </a>
                     </li>
-                    <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
-                        <a href="{{ path('club_of_100') }}">
-                            <i class="icon icon-trophy"></i>&nbsp;Club van 100
+                    <li class="dropdown {% if app.request.get('_route') in ['club_of_100', 'club_of_100_showcase'] %}active{% endif %}">
+                        <a href="{{ path('club_of_100') }}" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                            <i class="icon icon-trophy"></i>
+                            &nbsp;Club van 100
+                            <i class="icon-angle-down"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
+                                <a href="{{ path('club_of_100') }}">
+                                    Informatie
+                                </a>
+                            </li>
+                            <li {% if app.request.get('_route') == 'club_of_100_showcase' %}class="active"{% endif %}>
+                                <a href="{{ path('club_of_100_showcase') }}">
+                                    Huidige Leden
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <!--
                     <li>
