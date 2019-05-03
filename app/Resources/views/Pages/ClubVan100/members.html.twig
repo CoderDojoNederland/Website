@@ -62,7 +62,7 @@
                         <img src="{{ avatarUrl }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
                     </div>
                     <div class="col-lg-9">
-                        <h3>{{ member.firstName|title }} {{ member.lastName|title }}</h3>
+                        <h3 style="margin-top: -8px;">{{ member.firstName|title }} {{ member.lastName|title }}</h3>
                         <p style="font-style: italic;">
                             &ldquo;{{ member.reason }}&bdquo;
                         </p>
@@ -83,7 +83,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="clearfix margin-bottom-20"></div>
+                <div class="clearfix margin-bottom-50"></div>
             {% endfor %}
 
             <div class="clearfix margin-bottom-30"></div>
