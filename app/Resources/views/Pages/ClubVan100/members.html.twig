@@ -50,7 +50,42 @@
 
             <div class="clearfix margin-bottom-20"></div>
 
-            {% for member in members %}
+            {% for member in members if member.avatar is not null %}
+                <div class="col-lg-12">
+                    <div class="col-lg-3">
+                        {% if member.avatar %}
+                            {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member') %}
+                        {% else %}
+                            {% set avatarUrl = asset('/bundles/coderdojowebsite/img/no-avatar.png') %}
+                        {% endif %}
+
+                        <img src="{{ avatarUrl }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
+                    </div>
+                    <div class="col-lg-9">
+                        <h3 style="margin-top: -8px;">{{ member.firstName|title }} {{ member.lastName|title }}</h3>
+                        <p style="font-style: italic;">
+                            &ldquo;{{ member.reason }}&bdquo;
+                        </p>
+                        {% if member.memberType != 'none' or member.twitter != '' or member.company != '' %}
+                            <p style="font-size: 12px; border-top: 1px solid #888888;border-bottom: 1px solid #888888;padding:5px 0;">
+                                {% if member.memberType == 'volunteer' %}
+                                    <strong>Connectie:</strong> Vrijwilliger |
+                                {% elseif member.memberType == 'parent' %}
+                                    <strong>Connectie:</strong> Ouder |
+                                {% endif %}
+                                {% if member.twitter != '' %}
+                                    <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a> |
+                                {% endif %}
+                                {% if member.company != '' %}
+                                    Bedrijf: {{ member.company }}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="clearfix margin-bottom-50"></div>
+            {% endfor %}
+            {% for member in members if member.avatar is null %}
                 <div class="col-lg-12">
                     <div class="col-lg-3">
                         {% if member.avatar %}
