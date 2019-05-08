@@ -54,7 +54,7 @@
                 <div class="col-lg-12">
                     <div class="col-lg-3">
                         {% if member.avatar %}
-                            {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar) %}
+                            {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member') %}
                         {% else %}
                             {% set avatarUrl = asset('/bundles/coderdojowebsite/img/no-avatar.png') %}
                         {% endif %}
