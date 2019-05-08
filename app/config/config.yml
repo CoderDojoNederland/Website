@@ -131,6 +131,6 @@ liip_imagine:
             filters:
                 thumbnail: { size : [1200, 630], mode : outbound }
         club_100_member:
-            quality: 75
+            quality: 100
             filters:
-                thumbnail: { size: [500, 500], mode: outbound, allow_upscale: true }
+                thumbnail: { size: [200, 200], mode: outbound, allow_upscale: true }
