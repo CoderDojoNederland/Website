@@ -133,4 +133,4 @@ liip_imagine:
         club_100_member:
             quality: 75
             filters:
-                thumbnail: { size: [150, 150], mode: outbound }
+                thumbnail: { size: [500, 500], mode: outbound }
