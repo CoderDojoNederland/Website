@@ -38,6 +38,8 @@ assetic:
     filters:
         cssrewrite: ~
         jsqueeze: ~
+        uglifycss:
+            bin: '%kernel.root_dir%/Resources/node_modules/uglifycss/uglifycss'
 
 # Twig Configuration
 twig:
