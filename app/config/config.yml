@@ -32,6 +32,12 @@ framework:
     http_method_override: true
     assets: ~
 
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -133,4 +139,4 @@ liip_imagine:
         club_100_member:
             quality: 100
             filters:
-                thumbnail: { size: [200, 200], mode: outbound, allow_upscale: true }
+                thumbnail: { size: [400, 400], mode: outbound, allow_upscale: true }

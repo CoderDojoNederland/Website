@@ -1,7 +1,9 @@
 {% extends ":Dashboard:index.html.twig" %}
 
 {% block dashboard_content %}
-    <h3>VOG's Beheren</h3>
+    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-0">
+        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">VOG's Beheren</h2>
+    </div>
     <div class="row margin-bottom-20">
         <div class="col-md-7">
             <p>
@@ -26,17 +28,18 @@
             </p>
         </div>
         <div class="col-md-5">
-            <img src="{{ asset('/bundles/coderdojowebsite/img/vog.png') }}" style="width: 100%;"/>
+            <img src="{{ asset('/bundles/coderdojowebsite/img/vog.png') }}" class="img-fluid"/>
         </div>
     </div>
 
-    <div class="row margin-bottom-20">
+    <div class="row g-mb-20 g-mt-40">
         <div class="col-md-12">
             {{ form_start(form, {'action': path('dashboard-vog-aanvragen'), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
             {{ form_widget(form) }}
-            <div class="form-group">
+            <div class="form-group row">
+                <div class="col-md-2"></div>
                 <div class="col-lg-offset-2 col-lg-10 right">
-                    <input type="submit" value="Aanvragen" class="btn-u btn-u-green" />
+                    <input type="submit" value="Aanvragen" class="btn btn-success" />
                 </div>
             </div>
             {{ form_end(form) }}

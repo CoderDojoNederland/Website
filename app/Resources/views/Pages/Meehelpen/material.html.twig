@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block title %}Materiaal &mdash; {{ parent() }}{% endblock %}
 {% block fbtitle %}Materiaal &mdash; {{ parent() }}{% endblock %}
@@ -12,163 +12,265 @@
 {% endblock %}
 
 {% block content %}
-<!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Materiaal</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
-<!--=== End Breadcrumbs ===-->
+    <!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Om jouw dojo verder te helpen</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Materiaal</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Jouw Dojo
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-color-primary">
+                    <span>Materiaal</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <p style="text-align: right"><a href="https://drive.google.com/open?id=0B74qlTINKtpBdm1YWlhpcmctSTg" target="_blank" class="btn btn-default">Naar Google Drive&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-chevron-right"></i></a></p>
+<section class="col-lg-12 g-mb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-right">
+                <p><a href="https://drive.google.com/open?id=0B74qlTINKtpBdm1YWlhpcmctSTg" target="_blank" class="btn btn-md u-btn-primary g-mr-10 g-mb-15">Naar Google Drive&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i></a></p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 md-margin-bottom-50">
-            <!-- Our Services -->
-            <div class="servive-block servive-block-in margin-bottom-20">
-                <div class="servive-block-in servive-block-colored servive-block-blue">
+        <div class="row">
+            <div class="col-md-4 md-margin-bottom-50">
+                <!-- Our Services -->
+                <div class="g-bg-blue g-color-white text-center g-pa-20 g-mb-20">
                     <h4>Lesmateriaal</h4>
-                    <p><i class="icon-book"></i></p>
-                    <p><br/>Van sushi cards tot workshops</p>
-                </div>
-            </div><!--/welcome-block-->
-            <!-- End Our Services -->
+                    <p class="g-font-size-32"><i class="fa fa-book"></i></p>
+                    <p>Van sushi cards tot workshops</p>
+                </div><!--/welcome-block-->
+                <!-- End Our Services -->
 
-            <p>De <strong class="color-green">Kata</strong> is dé plek waar de CoderDojo community wereldwijd materiaal verzamelt. Hier is ook speciaal voor Nederlandstalig materiaal een pagina opgenomen.</p>
-            <br/>
-            <p>
-                Heb jij in jouw dojo ook materiaal gemaakt? Zorg dan dat dit zo snel mogelijk via de Kata bereikbaar is zodat ook andere dojo's daar gebruik van kunnen maken!
-                Heb je nog geen account op de kata? Dan kun je die <strong><a href="http://kata.coderdojo.com/index.php?title=Special:UserLogin&returnto=KataDutch&type=signup" target="_blank">hier</a></strong> aanmaken.
-            </p>
-            <br/>
-            <p><a href="http://kata.coderdojo.com/wiki/KataDutch" target="_blank" class="btn btn-primary btn-block">Naar de Kata&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-chevron-right"></i></a></p>
-        </div><!--/col-md-4-->
+                <p>De <strong class="color-green">Kata</strong> is dé plek waar de CoderDojo community wereldwijd materiaal verzamelt. Hier is ook speciaal voor Nederlandstalig materiaal een pagina opgenomen.</p>
+                <br/>
+                <p>
+                    Heb jij in jouw dojo ook materiaal gemaakt? Zorg dan dat dit zo snel mogelijk via de Kata bereikbaar is zodat ook andere dojo's daar gebruik van kunnen maken!
+                    Heb je nog geen account op de kata? Dan kun je die <strong><a href="http://kata.coderdojo.com/index.php?title=Special:UserLogin&returnto=KataDutch&type=signup" target="_blank">hier</a></strong> aanmaken.
+                </p>
+                <br/>
+                <p><a href="http://kata.coderdojo.com/wiki/KataDutch" target="_blank" class="btn btn-md btn-block u-btn-blue g-mr-10 g-mb-15">Naar de Kata&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i></a></p>
+            </div><!--/col-md-4-->
 
-        <div class="col-md-4 md-margin-bottom-50">
-            <!-- Our Services -->
-            <div class="servive-block servive-block-in margin-bottom-20">
-                <div class="servive-block-in servive-block-colored servive-block-green">
+            <div class="col-md-4 md-margin-bottom-50">
+                <!-- Our Services -->
+                <div class="g-bg-green g-color-white text-center g-pa-20 g-mb-20">
                     <h4>Documenten</h4>
-                    <p><i class="icon-folder-open"></i></p>
-                    <p><br/>Algemene documenten voor vrij gebruik</p>
+                    <p class="g-font-size-32"><i class="fa fa-folder-open"></i></p>
+                    <p>Algemene documenten voor vrij gebruik</p>
+                </div><!--/welcome-block-->
+                <!-- End Our Services -->
+
+                <p>
+                    Om snel en makkelijk te beginnen hebben we een aantal documenten op een algemene manier opgezet.
+                    Deze kun je zo gebruiken, of indien nodig aanpassen aan jouw dojo voordat je ze gebruikt.
+                </p>
+
+                <hr>
+
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-home"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Huisregels</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Een aantal basisregels zodat bezoekers en mentoren weten wat er wel en niet kan tijdens een dojo.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3Y2J4WWZydWVkV1k" target="_blank" class="btn btn-md btn-block g-bg-green g-color-white g-mr-10 g-mb-15">Download PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div><!--/welcome-block-->
-            <!-- End Our Services -->
 
-            <p>
-                Om snel en makkelijk te beginnen hebben we een aantal documenten op een algemene manier opgezet.
-                Deze kun je zo gebruiken, of indien nodig aanpassen aan jouw dojo voordat je ze gebruikt.
-            </p>
+                <hr>
 
-            <hr>
-
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-home icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Huisregels</h3>
-                    <p>Een aantal basisregels zodat bezoekers en mentoren weten wat er wel en niet kan tijdens een dojo.</p>
-                    <p><a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3Y2J4WWZydWVkV1k" target="_blank" class="btn btn-block btn-success">Download PDF</a></p>
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-group"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Vrijwilligers Overeenkomst</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Afspraken met mentoren om te zorgen dat ze weten wat er van ze verwacht wordt.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3VkZ2UTVPRnppLWM" target="_blank" class="btn btn-md btn-block g-bg-green g-color-white g-mr-10 g-mb-15">Download PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr>
 
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-group icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Vrijwilligers Overeenkomst</h3>
-                    <p>Afspraken met mentoren om te zorgen dat ze weten wat er van ze verwacht wordt.</p>
-                    <p><a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3VkZ2UTVPRnppLWM" target="_blank" class="btn btn-block btn-success">Download PDF</a></p>
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-shield"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Protocol Veiligheid</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Om de veiligheid van de kinderen zo goed mogelijk te waarborgen.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3alNDTzhrbjJxU3M" target="_blank" class="btn btn-md btn-block g-bg-green g-color-white g-mr-10 g-mb-15">Download PDF &nbsp;&nbsp;<i class="fa fa-file-pdf-o"></i></a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr>
 
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-shield icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Protocol Veiligheid</h3>
-                    <p>Om de veiligheid van de kinderen zo goed mogelijk te waarborgen.</p>
-                    <p><a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3alNDTzhrbjJxU3M" target="_blank" class="btn btn-block btn-success">Download PDF</a></p>
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-briefcase"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Overig</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Bekijk hier alle overige documenten en de bewerkbare Word versies.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3fm91ZmFRTk95TlkwejdkVkJ4cDl4blNadnlQNXhlYUFjeHBXZjhwZHYtZTA" target="_blank" class="btn btn-md btn-block g-bg-green g-color-white g-mr-10 g-mb-15">Open in Drive &nbsp;&nbsp; <i class="fa fa-chevron-right"></i> </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+            </div><!--/col-md-4-->
 
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-briefcase icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Overig</h3>
-                    <p>Bekijk hier alle overige documenten en de bewerkbare word versies</p>
-                    <p><a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3fm91ZmFRTk95TlkwejdkVkJ4cDl4blNadnlQNXhlYUFjeHBXZjhwZHYtZTA" target="_blank" class="btn btn-block btn-success">Open in Drive</a></p>
-                </div>
-            </div>
-        </div><!--/col-md-4-->
-
-        <div class="col-md-4 md-margin-bottom-50">
-            <!-- Our Services -->
-            <div class="servive-block servive-block-in margin-bottom-20">
-                <div class="servive-block-in servive-block-colored servive-block-yellow">
+            <div class="col-md-4 md-margin-bottom-50">
+                <!-- Our Services -->
+                <div class="g-bg-yellow g-color-white text-center g-pa-20 g-mb-20">
                     <h4>Huisstijl</h4>
-                    <p><i class="icon-bullhorn"></i></p>
-                    <p>Logo&apos;s voor zowel CoderDojo Nederland als individuele dojo&apos;s</p>
+                    <p class="g-font-size-32"><i class="fa fa-bullhorn"></i></p>
+                    <p>Logo&apos;s voor CoderDojo binnen Nederland</p>
+                </div><!--/welcome-block-->
+                <!-- End Our Services -->
+
+                <p>Om te zorgen dat we met alle dojo's in Nederland goed herkenbaar zijn maken we gebruik van een huisstijl. Alle nodige documenten zijn hier te vinden.<br/><br/></p>
+
+                <hr>
+
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-info-circle"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Guidelines</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Een overzichtelijke site waarin duidelijk beschreven staat hoe de huisstijl toegepast moet worden.
+                            </p>
+                            <p>
+                                <a href="{{ path('style-guide') }}" target="_blank" class="btn btn-md btn-block g-bg-yellow g-color-white g-mr-10 g-mb-15">Openen &nbsp;&nbsp; <i class="fa fa-external-link"></i> </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div><!--/welcome-block-->
-            <!-- End Our Services -->
 
-            <p>Om te zorgen dat we met alle dojo's in Nederland goed herkenbaar zijn maken we gebruik van een huisstijl. Alle nodige documenten zijn hier te vinden.<br/><br/></p>
+                <hr>
 
-            <hr>
-
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-info-sign icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Guidelines</h3>
-                    <p>Een overzichtelijke site waarin duidelijk beschreven staat hoe de huisstijl toegepast moet worden.</p>
-                    <p><a href="{{ path('style-guide') }}" target="_blank" class="btn btn-block btn-warning">Openen</a></p>
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-group"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">CoderDojo Nederland</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Algemene logo's van CoderDojo Nederland voor zowel print als digitale weergave.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3aG1FZkx3ZWhEenc" target="_blank" class="btn btn-md btn-block g-bg-yellow g-color-white g-mr-10 g-mb-15">Openen &nbsp;&nbsp; <i class="fa fa-external-link"></i> </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr>
 
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-group icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>CoderDojo Nederland</h3>
-                    <p>Algemene logo's van CoderDojo Nederland voor zowel print als digitale weergave</p>
-                    <p><a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3aG1FZkx3ZWhEenc" target="_blank" class="btn btn-block btn-warning">Open in Drive</a></p>
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-camera"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Rechtenvrije Foto&apos;s</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Foto&apos;s die rechtenvrij gebruikt kunen worden voor diverse doeleinden.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B4dubyTBPGvcYU95WDN2T1k3M1k" target="_blank" class="btn btn-md btn-block g-bg-yellow g-color-white g-mr-10 g-mb-15">Openen &nbsp;&nbsp; <i class="fa fa-external-link"></i> </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr>
 
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-camera-retro icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Rechtenvrije Foto&apos;s</h3>
-                    <p>Foto&apos;s die rechtenvrij gebruikt kunen worden voor diverse doeleinden voor CoderDojo binnen Nederland</p>
-                    <p><a href="https://drive.google.com/drive/u/0/folders/0B4dubyTBPGvcYU95WDN2T1k3M1k" target="_blank" class="btn btn-block btn-warning">Open in Drive</a></p>
+                <div class="col-lg-12 g-mb-10">
+                    <!-- Icon Blocks -->
+                    <div class="media g-mb-15">
+                        <div class="d-flex mr-4">
+                            <span class="g-color-gray-dark-v4 g-font-size-26">
+                              <i class="fa fa-bullhorn"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="h5 g-color-black mb-20">Promotiemateriaal</h3>
+                            <p class="g-color-gray-dark-v4">
+                                Voorbeelden van promotiemateriaal zoals hoodies, flyers en banners.
+                            </p>
+                            <p>
+                                <a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3SFI2Y0p2eFRKZTQ" target="_blank" class="btn btn-md btn-block g-bg-yellow g-color-white g-mr-10 g-mb-15">Openen &nbsp;&nbsp; <i class="fa fa-external-link"></i> </a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <hr>
-
-            <div class="col-sm-12 info-blocks">
-                <i class="icon-bullhorn icon-info-blocks"></i>
-                <div class="info-blocks-in">
-                    <h3>Promotiemateriaal</h3>
-                    <p>Voorbeelden van promotiemateriaal zoals hoodies, flyers en banners.</p>
-                    <p><a href="https://drive.google.com/open?id=0B6Zh9qiLPyU3SFI2Y0p2eFRKZTQ" target="_blank" class="btn btn-block btn-warning">Open in Drive</a></p>
-                </div>
-            </div>
-        </div><!--/col-md-4-->
-    </div><!--/row-->
-</div><!--/container-->
+            </div><!--/col-md-4-->
+        </div><!--/row-->
+    </div><!--/container-->
+</section>
 <!--=== End Content Part ===-->
 
 {% endblock %}

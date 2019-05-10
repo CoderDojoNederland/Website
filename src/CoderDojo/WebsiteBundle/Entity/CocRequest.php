@@ -115,7 +115,7 @@ class CocRequest
      *
      * @ORM\Column(type="boolean")
      **/
-    private $expiryReminderSent;
+    private $expiryReminderSent = false;
 
     /**
      * CocRequest constructor.

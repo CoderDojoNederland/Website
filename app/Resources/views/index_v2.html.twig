@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Title -->
+    <title>{% block title %}CoderDojo Nederland{% endblock %}</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block description %}Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers!
+Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% endblock %}">
+
+    <!-- FB tags -->
+    <meta property="og:title" content="{% block fbtitle %}CoderDojo Nederland{% endblock %}"/>
+    <meta property="og:image" content="{% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/facebook.png')}}{% endblock %}"/>
+    <meta property="og:site_name" content="CoderDojo Nederland"/>
+    <meta property="og:description" content="{% block fbdescription %}Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers!
+Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% endblock %}"/>
+    {% block custom_headers %}{% endblock custom_headers %}
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-57x57.png?v=3">
+    <link rel="apple-touch-icon" sizes="60x60" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-60x60.png?v=3">
+    <link rel="apple-touch-icon" sizes="72x72" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-72x72.png?v=3">
+    <link rel="apple-touch-icon" sizes="76x76" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-76x76.png?v=3">
+    <link rel="apple-touch-icon" sizes="114x114" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-114x114.png?v=3">
+    <link rel="apple-touch-icon" sizes="120x120" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-120x120.png?v=3">
+    <link rel="apple-touch-icon" sizes="144x144" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-144x144.png?v=3">
+    <link rel="apple-touch-icon" sizes="152x152" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-152x152.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="/bundles/coderdojowebsite/img/favicons/apple-touch-icon-180x180.png?v=3">
+    <link rel="icon" type="image/png" href="/bundles/coderdojowebsite/img/favicons/favicon-32x32.png?v=3" sizes="32x32">
+    <link rel="icon" type="image/png" href="/bundles/coderdojowebsite/img/favicons/favicon-194x194.png?v=3" sizes="194x194">
+    <link rel="icon" type="image/png" href="/bundles/coderdojowebsite/img/favicons/favicon-96x96.png?v=3" sizes="96x96">
+    <link rel="icon" type="image/png" href="/bundles/coderdojowebsite/img/favicons/android-chrome-192x192.png?v=3" sizes="192x192">
+    <link rel="icon" type="image/png" href="/bundles/coderdojowebsite/img/favicons/favicon-16x16.png?v=3" sizes="16x16">
+    <link rel="manifest" href="/bundles/coderdojowebsite/img/favicons/manifest.json?v=3">
+    <link rel="mask-icon" href="/bundles/coderdojowebsite/img/favicons/safari-pinned-tab.svg?v=3" color="#000000">
+    <link rel="shortcut icon" href="/bundles/coderdojowebsite/img/favicons/favicon.ico?v=3">
+    <meta name="apple-mobile-web-app-title" content="CoderDojo Nederland">
+    <meta name="application-name" content="CoderDojo Nederland">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/bundles/coderdojowebsite/img/favicons/mstile-144x144.png?v=3">
+    <meta name="msapplication-config" content="/bundles/coderdojowebsite/img/favicons/browserconfig.xml?v=3">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700">
+
+    <!-- CSS Global Compulsory -->
+    {% stylesheets filter='cssrewrite' output="bundle/app.css"
+        'assets/vendor/bootstrap/bootstrap.min.css'
+        'assets/vendor/bootstrap/offcanvas.css'
+        'assets/vendor/cookieconsent/cookieconsent.3.0.3.min.css'
+        'assets/vendor/icon-awesome/css/font-awesome.min.css'
+        'assets/vendor/icon-line/css/simple-line-icons.css'
+        'assets/vendor/icon-etlinefont/style.css'
+        'assets/vendor/icon-line-pro/style.css'
+        'assets/vendor/icon-hs/style.css'
+        'assets/vendor/dzsparallaxer/dzsparallaxer.css'
+        'assets/vendor/dzsparallaxer/dzsscroller/scroller.css'
+        'assets/vendor/dzsparallaxer/advancedscroller/plugin.css'
+        'assets/vendor/animate.css'
+        'assets/vendor/hamburgers/hamburgers.min.css'
+        'assets/vendor/hs-megamenu/src/hs.megamenu.css'
+        'assets/vendor/slick-carousel/slick/slick.css'
+        'assets/vendor/fancybox/jquery.fancybox.css'
+
+        'assets/css/unify-core.css'
+        'assets/css/unify-components.css'
+        'assets/css/unify-globals.css'
+
+        'assets/css/custom.css'
+        'assets/css/page_dojos.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    {% block customcss %}{% endblock %}
+</head>
+
+<body>
+<header id="js-header" class="u-header u-header--static--lg u-header--show-hide--lg u-header--change-appearance--lg" data-header-fix-moment="500" data-header-fix-effect="slide">
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10" data-header-fix-moment-exclude="g-bg-white g-py-10" data-header-fix-moment-classes="g-bg-white-opacity-0_7 u-shadow-v18 g-py-0">
+        <nav class="js-mega-menu navbar navbar-expand-lg">
+            <div class="container">
+                <!-- Responsive Toggle Button -->
+                <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+                      <span class="hamburger hamburger--slider">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                      </span>
+                </button>
+                <!-- End Responsive Toggle Button -->
+                <!-- Logo -->
+                <a href="{{ path('home') }}" class="navbar-brand">
+                    <img src="{{ asset('bundles/coderdojowebsite/img/logo.png') }}" alt="CoderDojo Nederland" width="200">
+                </a>
+                <!-- End Logo -->
+
+                <!-- Navigation -->
+                <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10" id="navBar">
+                    <ul class="navbar-nav ml-auto text-uppercase g-font-weight-600 u-main-nav-v5 u-sub-menu-v1">
+                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
+                            <a href="{{ path('home') }}" class="nav-link">Home
+
+                            </a>
+                        </li>
+                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
+                            <a href="{{ path('dojos') }}" class="nav-link">Locaties
+
+                            </a>
+                        </li>
+                        <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['mentors', 'setup', 'material', 'dashboard'] %} active{% endif %}">
+                            <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
+                                Jouw Dojo
+                            </a>
+                            <!-- Submenu -->
+                            <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
+                                <li {% if app.request.get('_route') == 'mentors' %}class="active"{% endif %}>
+                                    <a href="{{ path('mentors') }}">
+                                        Word mentor
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'setup' %}class="active"{% endif %}>
+                                    <a href="{{ path('setup') }}">
+                                        Start een Dojo
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'material' %}class="active"{% endif %}>
+                                    <a href="{{ path('material') }}">
+                                        Materiaal
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'dashboard' %}class="active"{% endif %}>
+                                    <a href="{{ path('dashboard') }}">
+                                        {% if app.user %}Dashboard{% else %}Inloggen / Beheren{% endif %}
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Submenu -->
+                        </li>
+                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
+                            <a href="{{ path('blog_index') }}" class="nav-link">
+                                Nieuws
+                            </a>
+                        </li>
+                        <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['foundation', 'about', 'contact'] %} active{% endif %}">
+                            <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
+                                De Stichting
+                            </a>
+                            <!-- Submenu -->
+                            <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
+                                <li {% if app.request.get('_route') == 'foundation' %}class="active"{% endif %}>
+                                    <a href="{{ path('foundation') }}">
+                                        Over de Stichting
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}>
+                                    <a href="{{ path('about') }}">
+                                        Over CoderDojo
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>
+                                    <a href="{{ path('contact') }}">
+                                        Contact
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Submenu -->
+                        </li>
+                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') == 'slack' %} active{% endif %}">
+                            <a href="{{ path('slack') }}" class="nav-link">
+                                Slack Community
+                            </a>
+                        </li>
+                        <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['club_of_100', 'club_of_100_showcase'] %} active{% endif %}">
+                            <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
+                                <i class="icon icon-trophy"></i>&nbsp;
+                                Club van 100
+                            </a>
+                            <!-- Submenu -->
+                            <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
+                                <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
+                                    <a href="{{ path('club_of_100') }}">
+                                        Informatie
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'club_of_100_showcase' %}class="active"{% endif %}>
+                                    <a href="{{ path('club_of_100_showcase') }}">
+                                        Huidige Leden
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Submenu -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Navigation -->
+            </div>
+        </nav>
+    </div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<div class="shortcode-html">
+    <!-- Footer -->
+    <footer class="g-bg-black-opacity-0_9 g-color-white-opacity-0_6 g-py-60">
+        <div class="container">
+            <!-- Copyright -->
+            <div class="row align-items-center">
+                <div class="col-md-6 g-mb-15 g-mb-0--md">
+                    <small class="g-font-size-default mb-0">{{ 'now' | date('Y') }} &copy; CoderDojo Nederland<br/>
+                        Made by
+                        <a
+                                href="https://github.com/coderdojonederland/website"
+                                target="_blank">
+                            YOU!
+                        </a>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            &nbsp;|&nbsp;
+                            <a href="{{ path('dashboard') }}">
+                                Naar Dashboard
+                            </a>
+                            &nbsp;|&nbsp;
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                Uitloggen
+                            </a>
+                        {% else %}
+                            &nbsp;|&nbsp;
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            &nbsp;|&nbsp;
+                            <a href="{{ path('fos_user_registration_register') }}">Registreren</a>
+                        {% endif %}
+                        &nbsp;|&nbsp;
+                        <a href="{{ path('privacy') }}">Privacy Verklaring</a>
+                    </small>
+                </div>
+
+                <div class="col-md-6">
+                    <ul class="list-inline text-md-right mb-0">
+                        <li class="list-inline-item g-mx-5">
+                            <a class="u-icon-v3 u-icon-size--sm g-font-size-default g-bg-white-opacity-0_1 g-bg-primary--hover g-color-white" href="https://twitter.com/coderdojonl">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item g-mx-5">
+                            <a class="u-icon-v3 u-icon-size--sm g-font-size-default g-bg-white-opacity-0_1 g-bg-primary--hover g-color-white" href="https://facebook.com/coderdojonederland">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item g-mx-5">
+                            <a class="u-icon-v3 u-icon-size--sm g-font-size-default g-bg-white-opacity-0_1 g-bg-primary--hover g-color-white" href="{{ path('slack') }}">
+                                <i class="fa fa-slack"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Copyright -->
+        </div>
+    </footer>
+    <!-- End Footer -->
+</div>
+
+<!-- JS Global Compulsory -->
+{% javascripts filter="?jsqueeze" output="bundle/app.js"
+    'assets/vendor/jquery/jquery.min.js'
+    'assets/vendor/jquery-migrate/jquery-migrate.min.js'
+    'assets/vendor/popper.js/popper.min.js'
+    'assets/vendor/bootstrap/bootstrap.min.js'
+    'assets/vendor/bootstrap/offcanvas.js'
+    'assets/vendor/cookieconsent/cookieconsent.3.0.3.min.js'
+    'assets/vendor/hs-megamenu/src/hs.megamenu.js'
+    'assets/vendor/dzsparallaxer/dzsparallaxer.js'
+    'assets/vendor/dzsparallaxer/dzsscroller/scroller.js'
+    'assets/vendor/dzsparallaxer/advancedscroller/plugin.js'
+    'assets/vendor/masonry/dist/masonry.pkgd.min.js'
+    'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'
+    'assets/vendor/slick-carousel/slick/slick.js'
+    'assets/vendor/fancybox/jquery.fancybox.min.js'
+
+    'assets/js/hs.core.js'
+    'assets/js/components/hs.header.js'
+    'assets/js/helpers/hs.hamburgers.js'
+    'assets/js/components/hs.popup.js'
+    'assets/js/components/hs.carousel.js'
+    'assets/js/components/hs.go-to.js'
+
+    'assets/js/custom.js'
+    'assets/js/dojos.js'
+
+    'assets/js/ga.js'
+%}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block customjs %}{% endblock %}
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100946382); }catch(e){}</script>
+<noscript><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100946382ns.gif" /></noscript>
+</body>
+</html>

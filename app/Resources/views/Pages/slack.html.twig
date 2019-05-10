@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block title %}Slack Community &mdash; {{ parent() }}{% endblock %}
 {% block fbtitle %}Slack Community &mdash; {{ parent() }}{% endblock %}
@@ -19,99 +19,109 @@
 
 {% block content %}
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Slack Community</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Praat live met de community en krijg snel antwoord op je vragen</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Slack Community</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Slack Community
+                </li>
+            </ul>
+        </div>
+    </section>
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">
-    <div class="row margin-bottom-30">
-        <div class="col-md-8 col-md-push-2">
-            <h1>Slack Community</h1>
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+        <div class="row g-mb-30">
+            <div class="col-lg-2"></div>
+            <div class="col-md-8">
+                <img src="{{ asset('/bundles/coderdojowebsite/img/slack.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
+    
+                <div class="clearfix g-mb-30"></div>
 
-            <div class="clearfix margin-bottom-20"></div>
+                <section class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-my-40">
+                    <div class="d-md-flex justify-content-md-center text-center">
+                        <div class="align-self-md-center">
+                            <p class="lead g-font-weight-400 g-mr-20--md g-mb-15 g-mb-0--md">Wil je gelijk beginnen met Slack?</p>
+                        </div>
+                        <div class="align-self-md-center">
+                            <a href="https://coderdojonlslack.herokuapp.com/" class="btn btn-md u-btn-primary"><i class="icon-envelope"></i>&nbsp;&nbsp;Meld Je Aan</a>
+                        </div>
+                    </div>
+                </section>
 
-            <img src="{{ asset('/bundles/coderdojowebsite/img/slack.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
-
-            <div class="clearfix margin-bottom-30"></div>
-
-            <div class="row tag-box tag-box-v5">
-                <div class="col-md-8">
-                    <h3>
-                        Wil je gelijk beginnen met Slack?
-                    </h3>
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Wat is Slack?</h2>
                 </div>
-                <div class="col-md-4">
-                    <p><a href="https://coderdojonlslack.herokuapp.com/" target="_blank" class="btn-u btn-u-lg btn-u-red"><i class="icon-envelope"></i> Meld Je Aan</a></p>
+    
+                <p>
+                    Slack is een soort kruising tussen een forum en een chatroom.
+                    De manier van praten is zoals een chatroom, maar alle berichten worden opgeslagen en zijn zoekbaar voor
+                    iedereen die binnenkomt. Er zijn verschillende kanalen die elk een eigen onderwerp hebben.
+                    Je kan zelf bepalen aan welke gesprekken je deel wilt nemen. Daarnaast kun je ook rechtstreeks met
+                    iemand chatten of in een privé groep chatten.
+                </p>
+                <p>
+                    Om op de hoogte te blijven van wat er gebeurd kan Slack je notificaties sturen per email of naar je
+                    mobiele devices. Je kan zelf instellen of je alles wilt weten of alleen wat voor jouw belangrijk is.
+                    Slack is beschikbaar op <a href="https://slack.com/downloads" target="_blank">bijna alle platformen</a>.
+                </p>
+    
+                <img src="{{ asset('/bundles/coderdojowebsite/img/slack_screenshot.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-my-30" />
+
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Voor wie is Slack?</h2>
                 </div>
+    
+                <p>
+                    We hebben over het algemeen de volgende type deelnemers:
+                </p>
+                <ul>
+                    <li><strong>Champions:</strong> Een organisator van een Dojo</li>
+                    <li><strong>Mentoren:</strong> De vrijwilligers van een Dojo</li>
+                    <li><strong>Ninja’s:</strong> De kinderen die een Dojo bezoeken</li>
+                    <li><strong>Ouders:</strong> De ouders van Ninja’s</li>
+                    <li><strong>Sponsors / Partners:</strong> Personen die voor een instelling werken die samen werkt met CoderDojo.</li>
+                    <li><strong>Gasten:</strong> Ter oriëntatie of om kennis te maken met CoderDojo</li>
+                </ul>
+
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Wat wordt er besproken in de community?</h2>
+                </div>
+    
+                <p>
+                    Om te beginnen heeft elke Dojo zijn eigen kanaal zodat je iedereen binnen een bepaalde dojo kan
+                    ontmoeten. In dit kanaal kan er kennis gemaakt worden, vragen over de geplande dojo’s gesteld en
+                    beantwoord worden en kunnen er tips en suggesties gegeven worden. Daarnaast hebben we ook een kanaal
+                    voor technische hulp. Deze is vooral bedoeld voor de Ninja’s die bezig zijn met een workshop (thuis of
+                    tijdens en dojo) en tegen een probleem aan lopen. Tot slot hebben we ook een paar andere kanalen zoals
+                    voor het opstarten van een dojo, landelijk kanaal en algemeen chatkanaal.
+                </p>
+
+                <section class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-my-40">
+                    <div class="d-md-flex justify-content-md-center text-center">
+                        <div class="align-self-md-center">
+                            <p class="lead g-font-weight-400 g-mr-20--md g-mb-15 g-mb-0--md">Wil je gelijk beginnen met Slack?</p>
+                        </div>
+                        <div class="align-self-md-center">
+                            <a href="https://coderdojonlslack.herokuapp.com/" class="btn btn-md u-btn-primary"><i class="icon-envelope"></i>&nbsp;&nbsp;Meld Je Aan</a>
+                        </div>
+                    </div>
+                </section>
             </div>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h2>Wat is Slack?</h2>
-
-            <p>
-                Slack is een soort kruising tussen een forum en een chatroom.
-                De manier van praten is zoals een chatroom, maar alle berichten worden opgeslagen en zijn zoekbaar voor
-                iedereen die binnenkomt. Er zijn verschillende kanalen die elk een eigen onderwerp hebben.
-                Je kan zelf bepalen aan welke gesprekken je deel wilt nemen. Daarnaast kun je ook rechtstreeks met
-                iemand chatten of in een privé groep chatten.
-            </p>
-            <p>
-                Om op de hoogte te blijven van wat er gebeurd kan Slack je notificaties sturen per email of naar je
-                mobiele devices. Je kan zelf instellen of je alles wilt weten of alleen wat voor jouw belangrijk is.
-                Slack is beschikbaar op <a href="https://slack.com/downloads" target="_blank">bijna alle platformen</a>.
-            </p>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <img src="{{ asset('/bundles/coderdojowebsite/img/slack_screenshot.png') }}" alt="CoderDojo Slack Community" style="width:100%;" />
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h2>Voor wie is Slack?</h2>
-
-            <p>
-                We hebben over het algemeen de volgende type deelnemers:<br/>
-                <strong>Champions:</strong> Een organisator van een Dojo<br/>
-                <strong>Mentoren:</strong> De vrijwilligers van een Dojo<br/>
-                <strong>Ninja’s:</strong> De kinderen die een Dojo bezoeken<br/>
-                <strong>Ouders:</strong> De ouders van Ninja’s<br/>
-                <strong>Sponsors / Partners:</strong> Personen die voor een instelling werken die samen werkt met CoderDojo.<br/>
-                <strong>Gasten:</strong> Ter oriëntatie of om kennis te maken met CoderDojo
-            </p>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h2>Wat wordt er besproken in de community?</h2>
-
-            <p>
-                Om te beginnen heeft elke Dojo zijn eigen kanaal zodat je iedereen binnen een bepaalde dojo kan
-                ontmoeten. In dit kanaal kan er kennis gemaakt worden, vragen over de geplande dojo’s gesteld en
-                beantwoord worden en kunnen er tips en suggesties gegeven worden. Daarnaast hebben we ook een kanaal
-                voor technische hulp. Deze is vooral bedoeld voor de Ninja’s die bezig zijn met een workshop (thuis of
-                tijdens en dojo) en tegen een probleem aan lopen. Tot slot hebben we ook een paar andere kanalen zoals
-                voor het opstarten van een dojo, landelijk kanaal en algemeen chatkanaal.
-            </p>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <div class="row tag-box tag-box-v5">
-                <div class="col-md-8">
-                    <h3>
-                        Wil je ook mee praten in Slack?
-                    </h3>
-                </div>
-                <div class="col-md-4">
-                    <p><a href="https://coderdojonlslack.herokuapp.com" target="_blank" class="btn-u btn-u-lg btn-u-red"><i class="icon-envelope"></i> Meld Je Aan</a></p>
-                </div>
-            </div>
-        </div>
-    </div><!--/row-->
-
-</div><!--/container-->
+        </div><!--/row-->
+    
+    </div><!--/container-->
+</section>
 <!--=== End Content Part ===-->
 {% endblock %}

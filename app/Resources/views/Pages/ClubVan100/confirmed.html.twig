@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block title %}Word lid van de Club van 100 &mdash; {{ parent() }}{% endblock %}
 {% block fbtitle %}Word lid van de Club van 100 &mdash; {{ parent() }}{% endblock %}
@@ -16,38 +16,54 @@
 {% block og_image %}https://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/fb-club100.png')}}{% endblock %}
 
 {% block content %}
-<!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Club van 100</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
-<!--=== End Breadcrumbs ===-->
+    <!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Bedankt!</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Club van 100</h2>
+            </header>
 
-<!--=== Content Part ===-->
-<div class="container">
-    <div class="row margin-bottom-30">
-        <div class="col-md-8 col-md-push-2">
-
-            <div style="text-align: center;width:100%;">
-                <img src="https://media3.giphy.com/media/l2JdVptfnCwNTiBvG/200w.gif?cid=c94812d05cc9a5c2796846326767fbb2&rid=200w.gif" style="width:50%;"/>
-            </div>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h1>Je bent er klaar voor!</h1>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <p>
-                Jouw aanmelding is nu bevestigd, bij deze ben je officieel lid van de CoderDojo Nederland Club van 100!
-            </p>
-
-            <div class="clearfix margin-bottom-20"></div>
-
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Club van 100
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Bedankt
+                </li>
+            </ul>
         </div>
-    </div><!--/row-->
+    </section>
+    <!--=== End Breadcrumbs ===-->
 
-</div><!--/container-->
-<!--=== End Content Part ===-->
+    <!--=== Content Part ===-->
+    <section class="col-lg-12 g-my-50">
+        <div class="container">
+            <div class="row margin-bottom-30">
+                <div class="col-lg-2"></div>
+                <div class="col-md-8 col-md-push-2">
+
+                    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Je bent er klaar voor!</h2>
+                    </div>
+
+                    <div class="text-center g-mb-40">
+                        <img src="https://media3.giphy.com/media/l2JdVptfnCwNTiBvG/200w.gif?cid=c94812d05cc9a5c2796846326767fbb2&rid=200w.gif" style="width:50%;"/>
+                    </div>
+
+                    <p>
+                        Jouw aanmelding is nu bevestigd, bij deze ben je officieel lid van de CoderDojo Nederland Club van 100!
+                    </p>
+
+                </div>
+            </div><!--/row-->
+
+        </div><!--/container-->
+    </section>
+    <!--=== End Content Part ===-->
 {% endblock %}

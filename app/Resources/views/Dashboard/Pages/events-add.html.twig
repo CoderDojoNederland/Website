@@ -1,7 +1,9 @@
 {% extends ":Dashboard:index.html.twig" %}
 
 {% block dashboard_content %}
-<h3>Events toevoegen</h3>
+    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-0">
+        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Events Toevoegen</h2>
+    </div>
     <div class="alert alert-info">
         <p>
             <strong>Eventbrite integratie op Zen</strong><br/>
@@ -13,9 +15,10 @@
     </div>
     {{ form_start(form, { 'action': '#', 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
     {{ form_widget(form) }}
-    <div class="form-group">
+    <div class="form-group row">
+        <div class="col-lg-2"></div>
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" value="Opslaan" class="btn-u btn-u-green" />
+            <input type="submit" value="Opslaan" class="btn btn-block btn-success" />
         </div>
     </div>
     {{ form_end(form) }}

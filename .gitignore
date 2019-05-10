@@ -15,8 +15,11 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/web/bundle/
 /web/articles/
+/web/club-100-avatars/
 /web/vendors/
 /web/media/cache/
 /.idea
 /.vagrant
+/.node_modules

@@ -249,7 +249,7 @@
 {%- endblock repeated_row -%}
 
 {%- block form_row -%}
-    <div class="form-group">
+    <div class="form-group row">
         {{- form_label(form) -}}
         {{- form_widget(form) -}}
         {{- form_errors(form) -}}
@@ -257,7 +257,7 @@
 {%- endblock form_row -%}
 
 {%- block button_row -%}
-    <div class="form-group">
+    <div class="form-group row">
         {{- form_widget(form) -}}
     </div>
 {%- endblock button_row -%}

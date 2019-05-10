@@ -1,233 +1,348 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block content %}
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            {{ flashMessage }}
+    <section class="u-bg-overlay g-bg-img-hero g-bg-bluegray-opacity-0_3--after" style="background-image: url(/bundles/coderdojowebsite/img/headers/header_13.jpg);">
+        <div class="container u-bg-overlay__inner text-center g-pt-150 g-pb-70">
+            <div class="g-mb-100">
+                <span class="d-block g-color-white g-font-size-20 text-uppercase g-letter-spacing-5 mb-4">Gratis leren programmeren</span>
+                <h1 class="g-color-white g-font-weight-700 g-font-size-20 g-font-size-50--md text-uppercase g-line-height-1_2 g-letter-spacing-10 mb-4">Voor Kinderen In Heel Nederland</h1>
+                <span class="d-block lead g-color-white g-letter-spacing-2">Kom jij ook mee doen?</span>
+            </div>
+
+            <div class="g-pos-abs g-left-0 g-right-0 g-z-index-2 g-bottom-30">
+                <a class="js-go-to btn u-btn-outline-white g-color-white g-bg-white-opacity-0_1 g-color-black--hover g-bg-white--hover g-font-weight-600 text-uppercase g-rounded-50 g-px-30 g-py-11" href="#" data-target="#content">
+                    <i class="fa fa-angle-down"></i>
+                </a>
+            </div>
         </div>
-    {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            {{ flashMessage }}
+    </section>
+    <!-- Intro -->
+    <section class="text-center g-py-120--md g-py-20" id="content">
+        <div class="container">
+            <div class="u-heading-v2-5--bottom g-brd-primary g-mb-30">
+                <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Ervaar zelf CoderDojo!</h2>
+            </div>
+
+            <p class="lead g-px-60--md g-mb-40">
+                Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren.
+                Dit wordt helemaal gratis verzorgd door vrijwilligers!
+                Ben je ouder? <a href="{{ path('mentors') }}">Word dan mentor</a> bij een Dojo of <a href="{{ path('setup') }}">start jouw eigen CoderDojo</a>!
+            </p>
         </div>
-    {% endfor %}
-{% include ":Snippets:Slider.html.twig" %}
-{#
-<!-- PROMOTION -->
-    <div class="purchase">
+    </section>
+    <!-- end intro -->
+    <!-- videos -->
+    <section class="col-lg-12 g-bg-secondary g-py-40">
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
-                    <img src="{{asset('bundles/coderdojowebsite/img/coolest-projects.jpg')}}" width="200" style="float: left;margin-right:20px;margin-bottom: 10px;margin-top:10px;" alt="Rootnet Sponsort CoderDojo" class="unplugged"/>
-                    <span style="line-height:1.5em;"><strong>Coolest Projects - 24 november</strong></span>
-                    <p>
-                        Bij Coolest Projects kunnen álle kinderen in Nederland die een tof digitaal project gemaakt
-                        hebben samen komen om deze aan elkaar te laten zien. Er loopt ook een juri rond die de projecten
-                        bekijkt, wie weet wordt jouw project wel hét Coolest Project van 2018!
-                    </p>
+                <div class="col-lg-4">
+                    <div class="u-heading-v2-1--bottom g-mb-30">
+                        <h2 class="u-heading-v2__title g-mb-10">MegaDojo</h2>
+                        <h4 class="g-font-weight-200">2016 in de Ziggo Dome</h4>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                        <iframe width="100%" src="//www.youtube.com/embed/0jneeKZFJEU" frameborder="0" allowfullscreen=""></iframe>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <a href="https://coolestprojectes.coderdojo-kennemerwaard.nl" class="btn-buy hover-effect">Meer Informatie</a>
+                <div class="col-lg-4">
+                    <div class="u-heading-v2-1--bottom g-mb-30">
+                        <h2 class="u-heading-v2__title g-mb-10">Unplugged Dojo</h2>
+                        <h4 class="g-font-weight-200">2016 in Leiden</h4>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                        <iframe width="100%" src="//www.youtube.com/embed/Y2MFeiCE4Kw" frameborder="0" allowfullscreen=""></iframe>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div> 
-    <!-- # END PROMOTION -->
-#}
-<div class="container">
-    <!--Title Box-->
-    <div class="title-box">
-        <div class="row margin-bottom-10">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="title-box-text">Ervaar zelf <span class="color-green">CoderDojo!</span></div>
-                <p>Bij CoderDojo kunnen kinderen van 7 t/m 17 jaar leren programmeren. Dit wordt helemaal gratis verzorgd door vrijwilligers! Ben je ouder? Word dan mentor bij een Dojo of start jouw eigen CoderDojo!</p>
-            </div>
-        </div>
-        <div class="row margin-bottom-40">
-            <div class="col-md-4">
-                <h3 class="text-center">MegaDojo</h3>
-                <div class="responsive-video">
-                    <iframe width="640" height="360" src="//www.youtube.com/embed/0jneeKZFJEU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen style="margin:20px 0"></iframe>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h3 class="text-center">Unplugged Dojo</h3>
-                <div class="responsive-video">
-                    <iframe width="640" height="360" src="//www.youtube.com/embed/Y2MFeiCE4Kw?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen style="margin:20px 0"></iframe>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h3 class="text-center">CoderDojo Rotterdam</h3>
-                <div class="responsive-video">
-                    <iframe width="640" height="360" src="//www.youtube.com/embed/bGwRKl-n_4Q?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen style="margin:20px 0"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Promo Box-->
-</div>
-
-<div class="container">
-    <!--Promo Box-->
-    <div class="row">
-        <div class="col-md-4">
-            <div class="promo-box">
-                <i class="icon-eur color-blue"></i>
-                <strong>Gratis en Vrijblijvend</strong>
-                <p>Omdat CoderDojo geheel door vrijwilligers wordt opgezet is het helemaal gratis en voor iedereen tussen de 7 en 17 jaar toegankelijk!</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="promo-box">
-                <i class="icon-calendar color-orange"></i>
-                <strong>Regelmatig</strong>
-                <p>Elke Dojo streeft er naar om minimaal één keer per maand open te zijn. In sommige gevallen zelfs vaker!</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="promo-box">
-                <i class="icon-map-marker color-sea"></i>
-                <strong>Bij jou in de buurt</strong>
-                <p>CoderDojo wordt over de hele wereld gehouden, dus ook bij jou in de buurt. Kun je geen Dojo vinden? Start er zelf één!</p>
-            </div>
-        </div>
-    </div>
-    <!--End Promo Box-->
-
-    <hr class="margin-bottom-40">
-
-    <!-- Info Blcoks -->
-    <div class="row">
-        <div class="col-sm-4 info-blocks">
-            <i class="icon-code icon-info-blocks"></i>
-            <div class="info-blocks-in">
-                <h3>Programmeren</h3>
-                <p>Bij CoderDojo kun je alles leren over programmeren. Denk hierbij aan websites, games, apps of zelfs robots!</p>
-            </div>
-        </div>
-        <div class="col-sm-4 info-blocks">
-            <i class="icon-cog icon-info-blocks"></i>
-            <div class="info-blocks-in">
-                <h3>Aan de slag met techniek</h3>
-                <p>Naast digitale projecten kun je bij CoderDojo ook aan de slag met bijvoorbeeld Arduino om zelf apparaten te bouwen.</p>
-            </div>
-        </div>
-        <div class="col-sm-4 info-blocks">
-            <i class="icon-question icon-info-blocks"></i>
-            <div class="info-blocks-in">
-                <h3>Zit je vast met jouw project?</h3>
-                <p>Ben je zelf met een project bezig en kom je er even niet uit? Kom dan naar een CoderDojo, hier zijn ongetwijfeld mensen die je verder kunnen helpen.</p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 info-blocks">
-            <i class="icon-rocket icon-info-blocks"></i>
-            <div class="info-blocks-in">
-                <h3>Games</h3>
-                <p>Gamen is natuurlijk een groot onderdeel in het leven van een developer. Niet alleen games bouwen, maar ook games spelen hoort bij CoderDojo!</p>
-            </div>
-        </div>
-        <div class="col-sm-4 info-blocks">
-            <i class="icon-group icon-info-blocks"></i>
-            <div class="info-blocks-in">
-                <h3>Leer andere mensen kennen</h3>
-                <p>De sfeer bij CoderDojo is heel open en iedereen is welkom! Zo kun je snel andere mensen leren kennen met dezelfde interesses.</p>
-            </div>
-        </div>
-        <div class="col-sm-4 info-blocks">
-            <i class="icon-food icon-info-blocks"></i>
-            <div class="info-blocks-in">
-                <h3>Pizza!</h3>
-                <p>Developen en pizza eten gaan hand in hand. Daarom oefenen we dit soms door &apos;s avonds met zijn allen pizza te bestellen!</p>
-            </div>
-        </div>
-    </div>
-    <!--End Info Blcoks -->
-
-    <hr class="margin-bottom-50">
-
-    <!-- news articles -->
-    <div class="row latest-articles">
-        <div class="col-md-12">
-            <h2 class="margin-bottom-20">Laatste Nieuws</h2>
-        </div>
-        {% for article in articles %}
-            <div class="col-md-3">
-                <div class="thumbnails">
-                    <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
-                        <img class="img-responsive" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}">
-                    </a>
-                    <div class="caption">
-                        <h3><a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">{{ article.title|title }}</a></h3>
-                        <p><small>
-                            <i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}&nbsp;|&nbsp;
-                            <i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}
-                        </small>
-                        </p>
-                        <p>{{ article.body|striptags|truncate(150, true)|raw }}</p>
-                        <p><a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}" class="btn-u btn-u-small">Lees meer</a></p>
+                <div class="col-lg-4">
+                    <div class="u-heading-v2-1--bottom g-mb-30">
+                        <h2 class="u-heading-v2__title g-mb-10">CoderDojo Rotterdam</h2>
+                        <h4 class="g-font-weight-200">Zo ziet een dojo er uit</h4>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                        <iframe width="100%" src="//www.youtube.com/embed/bGwRKl-n_4Q" frameborder="0" allowfullscreen=""></iframe>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-    <!-- end news articles -->
-
-    <hr class="margin-bottom-50">
-
-    <!--Service Block-->
-    <div class="row promo-service" id="dojoeventlist">
-        <div class="col-md-12">
+        </div>
+    </section>
+    <!-- end videos -->
+    <!-- Icon Blocks -->
+    <section class="col-lg-12 g-py-80">
+        <div class="container">
+            <div class="u-heading-v3-1 g-mb-60">
+                <h2 class="h3 u-heading-v3__title g-brd-primary">De basis van CoderDojo</h2>
+            </div>
+        </div>
+        <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <h2 class="margin-bottom-20">Komende Dojos</h2>
+                <div class="col-lg-4 g-mb-30">
+                    <!-- Icon Blocks -->
+                    <div class="text-center">
+                    <span class="d-block g-color-gray-dark-v4 g-font-size-40 g-mb-5">
+                        <i class="fa fa-eur"></i>
+                    </span>
+                        <h3 class="g-color-black g-font-weight-400 g-font-size-13 text-uppercase mb-20">Gratis en Vrijblijvend</h3>
+                        <div class="d-inline-block g-width-30 g-brd-bottom g-brd-gray-dark-v5 g-my-15"></div>
+                        <p class="g-color-gray-dark-v4 g-mb-0">Omdat CoderDojo geheel door vrijwilligers wordt opgezet is het helemaal gratis en voor iedereen tussen de 7 en 17 jaar toegankelijk!</p>
+                    </div>
+                    <!-- End Icon Blocks -->
                 </div>
-                <div class="col-md-5 col-md-offset-1">
-                    <br/>
-                    <input type="text" class="form-control" id="city-search" placeholder="Filter locatie">
+
+                <div class="col-lg-4 g-mb-30">
+                    <!-- Icon Blocks -->
+                    <div class="text-center">
+      <span class="d-block g-color-gray-dark-v4 g-font-size-40 g-mb-5">
+        <i class="fa fa-calendar"></i>
+      </span>
+                        <h3 class="g-color-black g-font-weight-400 g-font-size-13 text-uppercase mb-20">Regelmatig</h3>
+                        <div class="d-inline-block g-width-30 g-brd-bottom g-brd-gray-dark-v5 g-my-15"></div>
+                        <p class="g-color-gray-dark-v4 g-mb-0">Elke Dojo streeft er naar om minimaal één keer per maand open te zijn. In sommige gevallen zelfs vaker!</p>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+
+                <div class="col-lg-4 g-mb-30">
+                    <!-- Icon Blocks -->
+                    <div class="text-center">
+      <span class="d-block g-color-gray-dark-v4 g-font-size-40 g-mb-5">
+        <i class="fa fa-map-marker"></i>
+      </span>
+                        <h3 class="g-color-black g-font-weight-400 g-font-size-13 text-uppercase mb-20">Bij jou in de buurt</h3>
+                        <div class="d-inline-block g-width-30 g-brd-bottom g-brd-gray-dark-v5 g-my-15"></div>
+                        <p class="g-color-gray-dark-v4 g-mb-0">CoderDojo wordt over de hele wereld gehouden, dus ook bij jou in de buurt. Kun je geen Dojo vinden? Start er zelf één!</p>
+                    </div>
+                    <!-- End Icon Blocks -->
                 </div>
             </div>
-            {% for event in dojos %}
-            <div class="row margin-bottom-5 event-row" itemscope itemtype="http://schema.org/Event" data-dojo-city="{{ event.dojo.city }}">
-                <div class="col-md-4" itemprop="name">
-                    {{ event.dojo.name|truncate(50) }}
-                </div>
-                <div class="col-md-3" itemprop="startDate" content="{{ event.date|date('Y-m-d') }}">
-                    {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}
-                </div>
-                <div class="col-md-2" itemprop="location" itemscope itemtype="http://schema.org/Place">
-                    <span itemprop="name" content="{{event.dojo.name}}"></span>
-                    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <span itemprop="name">{{ event.dojo.city }}</span>
+        </div>
+    </section>
+    <!-- End Icon Blocks -->
+    <!-- secon icon blocks -->
+    <section class="col-lg-12 g-bg-secondary g-py-80">
+        <div class="container">
+            <div class="u-heading-v3-1 g-mb-60">
+                <h2 class="h3 u-heading-v3__title g-brd-primary">Wat kun je verwachten?</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="shortcode-html">
+                <!-- Icon Blocks -->
+                <div class="row">
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                      <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                        <i class="icon-communication-130 u-line-icon-pro"></i>
+                      </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Programmeren</h3>
+                                <p class="g-color-gray-dark-v4">Bij CoderDojo kun je alles leren over programmeren. Denk hierbij aan websites, games, apps of zelfs robots!</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                      <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                        <i class="icon-electronics-145 u-line-icon-pro"></i>
+                      </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Games</h3>
+                                <p class="g-color-gray-dark-v4">Gamen is natuurlijk een groot onderdeel in het leven van een developer. Niet alleen games bouwen, maar ook games spelen hoort bij CoderDojo!</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                      <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                        <i class="icon-electronics-065 u-line-icon-pro"></i>
+                      </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Aan de slag met techniek</h3>
+                                <p class="g-color-gray-dark-v4">Naast digitale projecten kun je bij CoderDojo ook aan de slag met bijvoorbeeld Arduino om zelf apparaten te bouwen.</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <a itemprop="url" href="{{ event.url }}" target="_blank" data-dojo="{{ event.dojo.name }}" data-dojo-date="{{ event.date|date("Y/m/d") }}" class="btn btn-success btn-block btn-xs" onClick="trackEventClick()">Reserveer</a>
+                <!-- End Icon Blocks -->
+
+                <!-- Icon Blocks -->
+                <div class="row">
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                      <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                        <i class="icon-communication-040 u-line-icon-pro"></i>
+                      </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Leer andere mensen kennen</h3>
+                                <p class="g-color-gray-dark-v4">De sfeer bij CoderDojo is heel open en iedereen is welkom! Zo kun je snel andere mensen leren kennen met dezelfde interesses.</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                      <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                        <i class="icon-hotel-restaurant-190 u-line-icon-pro"></i>
+                      </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Pizza!</h3>
+                                <p class="g-color-gray-dark-v4">Developen en pizza eten gaan hand in hand. Daarom oefenen we dit soms door 's avonds met zijn allen pizza te bestellen!</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                      <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                        <i class="icon-education-001 u-line-icon-pro"></i>
+                      </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Zit je vast met jouw project?</h3>
+                                <p class="g-color-gray-dark-v4">Ben je zelf met een project bezig en kom je er even niet uit? Kom dan naar een CoderDojo, hier zijn ongetwijfeld mensen die je verder kunnen helpen.</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
                 </div>
+                <!-- End Icon Blocks -->
             </div>
-            {% endfor %}
-            <div class="row margin-bottom-5">
-                <div class="col-md-9">
-                </div>
-                <div class="col-md-3 right">
-                    <a href="{{path('dojos')}}" class="btn btn-block btn-default btn-xs" type="button">Bekijk alle dojo&apos;s &raquo;</a>
-                </div>
-            </div>
-            <hr class="margin-bottom-20">
+
         </div>
-    </div>
-    <!--End Service Block-->
+    </section>
+    <!-- end second icon blocks -->
+    <!-- news articles -->
+    <section class="col-lg-12 g-py-40">
+        <div class="container">
+            <div class="u-heading-v3-1 g-mb-40">
+                <h2 class="h3 u-heading-v3__title g-brd-primary">Laatste nieuws</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Article -->
+                        <article class="g-bg-white">
+                            <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
+                                <figure class="g-pos-rel">
+                                    <img class="img-fluid w-100" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}" alt="{{ article.title|title }}">
+                                    <figcaption class="text-uppercase text-center g-line-height-1_2 g-bg-primary-opacity-0_8 g-color-white g-pos-abs g-top-20 g-px-15 g-py-10">
+                                        <strong class="d-block">{{ article.publishedAt|date('d') }}</strong>
+                                        <hr class="g-brd-white my-1">
+                                        <small class="d-block">{{ article.publishedAt|date('M') }}</small>
+                                    </figcaption>
+                                </figure>
+                            </a>
 
-    <!--Service Block-->
-    <div class="row promo-service">
-        <div class="col-md-12">
-            <h2 class="margin-bottom-20">CoderDojo Nederland Is Verbonden Met</h2>
+                            <div class="g-pa-30">
+                                <h3 class="h5 g-mb-15">
+                                    <a class="u-link-v5 g-color-gray-dark-v2 g-color-primary--hover" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">{{ article.title|title }}</a>
+                                </h3>
 
+                                <p>{{ article.body|striptags|truncate(150, true)|raw }}</p>
+
+                                <p>
+                                    <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}" class="btn btn-xs u-btn-outline-primary g-mr-10 g-mb-15">Lees meer</a>
+                                </p>
+
+                                <hr class="g-brd-gray-light-v4 g-my-20">
+
+                                <ul class="list-inline small text-uppercase mb-0">
+                                    <li class="list-inline-item">
+                                        <span class="g-color-gray-dark-v4">By</span>
+                                        {{ article.author.firstname }} {{ article.author.lastname }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- end news articles -->
+    <!-- upcoming dojos -->
+    <section class="col-lg-12 g-bg-secondary g-py-40">
+        <div class="container">
+            <div class="u-heading-v3-1 g-mb-40">
+                <h2 class="h3 u-heading-v3__title g-brd-primary">Eerstvolgende Dojo's</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover u-table--v2 text-uppercase g-col-border-side-0">
+                    <thead>
+                    <tr class="g-bg-primary g-color-white g-col-border-top-0">
+                        <th class="g-brd-white-opacity-0_1">Dojo</th>
+                        <th class="g-brd-white-opacity-0_1">Datum</th>
+                        <th class="g-brd-white-opacity-0_1">Locatie</th>
+                        <th class="g-brd-white-opacity-0_1"><input type="text" class="form-control form-control-sm" id="city-search" placeholder="Filter locatie"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="g-font-size-12 g-color-black-opacity-0_6 g-font-weight-600">
+                    {% for event in dojos %}
+                        <tr itemscope itemtype="http://schema.org/Event" class="" data-dojo-city="{{ event.dojo.city }}">
+                            <th class="g-color-black-opacity-0_8" scope="row"  itemprop="name">{{ event.dojo.name|truncate(50) }}</th>
+                            <td itemprop="startDate" content="{{ event.date|date('Y-m-d') }}">{{ event.date|localizeddate('none', 'none', 'nl_NL', null, "dd MMMM Y")|title}}</td>
+                            <td itemprop="location" itemscope itemtype="http://schema.org/Place">
+                                <span itemprop="name" class="hidden" content="{{event.dojo.name}}"></span>
+                                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                    <span itemprop="name">{{ event.dojo.city }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <a itemprop="url" href="{{ event.url }}" target="_blank" data-dojo="{{ event.dojo.name }}" data-dojo-date="{{ event.date|date("Y/m/d") }}" class="btn btn-success btn-block btn-xs" onClick="trackEventClick()">Reserveer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="{{path('dojos')}}" class="btn btn-block btn-default btn-xs" type="button">Bekijk alle dojo&apos;s &raquo;</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <!-- end upcoming dojos -->
+    <!-- friends -->
+    <section class="col-lg-12 g-py-40">
+        <div class="container">
+            <div class="u-heading-v3-1 g-mb-40">
+                <h2 class="h3 u-heading-v3__title g-brd-primary">CoderDojo is verbonden met</h2>
+            </div>
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-md-2 text-center">&nbsp;</div>
 
@@ -258,10 +373,8 @@
                 <div class="col-md-2 text-center">&nbsp;</div>
             </div>
         </div>
-    </div>
-    <!--End Service Block-->
-</div>
-<!-- End Content Part -->
+    </section>
+    <!-- end friends -->
 {% endblock %}
 
 {% block customjs %}
@@ -269,18 +382,5 @@
         function trackEventClick() {
             ga('send', 'event', 'dojo_interest', 'register_from_homepage');
         }
-
-        $('#city-search').on('keyup paste', function(){
-            $('[data-dojo-city]').each(function(key, el){
-                var city = $(el).data('dojo-city');
-                var matches = new RegExp($('#city-search').val(), 'i').exec(city);
-
-                if(matches === null) {
-                    $(el).addClass('hidden');
-                } else {
-                    $(el).removeClass('hidden');
-                }
-            });
-        });
     </script>
 {% endblock %}

@@ -13,41 +13,40 @@
 
 {% block articles %}
 
-        <div class="blog blog-single margin-bottom-40" itemscope itemtype="http://schema.org/Article">
-            <div class="blog-img">
-                <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                    <img class="img-responsive" itemprop="image" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}" alt="{{ article.title }}">
+    <div class="row">
+        <div class="col-md-12 g-mb-30">
+            <!-- Article -->
+            <article itemscope itemtype="http://schema.org/Article">
+                <span itemscope itemtype="https://schema.org/ImageObject">
+                    <img class="img-fluid w-100" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_header') }}" alt="{{ article.title|title }}">
                     <meta itemprop="url" content="{{ app.request.schemeAndHttpHost }}{{ asset("/articles/#{article.image}") }}">
                     <meta itemprop="width" content="1200">
                     <meta itemprop="height" content="630">
                 </span>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 blog-title">
-                        <h2 itemprop="headline"><a href="#">{{ article.title|title }}</a></h2>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="blog-post-tags">
-                        <ul class="list-unstyled list-inline blog-info">
-                            <li ><i class="icon-calendar"></i> <time itemprop="datePublished" datetime="{{ article.publishedAt|date(constant('DATE_ISO8601')) }}">{{ article.publishedAt|date('d/m/Y') }}</time></li>
-                            <li><i class="icon-user"></i> <address itemprop="author">{{ article.author.firstname }} {{ article.author.lastname }}</address></li>
-                            <li><i class="icon-tags"></i> <a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ article.category.title|capitalize }}</a></li>
-                        </ul>
-                    </div>
+                <div class="g-bg-white g-pos-rel g-pa-20 g-mx-40--sm g-mt-minus-70">
+                    <h3 class="h3 g-mb-10" itemprop="headline">
+                        {{ article.title|title }}
+                    </h3>
 
-                    <div class="margin-bottom-30">
-                        {{ article.body|raw }}
-                    </div>
+                    <ul class="list-inline g-font-size-12 g-color-gray-dark-v4">
+                        <li class="list-inline-item"><i class="fa fa-calendar"></i> <time itemprop="datePublished" datetime="{{ article.publishedAt|date(constant('DATE_ISO8601')) }}">{{ article.publishedAt|date('d/m/Y') }}</time></li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item"><i class="fa fa-user"></i> <span itemprop="author">{{ article.author.firstname }} {{ article.author.lastname }}</span></li>
+                        <li class="list-inline-item">/</li>
+                        <li class="list-inline-item"><i class="fa fa-tags"></i> <a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ article.category.title|capitalize }}</a></li>
+                    </ul>
 
-                    <footer>
+                    {{ article.body|raw }}
+
+                    <footer class="g-mt-40">
                         <div class="sharethis-inline-share-buttons"></div>
                     </footer>
                 </div>
-            </div>
+            </article>
+            <!-- End Article -->
         </div>
+    </div>
 
 {% endblock articles %}
 {% block customjs %}

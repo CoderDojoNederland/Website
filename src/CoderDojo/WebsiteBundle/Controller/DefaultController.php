@@ -19,7 +19,7 @@ class DefaultController extends Controller
     public function homeAction()
     {
         $dojos = $this->getUpComingDojos();
-        $articles = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Article')->getLatest(4);
+        $articles = $this->getDoctrine()->getRepository('CoderDojoWebsiteBundle:Article')->getLatest(3);
 
         return $this->render(':Pages:index.html.twig', [
             'dojos' => $dojos,

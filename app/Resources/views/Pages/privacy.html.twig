@@ -1,225 +1,263 @@
-{% extends '::index.html.twig' %}
+{% extends '::index_v2.html.twig' %}
 
 {% block content %}
-    <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs margin-bottom-40">
-        <div class="container">
-            <h1 class="pull-left">Privacy Verklaring</h1>
-        </div><!--/container-->
-    </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
-    <div class="container">
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Persoonsgegevens die wij verwerken</h3>
-
-                <p>
-                    Stichting CoderDojo Nederland verwerkt je persoonsgegevens doordat je gebruik maakt van onze diensten en/of omdat je deze gegevens zelf aan ons verstrekt. Hieronder vind je een overzicht van de persoonsgegevens die wij verwerken:
-                </p>
-                <ul>
-                    <li>Voor- en achternaam</li>
-                    <li>Telefoonnummer</li>
-                    <li>E-mailadres</li>
-                    <li>Overige persoonsgegevens die je actief verstrekt bijvoorbeeld door een profiel op deze website aan te maken, in correspondentie en telefonisch</li>
-                    <li>Internetbrowser en apparaat type</li>
-                    <li>Papieren VOG documenten</li>
-                </ul>
-            </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Bijzondere en/of gevoelige persoonsgegevens die wij verwerken</h3>
-
-                <p>
-                    Onze website en/of dienst heeft niet de intentie gegevens te verzamelen over websitebezoekers die jonger zijn dan 16 jaar. Tenzij ze toestemming hebben van ouders of voogd. We kunnen echter niet controleren of een bezoeker ouder dan 16 is. Wij raden ouders dan ook aan betrokken te zijn bij de online activiteiten van hun kinderen, om zo te voorkomen dat er gegevens over kinderen verzameld worden zonder ouderlijke toestemming. Als je er van overtuigd bent dat wij zonder die toestemming persoonlijke gegevens hebben verzameld over een minderjarige, neem dan contact met ons op via <a href="{{ url('contact') }}">contact@coderdojo.nl</a>, dan verwijderen wij deze informatie.
+    <section class="container g-py-150">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="d-inline-block g-width-80 g-height-4 g-bg-black mb-3"></div>
+                <h2 class="g-color-black g-font-weight-700 g-font-size-50 g-line-height-1 mb-4">Privacy Verklaring</h2>
+                <p class="mb-0">
+                    Ook bij CoderDojo Nederland hebben wij te maken met privacy gerelateerde zaken. Als je van onze site
+                    gebruik maakt kan het zijn dat we bepaalde gegevens van je bewaren en gebruiken. Hoe dit precies in
+                    zijn werk gaat kun je hier lezen.
                 </p>
             </div>
         </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Met welk doel en op basis van welke grondslag wij persoonsgegevens verwerken</h3>
+    </section>
 
-                <p>Stichting CoderDojo Nederland verwerkt jouw persoonsgegevens voor de volgende doelen:</p>
-                <ul>
-                    <li>Verzenden van onze nieuwsbrief / community informatie via email</li>
-                    <li>Je te kunnen bellen of e-mailen indien dit nodig is om onze dienstverlening uit te kunnen voeren</li>
-                    <li>Je te informeren over wijzigingen van onze diensten en producten</li>
-                    <li>Je de mogelijkheid te bieden een account aan te maken</li>
-                    <li>Je de mogelijkheid te bieden een gratis VOG aan te vragen</li>
-                </ul>
+    <section class="g-bg-gray-light-v5">
+        <div class="container g-py-100">
+            <div class="row">
+                <div id="stickyblock-start" class="col-md-4 g-mb-30">
+                    <div class="js-sticky-block g-sticky-block--lg" data-type="responsive" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end">
+                        <ul class="list-unstyled mb-0">
+                            <li class="g-bg-gray-dark-v2 g-rounded-top-5 g-px-20 g-pt-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#persoonsgegevens" style="display: inline-block;">Persoonsgegevens die wij verwerken</a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#bijzonder" style="display: inline-block;">Bijzondere en/of gevoelige persoonsgegevens die wij verwerken
+                                </a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#doel" style="display: inline-block;">Met welk doel en op basis van welke grondslag wij persoonsgegevens verwerken</a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20 g-pb-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#besluitvorming" style="display: inline-block;">Geautomatiseerde besluitvorming</a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20 g-pb-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#tijd" style="display: inline-block;">Hoe lang we persoonsgegevens bewaren
+                                </a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20 g-pb-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#derden" style="display: inline-block;">Delen van persoonsgegevens met derden</a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20 g-pb-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#cookies" style="display: inline-block;">Cookies, of vergelijkbare technieken, die wij gebruiken</a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-px-20 g-pb-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#inzien" style="display: inline-block;">Gegevens inzien, aanpassen of verwijderen</a>
+                            </li>
+                            <li class="g-bg-gray-dark-v2 g-rounded-bottom-5 g-px-20 g-pb-30">
+                                <a class="js-go-to d-block g-color-white g-bg-primary--hover g-font-weight-600 g-font-size-12 text-uppercase g-text-underline--none--hover rounded g-px-20 g-py-15 animated" href="#" data-target="#beveiliging" style="display: inline-block;">Hoe wij persoonsgegevens beveiligen</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div id="persoonsgegevens" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Persoonsgegevens die wij verwerken</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Stichting CoderDojo Nederland verwerkt je persoonsgegevens doordat je gebruik maakt van onze diensten en/of omdat je deze gegevens zelf aan ons verstrekt. Hieronder vind je een overzicht van de persoonsgegevens die wij verwerken:
+                        </p>
+                        <ul>
+                            <li>Voor- en achternaam</li>
+                            <li>Telefoonnummer</li>
+                            <li>E-mailadres</li>
+                            <li>Overige persoonsgegevens die je actief verstrekt bijvoorbeeld door een profiel op deze website aan te maken, in correspondentie en telefonisch</li>
+                            <li>Internetbrowser en apparaat type</li>
+                            <li>Papieren VOG documenten</li>
+                        </ul>
+                    </div>
+
+                    <div id="bijzonder" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Bijzondere en/of gevoelige persoonsgegevens die wij verwerken</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Onze website en/of dienst heeft niet de intentie gegevens te verzamelen over websitebezoekers die jonger zijn dan 16 jaar. Tenzij ze toestemming hebben van ouders of voogd. We kunnen echter niet controleren of een bezoeker ouder dan 16 is. Wij raden ouders dan ook aan betrokken te zijn bij de online activiteiten van hun kinderen, om zo te voorkomen dat er gegevens over kinderen verzameld worden zonder ouderlijke toestemming. Als je er van overtuigd bent dat wij zonder die toestemming persoonlijke gegevens hebben verzameld over een minderjarige, neem dan contact met ons op via <a href="{{ url('contact') }}">contact@coderdojo.nl</a>, dan verwijderen wij deze informatie.
+                        </p>
+                    </div>
+
+                    <div id="doel" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Met welk doel en op basis van welke grondslag wij persoonsgegevens verwerken</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>Stichting CoderDojo Nederland verwerkt jouw persoonsgegevens voor de volgende doelen:</p>
+                        <ul>
+                            <li>Verzenden van onze nieuwsbrief / community informatie via email</li>
+                            <li>Je te kunnen bellen of e-mailen indien dit nodig is om onze dienstverlening uit te kunnen voeren</li>
+                            <li>Je te informeren over wijzigingen van onze diensten en producten</li>
+                            <li>Je de mogelijkheid te bieden een account aan te maken</li>
+                            <li>Je de mogelijkheid te bieden een gratis VOG aan te vragen</li>
+                        </ul>
+                    </div>
+
+                    <div id="besluitvorming" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Geautomatiseerde besluitvorming</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>Stichting CoderDojo Nederland neemt niet op basis van geautomatiseerde verwerkingen besluiten over zaken die (aanzienlijke) gevolgen kunnen hebben voor personen. Het gaat hier om besluiten die worden genomen door computerprogramma&#39;s of -systemen, zonder dat daar een mens (bijvoorbeeld een medewerker van Stichting CoderDojo Nederland) tussen zit.</p>
+                    </div>
+
+                    <div id="tijd" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Hoe lang we persoonsgegevens bewaren</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Stichting CoderDojo Nederland bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor je gegevens worden verzameld. Wij hanteren de volgende bewaartermijnen voor de volgende (categorieën) van persoonsgegevens:
+                        </p>
+
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td><strong>Gebruikersaccount:</strong><br/>Voor- en Achternaam, Email, Telefoon</td>
+                                <td width="70px">2 jaar</td>
+                                <td>Na 2 jaar inactiviteit zullen we jouw account, zonder tegenspraak, verwijderen</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VOG Verwerking:</strong><br/>Voorletters, Achternaam, Email</td>
+                                <td>5 jaar</td>
+                                <td>Na 5 jaar vervalt jouw VOG en zullen we jouw gegevens verwijderen met het verzoek een nieuw VOG aan te vragen.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="derden" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Delen van persoonsgegevens met derden</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Stichting CoderDojo Nederland verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze overeenkomst met jou of om te voldoen aan een wettelijke verplichting.
+                        </p>
+                    </div>
+
+                    <div id="cookies" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Cookies, of vergelijkbare technieken, die wij gebruiken</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Stichting CoderDojo Nederland gebruikt functionele, analytische en tracking cookies. Een cookie is een klein tekstbestand dat bij het eerste bezoek aan deze website wordt opgeslagen in de browser van je computer, tablet of smartphone. Stichting CoderDojo Nederland gebruikt cookies met een puur technische functionaliteit. Deze zorgen ervoor dat de website naar behoren werkt en dat bijvoorbeeld jouw voorkeursinstellingen onthouden worden. Deze cookies worden ook gebruikt om de website goed te laten werken en deze te kunnen optimaliseren. Daarnaast plaatsen we cookies die jouw surfgedrag bijhouden zodat we op maat gemaakte content en advertenties kunnen aanbieden.
+                        </p>
+                        <p>
+                            Bij jouw eerste bezoek aan onze website hebben wij je al geïnformeerd over deze cookies en hebben we je toestemming gevraagd voor het plaatsen ervan.
+                        </p>
+                        <p>
+                            Je kunt je afmelden voor cookies door je internetbrowser zo in te stellen dat deze geen cookies meer opslaat. Daarnaast kun je ook alle informatie die eerder is opgeslagen via de instellingen van je browser verwijderen.
+                        </p>
+                        <p>
+                            Zie voor een toelichting: <a href="https://veiliginternetten.nl/themes/situatie/cookies-wat-zijn-het-en-wat-doe-ik-ermee/" rel="nofollow">https://veiliginternetten.nl/themes/situatie/cookies-wat-zijn-het-en-wat-doe-ik-ermee/</a>
+                        </p>
+                        <p>
+                            <strong>Op deze website worden ook cookies geplaatst door derden. Dit zijn bijvoorbeeld adverteerders en/of de sociale media-bedrijven. Hieronder een overzicht:</strong>
+                        </p>
+
+                        <table>
+                            <tr>
+                                <td><strong>Derde Partij</strong></td>
+                                <td>Google Analytics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Functie:</strong></td>
+                                <td>Analytische cookie die websitebezoek meet</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Privacy Verklaring:</strong></td>
+                                <td><a href="https://policies.google.com/privacy" rel="nofollow">https://policies.google.com/privacy</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gegevens:</strong></td>
+                                <td>Enkel geanonimiseerd</td>
+                            </tr>
+                        </table>
+                        <br/><br/>
+                        <table>
+                            <tr>
+                                <td><strong>Derde Partij</strong></td>
+                                <td>Clicky</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Functie:</strong></td>
+                                <td>Analytische cookie die websitebezoek meet</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Privacy Verklaring:</strong></td>
+                                <td><a href="https://clicky.com/terms" rel="nofollow">https://clicky.com/terms</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gegevens:</strong></td>
+                                <td>Enkel geanonimiseerd</td>
+                            </tr>
+                        </table>
+                        <br/><br/>
+                        <table>
+                            <tr>
+                                <td><strong>Derde Partij</strong></td>
+                                <td>Share This</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Functie:</strong></td>
+                                <td>Delen van nieuwsberichten via Social Media</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Privacy Verklaring:</strong></td>
+                                <td><a href="https://www.sharethis.com/privacy/" rel="nofollow">https://www.sharethis.com/privacy/</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gegevens:</strong></td>
+                                <td>IP-Adres</td>
+                            </tr>
+                        </table>
+                        <br/><br/>
+                        <table>
+                            <tr>
+                                <td><strong>Derde Partij</strong></td>
+                                <td>Youtube</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Functie:</strong></td>
+                                <td>Embed van filmpjes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Privacy Verklaring:</strong></td>
+                                <td><a href="https://policies.google.com/privacy" rel="nofollow">https://policies.google.com/privacy</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="inzien" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Gegevens inzien, aanpassen of verwijderen</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Dit kun je zelf doen via de persoonlijke instellingen van jouw account. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door ons bedrijf en heb je het recht op gegevensoverdraagbaarheid. Dat betekent dat je bij ons een verzoek kan indienen om de persoonsgegevens die wij van jou beschikken in een computerbestand naar jou of een ander, door jou genoemde organisatie, te sturen.
+                        </p>
+                        <p>
+                            Wil je gebruik maken van je recht op bezwaar en/of recht op gegevensoverdraagbaarheid of heb je andere vragen/opmerkingen over de gegevensverwerking, stuur dan een gespecificeerd verzoek naar <a href="{{ url('contact') }}">contact@coderdojo.nl</a>.
+                        </p>
+                        <p>
+                            <strong>Let op: We kunnen niet in alle gevallen jouw verzoek vervullen, hieronder zie je de uitzonderingen:</strong>
+                        </p>
+                        <p>
+                            <strong>Gebruikersaccount Champion</strong>: Jouw gegevens kunnen pas 1 jaar ná overdracht van jouw dojo verwijderd worden. Dit om in geval van klachten of problemen omtrent jouw dojo nog contact met jou op te kunnen nemen. We zullen jouw account markeren voor verwijdering en na een jaar verwijderen.
+                        </p>
+                        <p>
+                            <strong>Gegevens VOG</strong>: Zo lang jij actief bent bij CoderDojo zijn wij verplicht om aan te kunnen tonen dat jij een VOG hebt gehad via ons. Pas als je niet langer voor CoderDojo actief bent kunnen wij jouw gegevens verwijderen. Dit zal pas 1 jaar nádat je gestopt bent gebeuren zodat we in geval van klachten of problemen omtrent jouw werkzaamheden nog contact met jou op kunnen nemen
+                        </p>
+                        <p>
+                            Om er zeker van te zijn dat het verzoek tot inzage door jou is gedaan, vragen wij jou een kopie van je identiteitsbewijs bij het verzoek mee te sturen. Maak in deze kopie je pasfoto, MRZ (machine readable zone, de strook met nummers onderaan het paspoort), paspoortnummer en Burgerservicenummer (BSN) zwart. Dit ter bescherming van je privacy. Stichting CoderDojo Nederland zal zo snel mogelijk, maar in ieder geval binnen vier weken, op jouw verzoek reageren.
+                        </p>
+                        <p>
+                            Stichting CoderDojo Nederland wil je er tevens op wijzen dat je de mogelijkheid hebt om een klacht in te dienen bij de nationale toezichthouder, de Autoriteit Persoonsgegevens. Dat kan via de volgende link: <a href="https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons" rel="nofollow">https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons</a>.
+                        </p>
+                    </div>
+
+                    <div id="beveiliging" class="u-shadow-v19 g-bg-white rounded g-pa-40 g-mb-50">
+                        <h2 class="h3 g-color-black mb-3">Hoe wij persoonsgegevens beveiligen</h2>
+                        <div class="d-inline-block g-width-50 g-height-2 g-bg-black mb-3"></div>
+                        <p>
+                            Stichting CoderDojo Nederland neemt de bescherming van jouw gegevens serieus en neemt passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Als jij het idee hebt dat jouw gegevens toch niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact op via <a href="{{ url('contact') }}">contact@coderdojo.nl</a>.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Geautomatiseerde besluitvorming</h3>
-
-                <p>Stichting CoderDojo Nederland neemt niet op basis van geautomatiseerde verwerkingen besluiten over zaken die (aanzienlijke) gevolgen kunnen hebben voor personen. Het gaat hier om besluiten die worden genomen door computerprogramma&#39;s of -systemen, zonder dat daar een mens (bijvoorbeeld een medewerker van Stichting CoderDojo Nederland) tussen zit.</p>
-            </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Hoe lang we persoonsgegevens bewaren</h3>
-
-                <p>
-                    Stichting CoderDojo Nederland bewaart je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor je gegevens worden verzameld. Wij hanteren de volgende bewaartermijnen voor de volgende (categorieën) van persoonsgegevens:
-                </p>
-
-                <table>
-                    <tbody>
-                    <tr>
-                        <td><strong>Gebruikersaccount:</strong><br/>Voor- en Achternaam, Email, Telefoon</td>
-                        <td width="70px">2 jaar</td>
-                        <td>Na 2 jaar inactiviteit zullen we jouw account, zonder tegenspraak, verwijderen</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td><strong>VOG Verwerking:</strong><br/>Voorletters, Achternaam, Email</td>
-                        <td>5 jaar</td>
-                        <td>Na 5 jaar vervalt jouw VOG en zullen we jouw gegevens verwijderen met het verzoek een nieuw VOG aan te vragen.</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Delen van persoonsgegevens met derden</h3>
-
-                <p>
-                    Stichting CoderDojo Nederland verstrekt uitsluitend aan derden en alleen als dit nodig is voor de uitvoering van onze overeenkomst met jou of om te voldoen aan een wettelijke verplichting.
-                </p>
-            </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Cookies, of vergelijkbare technieken, die wij gebruiken</h3>
-
-                <p>
-                    Stichting CoderDojo Nederland gebruikt functionele, analytische en tracking cookies. Een cookie is een klein tekstbestand dat bij het eerste bezoek aan deze website wordt opgeslagen in de browser van je computer, tablet of smartphone. Stichting CoderDojo Nederland gebruikt cookies met een puur technische functionaliteit. Deze zorgen ervoor dat de website naar behoren werkt en dat bijvoorbeeld jouw voorkeursinstellingen onthouden worden. Deze cookies worden ook gebruikt om de website goed te laten werken en deze te kunnen optimaliseren. Daarnaast plaatsen we cookies die jouw surfgedrag bijhouden zodat we op maat gemaakte content en advertenties kunnen aanbieden.
-                </p>
-                <p>
-                    Bij jouw eerste bezoek aan onze website hebben wij je al geïnformeerd over deze cookies en hebben we je toestemming gevraagd voor het plaatsen ervan.
-                </p>
-                <p>
-                    Je kunt je afmelden voor cookies door je internetbrowser zo in te stellen dat deze geen cookies meer opslaat. Daarnaast kun je ook alle informatie die eerder is opgeslagen via de instellingen van je browser verwijderen.
-                </p>
-                <p>
-                    Zie voor een toelichting: <a href="https://veiliginternetten.nl/themes/situatie/cookies-wat-zijn-het-en-wat-doe-ik-ermee/" rel="nofollow">https://veiliginternetten.nl/themes/situatie/cookies-wat-zijn-het-en-wat-doe-ik-ermee/</a>
-                </p>
-                <p>
-                    <strong>Op deze website worden ook cookies geplaatst door derden. Dit zijn bijvoorbeeld adverteerders en/of de sociale media-bedrijven. Hieronder een overzicht:</strong>
-                </p>
-
-                <table>
-                    <tr>
-                        <td><strong>Derde Partij</strong></td>
-                        <td>Google Analytics</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Functie:</strong></td>
-                        <td>Analytische cookie die websitebezoek meet</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Privacy Verklaring:</strong></td>
-                        <td><a href="https://policies.google.com/privacy" rel="nofollow">https://policies.google.com/privacy</a></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Gegevens:</strong></td>
-                        <td>Enkel geanonimiseerd</td>
-                    </tr>
-                </table>
-                <br/><br/>
-                <table>
-                    <tr>
-                        <td><strong>Derde Partij</strong></td>
-                        <td>Clicky</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Functie:</strong></td>
-                        <td>Analytische cookie die websitebezoek meet</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Privacy Verklaring:</strong></td>
-                        <td><a href="https://clicky.com/terms" rel="nofollow">https://clicky.com/terms</a></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Gegevens:</strong></td>
-                        <td>Enkel geanonimiseerd</td>
-                    </tr>
-                </table>
-                <br/><br/>
-                <table>
-                    <tr>
-                        <td><strong>Derde Partij</strong></td>
-                        <td>Share This</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Functie:</strong></td>
-                        <td>Delen van nieuwsberichten via Social Media</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Privacy Verklaring:</strong></td>
-                        <td><a href="https://www.sharethis.com/privacy/" rel="nofollow">https://www.sharethis.com/privacy/</a></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Gegevens:</strong></td>
-                        <td>IP-Adres</td>
-                    </tr>
-                </table>
-                <br/><br/>
-                <table>
-                    <tr>
-                        <td><strong>Derde Partij</strong></td>
-                        <td>Youtube</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Functie:</strong></td>
-                        <td>Embed van filmpjes</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Privacy Verklaring:</strong></td>
-                        <td><a href="https://policies.google.com/privacy" rel="nofollow">https://policies.google.com/privacy</a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Gegevens inzien, aanpassen of verwijderen </h3>
-
-                <p>
-                    Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Dit kun je zelf doen via de persoonlijke instellingen van jouw account. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door ons bedrijf en heb je het recht op gegevensoverdraagbaarheid. Dat betekent dat je bij ons een verzoek kan indienen om de persoonsgegevens die wij van jou beschikken in een computerbestand naar jou of een ander, door jou genoemde organisatie, te sturen.
-                </p>
-                <p>
-                    Wil je gebruik maken van je recht op bezwaar en/of recht op gegevensoverdraagbaarheid of heb je andere vragen/opmerkingen over de gegevensverwerking, stuur dan een gespecificeerd verzoek naar <a href="{{ url('contact') }}">contact@coderdojo.nl</a>.
-                </p>
-                <p>
-                    <strong>Let op: We kunnen niet in alle gevallen jouw verzoek vervullen, hieronder zie je de uitzonderingen:</strong>
-                </p>
-                <p>
-                    <strong>Gebruikersaccount Champion</strong>: Jouw gegevens kunnen pas 1 jaar ná overdracht van jouw dojo verwijderd worden. Dit om in geval van klachten of problemen omtrent jouw dojo nog contact met jou op te kunnen nemen. We zullen jouw account markeren voor verwijdering en na een jaar verwijderen.
-                </p>
-                <p>
-                    <strong>Gegevens VOG</strong>: Zo lang jij actief bent bij CoderDojo zijn wij verplicht om aan te kunnen tonen dat jij een VOG hebt gehad via ons. Pas als je niet langer voor CoderDojo actief bent kunnen wij jouw gegevens verwijderen. Dit zal pas 1 jaar nádat je gestopt bent gebeuren zodat we in geval van klachten of problemen omtrent jouw werkzaamheden nog contact met jou op kunnen nemen
-                </p>
-                <p>
-                    Om er zeker van te zijn dat het verzoek tot inzage door jou is gedaan, vragen wij jou een kopie van je identiteitsbewijs bij het verzoek mee te sturen. Maak in deze kopie je pasfoto, MRZ (machine readable zone, de strook met nummers onderaan het paspoort), paspoortnummer en Burgerservicenummer (BSN) zwart. Dit ter bescherming van je privacy. Stichting CoderDojo Nederland zal zo snel mogelijk, maar in ieder geval binnen vier weken, op jouw verzoek reageren.
-                </p>
-                <p>
-                    Stichting CoderDojo Nederland wil je er tevens op wijzen dat je de mogelijkheid hebt om een klacht in te dienen bij de nationale toezichthouder, de Autoriteit Persoonsgegevens. Dat kan via de volgende link: <a href="https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons" rel="nofollow">https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons</a>.
-                </p>
-            </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-push-2">
-                <h3>Hoe wij persoonsgegevens beveiligen</h3>
-
-                <p>
-                    Stichting CoderDojo Nederland neemt de bescherming van jouw gegevens serieus en neemt passende maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Als jij het idee hebt dat jouw gegevens toch niet goed beveiligd zijn of er aanwijzingen zijn van misbruik, neem dan contact op via <a href="{{ url('contact') }}">contact@coderdojo.nl</a>.
-                </p>
-            </div>
-        </div>
-    </div>
+    </section>
 {% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block title %}Over De Stichting{{ parent() }}{% endblock %}
 {% block fbtitle %}Over De Stichting{{ parent() }}{% endblock %}
@@ -13,107 +13,124 @@
 
 {% block content %}
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Stichting Informatie</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Wat houdt de stichting CoderDojo Nederland allemaal in?</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">De Stichting</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    De Stichting
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Over de Stichting
+                </li>
+            </ul>
+        </div>
+    </section>
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">
-    <div class="row margin-bottom-30">
-        <div class="col-md-8">
-            <p class="margin-bottom-20"><strong>Visie</strong><br/>Als regionaal orgaan voor Nederland zijn wij de centrale hub in Nederland die verbindingen legt tussen alle stakeholders. Zowel tussen de moeder stichting in Ierland en de Nederlandse dojos als tussen de dojos in Nederland onderling. Ook voor derden partijen zoals sponsoren / partners of potentiële champions is het Nederlandse regionale orgaan de verbindende factor.</p>
-            <p class="margin-bottom-20"><strong>Missie</strong><br/>CoderDojo Nederland ondersteunt de community in Nederland door het faciliteren van communicatie onder de dojo’s, het voorzien van de basisinformatie en benodigde documentatie rondom het opzetten van een dojo en het bevorderen van de groei van de organisatie. Met deze activiteiten zorgt CoderDojo Nederland ervoor dat de dojo’s in het land een zo groot mogelijke impact hebben op de maatschappij. </p>
-        </div>
-        <div class="col-md-4">
-            <p><strong>Taken van de Stichting</strong></p>
-            <ul>
-                <li>Online Community Management</li>
-                <li>Faciliteren van Kennisdeling</li>
-                <li>Faciliteren van Netwerken</li>
-                <li>Helpen bij opstarten van nieuwe dojo&apos;s</li>
-                <li>CoderDojo Ethos / Concept Bewaken en uitdragen</li>
-            </ul>
-        </div>
-    </div>
-
-    <hr class="margin-bottom-30">
-
-    <div class="row margin-bottom-30">
-        <div class="col-md-4 md-margin-bottom-40">
-            <br/><br/>
-            <table>
-                <tbody>
-                <tr>
-                    <td width="110"><strong>Officiële naam:</strong></td>
-                    <td>Stichting CoderDojo Nederland</td>
-                </tr>
-                <tr>
-                    <td><strong>Publieke naam:</strong></td>
-                    <td>CoderDojo Nederland</td>
-                </tr>
-                </tbody>
-            </table>
-            &nbsp;
-            <table>
-                <tbody>
-                <tr>
-                    <td width="110"><strong>KvK:</strong></td>
-                    <td>64468917</td>
-                </tr>
-                <tr>
-                    <td><strong>RSIN:</strong></td>
-                    <td>855679153</td>
-                </tr>
-                <tr>
-                    <td><strong>Rekening:</strong></td>
-                    <td>NL75 INGB 0007 0700 67</td>
-                </tr>
-                </tbody>
-            </table>
-            &nbsp;
-            <table>
-                <tbody>
-                <tr>
-                    <td width="110"><strong>Email:</strong></td>
-                    <td>contact@coderdojo.nl</td>
-                </tr>
-                <tr>
-                    <td width="110"><strong>Telefoon:</strong></td>
-                    <td><a href="{{ path('contact') }}">Maak per email een bel afspraak a.u.b.</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="col-md-8 md-margin-bottom-40">
-            <div class="row margin-top-30">
-                <div class="col-md-4 col-xs-4 md-margin-bottom-30">
-                    <strong>Voorzitter</strong><br/>
-                    Christian Vermeulen
-                    <img style="width:100%;" src="{{ asset('/bundles/coderdojowebsite/img/chris.jpg') }}" alt="Voorzitter - Christian Vermeulen" />
-                </div>
-
-                <div class="col-md-4 col-xs-4 md-margin-bottom-30">
-                    <strong>Bestuurslid</strong><br/>
-                    Tiemen Waterreus
-                    <img style="width:100%;" src="//coderdojo-rotterdam.nl/wp-content/uploads/2014/08/selfie-273x273.png" alt="Bestuurslid - Tiemen Waterreus"/>
-                </div>
-
-                <div class="col-md-4 col-xs-4 md-margin-bottom-30">
-                    <strong>Communicatie &amp; Hardware</strong><br/>
-                    Sanneke van der Meer
-                    <img style="width:100%;" src="{{ asset('/bundles/coderdojowebsite/img/sanneke.jpg') }}" alt="Communicatie & Hardware - Sanneke van der Meer" />
-                </div>
-
+<section class="col-lg-12">
+    <div class="container">
+        <div class="row g-mb-30">
+            <div class="col-lg-8">
+                <p class="g-mb-20"><strong>Visie</strong><br/>Als regionaal orgaan voor Nederland zijn wij de centrale hub in Nederland die verbindingen legt tussen alle stakeholders. Zowel tussen de moeder stichting in Ierland en de Nederlandse dojos als tussen de dojos in Nederland onderling. Ook voor derden partijen zoals sponsoren / partners of potentiële champions is het Nederlandse regionale orgaan de verbindende factor.</p>
+                <p class="g-mb-20"><strong>Missie</strong><br/>CoderDojo Nederland ondersteunt de community in Nederland door het faciliteren van communicatie onder de dojo’s, het voorzien van de basisinformatie en benodigde documentatie rondom het opzetten van een dojo en het bevorderen van de groei van de organisatie. Met deze activiteiten zorgt CoderDojo Nederland ervoor dat de dojo’s in het land een zo groot mogelijke impact hebben op de maatschappij. </p>
+            </div>
+            <div class="col-md-4">
+                <p><strong>Taken van de Stichting</strong></p>
+                <ul>
+                    <li>Online Community Management</li>
+                    <li>Faciliteren van Kennisdeling</li>
+                    <li>Faciliteren van Netwerken</li>
+                    <li>Helpen bij opstarten van nieuwe dojo&apos;s</li>
+                    <li>CoderDojo Ethos / Concept Bewaken en uitdragen</li>
+                </ul>
             </div>
         </div>
-    </div><!--/row-->
 
-    <hr>
+        <hr class="g-mb-30">
 
-</div><!--/container-->
+        <div class="row g-mb-30">
+            <div class="col-md-4 g-mb-40--md">
+                <br/><br/>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td width="110"><strong>Officiële naam:</strong></td>
+                        <td>Stichting CoderDojo Nederland</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Publieke naam:</strong></td>
+                        <td>CoderDojo Nederland</td>
+                    </tr>
+                    </tbody>
+                </table>
+                &nbsp;
+                <table>
+                    <tbody>
+                    <tr>
+                        <td width="110"><strong>KvK:</strong></td>
+                        <td>64468917</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RSIN:</strong></td>
+                        <td>855679153</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rekening:</strong></td>
+                        <td>NL75 INGB 0007 0700 67</td>
+                    </tr>
+                    </tbody>
+                </table>
+                &nbsp;
+                <table>
+                    <tbody>
+                    <tr>
+                        <td width="110"><strong>Email:</strong></td>
+                        <td>contact@coderdojo.nl</td>
+                    </tr>
+                    <tr>
+                        <td width="110"><strong>Telefoon:</strong></td>
+                        <td><a href="{{ path('contact') }}">Maak per email een bel afspraak a.u.b.</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-8 g-mb-40--md">
+                <div class="row g-mt-30">
+                    <div class="col-md-4 col-xs-4 g-mb-30--md">
+                        <strong>Voorzitter</strong><br/>
+                        Christian Vermeulen
+                        <img style="width:100%;" src="{{ asset('/bundles/coderdojowebsite/img/chris.jpg') }}" alt="Voorzitter - Christian Vermeulen" />
+                    </div>
+
+                    <div class="col-md-4 col-xs-4 g-mb-30--md">
+                        <strong>Bestuurslid</strong><br/>
+                        Tiemen Waterreus
+                        <img style="width:100%;" src="//coderdojo-rotterdam.nl/wp-content/uploads/2014/08/selfie-273x273.png" alt="Bestuurslid - Tiemen Waterreus"/>
+                    </div>
+
+                    <div class="col-md-4 col-xs-4 g-mb-30--md">
+                        <strong>Communicatie &amp; Hardware</strong><br/>
+                        Sanneke van der Meer
+                        <img style="width:100%;" src="{{ asset('/bundles/coderdojowebsite/img/sanneke.jpg') }}" alt="Communicatie & Hardware - Sanneke van der Meer" />
+                    </div>
+
+                </div>
+            </div>
+        </div><!--/row-->
+
+    </div><!--/container-->
+</section>
 <!--=== End Content Part ===-->
 {% endblock %}

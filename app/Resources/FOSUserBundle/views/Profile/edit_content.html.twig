@@ -1,21 +1,23 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="panel panel-green margin-bottom-40">
-    <div class="panel-heading">
-        <h3 class="panel-title margin-bottom-10">Profiel Gegevens</h3>
-    </div>
-    <div class="panel-body">
+<div class="card card-outline-success rounded-0">
+    <h3 class="card-header h5 text-white bg-success g-brd-transparent rounded-0">
+        <i class="fa fa-tasks g-font-size-default g-mr-5"></i>
+        Profiel Gegevens
+    </h3>
+
+    <div class="card-block">
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit form-horizontal' } }) }}
-            {{ form_widget(form) }}
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn-u btn-u-green" />
-                </div>
+        {{ form_widget(form) }}
+        <div class="form-group row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-block btn-success" />
             </div>
-            <div>
+        </div>
+        <div>
 
-            </div>
+        </div>
         {{ form_end(form) }}
-
     </div>
 </div>

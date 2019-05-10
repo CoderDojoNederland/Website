@@ -148,11 +148,6 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             <i class="icon-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li {% if app.request.get('_route') == 'newsletter' %}class="active"{% endif %}>
-                                <a href="{{ path('newsletter') }}">
-                                    Nieuwsbrief
-                                </a>
-                            </li>
                             <li {% if app.request.get('_route') == 'foundation' %}class="active"{% endif %}>
                                 <a href="{{ path('foundation') }}">
                                    Over de Stichting

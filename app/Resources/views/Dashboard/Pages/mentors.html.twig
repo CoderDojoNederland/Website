@@ -1,27 +1,31 @@
 {% extends ":Dashboard:index.html.twig" %}
 
 {% block dashboard_content %}
-<h3>Mentoren Beheren voor {{ dojo.name }}</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <td>Naam</td>
-            <td>Email</td>
-            <td>Telefoon</td>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for mentor in dojo.owners %}
-            <tr>
-                <td>{{ mentor.firstName}} {{ mentor.lastName }}</td>
-                <td>{{ mentor.email}}</td>
-                <td>{{ mentor.phone }}</td>
-                <td>
-                    <a href="{{ path('dashboard-dojo-mentors-remove',{'id':dojo.id, 'mentorId':mentor.id}) }}" class="btn btn-danger" title="Verwijderen"><i class="icon-trash"></i></a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-0">
+        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Mentoren Beheren voor {{ dojo.name }}</h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Email</th>
+                    <th>Telefoon</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mentor in dojo.owners %}
+                    <tr>
+                        <td>{{ mentor.firstName}} {{ mentor.lastName }}</td>
+                        <td>{{ mentor.email}}</td>
+                        <td>{{ mentor.phone }}</td>
+                        <td>
+                            <a href="{{ path('dashboard-dojo-mentors-remove',{'id':dojo.id, 'mentorId':mentor.id}) }}" class="btn btn-danger" title="Verwijderen"><i class="icon-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock dashboard_content %}

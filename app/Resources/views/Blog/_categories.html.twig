@@ -1,10 +1,11 @@
 <div class="categories margin-bottom-40">
-    <div class="headline headline-md"><h2>Categorieen</h2></div>
-    <ul class="list-unstyled blog-tags margin-bottom-30">
-        {% for category in categories %}
-        <li>
-            <a href="{{ path('blog_category', {'slug': category.slug}) }}"><i class="icon-tags"></i> {{ category.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-30">
+        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Categorieen</h2>
+    </div>
+
+    {% for category in categories %}
+        <a href="{{ path('blog_category', {'slug': category.slug}) }}">
+            <span class="u-label u-label-default g-bg-gray-light-v2 g-mr-10 g-mb-15"><i class="fa fa-tags"></i> {{ category.title }}</span>
+        </a>
+    {% endfor %}
 </div><!--/posts-->

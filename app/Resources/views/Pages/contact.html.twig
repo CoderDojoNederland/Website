@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block title %}Contact &mdash; {{ parent() }}{% endblock %}
 {% block fbtitle %}Contact &mdash; {{ parent() }}{% endblock %}
@@ -17,24 +17,34 @@
 
 {% block content %}
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Contact</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Heb je een vraag? Let us know!</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Contact</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Contact
+                </li>
+            </ul>
+        </div>
+    </section>
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">
+<section class="col-lg-12 g-my-40">
+    <div class="container">
 
-    <div class="row margin-bottom-30">
-        <div class="col-md-8 col-md-offset-2">
-
-            <div class="panel panel-green margin-bottom-40">
-                <div class="panel-heading">
-                    <h3 class="panel-title" style="padding-bottom: 5px;"><i class="icon-envelope"></i> Contact</h3>
-                </div>
-                <div class="panel-body">
+        <div class="row margin-bottom-30">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 col-md-offset-2">
+                    <h3 class="panel-title g-pb-5"><i class="icon-envelope"></i> Contact</h3>
                     {% for flashMessage in app.session.flashbag.get('success') %}
 
                         <div class="alert alert-success">
@@ -51,30 +61,37 @@
                         </div>
 
                     {% endfor %}
-                    <p>
+                    <p class="g-my-40">
                         Heb je een vraag of suggestie? Neem dan via dit formulier contact ons op.<br/>
                         Wij doen ons uiterste best om zo snel mogelijk te antwoorden!
                     </p>
                     {{ form_start(form, { 'action': path('contact'), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
-                        {{ form_widget(form) }}
-                        <div class="form-group">
+                        {{ form_row(form.naam) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.ontvanger) }}
+                        {{ form_row(form.subject) }}
+                        {{ form_row(form.message) }}
+
+                        <div class="form-group row">
+                            <div class="col-lg-2"></div>
                             <div class="col-lg-offset-2 col-lg-10">
                                 <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group row">
+                            <div class="col-lg-2"></div>
                             <div class="col-lg-offset-2 col-lg-10">
-                                <input type="submit" value="Verzenden" class="btn-u btn-u-green" />
+                                <input type="submit" value="Verzenden" class="btn btn-md u-btn-primary g-mr-10 g-mb-15" />
                             </div>
                         </div>
                     {{ form_end(form) }}
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="clearfix margin-bottom-40"></div>
+        <div class="clearfix margin-bottom-40"></div>
 
-</div><!--/container-->
+    </div><!--/container-->
+</section>
 <!--=== End Content Part ===-->
 {% endblock %}

@@ -1,0 +1,125 @@
+/*Dojos Pages
+------------------------------------*/
+
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+}
+
+/* override some bootstrap styles */
+.panel-heading {
+  padding-bottom: 0px;
+}
+.nav-tabs {
+  border-bottom: 0px !important;
+}
+
+/* inactive state for tabs */
+.nav-tabs a {
+  color: white;
+}
+
+/* the map in the background */
+.mapboxgl-map {
+	width: calc(100% - 500px);
+	height: 100%;
+    left: 500px;
+    position: absolute !important;
+}
+
+.dojos {
+  height: 100%;
+  width: 500px;
+  position: absolute;
+}
+
+.reset {
+  width: 32px;
+  height: 32px;
+  background-image: url('/bundles/coderdojowebsite/img/reset.png');
+  background-size: cover;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 9000;
+}
+
+.reset:hover {
+  cursor: pointer;
+}
+
+/* the selector box containing the dojos */
+.dojo-selector {
+  padding-top: 40px;
+}
+
+/* table headers */
+.dojos-header, .dojo-row {
+  padding: 5px !important;
+}
+
+/* individual dojo rows in overview */
+.panel .dojo-row {
+  transition: background-color, 300ms;
+  border-bottom: 1px solid #ededed;
+}
+
+.search-row {
+  padding: 0 15px;
+}
+
+.panel .dojo-row p {
+  margin:0;
+}
+
+.panel .dojo-row:hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+.contact-info > a:nth-child(1) {
+  margin-bottom: 5px;
+}
+
+[data-js-ref=list-upcoming-dojos],
+[data-js-ref=list-all-dojos] {
+  height: calc(100vh - 327px);
+  overflow-y: scroll;
+}
+
+@media (max-width: 767px) {
+  .dojos {
+    height: auto;
+    width: auto;
+    position: relative;
+  }
+
+  .panel {
+    margin-bottom: 0;
+  }
+
+  [data-js-ref=list-upcoming-dojos],
+  [data-js-ref=list-all-dojos] {
+    height: auto;
+    max-height: none;
+    overflow-y: auto;
+  }
+}
+
+/* emptystate for no upcoming dojos */
+.empty {
+  text-align: center;
+}
+
+.marker {
+  background-image: url('/bundles/coderdojowebsite/img/markers/blue.png');
+  background-size: cover;
+  width: 16px;
+  height: 23px;
+  cursor: pointer;
+}
+
+.marker.active {
+  background-image: url('/bundles/coderdojowebsite/img/markers/white.png');
+}

@@ -1,43 +1,59 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block content %}
     <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs margin-bottom-40">
-        <div class="container">
-            <h1 class="pull-left">Dashboard</h1>
-        </div><!--/container-->
-    </div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Beheer alles voor jouw dojo</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Dashboard</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Dashboard
+                </li>
+            </ul>
+        </div>
+    </section>
     <!--=== End Breadcrumbs ===-->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                {% for flashMessage in app.session.flashbag.get('success') %}
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-                {% for flashMessage in app.session.flashbag.get('error') %}
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-                {% block dashboard_content %}
-                {% endblock dashboard_content %}
-            </div>
-            <div class="col-md-3">
-                <h3>Acties</h3>
-                <p>
-                    <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-block"><i class="icon-user"></i> Mijn Profiel</a>
-                    <a href="{{ path('dashboard') }}" class="btn btn-default btn-block"><i class="icon-location-arrow"></i> Mijn Dojo&apos;s</a>
-                    <a href="{{ path('dashboard-add-dojo') }}" class="btn btn-default btn-block"><i class="icon-plus-sign"></i> Dojo Toevoegen</a>
-                    <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-default btn-block"><i class="icon-exclamation-sign"></i> Mentoren Verzoeken <span class="label label-warning">{{ render(controller('CoderDojoWebsiteBundle:Dashboard:countDojoRequests')) }}</span></a>
-                </p>
+    <section class="col-lg-12 g-my-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    {% block dashboard_content %}
+                    {% endblock dashboard_content %}
+                </div>
+                {% set requestCount = render(controller('CoderDojoWebsiteBundle:Dashboard:countDojoRequests')) %}
+                <div class="col-lg-3">
+                    <h3 class="g-font-weight-300 g-mb-20">Acties</h3>
+                    <p>
+                        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-block u-btn-outline-darkgray g-mb-10"><i class="fa fa-user"></i> &nbsp;&nbsp;Mijn Profiel</a>
+                        <a href="{{ path('dashboard') }}" class="btn btn-block u-btn-outline-darkgray g-mb-10"><i class="fa fa-location-arrow"></i> &nbsp;&nbsp;Mijn Dojo&apos;s</a>
+                        <a href="{{ path('dashboard-add-dojo') }}" class="btn btn-block u-btn-outline-darkgray g-mb-10"><i class="fa fa-plus"></i> &nbsp;&nbsp;Dojo Toevoegen</a>
+                        <a href="{{ path('dashboard-mentor-requests') }}" class="btn btn-block u-btn-outline-darkgray g-mb-10"><i class="fa fa-exclamation"></i> &nbsp;&nbsp;Mentoren Verzoeken {% if requestCount > 0 %}<span class="u-badge-v1 g-color-white g-bg-red g-rounded-50x">{{ requestCount }}</span>{% endif %}</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}
 
 {% block description %}

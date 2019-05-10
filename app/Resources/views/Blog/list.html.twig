@@ -8,42 +8,62 @@
 
 {% block articles %}
     {% for article in articles %}
-        <div class="row blog blog-medium margin-bottom-40">
+        <div class="row g-mb-30">
+            <!-- Article Image -->
             <div class="col-md-5">
-                <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
-                    <img class="img-responsive" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_list') }}" alt="{{ article.title }}">
-                </a>
+                <img class="img-fluid w-100 g-mb-20 g-mb-0--md" src="{{ asset("/articles/#{article.image}")|imagine_filter('article_image_list') }}" alt="{{ article.title|title }}">
             </div>
-            <div class="col-md-7">
-                <a href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">
-                    <h2>{{ article.title|title }}</h2>
-                </a>
-                <ul class="list-unstyled list-inline blog-info">
-                    <li><i class="icon-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}</li>
-                    <li><i class="icon-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}</li>
-                    <li><i class="icon-tags"></i> {{ article.category.title }}</li>
-                </ul>
+            <!-- End Article Image -->
+
+            <!-- Article Content -->
+            <div class="col-md-7 align-self-center">
+                <!-- Article Title -->
+                <h3 class="h3 g-mb-15">
+                    <a class="u-link-v5 g-color-gray-dark-v2 g-color-primary--hover" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">{{ article.title|title }}</a>
+                </h3>
+                <!-- End Article Title -->
+
+                <!-- Article Info -->
+                <div class="media g-font-size-12 g-color-gray-dark-v4 g-mb-20">
+                    <div class="media-body align-self-center">
+                        <i class="fa fa-calendar"></i> {{ article.publishedAt|date('d/m/Y') }}
+                        <span class="g-mx-5">/</span>
+                        <i class="fa fa-user"></i> {{ article.author.firstname }} {{ article.author.lastname }}
+                        <span class="g-mx-5">/</span>
+                        <i class="fa fa-tags"></i> {{ article.category.title }}
+                    </div>
+                </div>
+                <!-- End Article Info -->
+
+                <!-- Article Text -->
                 <p>{{ article.body|striptags|truncate(315, true)|raw }}</p>
-                <p>
-                    <a class="btn-u btn-u-small" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">Lees Meer</a></p>
+                <!-- End Article Text -->
+
+                <a class="font-italic u-link-v1" href="{{ path('blog_single', {'category': article.category.slug, 'slug': article.slug}) }}">Lees meer</a>
             </div>
+            <!-- End Article Content -->
         </div>
 
         {% if not loop.last %}
-            <hr class="margin-bottom-40">
+            <hr class="g-mb-40">
         {% endif %}
     {% endfor %}
 {% endblock articles %}
 
 {% block pagination %}
-    <div class="text-center">
-        {{ pagerfanta(
-            pager,
-            'twitter_bootstrap3',
-            {
-                'prev_message':'Vorige',
-                'next_message':'Volgende'
-            }
-        ) }}
+    <div class="row g-mb-40 g-mt-40">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <nav class="text-center" aria-label="Page navigation">
+                {{ pagerfanta(
+                    pager,
+                    'twitter_bootstrap4',
+                    {
+                        'prev_message':'Vorige',
+                        'next_message':'Volgende'
+                    }
+                ) }}
+            </nav>
+        </div>
     </div>
 {% endblock pagination %}

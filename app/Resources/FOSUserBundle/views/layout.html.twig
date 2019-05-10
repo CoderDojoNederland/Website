@@ -1,15 +1,25 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block content %}
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Profiel</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5"></h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Profiel</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Profiel
+                </li>
+            </ul>
+        </div>
+    </section>
 <!--=== End Breadcrumbs ===-->
 <div class="container">
-    <div class="row margin-bottom-30">
-        <div class="col-md-8 col-md-offset-2 md-margin-bottom-40">
+    <div class="row g-my-50">
+        <div class="col-lg-2"></div>
+        <div class="col-md-8 col-md-offset-2 md-g-mb-40">
             <p class="text-right">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {{ 'layout.logged_in_as'|trans({'%username%': app.user.firstName}, 'FOSUserBundle') }} |

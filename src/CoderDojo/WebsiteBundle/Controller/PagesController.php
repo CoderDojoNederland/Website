@@ -3,6 +3,7 @@
 namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Entity\Dojo;
+use CoderDojo\WebsiteBundle\Form\Type\NewsletterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -40,28 +41,12 @@ class PagesController extends Controller
      * Samenwerkingen
      ******************/
     /**
-     * @Route("/samenwerkingen/code-qube", name="codeqube")
-     */
-    public function codeQubeAction()
-    {
-        return $this->render(':Pages:Samenwerkingen/codeqube.html.twig');
-    }
-
-    /**
      * @Route("/codeweek", name="codeweek")
      */
     public function euCodeWeekAction()
     {
         $events = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getCodeWeek2018Events();
         return $this->render(':Pages:codeweek.html.twig', ['events' => $events]);
-    }
-
-    /**
-     * @Route("/samenwerkingen/boeken", name="books")
-     */
-    public function booksAction()
-    {
-        return $this->render(':Pages:Samenwerkingen/books.html.twig');
     }
 
     /******************
@@ -84,41 +69,9 @@ class PagesController extends Controller
         return $this->render(':Pages:Achtergrond/stichting.html.twig');
     }
 
-    /**
-     * @Route("/informatie/nieuwsbrief", name="newsletter")
-     */
-    public function newsletterAction()
-    {
-        return $this->render(':Pages:Achtergrond/newsletter.html.twig');
-    }
-
     /******************
      * SUPPORTING
      ******************/
-
-    /**
-     * @Route("/space-games", name="space-games")
-     */
-    public function spaceGamesAction()
-    {
-        return $this->render(':Pages:Supporting/spaceGames.html.twig');
-    }
-
-    /**
-     * @Route("/coolest-projects", name="coolest-projects")
-     */
-    public function coolestProjectsAction()
-    {
-        return $this->render(':Pages:Supporting/coolest-projects.html.twig');
-    }
-
-    /**
-     * @Route("/ehbo-cursus", name="ehbo-cursus")
-     */
-    public function firstAidAction()
-    {
-        return $this->render(':Pages:Supporting/first-aid.html.twig');
-    }
 
     /**
      * @Route("/privacy", name="privacy")

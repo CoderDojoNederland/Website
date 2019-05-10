@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block title %}Word lid van de Club van 100 &mdash; {{ parent() }}{% endblock %}
 {% block fbtitle %}Word lid van de Club van 100 &mdash; {{ parent() }}{% endblock %}
@@ -17,25 +17,37 @@
 
 {% block content %}
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Club van 100</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Help mee onze stichting draaiende te houden!</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">De Club van 100</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Club van 100
+                </li>
+            </ul>
+        </div>
+    </section>
 <!--=== End Breadcrumbs ===-->
 
-<!--=== Content Part ===-->
-<div class="container">
-    <div class="row margin-bottom-30">
-        <div class="col-md-8 col-md-push-2">
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+        <div class="row g-mb-30">
+            <div class="col-lg-2"></div>
+            <div class="col-md-8">
 
-            <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
+            <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-mb-50"/>
 
-            <div class="clearfix margin-bottom-30"></div>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h2>100 leden doneren &euro; 100 per jaar</h2>
+            <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">100 leden doneren &euro; 100 per jaar</h2>
+            </div>
 
             <p>
                 CoderDojo Nederland is een stichting die op non-profit basis werkt. Dat betekent dus dat wij op geen
@@ -57,9 +69,9 @@
                 zijn!
             </p>
 
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h2>Hoe werkt het?</h2>
+            <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Hoe werkt het?</h2>
+            </div>
 
             <p>
                 <strong>Lid worden</strong><br/>
@@ -81,9 +93,9 @@
                 <a href="{{ path('contact') }}">Stuur ons een e-mailtje</a> en dan zorgen wij dat je lidmaatschap opgezegd wordt.
             </p>
 
-            <div class="clearfix margin-bottom-20"></div>
-
-            <h2>Word nu lid van de Club van 100!</h2>
+            <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Word nu lid van de club van 100!</h2>
+            </div>
 
             <p>
                 Wil je lid worden van de Club van 100? Super tof, je bent van harte welkom! Middels onderstaande formulier
@@ -91,7 +103,7 @@
                 de nodige gegevens om het geld over te maken naar ons.
             </p>
 
-            <div class="clearfix margin-bottom-20"></div>
+            <div class="clearfix g-mb-20"></div>
 
             <p class="small" style="font-style: italic;">Velden met een * zijn verplicht.</p>
 
@@ -120,7 +132,7 @@
                     {{ form_row(form.avatar) }}
                     {{ form_row(form.public) }}
 
-                    <div class="form-group">
+                    <div class="form-group row">
                         {{ form_label(form.subscription) }}
                         <div class="col-lg-10">
                             {{ form_widget(form.subscription) }}
@@ -129,7 +141,8 @@
 
                     {{ form_row(form.reason) }}
 
-                    <div class="form-group">
+                    <div class="form-group row">
+                        <div class="col-lg-2"></div>
                         <div class="col-lg-offset-2 col-lg-10">
                             {{ form_widget(form.consent) }}
                             <label class="required control-label" for="club_of100_form_consent">
@@ -137,7 +150,8 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row">
+                        <div class="col-lg-2"></div>
                         <div class="col-lg-offset-2 col-lg-10">
                             <input type="submit" value="Ik word lid!" class="btn btn-block btn-success" />
                         </div>
@@ -145,12 +159,9 @@
                 </div>
             </div>
             {{ form_end(form) }}
-
-            <div class="clearfix margin-bottom-20"></div>
-
-        </div>
-    </div><!--/row-->
-
-</div><!--/container-->
+            </div>
+        </div><!--/row-->
+    </div><!--/container-->
+</section>
 <!--=== End Content Part ===-->
 {% endblock %}

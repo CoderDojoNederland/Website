@@ -1,0 +1,42 @@
+{% macro single(member) %}
+    {% if member.avatar %}
+        {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member') %}
+    {% else %}
+        {% set avatarUrl = asset('/bundles/coderdojowebsite/img/no-avatar.png') %}
+    {% endif %}
+    <!-- Team Block -->
+    <!-- Figure -->
+    <figure class="row g-mb-40">
+        <div class="col-sm-8 order-sm-2">
+            <!-- Figure Info -->
+            <div class="g-mb-30">
+                <h4 class="h5 g-color-black g-mb-5">{{ member.firstName }} {{ member.lastName }}</h4>
+                {% if member.memberType != 'none' or member.twitter != '' or member.company != '' %}
+                    <em class="d-block u-info-v1-5__item g-color-primary g-font-style-normal g-font-size-11 text-uppercase">
+                        {% if member.memberType == 'volunteer' %}
+                            <strong>Connectie:</strong> Vrijwilliger |
+                        {% elseif member.memberType == 'parent' %}
+                            <strong>Connectie:</strong> Ouder |
+                        {% endif %}
+                        {% if member.twitter != '' %}
+                            <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a> |
+                        {% endif %}
+                        {% if member.company != '' %}
+                            <strong>Bedrijf:</strong> {{ member.company }}
+                        {% endif %}
+                    </em>
+                {% endif %}
+            </div>
+            <p style="font-style: italic">&ldquo;{{ member.reason }}&bdquo;</p>
+            <!-- End Figure Info -->
+        </div>
+
+        <!-- Figure Image -->
+        <div class="col-sm-4 order-sm-1">
+            <img class="w-100 img-thumbnail" src="{{ avatarUrl }}" alt="{{ member.firstName }} {{ member.lastName }}">
+        </div>
+        <!-- End Figure Image -->
+    </figure>
+    <!-- End Figure -->
+    <!-- End Team Block -->
+{% endmacro %}

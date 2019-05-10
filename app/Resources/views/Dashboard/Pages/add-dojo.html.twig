@@ -1,37 +1,41 @@
 {% extends ":Dashboard:index.html.twig" %}
 
 {% block dashboard_content %}
-    <h3>Dojo's Toevoegen</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Dojo</th>
-            <th>Stad</th>
-            <th>Email</th>
-            <th>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for dojo in dojos %}
+    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-0">
+        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Dojo Toevoegen</h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th>{{ dojo.name }}</th>
-                <th>{{ dojo.city }}</th>
-                <th>{{ dojo.email }}</th>
-                <th>
-                    {% if dojo.owners|length > 0 %}
-                        {% if dojo.hasPendingRequest(app.user) %}
-                            <a href="#" class="btn btn-success btn-xs disabled"><i class="icon-ok"></i> Toegang aangevraagd</a>
-                        {% elseif app.user in dojo.owners %}
-                            <a href="#" class="btn btn-default btn-xs disabled"><i class="icon-ok"></i> Reeds toegevoegd</a>
-                        {% else %}
-                            <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-success btn-xs"><i class="icon-ok"></i> Toegang Aanvragen</a>
-                        {% endif %}
-                    {% else %}
-                        <a href="{{ path('dashboard-claim-dojo', {'dojoId': dojo.id }) }}" class="btn btn-warning btn-xs"><i class="icon-ok"></i> Dojo Claimen</a>
-                    {% endif %}
-                </th>
+                <th class="g-brd-white-opacity-0_1">Dojo</th>
+                <th class="g-brd-white-opacity-0_1">Stad</th>
+                <th class="g-brd-white-opacity-0_1">Email</th>
+                <th class="g-brd-white-opacity-0_1">&nbsp;</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for dojo in dojos %}
+                <tr>
+                    <td>{{ dojo.name|truncate(30) }}</td>
+                    <td>{{ dojo.city }}</td>
+                    <td>{{ dojo.email|truncate(20) }}</td>
+                    <td>
+                        {% if dojo.owners|length > 0 %}
+                            {% if dojo.hasPendingRequest(app.user) %}
+                                <a href="#" class="btn btn-block btn-xs u-btn-outline-darkgray disabled">Toegang aangevraagd</a>
+                            {% elseif app.user in dojo.owners %}
+                                <a href="#" class="btn btn-block btn-xs u-btn-outline-darkgray disabled">Jouw Dojo</a>
+                            {% else %}
+                                <a href="{{ path('dashboard-request-dojo', {'dojoId': dojo.id }) }}" class="btn btn-block btn-xs u-btn-cyan">Toegang Aanvragen</a>
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ path('dashboard-claim-dojo', {'dojoId': dojo.id }) }}" class="btn btn-block btn-xs u-btn-yellow">Claimen</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock dashboard_content %}

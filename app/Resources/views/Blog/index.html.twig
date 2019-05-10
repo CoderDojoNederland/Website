@@ -1,56 +1,69 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block content %}
-    <div class="breadcrumbs margin-bottom-40">
-        <div class="container">
-            <h1 class="pull-left">Nieuws</h1>
-            <ul class="pull-right breadcrumb">
-                <li><a href="{{ path('blog_index') }}">Nieuws</a></li>
+    <!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Wat gebeurt er allemaal bij CoderDojo in Nederland?</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Nieuws</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('blog_index') }}">Nieuws</a>
+                    {% if category is defined %}<i class="fa fa-angle-right g-ml-7"></i>{% endif %}
+                </li>
                 {% if category is defined %}
-                    <li><a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ category.title }}</a></li>
+                    <li class="list-inline-item g-mr-7">
+                        <a href="{{ path('blog_category', {'slug':category.slug}) }}">{{ category.title }}</a>
+                        {% if article is defined %}<i class="fa fa-angle-right g-ml-7"></i>{% endif %}
+                    </li>
                 {% endif %}
                 {% if article is defined %}
-                    <li class="active">{{ article.title }}</li>
+                    <li class="list-inline-item g-mr-7">
+                        <span>{{ article.title }}</span>
+                    </li>
                 {% endif %}
             </ul>
         </div>
-    </div><!--/breadcrumbs-->
+    </section>
+    <!--=== End Breadcrumbs ===-->
 
     <!--=== Content Part ===-->
-    <div class="container">
-        <div class="row blog-page">
-            <!-- Left Sidebar -->
-            <div class="col-md-9 md-margin-bottom-40">
-                {% for flashMessage in app.session.flashbag.get('success') %}
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-                {% for flashMessage in app.session.flashbag.get('error') %}
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
+    <section class="col-lg-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
 
-                <!--Blog Posts-->
-                {% block articles %}{% endblock articles %}
-                <!--End Blog Posts-->
+                    <!--Blog Posts-->
+                    {% block articles %}{% endblock articles %}
+                    <!--End Blog Posts-->
 
-                <!--Pagination-->
-                {% block pagination %}{% endblock pagination %}
-                <!--End Pagination-->
+                    <!--Pagination-->
+                    {% block pagination %}{% endblock pagination %}
+                    <!--End Pagination-->
+                </div>
+                <div class="col-md-3">
+                    {{ render(controller('CoderDojoWebsiteBundle:Blog:renderCategoryWidget')) }}
+                </div>
             </div>
-            <!-- End Left Sidebar -->
-
-            <!-- Right Sidebar -->
-            <div class="col-md-3">
-                <!-- Posts -->
-                {{ render(controller('CoderDojoWebsiteBundle:Blog:renderCategoryWidget')) }}
-                <!-- End Posts -->
-            </div>
-            <!-- End Right Sidebar -->
-        </div><!--/row-->
-    </div><!--/container-->
+        </div>
+    </section>
 {% endblock %}

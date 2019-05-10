@@ -1,4 +1,5 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
+{% import "::Pages/ClubVan100/_member.html.twig" as club_member %}
 
 {% block title %}Leden - Club van 100 &mdash; {{ parent() }}{% endblock %}
 {% block fbtitle %}Leden - Club van 100 &mdash; {{ parent() }}{% endblock %}
@@ -17,128 +18,76 @@
 
 {% block content %}
 <!--=== Breadcrumbs ===-->
-<div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Huidige leden van de Club van 100</h1>
-    </div><!--/container-->
-</div><!--/breadcrumbs-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">De toppers die momenteel lid zijn van de club van 100</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Huidige Leden</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Club van 100
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Leden
+                </li>
+            </ul>
+        </div>
+    </section>
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">
-    <div class="row margin-bottom-30">
-        <div class="col-md-8 col-md-push-2">
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+        <div class="row g-mb-30">
+            <div class="col-lg-2"></div>
+            <div class="col-md-8 col-md-push-2">
 
-            <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" style="width:100%;"/>
+                <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="Club van 100" class="img-fluid g-mb-20"/>
 
-            <div class="clearfix margin-bottom-20"></div>
-
-            <div style="width: 100%; height: 50px; border: 1px solid #888888; position: relative;">
-                <div style="height: 100%; width: {{ total }}%; background: #e67e22;position:absolute;left:0;"></div>
-                <div style="position: absolute; top:3px;left:0;right:0; width: 100px;margin:auto;">
-                    <p style="font-size: 24px;font-weight: bold">{{ total }}/100</p>
+                <div style="width: 100%; height: 50px; border: 1px solid #888888; position: relative;">
+                    <div style="height: 100%; width: {{ total }}%; background: #e67e22;position:absolute;left:0;"></div>
+                    <div style="position: absolute; top:3px;left:0;right:0; width: 100px;margin:auto;">
+                        <p style="font-size: 24px;font-weight: bold">{{ total }}/100</p>
+                    </div>
                 </div>
+
+                {% if members|length < total %}
+                    <p style="font-style: italic;text-align: center;margin-top:5px;">Op deze pagina zie je {{ members|length }} van de {{ total }} leden. De overige leden wensen anoniem te blijven.</p>
+                {% endif %}
+
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-50">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Dit zijn momenteel onze leden</h2>
+                </div>
+
+                {% for member in members if member.avatar is not null %}
+                    {{ club_member.single(member) }}
+                {% endfor %}
+                {% for member in members if member.avatar is null %}
+                    {{ club_member.single(member) }}
+                {% endfor %}
+
+                <section class="g-brd-around g-brd-gray-light-v4 g-pa-30">
+                    <div class="d-md-flex justify-content-md-center text-center">
+                        <div class="align-self-md-center">
+                            <p class="lead g-font-weight-400 g-mr-20--md g-mb-15 g-mb-0--md">Wil je ook lid worden?</p>
+                        </div>
+                        <div class="align-self-md-center">
+                            <a href="{{ path('club_of_100') }}" class="btn btn-md u-btn-primary"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Meld je aan!</a>
+                        </div>
+                    </div>
+                </section>
+
             </div>
+        </div><!--/row-->
 
-            {% if members|length < total %}
-                <p style="font-style: italic;text-align: center;margin-top:5px;">Op deze pagina zie je {{ members|length }} van de {{ total }} leden. De overige leden wensen anoniem te blijven.</p>
-            {% endif %}
-
-            <div class="clearfix margin-bottom-50"></div>
-
-            <h2 style="text-align: center">Dit zijn momenteel onze kickass leden!</h2>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-            {% for member in members if member.avatar is not null %}
-                <div class="col-lg-12">
-                    <div class="col-lg-3">
-                        {% if member.avatar %}
-                            {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member') %}
-                        {% else %}
-                            {% set avatarUrl = asset('/bundles/coderdojowebsite/img/no-avatar.png') %}
-                        {% endif %}
-
-                        <img src="{{ avatarUrl }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
-                    </div>
-                    <div class="col-lg-9">
-                        <h3 style="margin-top: -8px;">{{ member.firstName|title }} {{ member.lastName|title }}</h3>
-                        <p style="font-style: italic;">
-                            &ldquo;{{ member.reason }}&bdquo;
-                        </p>
-                        {% if member.memberType != 'none' or member.twitter != '' or member.company != '' %}
-                            <p style="font-size: 12px; border-top: 1px solid #888888;border-bottom: 1px solid #888888;padding:5px 0;">
-                                {% if member.memberType == 'volunteer' %}
-                                    <strong>Connectie:</strong> Vrijwilliger |
-                                {% elseif member.memberType == 'parent' %}
-                                    <strong>Connectie:</strong> Ouder |
-                                {% endif %}
-                                {% if member.twitter != '' %}
-                                    <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a> |
-                                {% endif %}
-                                {% if member.company != '' %}
-                                    Bedrijf: {{ member.company }}
-                                {% endif %}
-                            </p>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="clearfix margin-bottom-50"></div>
-            {% endfor %}
-            {% for member in members if member.avatar is null %}
-                <div class="col-lg-12">
-                    <div class="col-lg-3">
-                        {% if member.avatar %}
-                            {% set avatarUrl = asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member') %}
-                        {% else %}
-                            {% set avatarUrl = asset('/bundles/coderdojowebsite/img/no-avatar.png') %}
-                        {% endif %}
-
-                        <img src="{{ avatarUrl }}" alt="{{ member.firstName }} {{ member.lastName }}" width="100%"/>
-                    </div>
-                    <div class="col-lg-9">
-                        <h3 style="margin-top: -8px;">{{ member.firstName|title }} {{ member.lastName|title }}</h3>
-                        <p style="font-style: italic;">
-                            &ldquo;{{ member.reason }}&bdquo;
-                        </p>
-                        {% if member.memberType != 'none' or member.twitter != '' or member.company != '' %}
-                            <p style="font-size: 12px; border-top: 1px solid #888888;border-bottom: 1px solid #888888;padding:5px 0;">
-                                {% if member.memberType == 'volunteer' %}
-                                    <strong>Connectie:</strong> Vrijwilliger |
-                                {% elseif member.memberType == 'parent' %}
-                                    <strong>Connectie:</strong> Ouder |
-                                {% endif %}
-                                {% if member.twitter != '' %}
-                                    <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a> |
-                                {% endif %}
-                                {% if member.company != '' %}
-                                    Bedrijf: {{ member.company }}
-                                {% endif %}
-                            </p>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="clearfix margin-bottom-50"></div>
-            {% endfor %}
-
-            <div class="clearfix margin-bottom-30"></div>
-
-            <div class="row tag-box tag-box-v5">
-                <div class="col-md-8">
-                    <h3>
-                        Wil je ook lid worden?
-                    </h3>
-                </div>
-                <div class="col-md-4">
-                    <p><a href="{{ path('club_of_100') }}" class="btn-u btn-u-lg btn-u-orange"><i class="icon-pencil"></i> Meld Je Aan</a></p>
-                </div>
-            </div>
-
-            <div class="clearfix margin-bottom-20"></div>
-
-        </div>
-    </div><!--/row-->
-
-</div><!--/container-->
+    </div><!--/container-->
+</section>
 <!--=== End Content Part ===-->
 {% endblock %}
