@@ -12,9 +12,17 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class RequestDonationCommand extends ContainerAwareCommand
 {
+    /**
+     * CronJobs
+     *
+     * 30 18 1 4,10 * => Semi-yearly
+     * 30 18 1 *\3 *  => Quarterly
+     * 30 18 1 6 *    => Yearly
+     */
     protected function configure()
     {
         $this
@@ -32,13 +40,8 @@ class RequestDonationCommand extends ContainerAwareCommand
         $interval = $input->getArgument('interval');
         $members = $repository->findBy(['confirmed' => true, 'interval' => $interval]);
 
-        $bar = new ProgressBar($output);
-        $bar->setFormat('%current% of %max%'.PHP_EOL.'[%bar%] %percent:3s%%'.PHP_EOL.'%message% '.PHP_EOL);
-        $bar->setBarCharacter('<info>></info>');
-        $bar->setProgressCharacter('<comment>|</comment>');
-        $bar->setEmptyBarCharacter('<info>.</info>');
-        $bar->setMessage('Getting started');
-        $bar->start(count($members));
+        $io = new SymfonyStyle($input, $output);
+        $io->section('Starting with '.count($members).' member');
 
         /** @var Club100 $member */
         foreach($members as $member) {
@@ -48,16 +51,25 @@ class RequestDonationCommand extends ContainerAwareCommand
                 [
                     'member' => $member,
                     'year' => $donation->getYear(),
-                    'quarter' => $donation->getQuarter()
+                    'quarter' => $donation->getQuarter(),
                 ]
             );
 
-            if ($existing) {
-                continue;
+            if (null === $existing) {
+                $io->writeln(sprintf('Member %s %s has no donation yet, creating new one', $member->getFirstName(), $member->getLastName()));
+                $this->getContainer()->get('doctrine')->getManager()->persist($donation);
+                $this->getContainer()->get('doctrine')->getManager()->flush();
+                $this->getContainer()->get('doctrine')->getManager()->refresh($donation);
+            } else {
+                $io->writeln(sprintf('Member %s %s already has a donation - %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid()));
+                $donation = $existing;
             }
 
-            $this->getContainer()->get('doctrine')->getManager()->persist($donation);
-            $this->getContainer()->get('doctrine')->getManager()->flush();
+            if ($donation->isPaid()) {
+                $io->writeln(sprintf('Member %s %s has already paid for donation %s on %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid(), $donation->getPaidAt()->format(DATE_ATOM)));
+                $io->newLine(2);
+                continue;
+            }
 
             /**
              * Send email to dojo contact address
@@ -74,9 +86,10 @@ class RequestDonationCommand extends ContainerAwareCommand
 
             $this->getContainer()->get('mailer')->send($message);
 
-            $bar->advance();
+            $io->writeln(sprintf('Member %s %s has received a request for donation %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid()));
+            $io->newLine(2);
         }
 
-        $bar->finish();
+        $io->success('Done all members for this period!');
     }
 }
