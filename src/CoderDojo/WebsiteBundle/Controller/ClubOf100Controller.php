@@ -74,7 +74,11 @@ class ClubOf100Controller extends Controller
             return $this->redirectToRoute('club_of_100_thanks');
         }
 
-        return $this->render(':Pages:ClubVan100/index.html.twig', ['form' => $form->createView()]);
+        $repository = $this->get('doctrine')->getRepository(Club100::class);
+        $members = $repository->getAllWithImage();
+        $keys = array_rand($members, 3);
+
+        return $this->render(':Pages:ClubVan100/index.html.twig', ['form' => $form->createView(), 'members' => [$members[$keys[0]], $members[$keys[1]], $members[$keys[2]]]]);
     }
 
     /**

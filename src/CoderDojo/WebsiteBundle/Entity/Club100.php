@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="club_100")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="CoderDojo\WebsiteBundle\Repository\Club100Repository")
  */
 class Club100
 {

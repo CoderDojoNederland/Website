@@ -93,17 +93,59 @@
                 <a href="{{ path('contact') }}">Stuur ons een e-mailtje</a> en dan zorgen wij dat je lidmaatschap opgezegd wordt.
             </p>
 
-            <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
-                <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Word nu lid van de club van 100!</h2>
             </div>
+        </div>
+    </div>
+</section>
 
-            <p>
-                Wil je lid worden van de Club van 100? Super tof, je bent van harte welkom! Middels onderstaande formulier
-                kun je je aanmelden. Wij sturen je dan elk jaar per email een berichtje als het tijd is om te betalen met
-                de nodige gegevens om het geld over te maken naar ons.
-            </p>
+<section class="col-lg-12 g-bg-secondary g-py-40">
+    <div class="container">
+        <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+            <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Wat onze leden zeggen:</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for member in members %}
+            <div class="col-md-6 col-lg-4 g-mb-30">
+                <!-- Testimonials -->
+                <div class="u-shadow-v19 g-bg-white text-center rounded g-pt-20 g-pb-40 g-px-40">
+                    <i class="d-block g-color-orange g-font-size-50 g-line-height-0_7 g-pos-rel g-top-20">“</i>
+                    <blockquote class="lead u-blockquote-v6 g-py-20">{{ member.reason|truncate(200) }}</blockquote>
+                    <img class="g-width-70 g-height-70 g-brd-2 g-brd-style-solid g-brd-orange rounded-circle g-mb-20" src="asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member')" alt="{{ member.firstName }} {{ member.lastName }}">
+                    <h4 class="h5 g-color-orange g-mb-0">{{ member.firstName }} {{ member.lastName }}</h4>
+                    {% if member.company != '' %}
+                        <em class="g-color-gray-dark-v4 g-font-style-normal g-font-size-13">{{ member.company }}</em>
+                    {% endif %}
+                </div>
+                <!-- End Testimonials -->
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-right">
+                <a href="{{ path('club_of_100_showcase') }}" class="btn btn-md u-btn-orange g-mr-10 g-mb-15">
+                    Bekijk alle leden&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
-            <div class="clearfix g-mb-20"></div>
+<section class="col-lg-12 g-py-40">
+    <div class="container">
+        <div class="row g-mb-30">
+            <div class="col-lg-2"></div>
+            <div class="col-md-8">
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Word nu lid van de club van 100!</h2>
+                </div>
+
+                <p>
+                    Wil je lid worden van de Club van 100? Super tof, je bent van harte welkom! Middels onderstaande formulier
+                    kun je je aanmelden. Wij sturen je dan elk jaar per email een berichtje als het tijd is om te betalen met
+                    de nodige gegevens om het geld over te maken naar ons.
+                </p>
 
             <p class="small" style="font-style: italic;">Velden met een * zijn verplicht.</p>
 
