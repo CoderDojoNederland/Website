@@ -14,6 +14,10 @@ $(document).on('ready', function () {
         });
     });
 
+    $.HSCore.components.HSModalWindow.init('.js-autonomous-popup', {
+        autonomous: true
+    });
+
     // initialization of popups
     $.HSCore.components.HSPopup.init('.js-fancybox');
 

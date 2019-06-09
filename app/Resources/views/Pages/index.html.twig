@@ -375,6 +375,29 @@
         </div>
     </section>
     <!-- end friends -->
+
+    <div id="modal-type-aftersometime" class="js-autonomous-popup text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;" data-modal-type="aftersometime" data-effect="fadein" data-delay="5000">
+        <button type="button" class="close" onclick="Custombox.modal.close();">
+            <i class="hs-icon hs-icon-close"></i>
+        </button>
+
+        <div class="u-heading-v3-1 g-mb-40">
+            <h2 class="h3 u-heading-v3__title g-brd-primary">Wordt lid van onze Club van 100</h2>
+        </div>
+
+        <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-mb-50"/>
+
+        <p>
+            Steun Stichting CoderDojo Nederland door elk jaar <strong>€ 100</strong> te doneren. Op die manier
+            is de stichting verzekerd van inkomen om de community in Nederland optimaal te kunnen ondersteunen!
+        </p>
+
+        <p class="text-center g-mt-40">
+            <a href="{{ path('club_of_100') }}" class="btn btn-lg u-btn-orange g-mr-10 g-mb-15">
+                Meer informatie&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+            </a>
+        </p>
+    </div>
 {% endblock %}
 
 {% block customjs %}
