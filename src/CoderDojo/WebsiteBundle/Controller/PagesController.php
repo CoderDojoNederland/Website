@@ -69,6 +69,14 @@ class PagesController extends Controller
         return $this->render(':Pages:Achtergrond/stichting.html.twig');
     }
 
+    /**
+     * @Route("/informatie/nieuwsbrief", name="newsletter")
+     */
+    public function newsletterAction()
+    {
+        return $this->render(':Pages:newsletter.html.twig');
+    }
+
     /******************
      * SUPPORTING
      ******************/

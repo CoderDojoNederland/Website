@@ -166,6 +166,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                         Over CoderDojo
                                     </a>
                                 </li>
+                                <li {% if app.request.get('_route') == 'newsletter' %}class="active"{% endif %}>
+                                    <a href="{{ path('newsletter') }}">
+                                        Niewsbrief
+                                    </a>
+                                </li>
                                 <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}>
                                     <a href="{{ path('contact') }}">
                                         Contact
