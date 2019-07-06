@@ -1,4 +1,4 @@
-{% extends "::index.html.twig" %}
+{% extends "::index_v2.html.twig" %}
 
 {% block robots %}
 {% if status_code > 400 and status_code < 500 %}noindex, nofollow{% else %}{{ parent() }}{% endif %}
@@ -6,74 +6,73 @@
 
 {% block content %}
     <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs margin-bottom-40">
-        <div class="container">
-            <h1 class="pull-left">Oops!</h1>
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Oops!</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Pagina niet gevonden</h2>
+            </header>
         </div>
-    </div><!--/breadcrumbs-->
+    </section>
     <!--=== End Breadcrumbs ===-->
+    <section class="col-lg-12 g-my-40">
+        <div class="container">
 
-    <div class="container">
-        <!--Error Block-->
-        <div class="row margin-bottom-30">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="error-v1">
-                    <h1 style="text-align: center">Deze pagina konden we niet vinden!<br/>Misschien helpt dit je op weg...</h1>
+            <div class="row g-mb-80 g-mt-50">
+                <div class="col-md-12">
+                    <div class="error-v1">
+                        <h1 style="text-align: center">Deze pagina konden we niet vinden!<br/>Misschien helpt dit je op weg...</h1>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row margin-bottom-30">
-            <div class="col-md-4">
-                <a href="{{ path('blog_index') }}" class="no-underline">
-                    <div class="servive-block servive-block-in margin-bottom-20">
-                        <div class="servive-block-in servive-block-colored servive-block-yellow">
+            <div class="row margin-bottom-30">
+                <div class="col-md-4">
+                    <a href="{{ path('blog_index') }}" class="no-underline">
+                        <div class="g-bg-yellow g-color-white text-center g-pa-10 g-mb-20">
                             <h4>Nieuws</h4>
-                            <p><i class="icon-bullhorn"></i></p>
+                            <p class="g-font-size-32"><i class="fa fa-bullhorn"></i></p>
                             <p><br>Het laatste nieuws over CoderDojo in Nederland.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ path('material') }}" class="no-underline">
-                    <div class="servive-block servive-block-in margin-bottom-20">
-                        <div class="servive-block-in servive-block-colored servive-block-blue">
+                        </div><!--/welcome-block-->
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('material') }}" class="no-underline">
+                        <div class="g-bg-blue g-color-white text-center g-pa-10 g-mb-20">
                             <h4>Lesmateriaal</h4>
-                            <p><i class="icon-book"></i></p>
+                            <p class="g-font-size-32"><i class="fa fa-book"></i></p>
                             <p><br>Van sushi cards tot workshops</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ path('dojos') }}" class="no-underline">
-                    <div class="servive-block servive-block-in margin-bottom-20">
-                        <div class="servive-block-in servive-block-colored servive-block-green">
+                        </div><!--/welcome-block-->
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('dojos') }}" class="no-underline">
+                        <div class="g-bg-green g-color-white text-center g-pa-10 g-mb-20">
                             <h4>Locaties / Agenda</h4>
-                            <p><i class="icon-globe"></i></p>
+                            <p class="g-font-size-32"><i class="fa fa-globe"></i></p>
                             <p><br>Waar en wanneer vinden dojos plaats.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="row margin-bottom-50">
-            <div class="col-md-8 col-md-offset-2">
-                    <div class="row tag-box tag-box-v5">
-                        <div class="col-md-8">
-                            <p>
-                                Misschien heb je zelf al een idee waarom?<br/>Dan kun je ons helpen om het op te lossen!
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <p><a href="https://github.com/coderdojonederland/website" class="btn-u btn-u-lg btn-u-red"><i class="icon-github"></i> Naar GitHub</a></p>
-                        </div>
-                    </div>
+                        </div><!--/welcome-block-->
+                    </a>
                 </div>
             </div>
-        </div>
 
-        <!--End Error Block-->
-    </div>
+            <div class="row margin-bottom-50">
+                <div class="col-md-12">
+                    <section class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-my-40">
+                        <div class="d-md-flex justify-content-md-center text-center">
+                            <div class="align-self-md-center">
+                                <p class="lead g-font-weight-400 g-mr-20--md g-mb-15 g-mb-0--md">
+                                    Misschien heb je zelf al een idee waarom?<br/>Dan kun je ons helpen om het op te lossen!
+                                </p>
+                            </div>
+                            <div class="align-self-md-center">
+                                <a href="https://github.com/coderdojonederland/website" class="btn btn-md u-btn-primary"><i class="icon-github"></i> Naar GitHub</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!--End Error Block-->
+        </div>
+    </section>
 {% endblock %}
