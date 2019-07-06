@@ -1,0 +1,569 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block title %}DojoCon NL 2019 &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}DojoCon NL 2019 &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Op 2 november vindt de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brengen we
+    200 community leden samen om kennis en ervaring uit te wisselen. Je kan deelnemen aan workshops, talks en andere
+    leden van de community ontmoeten.
+{% endblock %}
+
+{% block fbdescription %}
+    Op 2 november vindt de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brengen we
+    200 community leden samen om kennis en ervaring uit te wisselen. Je kan deelnemen aan workshops, talks en andere
+    leden van de community ontmoeten.
+{% endblock %}
+
+{% block og_image %}https://www.coderdojo.nl{{asset('/img/dojocon2019/fb-share.png')}}{% endblock %}
+
+{% block content %}
+
+    <!-- Other header -->
+    <section class="g-flex-centered g-mt-60 g-mb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <header class="text-center g-mb-60">
+                        <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                            <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">DojoCon NL 2019</h2>
+                        </div>
+                        <p class="lead g-px-200--lg">
+                            Op 2 november vindt de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brengen we
+                            <strong>200 community leden</strong> samen om kennis en ervaring uit te wisselen. Je kan deelnemen aan workshops, talks en andere
+                            leden van de community ontmoeten.
+                        </p>
+                        <p class="g-mt-30">
+                            <a href="#tickets" class="btn btn-xxl btn-primary">Tickets</a>
+                        </p>
+                    </header>
+
+                    <div class="row">
+                        <div class="col-lg-6 align-self-center g-mb-20 g-mb-0--lg">
+
+                            <div class="media g-mb-20">
+                                <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-calendar"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="h4 mb-0">Zaterdag 2 november 2019 // 9h - 17h</h3>
+                                </div>
+                            </div>
+
+                            <div class="media g-mb-20">
+                                <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-location-pin"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="h4 mb-0">Podium Bloos, Breda</h3>
+                                </div>
+                            </div>
+
+                            <div class="media g-mb-20">
+                                <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-user"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="h4 mb-0">4 Sprekers</h3>
+                                </div>
+                            </div>
+
+                            <div class="media g-mb-20">
+                                <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-chemistry"></i>
+                                    </span>
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="h4 mb-0">8 Workshops</h3>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <!--<img class="img-fluid" src="../../assets/img-temp/600x330/img1.png" alt="Image Description">-->
+                            <img class="img-fluid" src="{{ asset('/img/dojocon2019/header.jpg') }}" alt="DojoCon NL 2019">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end other header -->
+
+    <section class="g-flex-centered g-bg-secondary">
+        <div class="container">
+            <header class="text-center g-mb-60 g-mt-60">
+                <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                    <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">Sprekers</h2>
+                </div>
+            </header>
+            <div class="shortcode-html">
+                <!-- Team Block -->
+                <div class="row">
+                    <div class="col-sm-3 g-mb-60">
+                        <!-- Figure -->
+                        <figure class="text-center">
+                            <!-- Figure Image -->
+                            <div class="d-block mx-auto rounded-circle g-max-width-200 g-bg-white g-pa-5 g-mb-15">
+                                <img class="rounded-circle g-max-width-190" src="{{ asset('/img/dojocon2019/chris.jpg') }}" alt="Christian Vermeulen">
+                            </div>
+                            <!-- End Figure Image -->
+
+                            <!-- Figure Info -->
+                            <div class="g-mb-15">
+                                <h4 class="h4 g-color-black g-mb-5">Christian Vermeulen</h4>
+                                <em class="d-block g-font-style-normal g-font-size-11 text-uppercase g-color-primary">Voorzitter CoderDojo Nederland</em>
+                            </div>
+                            <p>Een kickoff over de 3 maatschappelijke pijlers van CoderDojo die hem persoonlijk motiveren.</p>
+                            <!-- End Info -->
+
+                            <!-- Figure Social Icons -->
+                            <ul class="text-center list-inline mb-0">
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="https://twitter.com/christian__v" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="https://linkedin.com/in/christianvermeulen" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Figure Social Icons -->
+                        </figure>
+                        <!-- End Figure -->
+                    </div>
+
+                    <div class="col-sm-3 g-mb-60">
+                        <!-- Figure -->
+                        <figure class="text-center">
+                            <!-- Figure Image -->
+                            <div class="d-block mx-auto rounded-circle g-max-width-200 g-bg-white g-pa-5 g-mb-15">
+                                <img class="rounded-circle g-max-width-190" src="{{ asset('/img/dojocon2019/felienne.jpeg') }}" alt="Felienne Hermans">
+                            </div>
+                            <!-- End Figure Image -->
+
+                            <!-- Figure Info -->
+                            <div class="g-mb-15">
+                                <h4 class="h4 g-color-black g-mb-5">Felienne Hermans</h4>
+                                <em class="g-font-style-normal g-font-size-11 text-uppercase g-color-primary">Associate Professor</em>
+                            </div>
+                            <p>Volgt later.</p>
+                            <!-- End Info -->
+
+                            <!-- Figure Social Icons -->
+                            <ul class="text-center list-inline mb-0">
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="https://twitter.com/Felienne" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="https://www.linkedin.com/in/felienne" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Figure Social Icons -->
+                        </figure>
+                        <!-- End Figure -->
+                    </div>
+
+                    <div class="col-sm-3 g-mb-60">
+                        <!-- Figure -->
+                        <figure class="text-center">
+                            <!-- Figure Image -->
+                            <div class="d-block mx-auto rounded-circle g-max-width-200 g-bg-white g-pa-5 g-mb-15">
+                                <img class="rounded-circle g-max-width-190" src="{{ asset('/img/dojocon2019/ton.jpg') }}" alt="Ton Zijlstra">
+                            </div>
+                            <!-- End Figure Image -->
+
+                            <!-- Figure Info -->
+                            <div class="g-mb-15">
+                                <h4 class="h4 g-color-black g-mb-5">Ton Zijlstra</h4>
+                                <em class="d-block g-font-style-normal g-font-size-11 text-uppercase g-color-primary">Consultant Open Government Data</em>
+                            </div>
+                            <p>Volgt nog.</p>
+                            <!-- End Info -->
+
+                            <!-- Figure Social Icons -->
+                            <ul class="text-center list-inline mb-0">
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="https://twitter.com/fablab" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="https://www.linkedin.com/in/tonzijlstra" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Figure Social Icons -->
+                        </figure>
+                        <!-- End Figure -->
+                    </div>
+
+                    <div class="col-sm-3 g-mb-60">
+                        <!-- Figure -->
+                        <figure class="text-center">
+                            <!-- Figure Image -->
+                            <div class="d-block mx-auto rounded-circle g-max-width-200 g-bg-white g-pa-5 g-mb-15">
+                                <img class="rounded-circle g-max-width-190" src="{{ asset('/img/dojocon2019/speaker.png') }}" alt="T.B.A.">
+                            </div>
+                            <!-- End Figure Image -->
+
+                            <!-- Figure Info -->
+                            <div class="g-mb-15">
+                                <h4 class="h4 g-color-black g-mb-5">Volgt later</h4>
+                                <em class="d-block g-font-style-normal g-font-size-11 text-uppercase g-color-primary">&nbsp;</em>
+                            </div>
+                            <p>Volgt later.</p>
+                            <!-- End Info -->
+
+                            <!-- Figure Social Icons -->
+                            <ul class="text-center list-inline mb-0">
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="#" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item g-mx-4">
+                                    <a href="#" class="u-icon-v3 u-icon-size--sm g-bg-gray-light-v5 g-color-gray-light-v2 g-bg-primary--hover g-color-white--hover rounded-circle">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Figure Social Icons -->
+                        </figure>
+                        <!-- End Figure -->
+                    </div>
+                </div>
+                <!-- End Team Block -->
+            </div>
+        </div>
+    </section>
+
+    <section class="g-flex-centered">
+        <div class="container">
+            <header class="text-center g-mb-60 g-mt-60">
+                <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                    <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">Workshops</h2>
+                </div>
+            </header>
+            <div class="shortcode-html">
+                <!-- Info Blocks -->
+                <div class="row align-items-stretch no-gutters">
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-font-size-16">
+                            <div class="order-2 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-vr.jpg') }}" alt="VR-Workshop">
+                            </div>
+                            <div class="order-1 w-100 u-ns-bg-v1-bottom g-bg-white g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-color-primary g-font-weight-700 text-uppercase g-mb-20">VR-Workshop</h3>
+                                <p class="mb-0">Door Robin de Lange van Virtual Reality Learning Lab</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-color-white g-font-size-16">
+                            <div class="order-1 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-ultimaker.jpeg') }}" alt="Workshop Ultimaker">
+                            </div>
+                            <div class="order-2 w-100 u-ns-bg-v1-top g-bg-primary g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-mb-20 g-font-weight-700 text-uppercase">3D - Ultimaker</h3>
+                                <p class="mb-0">Marloes van der Meulen introduceert je tot 3D-printen.</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-font-size-16">
+                            <div class="order-2 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-arduino.jpg') }}" alt="Workshop Arduino">
+                            </div>
+                            <div class="order-1 w-100 u-ns-bg-v1-bottom g-bg-white g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-color-primary g-font-weight-700 text-uppercase g-mb-20">Arduino</h3>
+                                <p class="mb-0">Hans Bijkerk laat de <strong>gevorderde kneepjes</strong> van Arduino zien.</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+                </div>
+                <!-- End Info Blocks -->
+                <!-- Info Blocks -->
+                <div class="row align-items-stretch no-gutters">
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-font-size-16">
+                            <div class="order-2 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-leaphy.jpg') }}" alt="Workshop Leaphy">
+                            </div>
+                            <div class="order-1 w-100 u-ns-bg-v1-bottom g-bg-white g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-color-primary g-font-weight-700 text-uppercase g-mb-20">Leaphy</h3>
+                                <p class="mb-0">Kom kennis maken met Leaphy tijdens hun workshop!</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-color-white g-font-size-16">
+                            <div class="order-1 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-codecombat.jpg') }}" alt="Workshop Code Combat">
+                            </div>
+                            <div class="order-2 w-100 u-ns-bg-v1-top g-bg-primary g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-mb-20 g-font-weight-700 text-uppercase">Code Combat</h3>
+                                <p class="mb-0">Code Combat komt ons laten zien hoe het te gebruiken is bij een dojo.</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-font-size-16">
+                            <div class="order-2 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-champion.jpg') }}" alt="Champion Training">
+                            </div>
+                            <div class="order-1 w-100 u-ns-bg-v1-bottom g-bg-white g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-color-primary g-font-weight-700 text-uppercase g-mb-20">Champion Workshop</h3>
+                                <p class="mb-0">Tara van de Foundation laat zien hoe je een goede champion bent.</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+                </div>
+                <!-- End Info Blocks -->
+                <!-- Info Blocks -->
+                <div class="row align-items-stretch no-gutters">
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-font-size-16">
+                            <div class="order-2 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-placeholder.png') }}" alt="T.B.A.">
+                            </div>
+                            <div class="order-1 w-100 u-ns-bg-v1-bottom g-bg-white g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-color-primary g-font-weight-700 text-uppercase g-mb-20">T.B.A.</h3>
+                                <p class="mb-0">Hier komt binnenkort nog een workshop</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-color-white g-font-size-16">
+                            <div class="order-1 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-placeholder.png') }}" alt="T.B.A.">
+                            </div>
+                            <div class="order-2 w-100 u-ns-bg-v1-top g-bg-primary g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-mb-20 g-font-weight-700 text-uppercase">T.B.A.</h3>
+                                <p class="mb-0">Hier komt binnenkort nog een workshop</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Article -->
+                        <article class="d-flex flex-wrap text-center g-font-size-16">
+                            <div class="order-2 w-100">
+                                <img class="w-100" src="{{ asset('/img/dojocon2019/workshop-placeholder.png') }}" alt="T.B.A.">
+                            </div>
+                            <div class="order-1 w-100 u-ns-bg-v1-bottom g-bg-white g-z-index-1 g-py-100 g-px-50">
+                                <h3 class="h5 g-color-primary g-font-weight-700 text-uppercase g-mb-20">T.B.A.</h3>
+                                <p class="mb-0">Hier komt binnenkort nog een workshop</p>
+                            </div>
+                        </article>
+                        <!-- End Article -->
+                    </div>
+                </div>
+                <!-- End Info Blocks -->
+            </div>
+        </div>
+    </section>
+
+    <section class="g-flex-centered g-bg-secondary">
+        <div class="container">
+            <header class="text-center g-mb-60 g-mt-60">
+                <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                    <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">Locatie</h2>
+                    <p>Speelhuislaan 153, 4815 CD Breda</p>
+                </div>
+            </header>
+            <div class="shortcode-html">
+                <!-- Icon Blocks -->
+                <div class="row">
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                  <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                    <i class="fa fa-car"></i>
+                  </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Parkeren</h3>
+                                <p class="g-color-gray-dark-v4">Direct voor deur parkeren is betalend. Gratis parkeren bij de Belcrum Watertoren (Speelhuislaan 173), op 200 meter afstand van Podium Bloos</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                  <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                    <i class="fa fa-train"></i>
+                  </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Trein</h3>
+                                <p class="g-color-gray-dark-v4">Je neemt de noorduitgang van station Breda. Dan bevind je je (na 35 meter) aan het begin van de Speelhuislaan. Je slaat dan linksaf en na 800 meter (voor het stoplicht) vind je aan je linkerzijde Podium Bloos.</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+
+                    <div class="col-lg-4 g-mb-30">
+                        <!-- Icon Blocks -->
+                        <div class="media g-mb-15">
+                            <div class="d-flex mr-4">
+                  <span class="u-icon-v1 u-icon-size--lg g-color-primary">
+                    <i class="fa fa-plane"></i>
+                  </span>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="h5 g-color-black mb-20">Plane</h3>
+                                <p class="g-color-gray-dark-v4">Fly in to Amsterdam Schiphol, Rotterdam / The Hague Airport or Eindhoven Airport. Trains go to Breda in about 1 hour from all three!</p>
+                            </div>
+                        </div>
+                        <!-- End Icon Blocks -->
+                    </div>
+                </div>
+                <!-- End Icon Blocks -->
+            </div>
+        </div>
+    </section>
+    <section class="g-flex-centered g-bg-secondary">
+        <div class="dojocon-mapbox" id="dojocon-mapbox" style="width: 100%;height: 500px;"></div>
+    </section>
+
+    <section class="g-flex-centered">
+        <div class="container">
+            <header class="text-center g-mb-30 g-mt-60">
+                <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+                    <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">Partners & Sponsers</h2>
+                </div>
+            </header>
+            <div class="shortcode-html">
+                <!-- Team Block -->
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-breda.png') }}" alt="Gemeente Breda">
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-lead2deal.png') }}" alt="Lead2Deal">
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-kennemerwaard.png') }}" alt="Bibliotheek Kennemerwaard">
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-coderdojohq.png') }}" alt="CoderDojo Foundation">
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-fnl.png') }}" alt="FNL Media">
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-aict.png') }}" alt="Amstelland ICT">
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-code-combat.png') }}" alt="Code Combat">
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-kiwi.png') }}" alt="Kiwi Electronics">
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo-leaphy.png') }}" alt="Leaphy">
+                    </div>
+
+                    <div class="col-lg-2 col-sm-6 g-mb-30">
+                        <img class="img-fluid" src="{{ asset('/img/dojocon2019/logo_yc.png') }}" alt="Young Coders">
+                    </div>
+
+                </div>
+                <!-- End Team Block -->
+            </div>
+
+        </div>
+    </section>
+
+    <section class="g-brd-around g-brd-gray-light-v4 g-bg-secondary">
+        <div class="container text-center g-py-50--md g-py-20">
+            <h2 class="h2 text-uppercase g-font-weight-300" id="tickets">Tickets</h2>
+            <p class="lead g-px-100--md g-mb-20">Nog even geduld, tickets zullen binnenkort beschikbaar zijn! Wil je als eerste weten wanneer? Zorg dan dat je ingeshreven bent op onze nieuwsbrief!</p>
+            <a class="btn btn-xl u-btn-primary rounded-0" href="{{ path('newsletter') }}">Blijf op de hoogte</a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block customcss %}
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+{% endblock %}
+
+{% block customjs %}
+<script type="application/javascript">
+    (function(){
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY29kZXJkb2pvbmwiLCJhIjoiY2o4N2QxaTc3MHp3ZTMybXAzMjRoMGM0ZyJ9.AxmqSifIHD8776sMIDpZcg';
+
+        var mapOptions = {
+            container: 'dojocon-mapbox',
+            //style: 'mapbox://styles/coderdojonl/cjidfvej506vb2spnj0fb21ga',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            minZoom: 5,
+            maxZoom: 15,
+            center: [4.7704482, 51.5992269],
+            zoom: 13,
+            scrollZoom: false,
+            pitchWithRotate: false
+        };
+
+        // setup the map
+        this.map = new mapboxgl.Map(mapOptions);
+
+        var nav = new mapboxgl.NavigationControl();
+        this.map.addControl(nav, 'top-left');
+
+        new mapboxgl.Marker()
+            .setLngLat([4.7704482, 51.5992269])
+            .addTo(this.map);
+    }());
+</script>
+{% endblock %}

@@ -21,7 +21,7 @@
 }
 
 /* the map in the background */
-.mapboxgl-map {
+.all-dojos.mapboxgl-map {
 	width: calc(100% - 500px);
 	height: 100%;
     left: 500px;
