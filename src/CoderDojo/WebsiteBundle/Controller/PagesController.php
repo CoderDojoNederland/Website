@@ -49,6 +49,14 @@ class PagesController extends Controller
         return $this->render(':Pages:codeweek.html.twig', ['events' => $events]);
     }
 
+    /**
+     * @Route("/dojocon", name="dojocon")
+     */
+    public function dojoConAction()
+    {
+        return $this->render(':Pages:dojocon.html.twig');
+    }
+
     /******************
      * De Stichting
      ******************/
