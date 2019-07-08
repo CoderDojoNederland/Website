@@ -110,6 +110,10 @@ class ClubOf100Controller extends Controller
             throw new NotFoundHttpException('No club 100 member with hash '.$hash.' was found');
         }
 
+        if ($member->isConfirmed()) {
+            return $this->render(':Pages:ClubVan100/confirmed.html.twig');
+        }
+
         $member->setConfirmed(true);
         $this->get('doctrine')->getManager()->flush();
 
