@@ -51,7 +51,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700">
 
     <!-- CSS Global Compulsory -->
-    {% stylesheets filter='cssrewrite' filter='uglifycss' output="bundle/app.css"
+    {% stylesheets filter='cssrewrite' filter='uglifycss' output="bundle/app_2.css"
         'assets/vendor/bootstrap/bootstrap.min.css'
         'assets/vendor/bootstrap/offcanvas.css'
         'assets/vendor/cookieconsent/cookieconsent.3.0.3.min.css'
@@ -287,9 +287,10 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     ga('set', 'forceSSL', true);
     ga('set', 'anonymizeIp', true);
 </script>
-{% javascripts filter="?jsqueeze" output="bundle/app.js"
+{% javascripts filter="?jsqueeze" output="bundle/app_2.js"
     'assets/vendor/jquery/jquery.min.js'
     'assets/vendor/jquery-migrate/jquery-migrate.min.js'
+    'assets/vendor/jquery.countdown.min.js'
     'assets/vendor/popper.js/popper.min.js'
     'assets/vendor/bootstrap/bootstrap.min.js'
     'assets/vendor/bootstrap/offcanvas.js'
@@ -312,6 +313,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     'assets/js/components/hs.carousel.js'
     'assets/js/components/hs.go-to.js'
     'assets/js/components/hs.modal-window.js'
+    'assets/js/components/hs.countdown.js'
 
     'assets/js/custom.js'
     'assets/js/dojos.js'
