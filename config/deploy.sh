@@ -1,8 +1,8 @@
 if [[ $TRAVIS_PULL_REQUEST = "false" ]] && [[ $TRAVIS_BRANCH = 'master' ]]; then
 
     source ~/.rvm/scripts/rvm
-    rvm install 2.2
-    rvm use 2.2
+    rvm install 2.3
+    rvm use 2.3
 
     ruby -v
 
