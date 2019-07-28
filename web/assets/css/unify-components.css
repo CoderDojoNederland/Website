@@ -14894,7 +14894,7 @@ input[type="radio"]:checked + * .g-show-check {
 
 .u-carousel-indicators-v33 li {
   display: block;
-  color: #eee;
+  /*color: #eee;*/
   cursor: pointer;
   padding: 10px 0;
 }

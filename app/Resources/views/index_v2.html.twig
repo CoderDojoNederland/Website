@@ -52,6 +52,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
 
     <!-- CSS Global Compulsory -->
     {% stylesheets filter='cssrewrite' filter='uglifycss' output="bundle/app_2.css"
+        'assets/vendor/animate.css'
         'assets/vendor/bootstrap/bootstrap.min.css'
         'assets/vendor/bootstrap/offcanvas.css'
         'assets/vendor/cookieconsent/cookieconsent.3.0.3.min.css'
@@ -288,6 +289,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     ga('set', 'anonymizeIp', true);
 </script>
 {% javascripts filter="?jsqueeze" output="bundle/app_2.js"
+    'assets/vendor/appear.js'
     'assets/vendor/jquery/jquery.min.js'
     'assets/vendor/jquery-migrate/jquery-migrate.min.js'
     'assets/vendor/jquery.countdown.min.js'

@@ -6,6 +6,10 @@
     var DojosMapBackground = function(){};
 
     DojosMapBackground.prototype.initializeMap = function (dojos) {
+        if(document.getElementById('all-dojos-map') == null) {
+            return;
+        }
+
         var mapOptions = {
             container: 'all-dojos-map',
             //style: 'mapbox://styles/coderdojonl/cjidfvej506vb2spnj0fb21ga',
