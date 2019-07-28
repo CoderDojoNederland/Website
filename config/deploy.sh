@@ -10,6 +10,8 @@ if [[ $TRAVIS_PULL_REQUEST = "false" ]] && [[ $TRAVIS_BRANCH = 'master' ]]; then
     openssl aes-256-cbc -k ${DEPLOY_KEY} -in 'config/coderdojo_deploy_enc_travis' -d -a -out 'config/coderdojo_deploy'
     chmod 600 'config/coderdojo_deploy'
 
+    gem install bundler
+
     echo 'preparing Capistrano'
     bundle install
 
