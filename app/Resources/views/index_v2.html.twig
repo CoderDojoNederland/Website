@@ -175,9 +175,10 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </ul>
                             <!-- End Submenu -->
                         </li>
-                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') == 'slack' %} active{% endif %}">
-                            <a href="{{ path('slack') }}" class="nav-link">
-                                Slack
+                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') == 'dojocon' %} active{% endif %}">
+                            <a href="{{ path('dojocon') }}" class="nav-link">
+                                <i class="fa fa-calendar"></i>&nbsp;
+                                DojoCon
                             </a>
                         </li>
                         <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['club_of_100', 'club_of_100_showcase'] %} active{% endif %}">
