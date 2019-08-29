@@ -96,4 +96,12 @@ class PagesController extends Controller
     {
         return $this->render(':Pages:privacy.html.twig');
     }
+
+    /**
+     * @Route("/upgrade-dojo", name="upgrade-dojo")
+     */
+    public function upgradeDojoAction()
+    {
+        return $this->render(':Pages:upgrade-dojo.html.twig');
+    }
 }
