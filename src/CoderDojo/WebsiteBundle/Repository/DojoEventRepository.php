@@ -30,14 +30,14 @@ class DojoEventRepository extends EntityRepository
         return $return->getResult();
     }
 
-    public function getCodeWeek2018Events()
+    public function getCodeWeek2019Events()
     {
         return $this->createQueryBuilder('e')
             ->where('e.date >= :start_date')
             ->andWhere('e.date <= :end_date')
             ->orderBy('e.date', 'ASC')
-            ->setParameter('start_date', new \DateTime('2018-10-06'))
-            ->setParameter('end_date', new \DateTime('2018-10-21'))
+            ->setParameter('start_date', new \DateTime('2018-10-05'))
+            ->setParameter('end_date', new \DateTime('2018-10-20'))
             ->getQuery()
             ->getResult();
     }
