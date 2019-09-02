@@ -36,8 +36,8 @@ class DojoEventRepository extends EntityRepository
             ->where('e.date >= :start_date')
             ->andWhere('e.date <= :end_date')
             ->orderBy('e.date', 'ASC')
-            ->setParameter('start_date', new \DateTime('2018-10-05'))
-            ->setParameter('end_date', new \DateTime('2018-10-20'))
+            ->setParameter('start_date', new \DateTime('2019-10-05'))
+            ->setParameter('end_date', new \DateTime('2019-10-20'))
             ->getQuery()
             ->getResult();
     }
