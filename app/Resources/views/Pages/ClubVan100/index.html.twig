@@ -112,7 +112,7 @@
     </div>
     <div class="container">
         <div class="row">
-            {% for member in members %}
+            {% for member in members|slice(0,3) %}
             <div class="col-md-6 col-lg-4 g-mb-30">
                 <!-- Testimonials -->
                 <div class="u-shadow-v19 g-bg-white text-center rounded g-pt-20 g-pb-40 g-px-40">
