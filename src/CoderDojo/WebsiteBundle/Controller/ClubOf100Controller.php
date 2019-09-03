@@ -76,9 +76,14 @@ class ClubOf100Controller extends Controller
 
         $repository = $this->get('doctrine')->getRepository(Club100::class);
         $members = $repository->getAllWithImage();
-        $members = count($members) > 0 ? array_rand($members, 3) : [];
+        $keys = count($members) > 0 ? array_rand($members, 3) : [];
 
-        return $this->render(':Pages:ClubVan100/index.html.twig', ['form' => $form->createView(), 'members' => $members]);
+        $randomMembers = [];
+        foreach($keys as $key) {
+            $randomMembers[] = $members[$key];
+        }
+
+        return $this->render(':Pages:ClubVan100/index.html.twig', ['form' => $form->createView(), 'members' => $randomMembers]);
     }
 
     /**
