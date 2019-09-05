@@ -698,6 +698,14 @@ class DashboardController extends Controller
     }
 
     /**
+     * @Route("/apparel", name="dashboard-apparel")
+     */
+    public function apparelAction()
+    {
+        return $this->render(':Dashboard:Pages/apparel.html.twig');
+    }
+
+    /**
      * @return Response
      */
     public function countDojoRequestsAction()
