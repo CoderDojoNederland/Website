@@ -143,3 +143,11 @@ liip_imagine:
             quality: 100
             filters:
                 thumbnail: { size: [400, 400], mode: outbound, allow_upscale: true }
+
+eight_points_guzzle:
+    clients:
+        ecurring:
+            base_url: "https://api.ecurring.com"
+            options:
+                headers:
+                    X-Authorization: "%ecurring_api_key%"

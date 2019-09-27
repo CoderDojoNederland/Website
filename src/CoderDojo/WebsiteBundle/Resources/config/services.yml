@@ -213,3 +213,14 @@ services:
             - "@doctrine"
         tags:
             - { name: event_subscriber, subscribes_to: "CoderDojo\\WebsiteBundle\\Event\\CocRequestExpiredEvent"}
+
+    coder_dojo.website_bundle.ecurring:
+        public: true
+        class: CoderDojo\WebsiteBundle\Service\Ecurring
+        arguments:
+            - '@eight_points_guzzle.client.ecurring'
+            - '@router'
+            - '%ecurring_quartely_plan_id%'
+            - '%ecurring_semi_yearly_plan_id%'
+            - '%ecurring_yearly_plan_id%'
+

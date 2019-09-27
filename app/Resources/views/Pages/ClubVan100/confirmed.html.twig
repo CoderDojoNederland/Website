@@ -48,17 +48,31 @@
                 <div class="col-lg-2"></div>
                 <div class="col-md-8 col-md-push-2">
 
-                    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
-                        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Je bent er klaar voor!</h2>
-                    </div>
+                    {% if not new %}
+                        <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                            <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Jouw donatie is geregistreerd!</h2>
+                        </div>
 
-                    <div class="text-center g-mb-40">
-                        <img src="https://media3.giphy.com/media/l2JdVptfnCwNTiBvG/200w.gif?cid=c94812d05cc9a5c2796846326767fbb2&rid=200w.gif" style="width:50%;"/>
-                    </div>
+                        <div class="text-center g-mb-40">
+                            <img src="https://media3.giphy.com/media/l2JdVptfnCwNTiBvG/200w.gif?cid=c94812d05cc9a5c2796846326767fbb2&rid=200w.gif" style="width:50%;"/>
+                        </div>
 
-                    <p>
-                        Jouw aanmelding is nu bevestigd, bij deze ben je officieel lid van de CoderDojo Nederland Club van 100!
-                    </p>
+                        <p>
+                            Vanaf nu zul je automatisch doneren via automatische incasso.
+                        </p>
+                    {% else %}
+                        <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                            <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Je bent er klaar voor!</h2>
+                        </div>
+
+                        <div class="text-center g-mb-40">
+                            <img src="https://media3.giphy.com/media/l2JdVptfnCwNTiBvG/200w.gif?cid=c94812d05cc9a5c2796846326767fbb2&rid=200w.gif" style="width:50%;"/>
+                        </div>
+
+                        <p>
+                            Jouw aanmelding is nu bevestigd, bij deze ben je officieel lid van de CoderDojo Nederland Club van 100!
+                        </p>
+                    {% endif %}
 
                 </div>
             </div><!--/row-->

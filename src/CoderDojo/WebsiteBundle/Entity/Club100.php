@@ -117,6 +117,12 @@ class Club100
      **/
     private $donations;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     **/
+    private $confirmationUrl;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -356,5 +362,21 @@ class Club100
     public function addDonation(Donation $donation): void
     {
         $this->donations->add($donation);
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmationUrl(): string
+    {
+        return $this->confirmationUrl;
+    }
+
+    /**
+     * @param string $confirmationUrl
+     */
+    public function setConfirmationUrl(string $confirmationUrl): void
+    {
+        $this->confirmationUrl = $confirmationUrl;
     }
 }

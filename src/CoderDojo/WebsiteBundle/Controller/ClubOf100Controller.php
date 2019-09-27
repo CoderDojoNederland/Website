@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -66,12 +67,15 @@ class ClubOf100Controller extends Controller
                 $member->setAvatar($avatar);
             }
 
+            $ecurring        = $this->get('coder_dojo.website_bundle.ecurring');
+            $customerId      = $ecurring->createCustomer($member);
+            $confirmationUrl = $ecurring->createSubscription($customerId, $member->getInterval(), $member->getHash());
+            $member->setConfirmationUrl($confirmationUrl);
+
             $this->get('doctrine')->getManager()->persist($member);
             $this->get('doctrine')->getManager()->flush();
 
-            $this->sendWelcomeEmail($member);
-
-            return $this->redirectToRoute('club_of_100_thanks');
+            return new RedirectResponse($confirmationUrl);
         }
 
         $repository = $this->get('doctrine')->getRepository(Club100::class);
@@ -84,22 +88,6 @@ class ClubOf100Controller extends Controller
         }
 
         return $this->render(':Pages:ClubVan100/index.html.twig', ['form' => $form->createView(), 'members' => $randomMembers]);
-    }
-
-    /**
-     * @Route(name="club_of_100_thanks", path="/bedankt")
-     */
-    public function thankyouAction(): Response
-    {
-        return $this->render(':Pages:ClubVan100/bedankt.html.twig');
-    }
-
-    /**
-     * @Route(name="club_of_100_paid", path="/betaald")
-     */
-    public function paidAction(): Response
-    {
-        return $this->render(':Pages:ClubVan100/donatie.html.twig');
     }
 
     /**
@@ -116,41 +104,15 @@ class ClubOf100Controller extends Controller
         }
 
         if ($member->isConfirmed()) {
-            return $this->render(':Pages:ClubVan100/confirmed.html.twig');
+            return $this->render(':Pages:ClubVan100/confirmed.html.twig', ['new' => false]);
         }
 
         $member->setConfirmed(true);
         $this->get('doctrine')->getManager()->flush();
 
-        if (NextDonationFinder::shouldSendFirstRequest($member)) {
-            $donation = new Donation($member);
-            $this->get('doctrine')->getManager()->persist($donation);
-            $this->get('doctrine')->getManager()->flush();
-            $this->get('doctrine')->getManager()->refresh($donation);
+        $this->sendWelcomeEmail($member);
 
-            /**
-             * Send email to dojo contact address
-             */
-            $message = \Swift_Message::newInstance()
-             ->setSubject('Je eerste donatie')
-             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
-             ->setTo($member->getEmail())
-             ->setBcc('website+club100@coderdojo.nl')
-             ->setContentType('text/html')
-             ->setBody(
-                 $this->renderView(':Pages:ClubVan100/Email/first_donation.html.twig',
-                   [
-                       'member' => $member,
-                       'nextDonation' => NextDonationFinder::findNextDonation($member),
-                       'donation' => $donation
-                   ]
-                 )
-             );
-
-            $this->get('mailer')->send($message);
-        }
-
-        return $this->render(':Pages:ClubVan100/confirmed.html.twig');
+        return $this->render(':Pages:ClubVan100/confirmed.html.twig', ['new' => true]);
     }
 
     /**
@@ -165,98 +127,6 @@ class ClubOf100Controller extends Controller
         $total = count($repository->findBy(['confirmed' => true]));
 
         return $this->render(':Pages:ClubVan100/members.html.twig', ['members' => $members, 'total' => $total]);
-    }
-
-    /**
-     * @Route(name="club_of_100_payment", path="/donatie/{uuid}")
-     */
-    public function createPaymentAction(string $uuid): Response
-    {
-        $repository = $this->get('doctrine')->getRepository(Donation::class);
-        /** @var Donation $donation */
-        $donation = $repository->findOneBy(['uuid' => $uuid]);
-
-        $mollie = new MollieApiClient();
-        $mollie->setApiKey($this->getParameter('mollie_key'));
-
-        $interval = $donation->getMember()->getInterval();
-
-        switch($interval){
-            case Club100::INTERVAL_YEARLY:
-                $description = 'Jaarlijkse donatie aan CoderDojo Nederland.';
-                $value = '100.00';
-                break;
-            case Club100::INTERVAL_SEMI_YEARLY:
-                $description = 'Halfjaarlijkse donatie aan CoderDojo Nederland.';
-                $value = '50.00';
-                break;
-            case Club100::INTERVAL_QUARTERLY:
-                $description = 'Kwartaallijkse donatie aan CoderDojo Nederland.';
-                $value = '25.00';
-                break;
-            default:
-                throw new \Exception('Unknown interval');
-        }
-
-        if ($this->getParameter('kernel.environment') === 'prod') {
-            $webhook = $this->generateUrl('club_of_100_webhook', ['uuid' => $uuid], UrlGeneratorInterface::ABSOLUTE_URL);
-        } else {
-            $webhook = 'https://e6de8ac3.ngrok.io/club-van-100/donatie/'.$uuid.'/webhook';
-        }
-
-        $molliePayment = $mollie->payments->create(
-            [
-                'amount' => [
-                    'currency' => 'EUR',
-                    'value' => $value
-                ],
-                'description' => $description,
-                'redirectUrl' => $this->generateUrl('club_of_100_paid', [],UrlGeneratorInterface::ABSOLUTE_URL),
-                'webhookUrl' => $webhook,
-                'locale' => 'nl_NL'
-            ]
-        );
-
-        $payment = new Payment($donation, $molliePayment->id, $molliePayment->status, $molliePayment->getCheckoutUrl());
-        $this->get('doctrine')->getManager()->persist($payment);
-        $this->get('doctrine')->getManager()->flush();
-
-        return $this->redirect($payment->getCheckoutUrl());
-    }
-
-    /**
-     * @Route(name="club_of_100_webhook", path="/donatie/{uuid}/webhook")
-     */
-    public function updatePaymentAction(Request $request, string $uuid): Response
-    {
-        $molliePaymentId = $request->request->get('id');
-        $repository = $this->get('doctrine')->getRepository(Donation::class);
-        $paymentRepository = $this->get('doctrine')->getRepository(Payment::class);
-        /** @var Payment $payment */
-        $payment = $paymentRepository->findOneBy(['mollieId' => $molliePaymentId]);
-        /** @var Donation $donation */
-        $donation = $repository->findOneBy(['uuid' => $uuid]);
-
-        $mollie = new MollieApiClient();
-        $mollie->setApiKey($this->getParameter('mollie_key'));
-
-        $molliePayment = $mollie->payments->get($molliePaymentId);
-
-        if ($molliePayment->status === $payment->getStatus()) {
-            return new Response('ok');
-        }
-
-        $payment->setStatus($molliePayment->status);
-
-        if ($payment->getStatus() === 'paid') {
-            $donation->setPayment($payment);
-
-            $this->sendSuccessMail($donation);
-        }
-
-        $this->get('doctrine')->getManager()->flush();
-
-        return new Response('ok');
     }
 
     /**
@@ -276,27 +146,6 @@ class ClubOf100Controller extends Controller
             ->setBody(
                 $this->renderView(':Pages:ClubVan100/Email/welcome.html.twig', ['member' => $member])
             );
-
-        $this->get('mailer')->send($message);
-    }
-
-    /**
-     * @param Donation $donation
-     */
-    private function sendSuccessMail(Donation $donation): void
-    {
-        /**
-         * Send email to dojo contact address
-         */
-        $message = \Swift_Message::newInstance()
-         ->setSubject('Donatie geslaagd')
-         ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
-         ->setTo($donation->getMember()->getEmail())
-         ->setBcc('website+club100@coderdojo.nl')
-         ->setContentType('text/html')
-         ->setBody(
-             $this->renderView(':Pages:ClubVan100/Email/payment_success.html.twig', ['member' => $donation->getMember()])
-         );
 
         $this->get('mailer')->send($message);
     }

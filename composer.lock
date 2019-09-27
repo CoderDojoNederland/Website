@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1f0c6d2cbdc19b4a151326b6e77d6ab",
+    "content-hash": "be67c7d2323978188bfe6e3aec208c45",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -1859,6 +1859,69 @@
                 "reflection"
             ],
             "time": "2018-06-14T14:45:07+00:00"
+        },
+        {
+            "name": "eightpoints/guzzle-bundle",
+            "version": "v7.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/8p/EightPointsGuzzleBundle.git",
+                "reference": "bfb387774313ee2bccc5dad4e81047334f50ea86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/8p/EightPointsGuzzleBundle/zipball/bfb387774313ee2bccc5dad4e81047334f50ea86",
+                "reference": "bfb387774313ee2bccc5dad4e81047334f50ea86",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "php": ">=7.0",
+                "psr/log": "~1.0",
+                "symfony/expression-language": "~2.7|~3.0|~4.0",
+                "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+                "symfony/stopwatch": "~2.7|~3.0|~4.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0|~4.0",
+                "symfony/twig-bundle": "~2.7|~3.0|~4.0",
+                "symfony/var-dumper": "~2.7|~3.0|~4.0",
+                "symfony/yaml": "~2.7|~3.0|~4.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "EightPoints\\Bundle\\GuzzleBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Community",
+                    "homepage": "https://github.com/8p/GuzzleBundle/contributors"
+                },
+                {
+                    "name": "Florian Preusner",
+                    "email": "florian.preusner@8points.de",
+                    "homepage": "https://github.com/florianpreusner"
+                }
+            ],
+            "description": "Integrates Guzzle 6.x, a PHP HTTP Client, into Symfony 2/3/4. Comes with easy and powerful configuration options and optional plugins.",
+            "homepage": "https://github.com/8p/GuzzleBundle",
+            "keywords": [
+                "Guzzle",
+                "bundle",
+                "client",
+                "curl",
+                "http client",
+                "rest",
+                "symfony",
+                "web service"
+            ],
+            "time": "2019-02-27T16:04:00+00:00"
         },
         {
             "name": "fig/link-util",
@@ -6853,7 +6916,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "platform-overrides": {

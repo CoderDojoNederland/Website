@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             new CoderDojo\WebsiteBundle\CoderDojoWebsiteBundle(),
             new CoderDojo\AdminBundle\AdminBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle()
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

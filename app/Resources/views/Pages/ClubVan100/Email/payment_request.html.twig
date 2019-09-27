@@ -20,10 +20,15 @@
         </p>
     {% endif %}
 
+    <p style="font-style: italic; font-size: 10px;text-align: center;">
+        <strong>Let op!</strong> We zijn overgestapt naar Ecurring van Mollie die voortaan middels automatische incasso
+        de donaties zal incasseren.
+    </p>
+
     <p style="text-align: center;">
-        <a href="{{ url('club_of_100_payment', {'uuid': donation.uuid }) }}" class="btn">Ik betaal direct online!</a>
+        <a href="{{ confirmationUrl }}" class="btn">Doneer nu!</a>
     </p>
     <p style="font-style: italic;text-align: center">
-        Betalen kan met iDeal of PayPal.
+        Betalen kan met iDeal of Credit Card.
     </p>
 {% endblock content %}

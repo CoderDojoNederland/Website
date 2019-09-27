@@ -55,21 +55,17 @@ class RequestDonationCommand extends ContainerAwareCommand
                 ]
             );
 
-            if (null === $existing) {
-                $io->writeln(sprintf('Member %s %s has no donation yet, creating new one', $member->getFirstName(), $member->getLastName()));
-                $this->getContainer()->get('doctrine')->getManager()->persist($donation);
-                $this->getContainer()->get('doctrine')->getManager()->flush();
-                $this->getContainer()->get('doctrine')->getManager()->refresh($donation);
-            } else {
-                $io->writeln(sprintf('Member %s %s already has a donation - %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid()));
-                $donation = $existing;
-            }
-
-            if ($donation->isPaid()) {
+            if ($existing && $existing->isPaid()) {
                 $io->writeln(sprintf('Member %s %s has already paid for donation %s on %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid(), $donation->getPaidAt()->format(DATE_ATOM)));
                 $io->newLine(2);
                 continue;
             }
+
+            $ecurring = $this->getContainer()->get('coder_dojo.website_bundle.ecurring');
+            $memberId = $ecurring->createCustomer($member);
+            $confirmationUrl = $ecurring->createSubscription($memberId, $member->getInterval(), $member->getHash());
+            $member->setConfirmationUrl($confirmationUrl);
+            $this->getContainer()->get('doctrine')->getManager()->flush();
 
             /**
              * Send email to dojo contact address
@@ -81,7 +77,9 @@ class RequestDonationCommand extends ContainerAwareCommand
                 ->setBcc('website+club100@coderdojo.nl')
                 ->setContentType('text/html')
                 ->setBody(
-                    $this->getContainer()->get('templating')->render(':Pages:ClubVan100/Email/payment_request.html.twig', ['member' => $member, 'donation'=>$donation])
+                    $this->getContainer()->get('templating')->render(':Pages:ClubVan100/Email/payment_request.html.twig', [
+                        'member' => $member, 'confirmationUrl'=>$confirmationUrl
+                    ])
                 );
 
             $this->getContainer()->get('mailer')->send($message);

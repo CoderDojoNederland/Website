@@ -3,11 +3,8 @@
 {% block content %}
     <p>Hi {{ member.firstName }},</p>
     <p>
-        Super tof dat je lid wilt worden van de club van 100! Je bent bijna onderdeel van een elite club die mede
+        Super tof dat je lid bent geworden van de club van 100! Je bent onderdeel van een elite club die mede
         verantwoordelijk is voor het succes en behoud van CoderDojo Nederland!
-    </p>
-    <p>
-        <strong>Let op! Je bent pas écht lid als je onderaan deze mail je lidmaatschap bevestigt.</strong>
     </p>
     <p style="text-align: center;">
         <img src="https://media3.giphy.com/media/l46Cpz0A0dB1jMxG0/200w.gif?cid=c94812d05cc99a3d2f57732e32d381d0&rid=200w.gif"/>
@@ -15,29 +12,17 @@
     {% if member.interval == 'yearly' %}
         <p>
             Je hebt gekozen om elk jaar <strong>&euro; 100,-</strong> bij te dragen aan CoderDojo Nederland. Dat
-            betekent dat wij elk jaar op 1 juni zullen vragen om het geld over te maken. Dit gebeurt via email,
-            vervolgens kun je via iDeal je donatie doen.
+            betekent dat wij elk jaar op 30 mei de donatie zullen incasseren.
         </p>
     {% elseif member.interval == 'semi-yearly' %}
         <p>
             Je hebt gekozen om elk half jaar <strong>&euro; 50,-</strong> bij te dragen aan CoderDojo Nederland. Dat
-            betekent dat wij elk jaar op 1 april en op 1 oktober zullen vragen om het geld over te maken. Dit gebeurt via email,
-            vervolgens kun je via iDeal je donatie doen.
+            betekend dat wij elke 6 maanden vanaf vandaag op de 30e van de maand de donatie zullen incasseren.
         </p>
     {% elseif member.interval == 'quarterly' %}
         <p>
             Je hebt gekozen om elk kwartaal <strong>&euro; 25,-</strong> bij te dragen aan CoderDojo Nederland. Dat
-            betekent dat wij elke 3 maanden zullen vragen om het geld over te maken. Dit gebeurt via email, vervolgens
-            kun je via iDeal je donatie doen. We vragen dit te doen op de volgende data:
+            betekent dat wij elke 3 maanden vanaf vandaag op de 30e van de maand de donatie zullen incasseren.
         </p>
-        <ul>
-            <li>1 januari</li>
-            <li>1 april</li>
-            <li>1 juli</li>
-            <li>1 oktober</li>
-        </ul>
     {% endif %}
-    <p style="text-align: center;">
-        <a href="{{ url('club_of_100_confirm', {'hash': member.hash }) }}" class="btn">Ja, ik doe mee!</a>
-    </p>
 {% endblock content %}
