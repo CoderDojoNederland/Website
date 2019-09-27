@@ -27,7 +27,7 @@
         "guzzlehttp/guzzle": "~6.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "league/geotools": "^0.8.0",
-        "liip/imagine-bundle": "^1.7",
+        "liip/imagine-bundle": "^2.1",
         "mollie/mollie-api-php": "^2.0",
         "pagerfanta/pagerfanta": "^1.0",
         "patchwork/jsqueeze": "^2.0",
