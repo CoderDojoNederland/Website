@@ -175,11 +175,25 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </ul>
                             <!-- End Submenu -->
                         </li>
-                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') == 'dojocon' %} active{% endif %}">
-                            <a href="{{ path('dojocon') }}" class="nav-link">
+                        <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['dojocon', 'codeweek'] %} active{% endif %}">
+                            <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
                                 <i class="fa fa-calendar"></i>&nbsp;
-                                DojoCon
+                                Events
                             </a>
+                            <!-- Submenu -->
+                            <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
+                                <li {% if app.request.get('_route') == 'dojocon' %}class="active"{% endif %}>
+                                    <a href="{{ path('dojocon') }}">
+                                        DojoCon 2019
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'codeweek' %}class="active"{% endif %}>
+                                    <a href="{{ path('codeweek') }}">
+                                        CodeWeek
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- End Submenu -->
                         </li>
                         <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['club_of_100', 'club_of_100_showcase'] %} active{% endif %}">
                             <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
@@ -190,7 +204,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
                                 <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
                                     <a href="{{ path('club_of_100') }}">
-                                        Informatie
+                                        Lid worden
                                     </a>
                                 </li>
                                 <li {% if app.request.get('_route') == 'club_of_100_showcase' %}class="active"{% endif %}>
