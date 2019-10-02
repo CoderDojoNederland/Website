@@ -41,4 +41,16 @@ class DojoEventRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getWVDMWHEvents()
+    {
+        return $this->createQueryBuilder('e')
+                    ->where('e.date >= :start_date')
+                    ->andWhere('e.date <= :end_date')
+                    ->orderBy('e.date', 'ASC')
+                    ->setParameter('start_date', new \DateTime('2019-11-08'))
+                    ->setParameter('end_date', new \DateTime('2019-11-15'))
+                    ->getQuery()
+                    ->getResult();
+    }
 }

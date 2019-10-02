@@ -50,6 +50,15 @@ class PagesController extends Controller
     }
 
     /**
+     * @Route("/weekvandemediawijsheid", name="weekvandemediawijsheid")
+     */
+    public function weekvandemediawijsheidAction()
+    {
+        $events = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getWVDMWHEvents();
+        return $this->render(':Pages:mediawijsheidweek.html.twig', ['events' => $events]);
+    }
+
+    /**
      * @Route("/dojocon", name="dojocon")
      */
     public function dojoConAction()

@@ -1,0 +1,105 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block title %}Week van de Mediawijsheid 2019 &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Week van de Mediawijsheid 2019 &mdash; {{ parent() }}{% endblock %}
+{% block og_image %}https://www.coderdojo.nl{{asset('img/fb-weekvandemediawijsheid.png')}}{% endblock %}
+
+{% block description %}
+    Van 8 tot en met 15 november is het weer tijd voor de week van de Mediawijheid! Bekijk hier wat er gebeurd in CoderDojo-land.
+{% endblock %}
+
+{% block fbdescription %}
+    Van 8 tot en met 15 november is het weer tijd voor de week van de Mediawijheid! Bekijk hier wat er gebeurd in CoderDojo-land.
+{% endblock %}
+
+{% block content %}
+    <!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-50" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_7.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Doe jij ook mee?</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Week van de Mediawijsheid 2019</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Week van de Mediawijsheid 2019
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+        <div class="row g-mb-30">
+            <div class="col-md-4 hidden-sm"></div>
+            <div class="col-md-4 col-sm-12 text-center margin-bottom-10">
+                <img src="{{ asset('img/weekvandemediawijsheid.png') }}" style="width:100%;" alt="Week van de Mediawijsheid 2019"/>
+            </div>
+        </div>
+        <div class="row g-mb-30">
+            <div class="col-md-2 hidden-sm"></div>
+            <div class="col-md-8 col-sm-12 margin-bottom-10">
+                <p><strong>De Week van de Mediawijsheid 2019: ‘Aan of uit?’</strong></p>
+                <p>In een wereld vol media moeten we constant keuzes maken. Nog even je appjes checken of
+                ga je vroeg slapen? Laat je je kind alleen op de tablet of lees je samen een boekje? Regel je
+                zelf je online bankzaken of laat je dat doen door een ander? De Week van de Mediawijsheid
+                    2019 heeft daarom als thema: ‘Aan of uit?'</p>
+                <p>Slim aanstaan verrijkt je leven. Online leer je over nieuwe dingen of vind je je nieuwe
+                droombaan. Je kunt videobellen met de huisarts of met je grote liefde. Je blijft in contact,
+                    door het delen van foto’s óf het plannen van je reis.</p>
+                <p>Maar zodra je te veel tijd besteedt aan appen, scrollen en liken, merk je dat je lichaam
+                protesteert. Of dat de smartphone meer aandacht krijgt dan het eten met je familie.
+                Daarnaast gaan technologische ontwikkelingen razendsnel, wat voor sommige mensen
+                    lastig of beangstigend kan zijn.</p>
+                <p>Daarom is het steeds belangrijker dat we nadenken over hoe we media inzetten. Hoe helpen
+                apps, chats en digitale tools ons in het leven? En wanneer zit technologie ons juist in de
+                weg? Ouders, kinderen, opa’s, oma’s, vrienden, buren, verzorgers, leraren,
+                maatschappelijke organisaties, bedrijven en de overheid: laten we van elkaar leren en elkaar
+                helpen. Tijdens de Week van de Mediawijsheid stellen we daarom de vraag: wanneer kies jij
+                    om aan of uit te staan?</p>
+                <p class="text-center"><br/>
+                    <a href="https://www.weekvandemediawijsheid.nl" target="_blank" class="btn btn-lg u-btn-orange g-mr-10 g-mb-15">Meer info op weekvandemediawijsheid.nl &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ asset('img/weekvandemediawijsheid-banner.jpg') }}" style="width:100%;" alt="Week van de Mediawijsheid 2019"/>
+            </div>
+            <div class="col-md-6">
+                <div class="headline">
+                    <h2>Waar is de week van de Mediawijsheid?</h2>
+                </div>
+                <p class="margin-bottom-20">Tijdens de week van de mediawijsheid staan de volgende events gepland:</p>
+                <table class="table">
+                    <tbody>
+                        {% for event in events %}
+                            <tr {% if date() > event.date %}class="text-muted"{% endif %}>
+                                <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
+                                <td>CoderDojo {{ event.dojo.city|capitalize }}</strong></td>
+                                <td>
+                                    {% if date() <= event.date %}
+                                        <a href="{{ event.url }}" class="btn btn-success btn-xs">inschrijven</a>
+                                    {% else %}
+                                        <span class="label label-default label-xs">Voorbij</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!--/container-->
+</section>
+<!--=== End Content Part ===-->
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endblock %}
