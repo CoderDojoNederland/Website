@@ -112,9 +112,9 @@ class ClubOf100FormType extends AbstractType
             'label' => 'Betaling*',
             'required' => true,
             'choices' => [
-                'Jaarlijks €100 (1 juni)' => 'yearly',
-                'Halfjaarlijks €50 (1 april & 1 oktober)' => 'semi-yearly',
-                'Kwartaallijks €25 (1 januari, 1 april, 1 juli, 1 oktober)' => 'quarterly'
+                'Jaarlijks €100' => 'yearly',
+                'Halfjaarlijks €50' => 'semi-yearly',
+                'Kwartaallijks €25' => 'quarterly'
             ],
             'attr' => [
                 'class' => 'form-control'
