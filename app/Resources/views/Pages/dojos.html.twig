@@ -13,9 +13,13 @@
 
 {% block og_image %}http://www.coderdojo.nl{{asset('bundles/coderdojowebsite/img/fb_dojos.png')}}{% endblock %}
 
+{% block customjs %}
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+    <script src="{{ asset('assets/js/dojos.js') }}"></script>
+{% endblock %}
+
 {% block customcss %}
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
-  <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
 {% endblock %}
 
 {% block customjs %}
