@@ -24,6 +24,10 @@ class Club100
         self::INTERVAL_QUARTERLY
     ];
 
+    public const REASON_NO_PAYMENT = 'no-payment-received';
+    public const REASON_EXPENSIVE = 'expensive';
+    public const REASON_OTHER = 'other';
+
     /**
      * @var integer
      *
@@ -122,6 +126,18 @@ class Club100
      * @ORM\Column(type="string", nullable=true)
      **/
     private $confirmationUrl;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     **/
+    private $unsubscribedAt;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     **/
+    private $unsubscribeReason;
 
     public function __construct()
     {
@@ -378,5 +394,30 @@ class Club100
     public function setConfirmationUrl(string $confirmationUrl): void
     {
         $this->confirmationUrl = $confirmationUrl;
+    }
+
+    /**
+     * @param string $unsubscribeReason
+     */
+    public function unsubscribe(string $unsubscribeReason): void
+    {
+        $this->unsubscribedAt = new \DateTime;
+        $this->unsubscribeReason = $unsubscribeReason;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUnsubscribedAt(): \DateTime
+    {
+        return $this->unsubscribedAt;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUnsubscribed(): bool
+    {
+        return $this->unsubscribedAt !== null;
     }
 }

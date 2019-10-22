@@ -8,6 +8,7 @@ use CoderDojo\WebsiteBundle\Entity\Club100;
 use CoderDojo\WebsiteBundle\Entity\Donation;
 use CoderDojo\WebsiteBundle\Entity\Payment;
 use CoderDojo\WebsiteBundle\Form\Type\ClubOf100FormType;
+use CoderDojo\WebsiteBundle\Repository\Club100Repository;
 use CoderDojo\WebsiteBundle\Service\NextDonationFinder;
 use Mollie\Api\MollieApiClient;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -79,7 +80,7 @@ class ClubOf100Controller extends Controller
         }
 
         $repository = $this->get('doctrine')->getRepository(Club100::class);
-        $members = $repository->getAllWithImage();
+        $members = $repository->getAllActiveWithImage();
         $keys = count($members) > 0 ? array_rand($members, 3) : [];
 
         $randomMembers = [];
@@ -122,9 +123,9 @@ class ClubOf100Controller extends Controller
     {
         $repository = $this->get('doctrine')->getRepository(Club100::class);
         /** @var Club100[] $members */
-        $members = $repository->findBy(['confirmed' => true, 'public' => true]);
+        $members = $repository->getAllActive(Club100Repository::PUBLIC_ONLY);
 
-        $total = count($repository->findBy(['confirmed' => true]));
+        $total = count($repository->getAllActive());
 
         return $this->render(':Pages:ClubVan100/members.html.twig', ['members' => $members, 'total' => $total]);
     }
