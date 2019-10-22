@@ -37,14 +37,6 @@ class ClubOf100Controller extends Controller
         $form = $formFactory->create(ClubOf100FormType::class);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()) {
-            $repository = $this->get('doctrine')->getRepository(Club100::class);
-            $existing = $repository->findOneBy(['email' => $form->get('email')->getData()]);
-            if ($existing) {
-                $form->addError(new FormError('Er bestaat al een lid met dit emailadres'));
-            }
-        }
-
         if ($form->isSubmitted() && $form->isValid()) {
             $member = new Club100();
             $member->setFirstName($form->get('firstName')->getData());

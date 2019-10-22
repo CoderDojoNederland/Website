@@ -8,6 +8,7 @@ use Assert\Assertion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Table(name="club_100")
@@ -143,6 +144,7 @@ class Club100
     {
         $this->createdAt = new \DateTime();
         $this->donations = new ArrayCollection();
+        $this->hash = sha1(Uuid::uuid4()->toString());
     }
 
     /**
@@ -199,7 +201,6 @@ class Club100
     public function setEmail(string $email): void
     {
         $this->email = $email;
-        $this->hash = sha1($email);
     }
 
     /**
