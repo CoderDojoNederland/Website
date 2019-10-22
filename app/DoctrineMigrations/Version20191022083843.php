@@ -18,7 +18,6 @@ class Version20191022083843 extends AbstractMigration
         $this->addSql('ALTER TABLE club_100 ADD unsubscribed_at DATETIME DEFAULT NULL, ADD unsubscribe_reason VARCHAR(255) DEFAULT NULL');
         $this->addSql('DROP INDEX UNIQ_661185484DC1279C ON club_100_payment');
         $this->addSql('ALTER TABLE club_100_payment ADD CONSTRAINT FK_661185484DC1279C FOREIGN KEY (donation_id) REFERENCES club_100_donation (id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_661185484DC1279C ON club_100_payment (donation_id)');
     }
 
     public function down(Schema $schema)
