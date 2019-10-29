@@ -26,15 +26,9 @@ class ContactFormType extends AbstractType
      */
     private $dojos;
 
-    /**
-     * @var Registry
-     */
-    private $doctrine;
-
     public function __construct(Registry $doctrine)
     {
-        $this->doctrine = $doctrine;
-        $this->dojos = $this->doctrine->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy([],['name'=>'asc']);
+        $this->dojos = $doctrine->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy(['country' => 'nl'],['name'=>'asc']);
     }
 
     /**
@@ -63,9 +57,9 @@ class ContactFormType extends AbstractType
                 'group_by' => function($val, $key, $index) {
                     if ('contact@coderdojo.nl' !== $val) {
                         return 'Lokale Dojo\'s';
-                    } else {
-                        return 'Algemene zaken';
                     }
+
+                    return 'Algemene zaken';
                 },
                 'attr' => [
                     'class' => 'form-control'
