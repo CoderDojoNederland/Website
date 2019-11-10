@@ -4,14 +4,14 @@
 {% block fbtitle %}DojoCon NL 2019 &mdash; {{ parent() }}{% endblock %}
 
 {% block description %}
-    Op 2 november vindt de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brengen we
-    200 community leden samen om kennis en ervaring uit te wisselen. Je kan deelnemen aan workshops, talks en andere
+    Op 2 november vond de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brachten we
+    200 community leden samen om kennis en ervaring uit te wisselen. Je kon deelnemen aan workshops, talks en andere
     leden van de community ontmoeten.
 {% endblock %}
 
 {% block fbdescription %}
-    Op 2 november vindt de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brengen we
-    200 community leden samen om kennis en ervaring uit te wisselen. Je kan deelnemen aan workshops, talks en andere
+    Op 2 november vond de allereerste officiele DojoCon NL plaats in Breda! Tijdens deze conferentie brachten we
+    200 community leden samen om kennis en ervaring uit te wisselen. Je kon deelnemen aan workshops, talks en andere
     leden van de community ontmoeten.
 {% endblock %}
 
@@ -19,14 +19,28 @@
 
 {% block content %}
 
+    <section class="u-bg-overlay g-bg-img-hero g-bg-bluegray-opacity-0_3--after" style="background-image: url(/img/dojocon2019/group.jpg);">
+        <div class="container u-bg-overlay__inner text-center g-pt-195 g-pb-70">
+            <div class="g-mb-170">
+
+            </div>
+
+            <div class="g-pos-abs g-left-0 g-right-0 g-z-index-2 g-bottom-30">
+                <a class="js-go-to btn u-btn-outline-white g-color-white g-bg-white-opacity-0_1 g-color-black--hover g-bg-white--hover g-font-weight-600 text-uppercase g-rounded-50 g-px-30 g-py-11" href="#" data-target="#content">
+                    <i class="fa fa-angle-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Other header -->
-    <section class="g-flex-centered g-mt-60 g-mb-100">
+    <section class="g-flex-centered g-mt-60 g-mb-50">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <header class="text-center g-mb-60">
+                <div class="col-lg-12 center">
+                    <header class="text-center">
                         <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
-                            <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">DojoCon NL 2019</h2>
+                            <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">DojoCon NL 2019 &dash; It&apos; a wrap</h2>
                         </div>
                         <p class="lead g-px-200--lg">
                             Op 2 november vindt de allereerste offici&euml;le DojoCon NL plaats in Breda! Tijdens deze conferentie brengen we
@@ -34,71 +48,75 @@
                             leden van de community ontmoeten.
                         </p>
                         <p class="g-mt-30 text-center">
-                            <a href="#tickets" class="btn btn-xxl btn-primary">Tickets</a>
+                            <a href="https://drive.google.com/open?id=10R4ThlqrKqzw3_Xv80vxC7rbftH37G_H" class="btn btn-xxl btn-primary"><i class="fa fa-chevron-right"></i>&nbsp;&nbsp;Digitale Goodiebag&nbsp;&nbsp;<i class="fa fa-chevron-left"></i></a>
                         </p>
                     </header>
-
-                    <div class="row">
-                        <div class="col-lg-6 align-self-center g-mb-20 g-mb-0--lg">
-
-                            <div class="media g-mb-20">
-                                <div class="d-flex align-self-center mr-4">
-                                    <span class="d-block g-color-primary g-font-size-38">
-                                      <i class="icon-calendar"></i>
-                                    </span>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="h4 mb-0">Zaterdag 2 november 2019</h3>
-                                    <p><small>09.30h - 18.00h</small></p>
-                                </div>
-                            </div>
-
-                            <div class="media g-mb-20">
-                                <div class="d-flex align-self-center mr-4">
-                                    <span class="d-block g-color-primary g-font-size-38">
-                                      <i class="icon-location-pin"></i>
-                                    </span>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="h4 mb-0">Podium Bloos, Breda</h3>
-                                    <p><small>Speelhuislaan 153, 4815 CD Breda</small></p>
-                                </div>
-                            </div>
-
-                            <div class="media g-mb-20">
-                                <div class="d-flex align-self-center mr-4">
-                                    <span class="d-block g-color-primary g-font-size-38">
-                                      <i class="icon-book-open"></i>
-                                    </span>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="h4 mb-0">3 Sprekers &amp; 8 Workshops</h3>
-                                </div>
-                            </div>
-
-                            <div class="media g-mb-20">
-                                <div class="d-flex align-self-center mr-4">
-                                    <span class="d-block g-color-primary g-font-size-38">
-                                      <i class="icon-food-001"></i>
-                                    </span>
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h3 class="h4 mb-0">Koffie / Thee, Lunch, Borrel inbegrepen</h3>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6">
-                            <!--<img class="img-fluid" src="../../assets/img-temp/600x330/img1.png" alt="Image Description">-->
-                            <img class="img-fluid" src="{{ asset('/img/dojocon2019/header.jpg') }}" alt="DojoCon NL 2019">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- end other header -->
+
+    <section class="g-bg-secondary">
+        <div class="container">
+            <div class="row g-py-50">
+                <div class="col-lg-6 align-self-center g-mb-20 g-mb-0--lg">
+
+                    <div class="media g-mb-20">
+                        <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-calendar"></i>
+                                    </span>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="h4 mb-0">Zaterdag 2 november 2019</h3>
+                            <p><small>09.30h - 18.00h</small></p>
+                        </div>
+                    </div>
+
+                    <div class="media g-mb-20">
+                        <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-location-pin"></i>
+                                    </span>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="h4 mb-0">Podium Bloos, Breda</h3>
+                            <p><small>Speelhuislaan 153, 4815 CD Breda</small></p>
+                        </div>
+                    </div>
+
+                    <div class="media g-mb-20">
+                        <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-book-open"></i>
+                                    </span>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="h4 mb-0">3 Sprekers &amp; 8 Workshops</h3>
+                        </div>
+                    </div>
+
+                    <div class="media g-mb-20">
+                        <div class="d-flex align-self-center mr-4">
+                                    <span class="d-block g-color-primary g-font-size-38">
+                                      <i class="icon-food-001"></i>
+                                    </span>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="h4 mb-0">Koffie / Thee, Lunch, Borrel inbegrepen</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                    <!--<img class="img-fluid" src="../../assets/img-temp/600x330/img1.png" alt="Image Description">-->
+                    <img class="img-fluid" src="{{ asset('/img/dojocon2019/header.jpg') }}" alt="DojoCon NL 2019">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="dzsparallaxer auto-init height-is-based-on-content">
         <!-- Parallax Image -->
@@ -916,37 +934,6 @@
                 <!-- End Team Block -->
             </div>
 
-        </div>
-    </section>
-
-    <section class="g-brd-around g-brd-gray-light-v4 g-bg-secondary">
-        <div class="container text-center">
-            <header class="text-center g-mb-30 g-mt-60" id="tickets">
-                <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
-                    <h2 class="h3 text-uppercase g-font-weight-300 u-heading-v2__title">Tickets</h2>
-                </div>
-            </header>
-
-            <div id="eventbrite-widget-container" class="g-mb-30"></div>
-
-            <script src="https://www.eventbrite.nl/static/widgets/eb_widgets.js"></script>
-
-            <script type="text/javascript">
-                var exampleCallback = function() {
-                    console.log('Order complete!');
-                };
-
-                window.EBWidgets.createWidget({
-                    // Required
-                    widgetType: 'checkout',
-                    eventId: '67866575755',
-                    iframeContainerId: 'eventbrite-widget-container',
-
-                    // Optional
-                    iframeContainerHeight: 300,  // Widget height in pixels. Defaults to a minimum of 425px if not provided
-                    onOrderComplete: exampleCallback  // Method called when an order has successfully completed
-                });
-            </script>
         </div>
     </section>
 {% endblock %}

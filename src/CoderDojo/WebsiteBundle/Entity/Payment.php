@@ -41,7 +41,7 @@ class Payment
 
     /**
      * @var Donation
-     * @ORM\OneToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Donation")
+     * @ORM\ManyToOne(targetEntity="CoderDojo\WebsiteBundle\Entity\Donation")
      * @ORM\JoinColumn(referencedColumnName="id", name="donation_id")
      **/
     private $donation;
