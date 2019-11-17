@@ -44,6 +44,12 @@ class Dojo
     private $zenUrl;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $verifiedAt;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255)
      */
@@ -163,12 +169,28 @@ class Dojo
         $this->mentorRequests = new ArrayCollection();
         $this->claims = new ArrayCollection();
 
-        if (null != $owner) {
+        if (null !== $owner) {
             $this->owners->add($owner);
         }
 
         $this->province = $province;
         $this->country = $country;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getVerifiedAt():? \DateTime
+    {
+        return $this->verifiedAt;
+    }
+
+    /**
+     * @param \DateTime $verifiedAt
+     */
+    public function setVerifiedAt(\DateTime $verifiedAt): void
+    {
+        $this->verifiedAt = $verifiedAt;
     }
 
     /**

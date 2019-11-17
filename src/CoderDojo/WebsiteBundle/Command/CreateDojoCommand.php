@@ -66,23 +66,27 @@ class CreateDojoCommand
      */
     private $country;
 
+    private $verifiedAt;
+
     /**
      * @param string $zenId
+     * @param string $verifiedAt
      * @param string $zenCreatorEmail
      * @param string $zenUrl
      * @param string $name
      * @param string $city
-     * @param float $lat
-     * @param float $lon
+     * @param float  $lat
+     * @param float  $lon
      * @param string $email
      * @param string $website
      * @param string $twitter
-     * @param $country
-     * @param bool $removed
+     * @param        $country
+     * @param bool   $removed
      */
-    public function __construct($zenId, $zenCreatorEmail, $zenUrl, $name, $city, $lat, $lon, $email, $website, $twitter, $country, $removed)
+    public function __construct($zenId, $verifiedAt, $zenCreatorEmail, $zenUrl, $name, $city, $lat, $lon, $email, $website, $twitter, $country, $removed)
     {
         $this->zenId = $zenId;
+        $this->verifiedAt = $verifiedAt;
         $this->zenCreatorEmail = $zenCreatorEmail;
         $this->zenUrl = $zenUrl;
         $this->name = $name;
@@ -108,6 +112,7 @@ class CreateDojoCommand
     {
         $dojo = new self(
             $entity->getzenId(),
+            $entity->getVerifiedAt() ? $entity->getVerifiedAt()->format(DATE_ATOM) : null,
             $entity->getzenCreatorEmail(),
             $entity->getzenUrl(),
             $entity->getname(),
@@ -130,6 +135,14 @@ class CreateDojoCommand
     public function getZenId()
     {
         return $this->zenId;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getVerifiedAt():? string
+    {
+        return $this->verifiedAt;
     }
 
     /**
