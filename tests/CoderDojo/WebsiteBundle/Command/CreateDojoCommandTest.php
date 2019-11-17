@@ -9,8 +9,10 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_check_properties()
     {
-        $command = new CreateDojoCommand(
+        $verifiedAt = (new DateTime('-2 weeks'))->format(DATE_ATOM);
+        $command    = new CreateDojoCommand(
             'uuid-123',
+            $verifiedAt,
             'creator@email.com',
             'https://zen.url',
             'Dojo Name',
@@ -25,6 +27,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame('uuid-123', $command->getZenId());
+        $this->assertSame($verifiedAt, $command->getVerifiedAt());
         $this->assertSame('creator@email.com', $command->getZenCreatorEmail());
         $this->assertSame('https://zen.url', $command->getZenUrl());
         $this->assertSame('Dojo Name', $command->getName());
@@ -43,8 +46,10 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_default_url()
     {
+        $verifiedAt = (new DateTime('-2 weeks'))->format(DATE_ATOM);
         $command = new CreateDojoCommand(
             'uuid-123',
+            $verifiedAt,
             'creator@email.com',
             'https://zen.url',
             'Dojo Name',
@@ -66,8 +71,10 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_clean_twitter()
     {
+        $verifiedAt = (new DateTime('-2 weeks'))->format(DATE_ATOM);
         $command = new CreateDojoCommand(
             'uuid-123',
+            $verifiedAt,
             'creator@email.com',
             'https://zen.url',
             'Dojo Name',
@@ -85,6 +92,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
 
         $command = new CreateDojoCommand(
             'uuid-123',
+            $verifiedAt,
             'creator@email.com',
             'https://zen.url',
             'Dojo Name',
@@ -102,6 +110,7 @@ class CreateDojoCommandTest extends \PHPUnit_Framework_TestCase
 
         $command = new CreateDojoCommand(
             'uuid-123',
+            $verifiedAt,
             'creator@email.com',
             'https://zen.url',
             'Dojo Name',
