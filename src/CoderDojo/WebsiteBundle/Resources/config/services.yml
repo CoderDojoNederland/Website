@@ -223,4 +223,5 @@ services:
             - '%ecurring_quartely_plan_id%'
             - '%ecurring_semi_yearly_plan_id%'
             - '%ecurring_yearly_plan_id%'
+            - '%ecurring_yearly_after_may_plan_id%'
 

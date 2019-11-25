@@ -37,24 +37,32 @@ class Ecurring
     private $subscriptionPlanYearly;
 
     /**
+     * @var int
+     */
+    private $subscriptionPlanYearlyAfterMay;
+
+    /**
      * @param Client                $client
      * @param UrlGeneratorInterface $router
      * @param int                   $subscriptionPlanQuarterly
      * @param int                   $subscriptionPlanSemiYearly
      * @param int                   $subscriptionPlanYearly
+     * @param int                   $subscriptionPlanYearlyAfterMay
      */
     public function __construct(
         Client $client,
         UrlGeneratorInterface $router,
         int $subscriptionPlanQuarterly,
         int $subscriptionPlanSemiYearly,
-        int $subscriptionPlanYearly
+        int $subscriptionPlanYearly,
+        int $subscriptionPlanYearlyAfterMay
     ) {
         $this->client = $client;
         $this->router = $router;
         $this->subscriptionPlanQuarterly = $subscriptionPlanQuarterly;
         $this->subscriptionPlanSemiYearly = $subscriptionPlanSemiYearly;
         $this->subscriptionPlanYearly = $subscriptionPlanYearly;
+        $this->subscriptionPlanYearlyAfterMay = $subscriptionPlanYearlyAfterMay;
     }
 
     /**
@@ -102,7 +110,15 @@ class Ecurring
                 $planId = $this->subscriptionPlanSemiYearly;
                 break;
             case Club100::INTERVAL_YEARLY:
-                $planId = $this->subscriptionPlanYearly;
+                $today = new \DateTime();
+                $thisYear = new \DateTime($today->format('Y').'-05-30');
+
+                if ($today > $thisYear) {
+                    $planId = $this->subscriptionPlanYearlyAfterMay;
+                } else {
+                    $planId = $this->subscriptionPlanYearly;
+                }
+
                 break;
             default:
                 throw new \LogicException('Unsupported interval');
