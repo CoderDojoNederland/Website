@@ -6,7 +6,7 @@
         Jij bent lid van de CoderDojo Nederland Club van 100. Geweldig! We willen je graag laten weten dat het weer tijd
         is om een donatie te doen zoals je bij je lidmaatschap hebt beloofd.
     </p>
-    {% if member.interval == 'yearly' %}
+    {% if member.interval == 'yearly' or member.interval == 'yearly-invoiced' %}
         <p>
             Je hebt gekozen om elk jaar <strong>&euro; 100,-</strong> bij te dragen aan CoderDojo Nederland.
         </p>

@@ -16,10 +16,12 @@ use Ramsey\Uuid\Uuid;
  */
 class Club100
 {
+    public const INTERVAL_YEARLY_INVOICED = 'yearly-invoiced';
     public const INTERVAL_YEARLY = 'yearly';
     public const INTERVAL_SEMI_YEARLY = 'semi-yearly';
     public const INTERVAL_QUARTERLY = 'quarterly';
     public const INTERVALS = [
+        self::INTERVAL_YEARLY_INVOICED,
         self::INTERVAL_YEARLY,
         self::INTERVAL_SEMI_YEARLY,
         self::INTERVAL_QUARTERLY

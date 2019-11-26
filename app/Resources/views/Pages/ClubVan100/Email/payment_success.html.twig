@@ -1,6 +1,6 @@
 {% extends ":Snippets:_email.html.twig" %}
 
-{% if member.interval == 'yearly' %}
+{% if member.interval == 'yearly' or member.interval == 'yearly-invoiced' %}
     {% set amount = 100 %}
 {% elseif member.interval == 'semi-yearly' %}
     {% set amount = 50 %}

@@ -42,12 +42,24 @@ class Ecurring
     private $subscriptionPlanYearlyAfterMay;
 
     /**
+     * @var int
+     */
+    private $subscriptionPlanYearlyInvoiced;
+
+    /**
+     * @var int
+     */
+    private $subscriptionPlanYearlyInvoicedAfterMay;
+
+    /**
      * @param Client                $client
      * @param UrlGeneratorInterface $router
      * @param int                   $subscriptionPlanQuarterly
      * @param int                   $subscriptionPlanSemiYearly
      * @param int                   $subscriptionPlanYearly
      * @param int                   $subscriptionPlanYearlyAfterMay
+     * @param int                   $subscriptionPlanYearlyInvoiced
+     * @param int                   $subscriptionPlanYearlyInvoicedAfterMay
      */
     public function __construct(
         Client $client,
@@ -55,7 +67,9 @@ class Ecurring
         int $subscriptionPlanQuarterly,
         int $subscriptionPlanSemiYearly,
         int $subscriptionPlanYearly,
-        int $subscriptionPlanYearlyAfterMay
+        int $subscriptionPlanYearlyAfterMay,
+        int $subscriptionPlanYearlyInvoiced,
+        int $subscriptionPlanYearlyInvoicedAfterMay
     ) {
         $this->client = $client;
         $this->router = $router;
@@ -63,6 +77,8 @@ class Ecurring
         $this->subscriptionPlanSemiYearly = $subscriptionPlanSemiYearly;
         $this->subscriptionPlanYearly = $subscriptionPlanYearly;
         $this->subscriptionPlanYearlyAfterMay = $subscriptionPlanYearlyAfterMay;
+        $this->subscriptionPlanYearlyInvoiced = $subscriptionPlanYearlyInvoiced;
+        $this->subscriptionPlanYearlyInvoicedAfterMay = $subscriptionPlanYearlyInvoicedAfterMay;
     }
 
     /**
@@ -102,6 +118,10 @@ class Ecurring
      */
     public function createSubscription(int $customerID, string $subscriptionType, string $memberHash): string
     {
+        $today = new \DateTime();
+        $thisYear = new \DateTime($today->format('Y').'-05-30');
+        $afterMay = $today > $thisYear;
+
         switch ($subscriptionType) {
             case Club100::INTERVAL_QUARTERLY:
                 $planId = $this->subscriptionPlanQuarterly;
@@ -110,13 +130,18 @@ class Ecurring
                 $planId = $this->subscriptionPlanSemiYearly;
                 break;
             case Club100::INTERVAL_YEARLY:
-                $today = new \DateTime();
-                $thisYear = new \DateTime($today->format('Y').'-05-30');
-
-                if ($today > $thisYear) {
+                if ($afterMay) {
                     $planId = $this->subscriptionPlanYearlyAfterMay;
                 } else {
                     $planId = $this->subscriptionPlanYearly;
+                }
+
+                break;
+            case Club100::INTERVAL_YEARLY_INVOICED:
+                if ($afterMay) {
+                    $planId = $this->subscriptionPlanYearlyInvoicedAfterMay;
+                } else {
+                    $planId = $this->subscriptionPlanYearlyInvoiced;
                 }
 
                 break;

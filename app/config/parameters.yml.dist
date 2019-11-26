@@ -41,3 +41,5 @@ parameters:
     ecurring_semi_yearly_plan_id: 929389656
     ecurring_yearly_plan_id: 1814329001
     ecurring_yearly_after_may_plan_id: 143017557
+    ecurring_yearly_invoiced_after_may_plan_id: 1105337068
+    ecurring_yearly_invoiced_plan_id: 912078077

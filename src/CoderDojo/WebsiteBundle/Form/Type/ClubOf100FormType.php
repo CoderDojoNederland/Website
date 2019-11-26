@@ -112,6 +112,7 @@ class ClubOf100FormType extends AbstractType
             'label' => 'Betaling*',
             'required' => true,
             'choices' => [
+                'Jaarlijks €100 (met factuur)' => 'yearly-invoiced',
                 'Jaarlijks €100' => 'yearly',
                 'Halfjaarlijks €50' => 'semi-yearly',
                 'Kwartaallijks €25' => 'quarterly'
