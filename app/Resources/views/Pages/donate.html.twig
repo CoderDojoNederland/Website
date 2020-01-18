@@ -1,0 +1,113 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block title %}Doneren &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Doneren &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Doneer eenmalig een bedrag wat je zelf wilt aan CoderDojo Nederland. Hiermee kunnen wij ons beter inzetten om community
+    events te organiseren, zichtbaar te zijn op events zoals beursen en conferenties en onze dojo's van de nodige tools voorzien.
+{% endblock %}
+
+{% block fbdescription %}
+    Doneer eenmalig een bedrag wat je zelf wilt aan CoderDojo Nederland. Hiermee kunnen wij ons beter inzetten om community
+    events te organiseren, zichtbaar te zijn op events zoals beursen en conferenties en onze dojo's van de nodige tools voorzien.
+{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Geef aan CoderDojo Nederland</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Doneren</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Doneren
+                </li>
+            </ul>
+        </div>
+    </section>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+
+        <div class="row margin-bottom-30">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
+                        <i class="fa fa-gift"></i> Doneren
+                    </h2>
+                </div>
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('danger') %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    <p class="g-mt-40">
+                        CoderDojo Nederland opereert volledig zónder subsidies én wordt 100% op vrijwillige basis onderhouden.
+                        Daarmee zijn we al heel ver gekomen, maar we kunnen nog veel verder komen als we meer financiele middelen hebben.
+                        Denk bijvoorbeeld aan de volgende dingen:
+                    </p>
+                    <ul>
+                        <li>Community Events (DojoCon, Mentor Meetup, EHBO Training, etc.)</li>
+                        <li>Deelname aan beursen &amp; conferenties om zichtbaarheid te vergrooten</li>
+                        <li>Verzorgen van hosting, domeinnaam, mailbox etc. voor dojo's.</li>
+                        <li>Exploitatiekosten (Verzekering, bankrekening, software, etc.)</li>
+                    </ul>
+                    <p>
+                        Door aan CoderDojo Nederland te doneren maar je het mogelijk om de hele Nederlandse community te
+                        ondersteunen!
+                    </p>
+                    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
+                            <i class="fa fa-money"></i> Hoeveel wil je doneren?
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="?amount=10" class="btn btn-success btn-outline btn-xxl">&euro; 10</a>
+                        </div>
+                        <div class="col-3">
+                            <a href="?amount=20" class="btn btn-success btn-outline btn-xxl">&euro; 20</a>
+                        </div>
+                        <div class="col-3">
+                            <a href="?amount=50" class="btn btn-success btn-outline btn-xxl">&euro; 50</a>
+                        </div>
+                        <div class="col-3">
+                            <a href="?amount=100" class="btn btn-success btn-outline btn-xxl">&euro; 100</a>
+                        </div>
+                    </div>
+                    <form>
+                        <p class="g-mt-50 g-font-size-20 text-center">
+                            Ander bedrag: &euro;&nbsp;<input type="number" name="amount" value="25" style="width: 70px;padding: 5px;text-align: right; border: none;border-bottom: 1px solid #000"/>
+                        </p>
+                        <p class="g-font-size-20 text-center">
+                            <input type="submit" class="btn btn-success btn-xxl" value="Doneer!"/>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-bottom-40"></div>
+
+    </div><!--/container-->
+</section>
+<!--=== End Content Part ===-->
+{% endblock %}
