@@ -6,17 +6,23 @@
             <div class="g-mb-100">
                 <span class="d-block g-color-white g-font-size-20 text-uppercase g-letter-spacing-5 mb-4">Gratis leren programmeren</span>
                 <h1 class="g-color-white g-font-weight-700 g-font-size-20 g-font-size-50--md text-uppercase g-line-height-1_2 g-letter-spacing-10 mb-4">Voor Kinderen In Heel Nederland</h1>
-                <span class="d-block lead g-color-white g-letter-spacing-2">Kom jij ook mee doen?</span>
-            </div>
-
-            <div class="g-pos-abs g-left-0 g-right-0 g-z-index-2 g-bottom-30">
-                <a class="js-go-to btn u-btn-outline-white g-color-white g-bg-white-opacity-0_1 g-color-black--hover g-bg-white--hover g-font-weight-600 text-uppercase g-rounded-50 g-px-30 g-py-11" href="#" data-target="#content">
-                    <i class="fa fa-angle-down"></i>
-                </a>
+                <!--<span class="d-block lead g-color-white g-letter-spacing-2">Kom jij ook mee doen?</span>-->
+                <p>
+                    <a href="{{ path('donate') }}" class="btn btn-primary btn-xl">
+                        <i class="fa fa-money"></i>
+                        &nbsp;&nbsp;Doneren&nbsp;&nbsp;
+                    </a>&nbsp;&nbsp;
+                    <a href="{{ path('donate') }}" class="btn btn-primary btn-xl">
+                        <i class="fa fa-book"></i>
+                        &nbsp;&nbsp;Meer informatie&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                </p>
             </div>
         </div>
     </section>
 
+    {# CTA PART
     <section class="g-bg-gray-light-v5 g-pa-50">
         <div class="container">
             <div class="row justify-content-md-around">
@@ -39,7 +45,7 @@
             </div>
         </div>
     </section>
-
+    #}
     <!-- Intro -->
     <section class="text-center g-py-120--md g-py-20" id="content">
         <div class="container">
@@ -465,19 +471,18 @@
             <i class="hs-icon hs-icon-close"></i>
         </button>
 
-        <div class="u-heading-v3-1 g-mb-40">
-            <h2 class="h3 u-heading-v3__title g-brd-primary">Word lid van onze Club van 100</h2>
-        </div>
-
-        <img src="{{ asset('/bundles/coderdojowebsite/img/fb-club100.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-mb-50"/>
+        <img src="{{ asset('/bundles/coderdojowebsite/img/club100.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-mb-50"/>
 
         <p>
             Steun Stichting CoderDojo Nederland door elk jaar <strong>€ 100</strong> te doneren. Op die manier
             is de stichting verzekerd van inkomen om de community in Nederland optimaal te kunnen ondersteunen!
         </p>
 
-        <p class="text-center g-mt-40">
-            <a href="{{ path('club_of_100') }}" class="btn btn-lg u-btn-orange g-mr-10 g-mb-15">
+        <p class="text-center g-mt-40 g-mb-15">
+            <a href="{{ path('donate') }}">
+                Eenmalig doneren
+            </a>&nbsp;&nbsp;
+            <a href="{{ path('club_of_100') }}" class="btn btn-lg btn-primary">
                 Meer informatie&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
             </a>
         </p>

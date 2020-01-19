@@ -47,61 +47,95 @@
                         <i class="fa fa-gift"></i> Doneren
                     </h2>
                 </div>
-                    {% for flashMessage in app.session.flashbag.get('success') %}
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {{ flashMessage }}
-                        </div>
-                    {% endfor %}
-                    {% for flashMessage in app.session.flashbag.get('danger') %}
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            {{ flashMessage }}
-                        </div>
-                    {% endfor %}
-                    <p class="g-mt-40">
-                        CoderDojo Nederland opereert volledig zónder subsidies én wordt 100% op vrijwillige basis onderhouden.
-                        Daarmee zijn we al heel ver gekomen, maar we kunnen nog veel verder komen als we meer financiele middelen hebben.
-                        Denk bijvoorbeeld aan de volgende dingen:
-                    </p>
-                    <ul>
-                        <li>Community Events (DojoCon, Mentor Meetup, EHBO Training, etc.)</li>
-                        <li>Deelname aan beursen &amp; conferenties om zichtbaarheid te vergrooten</li>
-                        <li>Verzorgen van hosting, domeinnaam, mailbox etc. voor dojo's.</li>
-                        <li>Exploitatiekosten (Verzekering, bankrekening, software, etc.)</li>
-                    </ul>
-                    <p>
-                        Door aan CoderDojo Nederland te doneren maar je het mogelijk om de hele Nederlandse community te
-                        ondersteunen!
-                    </p>
-                    <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
-                        <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
-                            <i class="fa fa-money"></i> Hoeveel wil je doneren?
-                        </h2>
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
                     </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <a href="?amount=10" class="btn btn-success btn-outline btn-xxl">&euro; 10</a>
-                        </div>
-                        <div class="col-3">
-                            <a href="?amount=20" class="btn btn-success btn-outline btn-xxl">&euro; 20</a>
-                        </div>
-                        <div class="col-3">
-                            <a href="?amount=50" class="btn btn-success btn-outline btn-xxl">&euro; 50</a>
-                        </div>
-                        <div class="col-3">
-                            <a href="?amount=100" class="btn btn-success btn-outline btn-xxl">&euro; 100</a>
-                        </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('danger') %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
                     </div>
-                    <form>
-                        <p class="g-mt-50 g-font-size-20 text-center">
-                            Ander bedrag: &euro;&nbsp;<input type="number" name="amount" value="25" style="width: 70px;padding: 5px;text-align: right; border: none;border-bottom: 1px solid #000"/>
-                        </p>
-                        <p class="g-font-size-20 text-center">
-                            <input type="submit" class="btn btn-success btn-xxl" value="Doneer!"/>
-                        </p>
-                    </form>
+                {% endfor %}
+                <p class="g-mt-40">
+                    CoderDojo Nederland opereert volledig zónder subsidies én wordt 100% op vrijwillige basis onderhouden.
+                    Daarmee zijn we al heel ver gekomen, maar we kunnen nog veel verder komen als we meer financiele middelen hebben.
+                </p>
+                <p>
+                    Denk bijvoorbeeld aan de kosten van:
+                </p>
+                <ul>
+                    <li>Organisatie van Community Events (DojoCon, Mentor Meetup, EHBO Training, etc.)</li>
+                    <li>Deelname aan beurzen &amp; conferenties om zichtbaarheid te vergroten</li>
+                    <li>Verzorgen van hosting, domeinnaam, mailbox etc. voor dojo's.</li>
+                    <li>Exploitatiekosten (verzekering, bankrekening, software, etc.)</li>
+                </ul>
+                <p>
+                    Door aan Stichting CoderDojo Nederland te doneren maak je het mogelijk om de hele Nederlandse community te
+                    ondersteunen!
+                </p>
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
+                        <i class="fa fa-money"></i> Hoeveel wil je doneren?
+                    </h2>
                 </div>
+                <div class="row">
+                    <div class="col-3">
+                        <a href="?amount=10" class="btn btn-outline-success btn-outline btn-xxl">&euro; 10</a>
+                    </div>
+                    <div class="col-3">
+                        <a href="?amount=20" class="btn btn-outline-success btn-outline btn-xxl">&euro; 20</a>
+                    </div>
+                    <div class="col-3">
+                        <a href="?amount=50" class="btn btn-outline-success btn-outline btn-xxl">&euro; 50</a>
+                    </div>
+                    <div class="col-3">
+                        <a href="?amount=100" class="btn btn-outline-success btn-outline btn-xxl">&euro; 100</a>
+                    </div>
+                </div>
+                <form>
+                    <p class="g-mt-50 g-color-grey g-font-size-20 text-center">
+                        Ander bedrag:&nbsp;&nbsp;<strong>&euro;</strong>
+                        <input type="number" name="amount" value="25" style="width: 70px;padding: 5px;text-align: right; border: none;border-bottom: 1px solid #000"/>
+                        &nbsp;&nbsp;<input type="submit" class="btn btn-success btn-l" value="Doneer!"/>
+                    </p>
+                </form>
+
+                <p class="g-font-size-32 g-color-black text-center g-mb-50">
+                    <i class="fa fa-credit-card"></i>&nbsp;&nbsp;
+                    <i class="fa fa-paypal"></i>&nbsp;&nbsp;
+                    <img src="{{ asset('/img/ideal.png') }}" height="32"/>
+                </p>
+
+                <hr/>
+
+                <img src="{{ asset('/bundles/coderdojowebsite/img/club100.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-mb-50"/>
+
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
+                        <i class="fa fa-trophy"></i> Wordt lid van de Club van 100!
+                    </h2>
+                </div>
+
+                <p>
+                    Steun Stichting CoderDojo Nederland door elk jaar <strong>€ 100</strong> te doneren. Op die manier
+                    is de stichting verzekerd van inkomen om de community in Nederland optimaal te kunnen ondersteunen! Doneren
+                    kan op de volgende manieren:
+                </p>
+
+                <ul>
+                    <li>Kwartaallijks &euro;25</li>
+                    <li>Half-jaarlijks &euro;50</li>
+                    <li>Jaarlijks &euro;100</li>
+                </ul>
+
+                <p class="text-center g-mt-40">
+                    <a href="{{ path('club_of_100') }}" class="btn btn-lg u-btn-orange g-mr-10 g-mb-15">
+                        Meer informatie&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+                    </a>
+                </p>
             </div>
         </div>
 
