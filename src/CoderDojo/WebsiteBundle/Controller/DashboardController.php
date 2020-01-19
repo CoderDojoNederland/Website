@@ -419,7 +419,7 @@ class DashboardController extends Controller
      */
     public function addDojoAction()
     {
-        $dojos = $this->get('doctrine')->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy([],['city'=>'ASC']);
+        $dojos = $this->get('doctrine')->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy(['country' => 'NL'],['city'=>'ASC']);
 
         return $this->render(
             ':Dashboard:Pages/add-dojo.html.twig',
