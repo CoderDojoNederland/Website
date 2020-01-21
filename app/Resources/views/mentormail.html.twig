@@ -1,0 +1,25 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>
+        Hi {{ naam }},
+    </p>
+    <p>
+        Bedankt voor jouw aanmelding als mentor voor {{ dojo.name }}! We hebben de dojo laten weten dat je je hebt aangemeld
+        en gevraagd om zo snel mogelijk contact met je op te nemen. Mocht je erg enthousiast zijn en snel aan de slag willen
+        dan kun je ook zelf al op deze mail antwoorden om in contact te komen met de dojo.
+    </p>
+    <table>
+        <tr>
+            <td>Naam:</td>
+            <td>{{ dojo.name }}</td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>{{ dojo.email }}</td>
+        </tr>
+    </table>
+    <p style="margin-top:20px;">
+        Wij wensen je in ieder geval alvast veel plezier en succes!
+    </p>
+{% endblock content %}

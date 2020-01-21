@@ -23,6 +23,12 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_contact_form }
 
+    coder_dojo.form.mentor:
+        class: CoderDojo\WebsiteBundle\Form\Type\MentorFormType
+        arguments: ['@doctrine']
+        tags:
+            - { name: form.type, alias: coderdojo_contact_form }
+
     coder_dojo.form.coc_request:
         class: CoderDojo\WebsiteBundle\Form\Type\CocRequestFormType
         arguments: ['@security.token_storage']

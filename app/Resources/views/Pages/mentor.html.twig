@@ -1,0 +1,96 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block title %}Mentor Worden &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Mentor Worden &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Wil je mentor worden bij CoderDojo? Dat kan! Meld je hier aan bij de dojo's in jouw omgeving en zij zullen je
+    verder begeleiden bij hun activiteiten.
+{% endblock %}
+
+{% block fbdescription %}
+    Wil je mentor worden bij CoderDojo? Dat kan! Meld je hier aan bij de dojo's in jouw omgeving en zij zullen je
+    verder begeleiden bij hun activiteiten.
+{% endblock %}
+
+{% block custom_headers %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock custom_headers %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Wordt mentor bij CoderDojo Nederland</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Aanmelden</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Mentor worden
+                </li>
+            </ul>
+        </div>
+    </section>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+
+        <div class="row margin-bottom-30">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 col-md-offset-2">
+                    <h3 class="panel-title g-pb-5"><i class="icon-envelope"></i> Aanmelding Mentor</h3>
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('danger') %}
+
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ flashMessage }}
+                        </div>
+
+                    {% endfor %}
+                    <p class="g-my-40">
+                        Wil jij mentor worden? Meld je dan hier aan zodat de dojo contact met je op kan nemen!
+                    </p>
+                    {{ form_start(form, { 'action': path('mentor'), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
+                        {{ form_row(form.naam) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.dojo) }}
+
+                        <div class="form-group row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <input type="submit" value="Aanmelden" class="btn btn-md u-btn-primary g-mr-10 g-mb-15" />
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-bottom-40"></div>
+
+    </div><!--/container-->
+</section>
+<!--=== End Content Part ===-->
+{% endblock %}

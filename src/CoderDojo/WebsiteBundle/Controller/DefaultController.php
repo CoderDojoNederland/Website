@@ -4,8 +4,10 @@ namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Command\ShipCocRequestCommand;
 use CoderDojo\WebsiteBundle\Entity\CocRequest;
+use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\User;
 use CoderDojo\WebsiteBundle\Form\Type\ContactFormType;
+use CoderDojo\WebsiteBundle\Form\Type\MentorFormType;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -85,6 +87,84 @@ class DefaultController extends Controller
         }
 
         return $this->render(':Pages:contact.html.twig', array(
+            'form' => $form->createView(),
+            'recaptcha_site_key' => $reCaptchaSiteKey
+        ));
+    }
+
+    /**
+     * @Route("/mentor-worden", name="mentor")
+     */
+    public function mentorAction(Request $request)
+    {
+        $form = $this->createForm(MentorFormType::class);
+        $reCaptchaSiteKey = $this->container->getParameter('recaptcha_site');
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+
+                $captcha = $request->get('g-recaptcha-response');
+                if($captcha === null || false === $this->isCaptchaValid($captcha)) {
+                    $this->get('session')->getFlashBag()->add('danger', 'De captcha validatie is mislukt!');
+
+                    return $this->render(':Pages:mentor.html.twig', array(
+                        'form' => $form->createView(),
+                        'recaptcha_site_key' => $reCaptchaSiteKey
+                    ));
+                }
+
+                /** @var Dojo $dojo */
+                $dojo = $this->container->get('doctrine')->getRepository(Dojo::class)->find($form->get('dojo')->getData());
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Aanmelding Mentor')
+                    ->setFrom('contact@coderdojo.nl', $form->get('naam')->getData())
+                    ->setReplyTo($form->get('email')->getData())
+                    ->setTo($dojo->getEmail())
+                    ->setBcc('website+mentorform@coderdojo.nl')
+                    ->setContentType('text/html')
+                    ->setBody(
+                        $this->renderView(
+                            '::mentormail_dojo.html.twig',
+                            [
+                                'naam' => $form->get('naam')->getData(),
+                                'email' => $form->get('email')->getData(),
+                                'dojo' => $dojo
+                            ]
+                        )
+                    );
+
+                $this->get('mailer')->send($message);
+
+                $message = \Swift_Message::newInstance()
+                 ->setSubject('Aanmelding bij '.$dojo->getName())
+                 ->setFrom('contact@coderdojo.nl', $form->get('naam')->getData())
+                 ->setReplyTo($dojo->getEmail())
+                 ->setTo($form->get('email')->getData())
+                 ->setBcc('website+mentorform@coderdojo.nl')
+                 ->setContentType('text/html')
+                 ->setBody(
+                     $this->renderView(
+                         '::mentormail.html.twig',
+                         [
+                             'naam' => $form->get('naam')->getData(),
+                             'email' => $form->get('email')->getData(),
+                             'dojo' => $dojo
+                         ]
+                     )
+                 );
+
+                $this->get('mailer')->send($message);
+
+                $this->get('session')->getFlashBag()->add('success', 'Bedankt voor je aanmelding!');
+
+                return $this->redirect($this->generateUrl('mentor'));
+            }
+        }
+
+        return $this->render(':Pages:mentor.html.twig', array(
             'form' => $form->createView(),
             'recaptcha_site_key' => $reCaptchaSiteKey
         ));

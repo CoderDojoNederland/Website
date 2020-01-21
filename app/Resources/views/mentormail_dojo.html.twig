@@ -1,0 +1,23 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>
+        Hi {{ dojo.name }},
+    </p>
+    <p>
+        We hebben een aanmelding ontvangen van iemand die graag mentor wilt worden!
+    </p>
+    <table>
+        <tr>
+            <td>Naam:</td>
+            <td>{{  naam }}</td>
+        </tr>
+        <tr>
+            <td>E-mail:</td>
+            <td>{{ email }}</td>
+        </tr>
+    </table>
+    <p style="margin-top:20px;">
+        Je kunt zelf rechtstreeks contact met {{ naam }} opnemen door op deze mail te antwoorden!
+    </p>
+{% endblock content %}
