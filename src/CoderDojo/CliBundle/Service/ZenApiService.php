@@ -172,7 +172,7 @@ class ZenApiService
             $externalDojos[] = new CreateDojoCommand(
                 $externalDojo->id,
                 $externalDojo->verifiedAt,
-                $externalDojo->creatorEmail,
+                $externalDojo->creatorEmail ?? '',
                 'https://zen.coderdojo.com/dojo/' . $externalDojo->urlSlug,
                 $name,
                 $city,

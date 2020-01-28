@@ -35,28 +35,18 @@ class RequestDonationCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $repository = $this->getContainer()->get('doctrine')->getRepository(Club100::class);
-        $donationRepository = $this->getContainer()->get('doctrine')->getRepository(Donation::class);
-        $interval = $input->getArgument('interval');
-        $members = $repository->findBy(['confirmed' => true, 'interval' => $interval]);
+        $doctrine   = $this->getContainer()->get('doctrine');
+        $repository = $doctrine->getRepository(Club100::class);
+        $interval   = $input->getArgument('interval');
+        $members    = $repository->getAllActive(true, $interval);
 
         $io = new SymfonyStyle($input, $output);
         $io->section('Starting with '.count($members).' member');
 
         /** @var Club100 $member */
         foreach($members as $member) {
-            $donation = new Donation($member);
-
-            $existing = $donationRepository->findOneBy(
-                [
-                    'member' => $member,
-                    'year' => $donation->getYear(),
-                    'quarter' => $donation->getQuarter(),
-                ]
-            );
-
-            if ($existing && $existing->isPaid()) {
-                $io->writeln(sprintf('Member %s %s has already paid for donation %s on %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid(), $donation->getPaidAt()->format(DATE_ATOM)));
+            if ($member->getConfirmationUrl()) {
+                $io->writeln(sprintf('Member %s %s has already started eCurring!', $member->getFirstName(), $member->getLastName()));
                 $io->newLine(2);
                 continue;
             }
@@ -65,7 +55,7 @@ class RequestDonationCommand extends ContainerAwareCommand
             $memberId = $ecurring->createCustomer($member);
             $confirmationUrl = $ecurring->createSubscription($memberId, $member->getInterval(), $member->getHash());
             $member->setConfirmationUrl($confirmationUrl);
-            $this->getContainer()->get('doctrine')->getManager()->flush();
+            $doctrine->getManager()->flush();
 
             /**
              * Send email to dojo contact address

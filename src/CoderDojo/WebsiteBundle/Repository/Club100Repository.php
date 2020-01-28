@@ -21,31 +21,50 @@ class Club100Repository extends EntityRepository
             ->where($qb->expr()->andX(
                 $qb->expr()->isNotNull('c.avatar'),
                 $qb->expr()->neq('c.avatar', $qb->expr()->literal('')),
-                $qb->expr()->isNull('c.unsubscribedAt'),
+                $qb->expr()->orX(
+                    $qb->expr()->isNull('c.unsubscribedAt'),
+                    $qb->expr()->gt('c.unsubscribedAt', ':today')
+                ),
                 $qb->expr()->eq('c.confirmed', $qb->expr()->literal(true)),
                 $qb->expr()->eq('c.public', $qb->expr()->literal(true))
             ))
+            ->setParameter('today', (new \DateTime)->format(DATE_ATOM))
             ->getQuery()
             ->getResult()
         ;
     }
 
     /**
-     * @param bool $publicOnly
+     * @param bool        $publicOnly
+     * @param string|null $interval
      *
      * @return Club100[]
      */
-    public function getAllActive(bool $publicOnly = false): array
+    public function getAllActive(bool $publicOnly = false, string $interval = null): array
     {
         $qb = $this->createQueryBuilder('c');
         $query =  $qb
             ->where($qb->expr()->andX(
-                $qb->expr()->isNull('c.unsubscribedAt'),
+                $qb->expr()->orX(
+                    $qb->expr()->isNull('c.unsubscribedAt'),
+                    $qb->expr()->gt('c.unsubscribedAt', ':today')
+                ),
                 $qb->expr()->eq('c.confirmed', $qb->expr()->literal(true))
-            ));
+            ))
+            ->setParameter('today', (new \DateTime)->format(DATE_ATOM))
+        ;
 
         if ($publicOnly) {
             $query->andWhere($qb->expr()->eq('c.public', $qb->expr()->literal($publicOnly)));
+        }
+
+        if ($interval) {
+            $query
+                ->andWhere(
+                    $qb->expr()->eq('c.interval', ':interval')
+                )
+                ->setParameter('interval', $interval)
+            ;
         }
 
         return $query->getQuery()->getResult();
