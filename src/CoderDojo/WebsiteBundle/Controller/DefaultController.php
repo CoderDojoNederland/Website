@@ -220,6 +220,16 @@ class DefaultController extends Controller
     {
         return $this->redirect('https://app.frontify.com/d/U9lF61SDuNiZ/coderdojo-nederland-styleguide');
     }
+    
+    
+    /**
+     * @Route("/mentor", name="mentor-form")
+     */
+    public function mentorAction()
+    {
+        return $this->redirect('https://forms.gle/75CgZfPNR7WvBYSo7');
+    }
+    
 
     /**
      * @return array
