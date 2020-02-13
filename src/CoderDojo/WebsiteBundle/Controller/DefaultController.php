@@ -225,7 +225,7 @@ class DefaultController extends Controller
     /**
      * @Route("/mentor", name="mentor-form")
      */
-    public function mentorAction()
+    public function mentorShortcutAction()
     {
         return $this->redirect('https://forms.gle/75CgZfPNR7WvBYSo7');
     }
