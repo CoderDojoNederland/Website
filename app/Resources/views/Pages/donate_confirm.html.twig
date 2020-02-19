@@ -1,0 +1,129 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block title %}Doneer éénmalig &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Doneer éénmalig &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Doneer eenmalig een bedrag wat je zelf wilt aan CoderDojo Nederland. Hiermee kunnen wij ons beter inzetten om community
+    events te organiseren, zichtbaar te zijn op events zoals beurzen en conferenties en onze dojo's van de nodige tools voorzien.
+{% endblock %}
+
+{% block fbdescription %}
+    Doneer eenmalig een bedrag wat je zelf wilt aan CoderDojo Nederland. Hiermee kunnen wij ons beter inzetten om community
+    events te organiseren, zichtbaar te zijn op events zoals beurzen en conferenties en onze dojo's van de nodige tools voorzien.
+{% endblock %}
+
+{% block og_image %}http://www.coderdojo.nl/{{asset('img/fb-donatiepot.jpg')}}{% endblock %}
+
+{% block custom_headers %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock custom_headers %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/mentors/kids.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">Geef aan CoderDojo Nederland</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Doneren</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Doneren
+                </li>
+            </ul>
+        </div>
+    </section>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<section class="col-lg-12 g-my-40">
+    <div class="container">
+
+        <div class="row margin-bottom-30">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
+                        <i class="fa fa-money"></i> Je gaat &euro;{{ amount }} doneren!
+                    </h2>
+                </div>
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('danger') %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                    {{ form_start(form, { 'action': path('donate_confirm'), 'attr': { 'class': 'form-horizontal' } }) }}
+                    {{ form_row(form.comment) }}
+                    {{ form_row(form.amount) }}
+                    <div class="form-group row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-offset-2 col-lg-10 text-center">
+                            <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-2">&nbsp;</div>
+                        <div class="col-lg-10"><input type="submit" class="btn btn-success btn-block" value="Doneer nu!"/></div>
+                    </div>
+                    {{ form_end(form) }}
+
+                <div class="row">
+                    <div class="col-lg-2">&nbsp;</div>
+                    <div class="col-lg-10">
+                        <p class="g-font-size-32 g-color-black text-center g-mb-50">
+                            <i class="fa fa-credit-card"></i>&nbsp;&nbsp;
+                            <i class="fa fa-paypal"></i>&nbsp;&nbsp;
+                            <img src="{{ asset('/img/ideal.png') }}" height="32"/>
+                        </p>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <img src="{{ asset('/bundles/coderdojowebsite/img/club100.png') }}" alt="CoderDojo Slack Community" class="img-fluid g-mb-50"/>
+
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20 g-mt-40">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">
+                        <i class="fa fa-trophy"></i> Word lid van de Club van 100!
+                    </h2>
+                </div>
+
+                <p>
+                    Steun Stichting CoderDojo Nederland door elk jaar <strong>€ 100</strong> te doneren. Op die manier
+                    is de stichting verzekerd van inkomen om de community in Nederland optimaal te kunnen ondersteunen! Doneren
+                    kan op de volgende manieren:
+                </p>
+
+                <ul>
+                    <li>Kwartaallijks &euro;25</li>
+                    <li>Half-jaarlijks &euro;50</li>
+                    <li>Jaarlijks &euro;100</li>
+                </ul>
+
+                <p class="text-center g-mt-40">
+                    <a href="{{ path('club_of_100') }}" class="btn btn-lg u-btn-orange g-mr-10 g-mb-15">
+                        Meer informatie&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="clearfix margin-bottom-40"></div>
+
+    </div><!--/container-->
+</section>
+<!--=== End Content Part ===-->
+{% endblock %}

@@ -17,6 +17,11 @@ services:
         tags:
             - { name: form.type, alias: coderdojo_privacy_form }
 
+    coder_dojo.form.donation:
+        class: CoderDojo\WebsiteBundle\Form\Type\DonationFormType
+        tags:
+            - { name: form.type, alias: coderdojo_donation_form }
+
     coder_dojo.form.contact:
         class: CoderDojo\WebsiteBundle\Form\Type\ContactFormType
         arguments: ['@doctrine']
