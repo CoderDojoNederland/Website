@@ -38,7 +38,7 @@ class RequestDonationCommand extends ContainerAwareCommand
         $doctrine   = $this->getContainer()->get('doctrine');
         $repository = $doctrine->getRepository(Club100::class);
         $interval   = $input->getArgument('interval');
-        $members    = $repository->getAllActive(true, $interval);
+        $members    = $repository->getAllActive(false, $interval);
 
         $io = new SymfonyStyle($input, $output);
         $io->section('Starting with '.count($members).' member');
