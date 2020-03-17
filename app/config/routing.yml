@@ -71,7 +71,7 @@ corona:
     path: /corona
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /nieuws/dojo-support/coderdojo-in-tijd-van-corona
+        path: /nieuws/dojo-support/coderdojo-in-tijden-van-corona
         permanent: true
 
 coder_dojo_website:
