@@ -67,6 +67,13 @@ vog-alias:
         path: /nieuws/dojo-support/vraag-een-gratis-vog-aan-voor-vrijwilligers
         permanent: true
 
+corona:
+    path: /corona
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /nieuws/dojo-support/coderdojo-in-tijd-van-corona
+        permanent: true
+
 coder_dojo_website:
     resource: "@CoderDojoWebsiteBundle/Controller"
     type:     annotation
