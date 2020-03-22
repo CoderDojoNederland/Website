@@ -187,6 +187,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </a>
                             <!-- Submenu -->
                             <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
+                                <li {% if app.request.get('_route') == 'online' %}class="active"{% endif %}>
+                                    <a href="{{ path('online') }}">
+                                        Online Dojo's
+                                    </a>
+                                </li>
                                 <li {% if app.request.get('_route') == 'dojocon' %}class="active"{% endif %}>
                                     <a href="{{ path('dojocon') }}">
                                         DojoCon 2019

@@ -32,7 +32,7 @@
                 <td>{{ event.date | date('d/m/Y') }}</td>
                 <td><a href="{{ event.url }}" class="btn btn-default"><i class="icon-globe"></i></a></td>
                 <td>
-                    {% if event.type is constant('CoderDojo\\WebsiteBundle\\Entity\\DojoEvent::TYPE_CUSTOM') %}
+                    {% if event.eventType is not constant('CoderDojo\\WebsiteBundle\\Entity\\DojoEvent::TYPE_ZEN') %}
                         <a href="{{ path('dashboard-dojo-events-edit', {'id': event.id}) }}" class="btn btn-default" title="Bewerken"><i class="icon-pencil"></i></a>&nbsp;
                         <a href="{{ path('dashboard-dojo-event-remove', {'id':dojo.id, 'eventId':event.id}) }}" class="btn btn-danger" title="Verwijderen"><i class="icon-trash"></i></a>
                     {% else  %}

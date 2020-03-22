@@ -41,7 +41,7 @@ class CreateEventHandler
         $event = new DojoEvent();
         $event->setName($command->getName());
         $event->setDate($command->getDate());
-        $event->setType($command->getType());
+        $event->setEventType($command->getType());
         $event->setZenId($command->getZenId());
         $event->setUrl($command->getUrl());
         $event->setDojo($dojo);

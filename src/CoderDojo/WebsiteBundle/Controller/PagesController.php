@@ -50,6 +50,15 @@ class PagesController extends Controller
     }
 
     /**
+     * @Route("/online", name="online")
+     */
+    public function onlineAction()
+    {
+        $events = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getOnlineEvents();
+        return $this->render(':Pages:online_dojo.html.twig', ['events' => $events]);
+    }
+
+    /**
      * @Route("/weekvandemediawijsheid", name="weekvandemediawijsheid")
      */
     public function weekvandemediawijsheidAction()

@@ -42,6 +42,20 @@ class DojoEventRepository extends EntityRepository
             ->getResult();
     }
 
+    public function getOnlineEvents()
+    {
+        $qb = $this->createQueryBuilder('e');
+
+        return $qb
+            ->where('e.eventType = :type')
+            ->setParameter('type', DojoEvent::TYPE_ONLINE)
+            ->orderBy('e.date', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
+
     public function getWVDMWHEvents()
     {
         return $this->createQueryBuilder('e')

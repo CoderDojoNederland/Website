@@ -477,7 +477,9 @@ class DashboardController extends Controller
                 $event->setName($form->get('name')->getData());
                 $event->setDate($form->get('date')->getData());
                 $event->setUrl($form->get('url')->getData());
-                $event->setType(DojoEvent::TYPE_CUSTOM);
+                $event->setEventType(
+                    $form->get('online')->getData() ? DojoEvent::TYPE_ONLINE : DojoEvent::TYPE_CUSTOM
+                );
                 $event->setDojo($dojo);
 
                 $dojo->addEvent($event);
@@ -516,7 +518,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('dashboard');
         }
 
-        if (DojoEvent::TYPE_CUSTOM !== $event->getType()) {
+        if (DojoEvent::TYPE_CUSTOM !== $event->getEventType()) {
             $this->get('session')->getFlashBag()->add('error', 'Dit event kan alleen op zen.coderdojo.com bewerkt worden.');
             return $this->redirectToRoute('dashboard-dojo-events');
         }
@@ -530,7 +532,9 @@ class DashboardController extends Controller
                 $event->setName($form->get('name')->getData());
                 $event->setDate($form->get('date')->getData());
                 $event->setUrl($form->get('url')->getData());
-                $event->setType(DojoEvent::TYPE_CUSTOM);
+                $event->setEventType(
+                    $form->get('online')->getData() ? DojoEvent::TYPE_ONLINE : DojoEvent::TYPE_CUSTOM
+                );
 
                 $this->getDoctrine()->getManager()->flush();
 

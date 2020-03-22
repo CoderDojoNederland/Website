@@ -114,7 +114,7 @@
                                     {{ event.date|localizeddate('none', 'none', 'nl_NL', null, "d MMMM Y")}}
                                 </td>
                                 <td>
-                                    {% if event.type == 'zen' %}
+                                    {% if event.eventType == 'zen' %}
                                         <a href="{{ event.dojo.zenUrl }}" target="_blank" class="btn btn-success btn-sm" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="fa fa-arrow-right"></span></a>
                                     {% else %}
                                         <a href="{{ event.url }}" target="_blank" class="btn btn-success btn-sm" data-dojo-date="{{ event.date|date('Y/m/d') }}" data-dojo="{{ event.dojo.name }}" onclick="trackRegisterClickEvent()"><span class="fa fa-arrow-right"></span></a>

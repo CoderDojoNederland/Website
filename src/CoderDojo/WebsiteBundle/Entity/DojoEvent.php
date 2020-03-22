@@ -17,6 +17,7 @@ class DojoEvent
 {
     const TYPE_ZEN = 'zen';
     const TYPE_CUSTOM = 'custom';
+    const TYPE_ONLINE = 'online';
 
     /**
      * @var integer
@@ -38,7 +39,7 @@ class DojoEvent
      *
      * @ORM\Column(name="event_type", type="string", length=255, options={"default" : "custom"})
      */
-    private $type;
+    private $eventType;
 
     /**
      * @var string
@@ -199,17 +200,17 @@ class DojoEvent
     /**
      * @return string
      */
-    public function getType()
+    public function getEventType()
     {
-        return $this->type;
+        return $this->eventType;
     }
 
     /**
-     * @param string $type
+     * @param string $eventType
      */
-    public function setType($type)
+    public function setEventType($eventType)
     {
-        $this->type = $type;
+        $this->eventType = $eventType;
     }
 
     /**
