@@ -518,7 +518,7 @@ class DashboardController extends Controller
             return $this->redirectToRoute('dashboard');
         }
 
-        if (DojoEvent::TYPE_CUSTOM !== $event->getEventType()) {
+        if (DojoEvent::TYPE_ZEN === $event->getEventType()) {
             $this->get('session')->getFlashBag()->add('error', 'Dit event kan alleen op zen.coderdojo.com bewerkt worden.');
             return $this->redirectToRoute('dashboard-dojo-events');
         }
