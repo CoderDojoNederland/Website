@@ -25,7 +25,9 @@ class EventFormType extends AbstractType
 
         $attr = [];
 
-        if ($builder->getData()->getEventType() === DojoEvent::TYPE_ONLINE) {
+        $event = $builder->getData();
+
+        if ($event && $event->getEventType() === DojoEvent::TYPE_ONLINE) {
             $attr['checked'] = 'checked';
         }
 
