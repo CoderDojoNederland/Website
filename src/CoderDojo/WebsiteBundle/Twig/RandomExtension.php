@@ -7,7 +7,8 @@ class RandomExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('shuffleMe', array($this, 'shuffleFilter'))
+            new \Twig_SimpleFilter('shuffleMe', array($this, 'shuffleFilter')),
+            new \Twig_SimpleFilter('ucfirst', 'ucfirst')
         );
     }
 

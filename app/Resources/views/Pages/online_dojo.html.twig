@@ -97,7 +97,7 @@
                         {% for event in events if date() <= event.date %}
                             <tr {% if date() > event.date %}class="text-muted"{% endif %}>
                                 <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
-                                <td>{{ event.name|capitalize }}</strong></td>
+                                <td>{{ event.name|ucfirst }}</strong></td>
                                 <td>
                                     {% if date() <= event.date %}
                                         <a href="{{ event.url }}" class="btn btn-success btn-xs">inschrijven</a>
