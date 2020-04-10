@@ -57,7 +57,7 @@ class DonationController extends Controller
         if ($request->query->has('amount')) {
             $amount = (int) $request->query->get('amount');
 
-            if ($amount <= 5) {
+            if ($amount < 5) {
                 $this->get('session')->getFlashBag()->add('danger', 'Een donatie moet minimaal 5 euro zijn.');
                 return $this->redirectToRoute('donate');
             }
