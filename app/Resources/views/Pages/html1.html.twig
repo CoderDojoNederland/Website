@@ -1,0 +1,67 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h3 class="h5 g-font-weight-300 g-mb-5">DevByRayRay helpt je met een introductie HTML/CSS</h3>
+                <h2 class="h1 g-font-weight-300 text-uppercase">Online HTML/CSS Cursus</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    Home
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Online
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    HTML / CSS
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Deel 1 - Gids voor mijn land
+                </li>
+            </ul>
+        </div>
+    </section>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<section class="col-lg-12 g-my-40">
+    <div class="container-fluid">
+        <div class="row g-mb-40">
+            <div class="col-4"></div>
+            <div class="col-4 text-center">
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">HTML / CSS Deel 1 - Gids voor mijn land</h2>
+                </div>
+
+                <p>
+                    <a href="https://twitter.com/@devbyrayray">@DevByRayRay</a> (Raymon) neemt in zijn vrijde tijd video's op voor CoderDojo Nederland. Hij is een Front-end Developer met aardig wat ervaring in zijn rugzak. Ook bij CoderDojo is hij geen onbekende, hij is namelijk nog mentor geweest bij CoderDojo Rotterdam!
+                </p>
+                <p>
+                    Raymon loodst je vandaag door de sushi kaarten van de Raspberry Pi Foundation om HTML en CSS te leren.
+                </p>
+            </div>
+        </div>
+        <div class="row g-mb-30 hidden-md">
+            <div class="col-6">
+                <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                    <iframe width="100%" src="//www.youtube.com/embed/XHSWxlHorSo" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                    <iframe src="https://trinket.io/embed/html/7612ebf888?runMode=autorun" width="100%" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div><!--/row-->
+    
+    </div><!--/container-->
+</section>
+<!--=== End Content Part ===-->
+{% endblock %}
