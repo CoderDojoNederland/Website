@@ -1,5 +1,20 @@
 {% extends "::index_v2.html.twig" %}
 
+{% block title %}HTML / CSS Deel 1 &mdash; Online Tutorial &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}HTML / CSS Deel 1 &mdash; Online Tutorial &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Raymon loodst je vandaag door de sushi kaarten van de Raspberry Pi Foundation om HTML en CSS te leren.
+    Duik voor het eerst in de wereld van HTML / CSS en leer hoe je een website over jouw land maakt!
+{% endblock %}
+
+{% block fbdescription %}
+    Raymon loodst je vandaag door de sushi kaarten van de Raspberry Pi Foundation om HTML en CSS te leren.
+    Duik voor het eerst in de wereld van HTML / CSS en leer hoe je een website over jouw land maakt!
+{% endblock %}
+
+{% block og_image %}https://www.coderdojo.nl{{asset('/img/online-tutorial/devbyrayray.png')}}{% endblock %}
+
 {% block content %}
 <!--=== Breadcrumbs ===-->
     <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
@@ -34,8 +49,8 @@
 <section class="col-lg-12 g-my-40">
     <div class="container-fluid">
         <div class="row g-mb-40">
-            <div class="col-4"></div>
-            <div class="col-4 text-center">
+            <div class="col-xl-3 col-lg-1"></div>
+            <div class="col-xl-6 col-lg-10 text-center">
                 <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20">
                     <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">HTML / CSS Deel 1 - Gids voor mijn land</h2>
                 </div>
@@ -48,7 +63,22 @@
                 </p>
             </div>
         </div>
-        <div class="row g-mb-30 hidden-md">
+        <div class="row g-mb-30 d-xl-none">
+            <div class="col-1"></div>
+            <div class="col-10 text-center">
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Scherm niet ondersteund!</h4>
+                    <p>
+                        Om makkelijk te kunnen werken is het van belang dat je een scherm hebt wat minimaal 1200px breed is. Heb je dit niet? Dan kun je ook gewoon het filmpje op youtube kijken!
+                    </p>
+                    <hr>
+                    <p class="mb-0">
+                        <a href="https://www.youtube.com/watch?v=XHSWxlHorSo">Bekijk op youtube</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row g-mb-30 d-none d-xl-flex">
             <div class="col-6">
                 <div class="embed-responsive embed-responsive-16by9 g-mb-30">
                     <iframe width="100%" src="//www.youtube.com/embed/XHSWxlHorSo" frameborder="0" allowfullscreen=""></iframe>
