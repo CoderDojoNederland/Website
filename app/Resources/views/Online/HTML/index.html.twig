@@ -1,0 +1,154 @@
+{% extends 'index_v2.html.twig' %}
+
+{% block content %}
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h2 class="h1 g-font-weight-300 text-uppercase">HTML / CSS</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('home') }}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('online_course') }}">Online Lessen</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    HTML / CSS
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="g-py-50">
+        <div class="container">
+            <div class="text-center g-mb-50">
+                <p>
+                    <a href="{{ path('online_course') }}" class="btn btn-outline-primary"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Terug naar overzicht</a>
+                </p>
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-30">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">HTML / CSS</h2>
+                </div>
+                <p class="lead g-px-60--md g-mb-40">
+                    Tijdens deze les ga je een website over je eigen land maken.<br/>We werken op basis van de sushi kaarten
+                    op de <a href="https://projects.raspberrypi.org">Raspberry Pi Projects</a> pagina.
+                </p>
+            </div>
+
+            <!-- Timeline Box -->
+            <ul class="row u-timeline-v2-wrap list-unstyled">
+                <li class="col-md-12 g-mb-40">
+                    <div class="row">
+                        <!-- Timeline Date -->
+                        <div class="col-md-3 text-md-right g-pt-20--md g-pr-40--md g-mb-20"></div>
+                        <!-- End Timeline Date -->
+
+                        <!-- Timeline Content -->
+                        <div class="col-md-9 g-orientation-left g-pl-40--md">
+                            <!-- Timeline Dot -->
+                            <div class="g-hidden-sm-down u-timeline-v2__icon g-top-35">
+                                <i class="d-block g-width-18 g-height-18 g-bg-white g-brd-around g-brd-3 g-brd-gray-light-v5 rounded-circle"></i>
+                            </div>
+                            <!-- End Timeline Dot -->
+
+                            <article class="g-pos-rel g-bg-gray-light-v5 g-pa-30">
+                                <!-- Timeline Arrow -->
+                                <div class="g-hidden-sm-down u-triangle-inclusive-v1--right g-top-30 g-z-index-2">
+                                    <div class="u-triangle-inclusive-v1--right__back g-brd-gray-light-v5-right"></div>
+                                </div>
+                                <div class="g-hidden-md-up u-triangle-inclusive-v1--top g-left-20 g-z-index-2">
+                                    <div class="u-triangle-inclusive-v1--top__back g-brd-gray-light-v5-bottom"></div>
+                                </div>
+                                <!-- End Timeline Arrow -->
+
+                                <header>
+                                    <span class="u-label u-label--sm g-bg-green g-rounded-20 g-px-15 g-mr-10 g-mb-15">Nieuw!</span>
+                                    <h3 class="g-font-weight-300">
+                                        <a href="{{path('online_course_html_css_1')}}">Les 1 - Introductie</a>
+                                    </h3>
+                                </header>
+                            </article>
+                        </div>
+                        <!-- End Timeline Content -->
+                    </div>
+                </li>
+
+                <li class="col-md-12 g-mb-40">
+                    <div class="row">
+                        <!-- Timeline Date -->
+                        <div class="col-md-3 text-md-right g-pt-20--md g-pr-40--md g-mb-20"></div>
+                        <!-- End Timeline Date -->
+
+                        <!-- Timeline Content -->
+                        <div class="col-md-9 g-orientation-left g-pl-40--md">
+                            <!-- Timeline Dot -->
+                            <div class="g-hidden-sm-down u-timeline-v2__icon g-top-35">
+                                <i class="d-block g-width-18 g-height-18 g-bg-white g-brd-around g-brd-3 g-brd-gray-light-v5 rounded-circle"></i>
+                            </div>
+                            <!-- End Timeline Dot -->
+
+                            <article class="g-pos-rel g-bg-gray-light-v5 g-pa-30">
+                                <!-- Timeline Arrow -->
+                                <div class="g-hidden-sm-down u-triangle-inclusive-v1--right g-top-30 g-z-index-2">
+                                    <div class="u-triangle-inclusive-v1--right__back g-brd-gray-light-v5-right"></div>
+                                </div>
+                                <div class="g-hidden-md-up u-triangle-inclusive-v1--top g-left-20 g-z-index-2">
+                                    <div class="u-triangle-inclusive-v1--top__back g-brd-gray-light-v5-bottom"></div>
+                                </div>
+                                <!-- End Timeline Arrow -->
+
+                                <header>
+                                    <span class="u-label u-label--sm g-bg-red g-rounded-20 g-px-15 g-mr-10 g-mb-15">Nog niet beschikbaar</span>
+                                    <h3 class="g-font-weight-300">
+                                        Les 2
+                                    </h3>
+                                </header>
+                            </article>
+                        </div>
+                        <!-- End Timeline Content -->
+                    </div>
+                </li>
+
+                <li class="col-md-12 g-mb-40">
+                    <div class="row">
+                        <!-- Timeline Date -->
+                        <div class="col-md-3 text-md-right g-pt-20--md g-pr-40--md g-mb-20"></div>
+                        <!-- End Timeline Date -->
+
+                        <!-- Timeline Content -->
+                        <div class="col-md-9 g-orientation-left g-pl-40--md">
+                            <!-- Timeline Dot -->
+                            <div class="g-hidden-sm-down u-timeline-v2__icon g-top-35">
+                                <i class="d-block g-width-18 g-height-18 g-bg-white g-brd-around g-brd-3 g-brd-gray-light-v5 rounded-circle"></i>
+                            </div>
+                            <!-- End Timeline Dot -->
+
+                            <article class="g-pos-rel g-bg-gray-light-v5 g-pa-30">
+                                <!-- Timeline Arrow -->
+                                <div class="g-hidden-sm-down u-triangle-inclusive-v1--right g-top-30 g-z-index-2">
+                                    <div class="u-triangle-inclusive-v1--right__back g-brd-gray-light-v5-right"></div>
+                                </div>
+                                <div class="g-hidden-md-up u-triangle-inclusive-v1--top g-left-20 g-z-index-2">
+                                    <div class="u-triangle-inclusive-v1--top__back g-brd-gray-light-v5-bottom"></div>
+                                </div>
+                                <!-- End Timeline Arrow -->
+
+                                <header>
+                                    <span class="u-label u-label--sm g-bg-red g-rounded-20 g-px-15 g-mr-10 g-mb-15">Nog niet beschikbaar</span>
+                                    <h3 class="g-font-weight-300">
+                                        Les 3
+                                    </h3>
+                                </header>
+                            </article>
+                        </div>
+                        <!-- End Timeline Content -->
+                    </div>
+                </li>
+
+            </ul>
+            <!-- End Timeline Box -->
+        </div>
+    </section>
+{% endblock %}

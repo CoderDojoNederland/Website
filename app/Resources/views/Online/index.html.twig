@@ -1,0 +1,134 @@
+{% extends 'index_v2.html.twig' %}
+
+{% block content %}
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h2 class="h1 g-font-weight-300 text-uppercase">Online Lessen</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('home') }}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Online Lessen
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="text-center g-py-120--md g-py-20" id="content">
+        <div class="container">
+            <div class="u-heading-v2-5--bottom g-brd-primary g-mb-30">
+                <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Volg CoderDojo zelfstandig online!</h2>
+            </div>
+
+            <p class="lead g-px-60--md g-mb-40">
+                Heb je geen tijd / zin om een dojo bij te wonen? Ben je op zoek naar een ander thema dan er bij een dojo wordt aangeboden?
+                Dan kun je nu helemaal zelfstandig ons materiaal maken onder begeleiding van een mentor via Youtube!
+                Maak de opdracht op je eigen tempo en wanneer het jou uit komt.
+            </p>
+        </div>
+    </section>
+    <section class="g-bg-dark">
+        <div class="container">
+            <!-- Products Block -->
+            <div class="row">
+                <div class="col-md-6 col-lg-4 g-mb-30">
+                    <!-- Article -->
+                    <article class="g-bg-white g-pos-rel">
+                        <!-- Carousel Images -->
+                        <a href="{{ path('online_course_html_css') }}">
+                            <div class="js-carousel g-mb-5">
+                                <img class="rounded" src="{{asset('/img/online-tutorial/devbyrayray.png')}}"/>
+                            </div>
+                        </a>
+                        <!-- End Carousel Images -->
+
+                        <div class="u-ribbon-v1 g-color-white g-bg-green g-font-size-11 text-uppercase g-top-10 g-left-10 rounded">Beginner</div>
+
+                        <!-- Article Content -->
+                        <div class="g-py-15">
+                            <h3 class="h5">HTML / CSS</h3>
+                            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-20">
+                                <li>
+                                    <span class="g-color-primary">Gamaakt door:</span>
+                                    <a href="https://twitter.com/@devbyrayray" target="_blank">@DevByRayRay</a>
+                                </li>
+                                <li>
+                                    <span class="g-color-primary">Voorkennis:</span>
+                                    Geen
+                                </li>
+                            </ul>
+                            <a href="{{ path('online_course_html_css') }}" class="btn btn-md u-btn-outline-primary g-font-weight-600 g-font-size-11 text-uppercase">Begin nu!</a>
+                        </div>
+                        <!-- End Article Content -->
+                    </article>
+                    <!-- End Article -->
+                </div>
+
+                <div class="col-md-6 col-lg-4 g-mb-30">
+                    <!-- Article -->
+                    <article class="g-bg-white g-pos-rel">
+                        <!-- Carousel Images -->
+                        <div class="js-carousel g-mb-5">
+                            <img class="rounded" style="opacity: 0.4;" src="{{asset('/img/online-tutorial/devbyrayray.png')}}"/>
+                        </div>
+                        <!-- End Carousel Images -->
+
+                        <div class="u-ribbon-v1 g-color-white g-bg-red g-font-size-11 text-uppercase g-top-10 g-left-10 rounded">Nog niet beschikbaar</div>
+
+                        <!-- Article Content -->
+                        <div class="g-py-15">
+                            <h3 class="h5">Python</h3>
+                            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-20">
+                                <li>
+                                    <span class="g-color-primary">Gamaakt door:</span>
+                                    Onbekend
+                                </li>
+                                <li>
+                                    <span class="g-color-primary">Voorkennis:</span>
+                                    Onbekend
+                                </li>
+                            </ul>
+                            <a href="#" class="btn disabled btn-md u-btn-outline-primary g-font-weight-600 g-font-size-11 text-uppercase">Begin nu!</a>
+                        </div>
+                        <!-- End Article Content -->
+                    </article>
+                    <!-- End Article -->
+                </div>
+                <div class="col-md-6 col-lg-4 g-mb-30">
+                    <!-- Article -->
+                    <article class="g-bg-white g-pos-rel">
+                        <!-- Carousel Images -->
+                        <div class="js-carousel g-mb-5">
+                            <img class="rounded" style="opacity: 0.4;" src="{{asset('/img/online-tutorial/devbyrayray.png')}}"/>
+                        </div>
+                        <!-- End Carousel Images -->
+
+                        <div class="u-ribbon-v1 g-color-white g-bg-red g-font-size-11 text-uppercase g-top-10 g-left-10 rounded">Nog niet beschikbaar</div>
+
+                        <!-- Article Content -->
+                        <div class="g-py-15">
+                            <h3 class="h5">Scratch</h3>
+                            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-20">
+                                <li>
+                                    <span class="g-color-primary">Gamaakt door:</span>
+                                    Onbekend
+                                </li>
+                                <li>
+                                    <span class="g-color-primary">Voorkennis:</span>
+                                    Onbekend
+                                </li>
+                            </ul>
+                            <a href="#" class="btn disabled btn-md u-btn-outline-primary g-font-weight-600 g-font-size-11 text-uppercase">Begin nu!</a>
+                        </div>
+                        <!-- End Article Content -->
+                    </article>
+                    <!-- End Article -->
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -60,6 +60,13 @@ codeweek-alias:
         route: codeweek
         permanent: true
 
+old-html:
+    path: /html-1
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: online_course_html_css_1
+        permanent: true
+
 vog-alias:
     path: /vog
     defaults:

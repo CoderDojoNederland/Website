@@ -20,25 +20,24 @@
     <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
         <div class="container g-bg-cover__inner">
             <header class="g-mb-20">
-                <h3 class="h5 g-font-weight-300 g-mb-5">DevByRayRay helpt je met een introductie HTML/CSS</h3>
-                <h2 class="h1 g-font-weight-300 text-uppercase">Online HTML/CSS Cursus</h2>
+                <h2 class="h1 g-font-weight-300 text-uppercase">HTML/CSS Les 1</h2>
             </header>
 
             <ul class="u-list-inline">
                 <li class="list-inline-item g-mr-7">
-                    Home
+                    <a href="{{ path('home') }}">Home</a>
                     <i class="fa fa-angle-right g-ml-7"></i>
                 </li>
                 <li class="list-inline-item g-mr-7">
-                    Online
+                    <a href="{{ path('online_course') }}">Online Lessen</a>
                     <i class="fa fa-angle-right g-ml-7"></i>
                 </li>
                 <li class="list-inline-item g-mr-7">
-                    HTML / CSS
+                    <a href="{{ path('online_course_html_css') }}">HTML / CSS</a>
                     <i class="fa fa-angle-right g-ml-7"></i>
                 </li>
                 <li class="list-inline-item g-mr-7">
-                    Deel 1 - Gids voor mijn land
+                    Les 1
                 </li>
             </ul>
         </div>
@@ -51,6 +50,9 @@
         <div class="row g-mb-40">
             <div class="col-xl-3 col-lg-1"></div>
             <div class="col-xl-6 col-lg-10 text-center">
+                <p class="text-left">
+                    <a href="{{ path('online_course_html_css') }}" class="btn btn-outline-primary"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Terug naar overzicht</a>
+                </p>
                 <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20">
                     <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">HTML / CSS Deel 1 - Gids voor mijn land</h2>
                 </div>

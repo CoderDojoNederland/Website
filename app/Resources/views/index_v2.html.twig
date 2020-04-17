@@ -85,10 +85,9 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
 </head>
 
 <body>
-<header id="js-header" class="u-header u-header--static--lg u-header--show-hide--lg u-header--change-appearance--lg" data-header-fix-moment="500" data-header-fix-effect="slide">
-    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10" data-header-fix-moment-exclude="g-bg-white g-py-10" data-header-fix-moment-classes="g-bg-white-opacity-0_7 u-shadow-v18 g-py-0">
+<header id="js-header" class="u-header u-header--steady u-header--show-hide u-header--change-appearance" data-header-fix-moment="500" data-header-fix-effect="slide">
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10" data-header-fix-moment-exclude="g-bg-white g-py-10" data-header-fix-moment-classes="g-bg-white-opacity-0_7 u-shadow-v18 g-py-5">
         <nav class="js-mega-menu navbar navbar-expand-lg">
-            <div class="container">
                 <!-- Responsive Toggle Button -->
                 <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
                       <span class="hamburger hamburger--slider">
@@ -108,13 +107,13 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                 <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10" id="navBar">
                     <ul class="navbar-nav ml-auto text-uppercase g-font-weight-600 u-main-nav-v5 u-sub-menu-v1">
                         <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
-                            <a href="{{ path('dojos') }}" class="nav-link">Locaties
-
+                            <a href="{{ path('dojos') }}" class="nav-link">
+                                <i class="fa fa-location-arrow"></i>&nbsp;&nbsp;Locaties
                             </a>
                         </li>
                         <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['mentors', 'setup', 'material', 'dashboard'] %} active{% endif %}">
                             <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
-                                Jouw Dojo
+                                <i class="fa fa-home"></i>&nbsp;&nbsp;Jouw Dojo
                             </a>
                             <!-- Submenu -->
                             <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
@@ -143,20 +142,15 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                         </li>
                         <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
                             <a href="{{ path('blog_index') }}" class="nav-link">
-                                Nieuws
+                                <i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;Nieuws
                             </a>
                         </li>
                         <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['foundation', 'about', 'contact'] %} active{% endif %}">
                             <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
-                                De Stichting
+                                <i class="fa fa-building-o"></i>&nbsp;&nbsp;De Stichting
                             </a>
                             <!-- Submenu -->
                             <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
-                                <li {% if app.request.get('_route') == 'donate' %}class="active"{% endif %}>
-                                    <a href="{{ path('donate') }}">
-                                        Doneren
-                                    </a>
-                                </li>
                                 <li {% if app.request.get('_route') == 'foundation' %}class="active"{% endif %}>
                                     <a href="{{ path('foundation') }}">
                                         Over de Stichting
@@ -182,7 +176,7 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                         </li>
                         <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['dojocon', 'codeweek', 'weekvandemediawijsheid'] %} active{% endif %}">
                             <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
-                                <i class="fa fa-calendar"></i>&nbsp;
+                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;
                                 Events
                             </a>
                             <!-- Submenu -->
@@ -210,36 +204,40 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </ul>
                             <!-- End Submenu -->
                         </li>
-                        <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['club_of_100', 'club_of_100_showcase'] %} active{% endif %}">
+                        <li class="nav-item hs-has-sub-menu g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') in ['donate', 'club_of_100', 'club_of_100_showcase'] %} active{% endif %}">
                             <a href="#" class="nav-link" id="nav-link-1" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-1">
-                                <i class="fa fa-trophy"></i>&nbsp;
-                                Club van 100
+                                <i class="fa fa-money"></i>&nbsp;&nbsp;
+                                Steun ons
                             </a>
                             <!-- Submenu -->
                             <ul class="hs-sub-menu list-unstyled g-mt-20--lg g-mt-10--lg--scrolling" id="nav-submenu-1" aria-labelledby="nav-link-1">
-                                <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
-                                    <a href="{{ path('club_of_100') }}">
-                                        Lid worden
+                                <li {% if app.request.get('_route') == 'donate' %}class="active"{% endif %}>
+                                    <a href="{{ path('donate') }}">
+                                        <i class="fa fa-money"></i>&nbsp;&nbsp;Doneren
                                     </a>
                                 </li>
-                                <li {% if app.request.get('_route') == 'club_of_100_showcase' %}class="active"{% endif %}>
+                                <li {% if app.request.get('_route') == 'club_of_100' %}class="active"{% endif %}>
+                                    <a href="{{ path('club_of_100') }}">
+                                        <i class="fa fa-trophy"></i>&nbsp;&nbsp;Club van 100
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ path('club_of_100_showcase') }}">
-                                        Huidige Leden
+                                        <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Webshop
                                     </a>
                                 </li>
                             </ul>
                             <!-- End Submenu -->
                         </li>
-                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg">
-                            <a href="https://webshop.coderdojo.nl" class="nav-link">
-                                <i class="fa fa-shopping-cart"></i>&nbsp;
-                                Webshop
+                        <li class="nav-item g-mx-20--lg g-mb-5 g-mb-0--lg{% if app.request.get('_route') starts with 'online_course' %} active{% endif %}">
+                            <a href="{{ path('online_course') }}" class="nav-link">
+                                <i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;
+                                Online Cursus
                             </a>
                         </li>
                     </ul>
                 </div>
                 <!-- End Navigation -->
-            </div>
         </nav>
     </div>
 </header>

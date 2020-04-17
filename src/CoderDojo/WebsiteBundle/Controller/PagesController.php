@@ -122,12 +122,4 @@ class PagesController extends Controller
     {
         return $this->render(':Pages:upgrade-dojo.html.twig');
     }
-
-    /**
-     * @Route("/html-1", name="html1")
-     */
-    public function html1Action()
-    {
-        return $this->render(':Pages:html1.html.twig');
-    }
 }
