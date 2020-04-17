@@ -1,5 +1,20 @@
 {% extends 'index_v2.html.twig' %}
 
+{% block title %}HTML / CSS &mdash; Online Cursus &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}HTML / CSS &mdash; Online Cursus &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Raymon loodst je vandaag door de sushi kaarten van de Raspberry Pi Foundation om HTML en CSS te leren.
+    Duik voor het eerst in de wereld van HTML / CSS en leer hoe je een website over jouw land maakt!
+{% endblock %}
+
+{% block fbdescription %}
+    Raymon loodst je vandaag door de sushi kaarten van de Raspberry Pi Foundation om HTML en CSS te leren.
+    Duik voor het eerst in de wereld van HTML / CSS en leer hoe je een website over jouw land maakt!
+{% endblock %}
+
+{% block og_image %}https://www.coderdojo.nl{{asset('/img/online-tutorial/devbyrayray.png')}}{% endblock %}
+
 {% block content %}
     <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
         <div class="container g-bg-cover__inner">
