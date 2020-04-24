@@ -95,28 +95,20 @@
                 <table class="table">
                     <tbody>
                         {% for event in events if date() <= event.date %}
-                            <tr {% if date() > event.date %}class="text-muted"{% endif %}>
+                            <tr>
                                 <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
                                 <td>{{ event.name|ucfirst }}</strong></td>
                                 <td>
-                                    {% if date() <= event.date %}
-                                        <a href="{{ event.url }}" class="btn btn-success btn-xs">inschrijven</a>
-                                    {% else %}
-                                        <span class="label label-default label-xs">Voorbij</span>
-                                    {% endif %}
+                                    <a href="{{ event.url }}" class="btn btn-success btn-xs">inschrijven</a>
                                 </td>
                             </tr>
                         {% endfor %}
-                        {% for event in events if date() > event.date %}
-                            <tr {% if date() > event.date %}class="text-muted"{% endif %}>
+                        {% for event in events if date('Y-m-d') > event.date|date('Y-m-d') %}
+                            <tr class="text-muted">
                                 <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
                                 <td>{{ event.name|capitalize }}</strong></td>
                                 <td>
-                                    {% if date() <= event.date %}
-                                        <a href="{{ event.url }}" class="btn btn-success btn-xs">inschrijven</a>
-                                    {% else %}
-                                        <span class="label label-default label-xs">Voorbij</span>
-                                    {% endif %}
+                                    <span class="label label-default label-xs">Voorbij</span>
                                 </td>
                             </tr>
                         {% endfor %}
