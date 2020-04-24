@@ -94,7 +94,7 @@
                 <p class="margin-bottom-20">We zijn nog hard bezig om meer events in te plannen!</p>
                 <table class="table">
                     <tbody>
-                        {% for event in events if date() <= event.date %}
+                        {% for event in events if date('Y-m-d') <= event.date|date('Y-m-d') %}
                             <tr>
                                 <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
                                 <td>{{ event.name|ucfirst }}</strong></td>
