@@ -81,6 +81,13 @@ corona:
         path: /nieuws/dojo-support/coderdojo-in-tijden-van-corona
         permanent: true
 
+hack-challenge:
+    path: /hack-challenge
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /nieuws/events/hack-challenges-competitie
+        permanent: false
+
 coder_dojo_website:
     resource: "@CoderDojoWebsiteBundle/Controller"
     type:     annotation
