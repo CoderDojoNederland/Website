@@ -4,8 +4,6 @@ namespace CoderDojo\WebsiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/online-les")
@@ -34,5 +32,21 @@ class OnlineController extends Controller
     public function htmlCss1Action()
     {
         return $this->render(':Online/HTML:course1.html.twig');
+    }
+
+    /**
+     * @Route("/scratch", name="online_course_scratch")
+     */
+    public function scratchAction()
+    {
+        return $this->render(':Online/Scratch:index.html.twig');
+    }
+
+    /**
+     * @Route("/scratch/versla-het-corona-monster", name="online_course_scratch_corona_monster")
+     */
+    public function scratch1Action()
+    {
+        return $this->render(':Online/Scratch:course1.html.twig');
     }
 }

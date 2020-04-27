@@ -1,0 +1,103 @@
+{% extends "::index_v2.html.twig" %}
+
+{% block title %}Scratch &mdash; Online Cursus &mdash; {{ parent() }}{% endblock %}
+{% block fbtitle %}Scratch &mdash; Online Cursus &mdash; {{ parent() }}{% endblock %}
+
+{% block description %}
+    Imara is vrijwilliger bij CoderDojo en helpt je graag op weg met Scratch. Ze heeft alvast een leuke opdracht in
+    een passend thema voor je klaar staan! Een spel over het Corona virus. Doe je ook mee?
+{% endblock %}
+
+{% block fbdescription %}
+    Imara is vrijwilliger bij CoderDojo en helpt je graag op weg met Scratch. Ze heeft alvast een leuke opdracht in
+    een passend thema voor je klaar staan! Een spel over het Corona virus. Doe je ook mee?
+{% endblock %}
+
+{% block og_image %}https://www.coderdojo.nl{{asset('/img/online-tutorial/imara.png')}}{% endblock %}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+    <section class="g-bg-size-cover g-bg-pos-center g-bg-cover g-bg-black-opacity-0_5--after g-color-white g-py-50 g-mb-20" style="background-image: url({{ asset('/bundles/coderdojowebsite/img/headers/header_13.jpg') }});">
+        <div class="container g-bg-cover__inner">
+            <header class="g-mb-20">
+                <h2 class="h1 g-font-weight-300 text-uppercase">Scratch - Versla het Corona Virus</h2>
+            </header>
+
+            <ul class="u-list-inline">
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('home') }}">Home</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('online_course') }}">Online Les</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    <a href="{{ path('online_course_html_css') }}">Scratch</a>
+                    <i class="fa fa-angle-right g-ml-7"></i>
+                </li>
+                <li class="list-inline-item g-mr-7">
+                    Versla het Corona Virus
+                </li>
+            </ul>
+        </div>
+    </section>
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<section class="col-lg-12 g-my-40">
+    <div class="container-fluid">
+        <div class="row g-mb-40">
+            <div class="col-xl-3 col-lg-1"></div>
+            <div class="col-xl-6 col-lg-10 text-center">
+                <p class="text-left">
+                    <a href="{{ path('online_course_scratch') }}" class="btn btn-outline-primary"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Terug naar overzicht</a>
+                </p>
+                <div class="u-heading-v2-5--bottom g-brd-primary g-mb-20">
+                    <h2 class="u-heading-v2__title text-uppercase g-font-weight-300 mb-0">Scratch - Versla het Corona Virus</h2>
+                </div>
+                <div class="alert alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Let op:</strong> Dit is een eerste proefversie om te testen!
+                </div>
+                <p>
+                    Imara is vrijwilliger bij CoderDojo en helpt je graag op weg met Scratch. Ze heeft alvast een leuke opdracht in
+                    een passend thema voor je klaar staan! Een spel over het Corona virus. Doe je ook mee?
+                </p>
+                <p class="g-mt-40">
+                    <a href="https://forms.gle/PttgiANpdmjkAA9d9" class="btn btn-primary btn-lg">Laat je ons weten wat je er van vond?&nbsp;&nbsp;<i class="fa fa-external-link"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="row g-mb-30 d-xl-none">
+            <div class="col-1"></div>
+            <div class="col-10 text-center">
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Scherm niet ondersteund!</h4>
+                    <p>
+                        Om makkelijk te kunnen werken is het van belang dat je een scherm hebt wat minimaal 1200px breed is. Heb je dit niet? Dan kun je ook gewoon het filmpje op youtube kijken!
+                    </p>
+                    <hr>
+                    <p class="mb-0">
+                        <a href="https://www.youtube.com/watch?v=4OWFMl2AVWc">Bekijk op youtube</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row g-mb-30 d-none d-xl-flex">
+            <div class="col-6">
+                <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                    <iframe width="100%" src="//www.youtube.com/embed/4OWFMl2AVWc" frameborder="0" allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="embed-responsive embed-responsive-16by9 g-mb-30">
+                    <iframe src="https://scratch.mit.edu/projects/embed/388165399/?autostart=true" width="100%" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div><!--/row-->
+    
+    </div><!--/container-->
+</section>
+<!--=== End Content Part ===-->
+{% endblock %}
