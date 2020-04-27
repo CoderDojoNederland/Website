@@ -42,6 +42,21 @@
         <div class="row g-mb-30">
             <div class="col-md-3"></div>
             <div class="col-md-6 text-center margin-bottom-10">
+                <div class="alert alert-info alert-dismissible fade show text-left" role="alert">
+                    <h4 class="h5">
+                        <i class="fa fa-info-circle"></i>
+                        Online dojo's niks voor jou? Zitten ze vol?
+                    </h4>
+                    <p class="g-mb-10">Misschien zijn deze alternatieven iets voor jou!</p>
+                    <a href="{{ path('online_course') }}" class="btn u-btn-primary btn-xs rounded-0">
+                        <i class="fa fa-graduation-cap g-mr-2"></i>
+                        Online Lessen
+                    </a>
+                    <a href="{{ path('hack-challenge') }}" class="btn u-btn-primary btn-xs rounded-0">
+                        <i class="fa fa-code g-mr-2"></i>
+                        Hack Challange
+                    </a>
+                </div>
                 <div class="headline g-mb-30">
                     <h2>CoderDojo Online</h2>
                 </div>
@@ -64,7 +79,7 @@
                         </p>
                         <p class="text-center">
                             <a href="https://drive.google.com/drive/folders/1Eux-Ejxuq7gpfE8S9ExDzVKYLgcDidx_" target="_blank" class="btn btn-lg u-btn-orange g-mr-10 g-mb-15">Organiseer zelf een online dojo&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i></a><br/>
-                            <a href="{{url('corona')}}" target="_blank" class="btn btn-outline-primary btn-m g-mr-10 g-mb-15">Meer info over CoderDojo en het Corona virus&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i></a>
+                            <a href="{{url('corona')}}" class="btn btn-outline-primary btn-m g-mr-10 g-mb-15">Meer info over CoderDojo en het Corona virus&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-external-link"></i></a>
                         </p>
                     </div>
                 </div>
@@ -96,7 +111,7 @@
                     <tbody>
                         {% for event in events if "now"|date('Y-m-d') <= event.date|date('Y-m-d') %}
                             <tr>
-                                <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
+                                <td width="170"><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
                                 <td>{{ event.name|ucfirst }}</strong></td>
                                 <td>
                                     <a href="{{ event.url }}" class="btn btn-success btn-xs">inschrijven</a>
@@ -105,7 +120,7 @@
                         {% endfor %}
                         {% for event in events if "now"|date('Y-m-d') > event.date|date('Y-m-d') %}
                             <tr class="text-muted">
-                                <td><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
+                                <td width="170"><strong>{{ event.date|localizeddate('medium', 'none', 'nl_NL', 'Europe/Amsterdam', 'EEEE d MMMM') }}</td>
                                 <td>{{ event.name|capitalize }}</strong></td>
                                 <td>
                                     <span class="label label-default label-xs">Voorbij</span>
@@ -119,6 +134,4 @@
     </div><!--/container-->
 </section>
 <!--=== End Content Part ===-->
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endblock %}
