@@ -133,27 +133,29 @@
                     <!-- Article -->
                     <article class="g-bg-white g-pos-rel">
                         <!-- Carousel Images -->
-                        <div class="js-carousel g-mb-5">
-                            <img class="rounded" style="opacity: 0.4;" src="{{asset('/img/online-tutorial/devbyrayray.png')}}"/>
-                        </div>
+                        <a href="{{ path('online_course_python') }}">
+                            <div class="js-carousel g-mb-5">
+                                <img class="rounded" src="{{asset('/img/online-tutorial/chris.png')}}"/>
+                            </div>
+                        </a>
                         <!-- End Carousel Images -->
 
-                        <div class="u-ribbon-v1 g-color-white g-bg-red g-font-size-11 text-uppercase g-top-10 g-left-10 rounded">Nog niet beschikbaar</div>
+                        <div class="u-ribbon-v1 g-color-white g-bg-green g-font-size-11 text-uppercase g-top-10 g-left-10 rounded">Beginner</div>
 
                         <!-- Article Content -->
                         <div class="g-py-15">
-                            <h3 class="h5">Scratch</h3>
+                            <h3 class="h5">Python</h3>
                             <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-20">
                                 <li>
                                     <span class="g-color-primary">Gemaakt door:</span>
-                                    Onbekend
+                                    <a href="https://twitter.com/christian__v">@Christian__V</a>
                                 </li>
                                 <li>
                                     <span class="g-color-primary">Voorkennis:</span>
-                                    Onbekend
+                                    Geen
                                 </li>
                             </ul>
-                            <a href="#" class="btn disabled btn-md u-btn-outline-primary g-font-weight-600 g-font-size-11 text-uppercase">Begin nu!</a>
+                            <a href="{{ path('online_course_python') }}" class="btn btn-md u-btn-outline-primary g-font-weight-600 g-font-size-11 text-uppercase">Begin nu!</a>
                         </div>
                         <!-- End Article Content -->
                     </article>

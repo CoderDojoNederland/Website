@@ -49,4 +49,20 @@ class OnlineController extends Controller
     {
         return $this->render(':Online/Scratch:course1.html.twig');
     }
+
+    /**
+     * @Route("/python", name="online_course_python")
+     */
+    public function pythonAction()
+    {
+        return $this->render(':Online/Python:index.html.twig');
+    }
+
+    /**
+     * @Route("/python/basis-programmeren", name="online_course_python_basic")
+     */
+    public function python1Action()
+    {
+        return $this->render(':Online/Python:course1.html.twig');
+    }
 }
