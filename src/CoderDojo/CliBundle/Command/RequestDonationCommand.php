@@ -53,7 +53,7 @@ class RequestDonationCommand extends ContainerAwareCommand
 
             $ecurring = $this->getContainer()->get('coder_dojo.website_bundle.ecurring');
             $memberId = $ecurring->createCustomer($member);
-            $confirmationUrl = $ecurring->createSubscription($memberId, $member->getInterval(), $member->getHash());
+            $confirmationUrl = $ecurring->createSubscription($memberId, Club100::INTERVAL_YEARLY_INVOICED, $member->getHash());
             $member->setConfirmationUrl($confirmationUrl);
             $doctrine->getManager()->flush();
 
