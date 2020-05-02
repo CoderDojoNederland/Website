@@ -75,7 +75,7 @@ class RequestDonationCommand extends ContainerAwareCommand
 
             $this->getContainer()->get('mailer')->send($message);
 
-            $io->writeln(sprintf('Member %s %s has received a request for donation %s', $member->getFirstName(), $member->getLastName(), $donation->getUuid()));
+            $io->writeln(sprintf('Member %s %s has received a request for donation %s', $member->getFirstName(), $member->getLastName(), $member->getConfirmationUrl()));
             $io->newLine(2);
         }
 
