@@ -125,7 +125,7 @@ class Club100
     private $donations;
 
     /**
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", nullable=true)
      **/
     private $confirmationUrl;
@@ -384,9 +384,9 @@ class Club100
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getConfirmationUrl(): string
+    public function getConfirmationUrl():? string
     {
         return $this->confirmationUrl;
     }
