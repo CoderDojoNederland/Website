@@ -120,7 +120,7 @@
                 <!-- Testimonials -->
                 <div class="u-shadow-v19 g-bg-white text-center rounded g-pt-20 g-pb-40 g-px-40">
                     <i class="d-block g-color-orange g-font-size-50 g-line-height-0_7 g-pos-rel g-top-20">“</i>
-                    <blockquote class="lead u-blockquote-v6 g-py-20">{{ member.reason|truncate(200) }}</blockquote>
+                    <blockquote class="lead u-blockquote-v6 g-py-20">{{ member.reason|striptags|truncate(200) }}</blockquote>
                     <img class="g-width-70 g-height-70 g-brd-2 g-brd-style-solid g-brd-orange rounded-circle g-mb-20" src="{{ asset('/club-100-avatars/' ~ member.avatar)|imagine_filter('club_100_member') }}" alt="{{ member.firstName }} {{ member.lastName }}">
                     <h4 class="h5 g-color-orange g-mb-0">{{ member.firstName }} {{ member.lastName }}</h4>
                     {% if member.company != '' %}
