@@ -105,9 +105,8 @@
                         </thead>
                         <tbody>
                         <div class="alert alert-danger g-mb-20">
-                            ⚠️ <strong>Let op:</strong> Wegens COVID-19 zijn alle dojo's afgelast! Ondertussen worden er wel <a href="{{ url('online') }}">online dojo's georganiseerd</a>.
+                            ⚠️ <strong>Let op:</strong> Wegens COVID-19 kan het zijn dat sommige dojo's online plaats vinden. Deze vind je <a href="{{ url('online') }}">hier</a>. Let dus goed op bij het registreren!
                         </div>
-                        {#
                         {% if nextdojos|length > 0 %}
                         {% for event in nextdojos %}
                             <tr class="dojo-row" data-dojo-id="{{event.dojo.id}}" data-dojo-city="{{ event.dojo.city }}">
@@ -135,7 +134,6 @@
                                 </div>
                             </div>
                         {% endif %}
-                        #}
                         </tbody>
                     </table>
                 </div>
