@@ -381,7 +381,13 @@
     <!-- upcoming dojos -->
     <section class="col-lg-12 g-py-40">
         <div class="container">
+            <div class="u-heading-v3-1 g-mb-20">
+                <h2 class="h3 u-heading-v3__title g-brd-primary">Eerstvolgende Dojo's</h2>
+            </div>
             <div class="table-responsive">
+                <div class="alert alert-danger g-mb-20">
+                    ⚠️ <strong>Let op:</strong> Wegens COVID-19 kan het zijn dat sommige dojo's online plaats vinden. Deze vind je <a href="{{ url('online') }}">hier</a>. Let dus goed op bij het registreren!
+                </div>
                 <table class="table table-bordered table-hover u-table--v2 text-uppercase g-col-border-side-0">
                     <thead>
                     <tr class="g-bg-primary g-color-white g-col-border-top-0">
@@ -392,7 +398,6 @@
                     </tr>
                     </thead>
                     <tbody class="g-font-size-12 g-color-black-opacity-0_6 g-font-weight-600">
-                    {#
                     {% for event in dojos %}
                         <tr itemscope itemtype="http://schema.org/Event" class="" data-dojo-city="{{ event.dojo.city }}">
                             <th class="g-color-black-opacity-0_8" scope="row"  itemprop="name">{{ event.dojo.name|truncate(50) }}</th>
@@ -416,17 +421,8 @@
                             <a href="{{path('dojos')}}" class="btn btn-block btn-default btn-xs" type="button">Bekijk alle dojo&apos;s &raquo;</a>
                         </td>
                     </tr>
-                    #}
                     </tbody>
                 </table>
-                <div class="container">
-                    <div class="u-heading-v3-1 g-mb-20">
-                        <h2 class="h3 u-heading-v3__title g-brd-primary">Eerstvolgende Dojo's</h2>
-                    </div>
-                    <div class="alert alert-danger g-mb-20">
-                        ⚠️ <strong>Let op:</strong> Wegens COVID-19 zijn alle dojo's afgelast! Ondertussen worden er wel <a href="{{ url('online') }}">online dojo's georganiseerd</a>.
-                    </div>
-                </div>
             </div>
         </div>
     </section>
