@@ -45,7 +45,7 @@ class PagesController extends Controller
      */
     public function euCodeWeekAction()
     {
-        $events = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getCodeWeek2019Events();
+        $events = $this->getDoctrine()->getRepository("CoderDojoWebsiteBundle:DojoEvent")->getCodeWeek2020Events();
         return $this->render(':Pages:codeweek.html.twig', ['events' => $events]);
     }
 
