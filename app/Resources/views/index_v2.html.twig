@@ -186,6 +186,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                         Online Dojo's
                                     </a>
                                 </li>
+                                <li {% if app.request.get('_route') == 'codeweek' %}class="active"{% endif %}>
+                                    <a href="{{ path('codeweek') }}">
+                                        CodeWeek 2020
+                                    </a>
+                                </li>
                                 <li {% if app.request.get('_route') == 'online' %}class="active"{% endif %}>
                                     <a href="{{ path('hack-challenge') }}">
                                         Hack Challenge
@@ -194,11 +199,6 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                 <li {% if app.request.get('_route') == 'dojocon' %}class="active"{% endif %}>
                                     <a href="{{ path('dojocon') }}">
                                         DojoCon 2019
-                                    </a>
-                                </li>
-                                <li {% if app.request.get('_route') == 'codeweek' %}class="active"{% endif %}>
-                                    <a href="{{ path('codeweek') }}">
-                                        CodeWeek 2019
                                     </a>
                                 </li>
                                 <li {% if app.request.get('_route') == 'weekvandemediawijsheid' %}class="active"{% endif %}>
