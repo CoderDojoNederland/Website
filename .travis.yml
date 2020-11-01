@@ -12,9 +12,7 @@ before_install:
 - composer self-update
 install: composer install --prefer-dist --no-interaction --no-scripts
 script:
-- bin/phpunit -c phpunit.xml.dist
-after_success:
-- ./config/deploy.sh
+  - ./config/deploy.sh
 env:
   global:
   - secure: gHklOYvmA3/juQHnSuUb/h48Ke+QmNSPxfBAeERGr05y7O457yZPs7+3ZkpTXlff1lnTLQfhk04hI47OvXwRMNlKNZQZhy1ELL1YdrqeRYHzbCp1VxqHHwocN/lQU6l1QEfUTpo80eDV5DMXbgYNdqZbQxEp7nseJTXOoWZ9q1CfMBGOAC0O47ge+aMh2p3OZrSWrBFnnEx/xVeF6Orth+Xx/1z20E9A1W/HqnK8sglvDwcI0Y/UqLQLIqrdKDZxgIAbjl7zjVqMRbJDXkbsiHFoyCiYEPtsrQMg25zX3PxLiwhAOBaxgrZIzxomKbgGAKN128xlnGmTPAvsHet+25HgsUWI21A/xhD6nFe8ZIAdQl+T9PPJjMb/eNOltahTjADMgN6Mr8mkuhCqaFD6RTJ7bEfTizksqrZgB84bftGG13vGbVH53zVCo49478BksNyVo/0JuFtVmfjYvCQwPX9/2S1M+3scYpun294m55g7iKKmlvxCiGgyVr+k5dqEWJ6sB3JM4M+f4VZa4UmumnuVIIqWf6GEZ4qUSyg0tT9ukkRPap04jB9/Gw/dXZH0/1htynhxLc9e2oeRsQ0dvXxjOSoNjA0wioVZQxPcx6ZcgLhONj+YvldiAu+Glu4zTQoykC1AoBNoUR0esUAszgY35BXtruX6ZSu6qbxkNCo=
