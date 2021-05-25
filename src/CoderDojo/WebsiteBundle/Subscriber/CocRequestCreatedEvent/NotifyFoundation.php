@@ -50,7 +50,7 @@ class NotifyFoundation
             ->setSubject(sprintf('Nieuwe VOG Aanvraag'))
             ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
             ->setReplyTo($coc->getRequestedBy()->getEmail())
-            ->setTo('sanneke@coderdojo.nl')
+            ->setTo('contact@coderdojo.nl')
             ->setBcc('chris@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
