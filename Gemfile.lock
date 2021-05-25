@@ -29,7 +29,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
-    rake (12.3.1)
+    rake (13.0.3)
     slackistrano (3.8.2)
       capistrano (>= 3.8.1)
     sshkit (1.17.0)
