@@ -115,4 +115,4 @@ http://localhost/app_dev.php
 
 # Contact
 
-For questions feel free to contact **[@ChristianVermeulen](http://github.com/christianvermeulen)** or **[@tmw](http://github.com/tmw)**.
+For questions feel free to contact **[@ChristianVermeulen](http://github.com/christianvermeulen)**.
