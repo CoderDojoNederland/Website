@@ -1,6 +1,6 @@
 # CoderDojo Nederland Website
 
-[![Build Status](https://travis-ci.org/CoderDojoNederland/Website.svg?branch=master)](https://travis-ci.org/CoderDojoNederland/Website)
+[![Build Status](https://travis-ci.com/CoderDojoNederland/Website.svg?branch=master)](https://travis-ci.com/CoderDojoNederland/Website)
 [![Coverage Status](https://coveralls.io/repos/CoderDojoNederland/website/badge.svg?branch=master&service=github)](https://coveralls.io/github/CoderDojoNederland/website?branch=master)
 
 http://www.coderdojo.nl
