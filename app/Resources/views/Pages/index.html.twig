@@ -301,7 +301,7 @@
     <!-- end second icon blocks -->
 
     <!-- news articles -->
-    <section class="col-lg-12 g-bg-secondary g-py-40">
+    <section class="col-lg-12 g-py-40">
         <div class="container">
             <div class="u-heading-v3-1 g-mb-40">
                 <h2 class="h3 u-heading-v3__title g-brd-primary">Laatste nieuws</h2>
@@ -354,7 +354,7 @@
     <!-- end news articles -->
 
     <!-- upcoming dojos -->
-    <section class="col-lg-12 g-py-40">
+    <section class="col-lg-12 g-bg-secondary g-py-40">
         <div class="container">
             <div class="u-heading-v3-1 g-mb-20">
                 <h2 class="h3 u-heading-v3__title g-brd-primary">Eerstvolgende Dojo's</h2>
@@ -403,7 +403,7 @@
     </section>
     <!-- end upcoming dojos -->
     <!-- friends -->
-    <section class="col-lg-12 g-bg-secondary g-py-40">
+    <section class="col-lg-12 g-py-40">
         <div class="container">
             <div class="u-heading-v3-1 g-mb-40">
                 <h2 class="h3 u-heading-v3__title g-brd-primary">CoderDojo is verbonden met</h2>
@@ -411,33 +411,24 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-2 text-center">&nbsp;</div>
-
-                <div class="col-md-2 text-center">
-                    <a href="https://coderdojo.nl/nieuws/algemeen/nieuwe-sponsor-codestarter-coderdojo" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/codestarter.png') }}" width="100%" alt="Sponsoring door Codestarter" title="Sponsoring door Codestarter" style="margin-top: 30px;"/>
-                    </a>
-                </div>
-
+                <div class="col-md-3 text-center"></div>
                 <div class="col-md-2 text-center">
                     <a href="https://coderdojo.nl/nieuws/algemeen/nieuwe-sponsor-rootnet-coderdojo" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/rootnet.png') }}" width="100%" alt="Sponsoring door Rootnet" title="Sponsoring door Rootnet" style="margin-top: 30px;"/>
-                    </a>
-                </div>
-
-                <div class="col-md-2 text-center">
-                    <a href="https://ec.europa.eu/digital-single-market/en/digital-skills-jobs-coalition" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/dsjc_member.png') }}" width="100%" alt="Digital Skill And Jobs Coalition Member" title="Digital Skill And Jobs Coalition Member"/>
+                        <img src="{{ asset('/bundles/coderdojowebsite/img/rootnet.png') }}" width="100%" alt="Sponsoring door Rootnet" title="Sponsoring door Rootnet" style="margin-top: 15px;"/>
                     </a>
                 </div>
 
                 <div class="col-md-2 text-center">
                     <a href="https://www.mediawijzer.net/" target="_blank">
-                        <img src="{{ asset('/bundles/coderdojowebsite/img/mediawijzer.png') }}" width="100%" alt="Aangesloten bij Mediawijzer" title="Aangesloten bij Mediawijzer"/>
+                        <img src="https://kbjaarverslag.preview.themindoffice.nl/files/logo-MN2.png" width="100%" alt="Aangesloten bij Mediawijzer" title="Aangesloten bij Mediawijzer"/>
                     </a>
                 </div>
 
-                <div class="col-md-2 text-center">&nbsp;</div>
+                <div class="col-md-2 text-center">
+                    <a href="https://www.mediawijzer.net/" target="_blank">
+                        <img src="{{ asset('/img/stitpro.jpg') }}" width="100%" alt="Aangesloten bij Mediawijzer" title="Aangesloten bij Mediawijzer"/>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -471,196 +462,5 @@
         function trackEventClick() {
             ga('send', 'event', 'dojo_interest', 'register_from_homepage');
         }
-
-        /*<![CDATA[*/
-        (function () {
-            var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-            if (window.ShopifyBuy) {
-                if (window.ShopifyBuy.UI) {
-                    ShopifyBuyInit();
-                } else {
-                    loadScript();
-                }
-            } else {
-                loadScript();
-            }
-            function loadScript() {
-                var script = document.createElement('script');
-                script.async = true;
-                script.src = scriptURL;
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-                script.onload = ShopifyBuyInit;
-            }
-            function ShopifyBuyInit() {
-                var client = ShopifyBuy.buildClient({
-                    domain: 'coderdojo-nederland.myshopify.com',
-                    storefrontAccessToken: 'c5296d378a565af3a5b39489f7e2d9dd',
-                });
-                ShopifyBuy.UI.onReady(client).then(function (ui) {
-                    ui.createComponent('collection', {
-                        id: '96602718293',
-                        node: document.getElementById('collection-component-1565875858193'),
-                        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
-                        options: {
-                            "product": {
-                                "styles": {
-                                    "product": {
-                                        "@media (min-width: 601px)": {
-                                            "max-width": "calc(25% - 20px)",
-                                            "margin-left": "20px",
-                                            "margin-bottom": "50px"
-                                        },
-                                        "img": {
-                                            "height": "calc(100% - 15px)",
-                                            "position": "absolute",
-                                            "left": "0",
-                                            "right": "0",
-                                            "top": "0"
-                                        },
-                                        "imgWrapper": {
-                                            "padding-top": "calc(75% + 15px)",
-                                            "position": "relative",
-                                            "height": "0"
-                                        }
-                                    },
-                                    "title": {
-                                        "font-family": "Open Sans, sans-serif"
-                                    },
-                                    "button": {
-                                        "font-family": "Open Sans, sans-serif",
-                                        ":hover": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        "background-color": "#e67e22",
-                                        ":focus": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        "border-radius": "4px"
-                                    },
-                                    "price": {
-                                        "font-family": "Open Sans, sans-serif"
-                                    },
-                                    "compareAt": {
-                                        "font-family": "Open Sans, sans-serif"
-                                    }
-                                },
-                                "contents": {
-                                    "button": false,
-                                    "buttonWithQuantity": true
-                                },
-                                "text": {
-                                    "button": "Toevoegen"
-                                },
-                                "googleFonts": [
-                                    "Open Sans"
-                                ]
-                            },
-                            "productSets": {
-                                "styles": {
-                                    "products": {
-                                        "@media (min-width: 601px)": {
-                                            "margin-left": "-20px"
-                                        }
-                                    }
-                                }
-                            },
-                            "modalProduct": {
-                                "contents": {
-                                    "img": false,
-                                    "imgWithCarousel": true,
-                                    "button": false,
-                                    "buttonWithQuantity": true
-                                },
-                                "styles": {
-                                    "product": {
-                                        "@media (min-width: 601px)": {
-                                            "max-width": "100%",
-                                            "margin-left": "0px",
-                                            "margin-bottom": "0px"
-                                        }
-                                    },
-                                    "button": {
-                                        "font-family": "Open Sans, sans-serif",
-                                        ":hover": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        "background-color": "#e67e22",
-                                        ":focus": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        "border-radius": "4px"
-                                    }
-                                },
-                                "googleFonts": [
-                                    "Open Sans"
-                                ],
-                                "text": {
-                                    "button": "Add to cart"
-                                }
-                            },
-                            "option": {
-                                "styles": {
-                                    "label": {
-                                        "font-family": "Open Sans, sans-serif"
-                                    },
-                                    "select": {
-                                        "font-family": "Open Sans, sans-serif"
-                                    }
-                                },
-                                "googleFonts": [
-                                    "Open Sans"
-                                ]
-                            },
-                            "cart": {
-                                "styles": {
-                                    "button": {
-                                        "font-family": "Open Sans, sans-serif",
-                                        ":hover": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        "background-color": "#e67e22",
-                                        ":focus": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        "border-radius": "4px"
-                                    }
-                                },
-                                "text": {
-                                    "title": "Winkelwagen",
-                                    "total": "Subtotaal",
-                                    "empty": "Je winkelwagen is leeg",
-                                    "notice": "Verzendkosten worden in de volgende stap berekend.",
-                                    "button": "Afrekenen",
-                                    "noteDescription": "Heb je een toffe reden om te doneren?"
-                                },
-                                "googleFonts": [
-                                    "Open Sans"
-                                ]
-                            },
-                            "toggle": {
-                                "styles": {
-                                    "button": {
-                                        "font-family": "Open Sans, sans-serif"
-                                    },
-                                    "toggle": {
-                                        "background-color": "#e67e22",
-                                        ":hover": {
-                                            "background-color": "#cf711f"
-                                        },
-                                        ":focus": {
-                                            "background-color": "#cf711f"
-                                        }
-                                    }
-                                },
-                                "googleFonts": [
-                                    "Open Sans"
-                                ]
-                            }
-                        },
-                    });
-                });
-            }
-        })();
-        /*]]>*/
     </script>
 {% endblock %}

@@ -75,6 +75,14 @@ class PagesController extends Controller
         return $this->render(':Pages:dojocon.html.twig');
     }
 
+    /**
+     * @Route("/dojocon2019", name="dojocon2019")
+     */
+    public function dojoCon2019Action()
+    {
+        return $this->render(':Pages:dojocon2019.html.twig');
+    }
+
     /******************
      * De Stichting
      ******************/

@@ -186,24 +186,29 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                         Online Dojo's
                                     </a>
                                 </li>
+                                <li {% if app.request.get('_route') == 'dojocon' %}class="active"{% endif %}>
+                                    <a href="{{ path('dojocon') }}">
+                                        2021 | DojoCon
+                                    </a>
+                                </li>
                                 <li {% if app.request.get('_route') == 'codeweek' %}class="active"{% endif %}>
                                     <a href="{{ path('codeweek') }}">
-                                        CodeWeek 2020
+                                        2020 | CodeWeek
                                     </a>
                                 </li>
                                 <li {% if app.request.get('_route') == 'online' %}class="active"{% endif %}>
                                     <a href="{{ path('hack-challenge') }}">
-                                        Hack Challenge
+                                        2020 | Hack Challenge
                                     </a>
                                 </li>
-                                <li {% if app.request.get('_route') == 'dojocon' %}class="active"{% endif %}>
-                                    <a href="{{ path('dojocon') }}">
-                                        DojoCon 2019
+                                <li {% if app.request.get('_route') == 'dojocon2019' %}class="active"{% endif %}>
+                                    <a href="{{ path('dojocon2019') }}">
+                                        2019 | DojoCon
                                     </a>
                                 </li>
                                 <li {% if app.request.get('_route') == 'weekvandemediawijsheid' %}class="active"{% endif %}>
                                     <a href="{{ path('weekvandemediawijsheid') }}">
-                                        Week van de Mediawijsheid 2019
+                                        2019 | Week van de Mediawijsheid
                                     </a>
                                 </li>
                             </ul>
