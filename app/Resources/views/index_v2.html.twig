@@ -49,15 +49,16 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css">
 
     <!-- CSS Global Compulsory -->
-    {% stylesheets filter='cssrewrite' filter='uglifycss' output="bundle/app_2.css"
+    {% stylesheets filter='cssrewrite' filter='uglifycss' output="bundle/app_3.css"
         'assets/vendor/animate.css'
         'assets/vendor/bootstrap/bootstrap.min.css'
         'assets/vendor/bootstrap/offcanvas.css'
         'assets/vendor/cookieconsent/cookieconsent.3.0.3.min.css'
         'assets/vendor/custombox/custombox.min.css'
-        'assets/vendor/icon-awesome/css/font-awesome.min.css'
         'assets/vendor/icon-line/css/simple-line-icons.css'
         'assets/vendor/icon-etlinefont/style.css'
         'assets/vendor/icon-line-pro/style.css'
@@ -297,8 +298,8 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </a>
                         </li>
                         <li class="list-inline-item g-mx-5">
-                            <a class="u-icon-v3 u-icon-size--sm g-font-size-default g-bg-white-opacity-0_1 g-bg-primary--hover g-color-white" href="{{ path('slack') }}">
-                                <i class="fa fa-slack"></i>
+                            <a class="u-icon-v3 u-icon-size--sm g-font-size-default g-bg-white-opacity-0_1 g-bg-primary--hover g-color-white" href="{{ path('discord') }}">
+                                <i class="fab fa-discord"></i>
                             </a>
                         </li>
                     </ul>

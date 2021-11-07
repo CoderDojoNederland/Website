@@ -34,7 +34,16 @@ class DefaultController extends Controller
      */
     public function slackAction()
     {
-        return $this->render(':Pages:slack.html.twig');
+        return $this->redirectToRoute('discord');
+        //return $this->render(':Pages:slack.html.twig');
+    }
+
+    /**
+     * @Route("/discord", name="discord")
+     */
+    public function discordAction()
+    {
+        return $this->render(':Pages:discord.html.twig');
     }
 
     /**
