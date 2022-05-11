@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.11.0"
+lock "3.17.0"
 
 set :application, "coderdojo-website"
 set :repo_url, "git@github.com:CoderDojoNederland/Website.git"
