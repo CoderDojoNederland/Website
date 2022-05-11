@@ -256,36 +256,46 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     <footer class="g-bg-black-opacity-0_9 g-color-white-opacity-0_6 g-py-60">
         <div class="container">
             <!-- Copyright -->
-            <div class="row align-items-center">
-                <div class="col-md-6 g-mb-15 g-mb-0--md">
-                    <small class="g-font-size-default mb-0">{{ 'now' | date('Y') }} &copy; CoderDojo Nederland<br/>
-                        Made by
+            <div class="row">
+                <div class="col-md-4 g-mb-15 g-mb-0--md">
+                    <small class="g-font-size-default mb-0">
+                        <h5>Made by
                         <a
                                 href="https://github.com/coderdojonederland/website"
                                 target="_blank">
                             YOU!
-                        </a>
+                        </a></h5>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            &nbsp;|&nbsp;
                             <a href="{{ path('dashboard') }}">
                                 Naar Dashboard
                             </a>
-                            &nbsp;|&nbsp;
+                            <br/>
                             <a href="{{ path('fos_user_security_logout') }}">
                                 Uitloggen
                             </a>
                         {% else %}
-                            &nbsp;|&nbsp;
                             <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                            &nbsp;|&nbsp;
+                            <br/>
                             <a href="{{ path('fos_user_registration_register') }}">Registreren</a>
                         {% endif %}
-                        &nbsp;|&nbsp;
+                        <br/>
                         <a href="{{ path('privacy') }}">Privacy Verklaring</a>
                     </small>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4 g-mb-15 g-mb-0--md">
+                    <h5>Vrienden van CoderDojo Nederland</h5>
+                    <small class="g-font-size-default mb-0">
+                        <a href="https://www.rootnet.nl/" target="_blank">Rootnet</a><br/>
+                        <a href="https://www.leaphy.nl/" target="_blank">Leaphy</a><br/>
+                        <a href="https://stitpro.nl/" target="_blank">Stitpro</a><br/>
+                        <a href="https://www.bergler.nl/" target="_blank">Bergler</a><br/>
+                        <a href="https://netwerkmediawijsheid.nl/" target="_blank">Netwerk Mediawijsheid</a><br/>
+                        <a href="https://bouwjebep.nl/" target="_blank">Bouw je bep</a>
+                    </small>
+                </div>
+
+                <div class="col-md-4 text-right">
                     <ul class="list-inline text-md-right mb-0">
                         <li class="list-inline-item g-mx-5">
                             <a class="u-icon-v3 u-icon-size--sm g-font-size-default g-bg-white-opacity-0_1 g-bg-primary--hover g-color-white" href="https://twitter.com/coderdojonl">
@@ -303,6 +313,8 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                             </a>
                         </li>
                     </ul>
+                    <br/>
+                    {{ 'now' | date('Y') }} &copy; CoderDojo Nederland
                 </div>
             </div>
             <!-- End Copyright -->
