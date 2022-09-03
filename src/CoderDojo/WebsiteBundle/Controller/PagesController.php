@@ -76,6 +76,14 @@ class PagesController extends Controller
     }
 
     /**
+     * @Route("/dojocon2021", name="dojocon2021")
+     */
+    public function dojo2021ConAction()
+    {
+        return $this->render(':Pages:dojocon2021.html.twig');
+    }
+
+    /**
      * @Route("/dojocon2019", name="dojocon2019")
      */
     public function dojoCon2019Action()
