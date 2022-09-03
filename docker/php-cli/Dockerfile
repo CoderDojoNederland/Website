@@ -1,4 +1,4 @@
-FROM phpdockerio/php74-cli:latest
+FROM phpdockerio/php:7.4-cli
 WORKDIR "/application"
 
 # Fix debconf warnings upon build
@@ -16,4 +16,4 @@ RUN apt-get update \
     && apt-get -y install git \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-
+RUN rm -rf /usr/bin/php && ln -s /usr/bin/php7.4 /usr/bin/php

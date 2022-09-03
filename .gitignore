@@ -22,4 +22,4 @@
 /web/media/cache/
 /.idea
 /.vagrant
-/.node_modules
+/node_modules
