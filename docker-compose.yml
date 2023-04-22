@@ -49,6 +49,14 @@ services:
     networks:
       - backend
 
+  mailcatcher:
+    image: dockage/mailcatcher
+    ports:
+      - "1080:1080"
+    networks:
+      - frontend
+      - backend
+
 volumes:
   mysql-data:
   cache:

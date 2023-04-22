@@ -7,22 +7,10 @@
         verantwoordelijk is voor het succes en behoud van CoderDojo Nederland!
     </p>
     <p style="text-align: center;">
-        <img src="https://media3.giphy.com/media/l46Cpz0A0dB1jMxG0/200w.gif?cid=c94812d05cc99a3d2f57732e32d381d0&rid=200w.gif"/>
+        <img src="https://media1.giphy.com/media/nG0MqEAopKJy0nFECr/giphy.gif?cid=ecf05e47yi9eo6xw23gjejpcrjd1bhnnktfrqrcyas5yqs82&rid=giphy.gif&ct=g"/>
     </p>
-    {% if member.interval == 'yearly' or member.interval == 'yearly-invoiced' %}
-        <p>
-            Je hebt gekozen om elk jaar <strong>&euro; 100,-</strong> bij te dragen aan CoderDojo Nederland. Dat
-            betekent dat wij elk jaar op 30 mei de donatie zullen incasseren.
-        </p>
-    {% elseif member.interval == 'semi-yearly' %}
-        <p>
-            Je hebt gekozen om elk half jaar <strong>&euro; 50,-</strong> bij te dragen aan CoderDojo Nederland. Dat
-            betekend dat wij elke 6 maanden vanaf vandaag op de 30e van de maand de donatie zullen incasseren.
-        </p>
-    {% elseif member.interval == 'quarterly' %}
-        <p>
-            Je hebt gekozen om elk kwartaal <strong>&euro; 25,-</strong> bij te dragen aan CoderDojo Nederland. Dat
-            betekent dat wij elke 3 maanden vanaf vandaag op de 30e van de maand de donatie zullen incasseren.
-        </p>
-    {% endif %}
+    <p>
+        Je hebt gekozen om elk jaar <strong>&euro; 100,-</strong> bij te dragen aan CoderDojo Nederland. Dat
+        betekent dat wij elk jaar op 30 mei de donatie zullen incasseren.
+    </p>
 {% endblock content %}

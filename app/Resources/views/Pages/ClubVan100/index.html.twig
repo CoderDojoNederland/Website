@@ -81,13 +81,6 @@
             </p>
 
             <p>
-                <strong>Hoe zit het met betalen?</strong><br/>
-                Bij je aanmelding kies je of je per jaar, per half jaar of per kwartaal wilt betalen. Je wordt dan doorgestuurd
-                naar e-curring waar je je eerste donatie meteen kan doen. Vanaf dat moment zal e-curring er voor zorgen dat er
-                telkens op de door jouw gekozen termijn een donatie afgeschreven wordt. Makkelijker kan niet toch?
-            </p>
-
-            <p>
                 <strong>Stoppen</strong><br/>
                 Wil je stoppen als een club van 100 lid? Super jammer! Maar we begrijpen dat het soms niet anders kan.
                 <a href="{{ path('contact') }}">Stuur ons een e-mailtje</a> en dan zorgen wij dat je lidmaatschap opgezegd wordt.
@@ -155,69 +148,52 @@
                     kun je je aanmelden.
                 </p>
 
-            <p class="small" style="font-style: italic;">Velden met een * zijn verplicht.</p>
+                <p class="small" style="font-style: italic;">Velden met een * zijn verplicht.</p>
 
-            {% if form.vars.errors|length > 0 %}
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <p>
-                        <strong>We kunnen je formulier niet verwerken</strong>
-                    {% for error in form.vars.errors %}
-                        <br/>{{ error.message }}
-                    {% endfor %}
-                    </p>
-                </div>
-            {% endif %}
+                {% if form.vars.errors|length > 0 %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <p>
+                            <strong>We kunnen je formulier niet verwerken</strong>
+                        {% for error in form.vars.errors %}
+                            <br/>{{ error.message }}
+                        {% endfor %}
+                        </p>
+                    </div>
+                {% endif %}
 
 
-            {{ form_start(form, { 'attr': { 'class': 'form-horizontal' } }) }}
-            <div class="form-group">
-                <div class="col-lg-12">
-                    {{ form_row(form.firstName) }}
-                    {{ form_row(form.lastName) }}
-                    {{ form_row(form.email) }}
-                    {{ form_row(form.twitter) }}
-                    {{ form_row(form.company) }}
-                    {{ form_row(form.type) }}
-                    {{ form_row(form.avatar) }}
-                    {{ form_row(form.public) }}
+                {{ form_start(form, { 'attr': { 'class': 'form-horizontal' } }) }}
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            {{ form_row(form.firstName) }}
+                            {{ form_row(form.lastName) }}
+                            {{ form_row(form.email) }}
+                            {{ form_row(form.twitter) }}
+                            {{ form_row(form.company) }}
+                            {{ form_row(form.type) }}
+                            {{ form_row(form.avatar) }}
+                            {{ form_row(form.public) }}
+                            {{ form_row(form.reason) }}
 
-                    <div class="form-group row">
-                        {{ form_label(form.subscription) }}
-                        <div class="col-lg-10">
-                            {{ form_widget(form.subscription) }}
+                            <div class="form-group row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    {{ form_widget(form.consent) }}
+                                    <label class="required control-label" for="club_of100_form_consent">
+                                        Ik ga akkoord met de verwerking van mijn gegevens volgens de <a href="{{ path('privacy') }}" target="_blank">Privacy Verklaring</a>.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <input type="submit" value="Ik word lid en doneer elk jaar €100!" class="btn btn-block btn-success" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    {{ form_row(form.reason) }}
-
-                    <div class="form-group row">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-offset-2 col-lg-10">
-                            {{ form_widget(form.consent) }}
-                            <label class="required control-label" for="club_of100_form_consent">
-                                Ik ga akkoord met de verwerking van mijn gegevens volgens de <a href="{{ path('privacy') }}" target="_blank">Privacy Verklaring</a>.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-offset-2 col-lg-10">
-                            <input type="submit" value="Ik word lid en doneer elk jaar €100!" class="btn btn-block btn-success" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{ form_end(form) }}
-                <div class="form-group row g-mt-40">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-offset-2 col-lg-10 text-center">
-                        <p>Mede mogelijk gemaakt door:</p>
-                        <a href="https://ecurring.com">
-                            <img src="{{ asset('/img/ecurring.png') }}" alt="Mede mogelijk gemaakt door Ecurring" class="img-fluid" width="150"/>
-                        </a>
-                    </div>
-                </div>
+                {{ form_end(form) }}
             </div>
         </div><!--/row-->
     </div><!--/container-->

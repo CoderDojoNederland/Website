@@ -5,22 +5,14 @@ declare(strict_types=1);
 namespace CoderDojo\WebsiteBundle\Controller;
 
 use CoderDojo\WebsiteBundle\Entity\Club100;
-use CoderDojo\WebsiteBundle\Entity\Donation;
-use CoderDojo\WebsiteBundle\Entity\Payment;
 use CoderDojo\WebsiteBundle\Form\Type\ClubOf100FormType;
 use CoderDojo\WebsiteBundle\Repository\Club100Repository;
-use CoderDojo\WebsiteBundle\Service\NextDonationFinder;
-use Mollie\Api\MollieApiClient;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @Route(path="/club-van-100")
@@ -44,7 +36,6 @@ class ClubOf100Controller extends Controller
             $member->setEmail($form->get('email')->getData());
             $member->setReason($form->get('reason')->getData());
             $member->setPublic($form->get('public')->getData() === '1');
-            $member->setInterval($form->get('subscription')->getData());
             $member->setMemberType($form->get('type')->getData());
 
             if (empty($form->get('twitter')->getData()) === false) {
@@ -60,20 +51,18 @@ class ClubOf100Controller extends Controller
                 $member->setAvatar($avatar);
             }
 
-            $ecurring        = $this->get('coder_dojo.website_bundle.ecurring');
-            $customerId      = $ecurring->createCustomer($member);
-            $confirmationUrl = $ecurring->createSubscription($customerId, $member->getInterval(), $member->getHash());
-            $member->setConfirmationUrl($confirmationUrl);
-
             $this->get('doctrine')->getManager()->persist($member);
             $this->get('doctrine')->getManager()->flush();
 
-            return new RedirectResponse($confirmationUrl);
+            $this->sendWelcomeEmail($member);
+            $this->sendNotificationEmail($member);
+
+            return $this->redirectToRoute('club_of_100_confirm');
         }
 
         $repository = $this->get('doctrine')->getRepository(Club100::class);
         $members = $repository->getAllActiveWithImage();
-        $keys = count($members) > 0 ? array_rand($members, 3) : [];
+        $keys = count($members) > 3 ? array_rand($members, 3) : array_keys($members);
 
         $randomMembers = [];
         foreach($keys as $key) {
@@ -84,27 +73,10 @@ class ClubOf100Controller extends Controller
     }
 
     /**
-     * @Route(name="club_of_100_confirm", path="/bevestigen/{hash}")
+     * @Route(name="club_of_100_confirm", path="/bevestigd")
      */
-    public function confirmAction(string $hash): Response
+    public function confirmAction(): Response
     {
-        $repository = $this->get('doctrine')->getRepository(Club100::class);
-        /** @var Club100 $member */
-        $member = $repository->findOneBy(['hash' => $hash]);
-
-        if ($member === null) {
-            throw new NotFoundHttpException('No club 100 member with hash '.$hash.' was found');
-        }
-
-        if ($member->isConfirmed()) {
-            return $this->render(':Pages:ClubVan100/confirmed.html.twig', ['new' => false]);
-        }
-
-        $member->setConfirmed(true);
-        $this->get('doctrine')->getManager()->flush();
-
-        $this->sendWelcomeEmail($member);
-
         return $this->render(':Pages:ClubVan100/confirmed.html.twig', ['new' => true]);
     }
 
@@ -138,6 +110,26 @@ class ClubOf100Controller extends Controller
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(':Pages:ClubVan100/Email/welcome.html.twig', ['member' => $member])
+            );
+
+        $this->get('mailer')->send($message);
+    }
+
+    /**
+     * @param Club100 $member
+     */
+    private function sendNotificationEmail(Club100 $member): void
+    {
+        /**
+         * Send email to dojo contact address
+         */
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Nieuw Club van 100 lid')
+            ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland')
+            ->setTo('contact@coderdojo.nl')
+            ->setContentType('text/html')
+            ->setBody(
+                $this->renderView(':Pages:ClubVan100/Email/notification.html.twig', ['member' => $member])
             );
 
         $this->get('mailer')->send($message);

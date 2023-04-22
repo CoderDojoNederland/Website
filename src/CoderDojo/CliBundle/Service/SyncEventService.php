@@ -2,13 +2,11 @@
 
 namespace CoderDojo\CliBundle\Service;
 
-use CL\Slack\Model\Attachment;
 use CoderDojo\CliBundle\Service\ZenModel\Event;
 use CoderDojo\WebsiteBundle\Command\CreateEventCommand;
 use CoderDojo\WebsiteBundle\Command\RemoveEventCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo;
 use CoderDojo\WebsiteBundle\Entity\DojoEvent;
-use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use SimpleBus\Message\Bus\MessageBus;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -27,11 +25,6 @@ class SyncEventService
     private $doctrine;
 
     /**
-     * @var SlackService
-     */
-    private $slackService;
-
-    /**
      * @var MessageBus
      */
     private $commandBus;
@@ -40,18 +33,15 @@ class SyncEventService
      * SyncService constructor.
      * @param ZenApiService $zen
      * @param Registry $doctrine
-     * @param SlackService $slackService
      * @param MessageBus $commandBus
      */
     public function __construct(
         ZenApiService $zen,
         Registry $doctrine,
-        SlackService $slackService,
         MessageBus $commandBus
     ) {
         $this->zen = $zen;
         $this->doctrine = $doctrine->getManager();
-        $this->slackService = $slackService;
         $this->commandBus = $commandBus;
     }
 
@@ -165,47 +155,6 @@ class SyncEventService
         $output->writeln($countUpdated . ' Existing events updated');
         $output->writeln($countNoMatch . ' events could not be matched with a dojo');
         $output->writeln($countRemoved . ' events removed');
-
-        $message = "Zen synchronizer just handled events.";
-        $attachments = [];
-
-        if (0 < $countNew){
-            $attachment = new Attachment();
-            $attachment->setFallback($countNew . " events added.");
-            $attachment->setText($countNew . " events added.");
-            $attachment->setColor('good');
-            $attachments[] = $attachment;
-        }
-
-        if (0 < $countUpdated) {
-            $attachment = new Attachment();
-            $attachment->setFallback($countUpdated . " events updated.");
-            $attachment->setText($countUpdated . " events updated.");
-            $attachment->setColor('warning');
-            $attachments[] = $attachment;
-        }
-
-        if (0 < $countNoMatch) {
-            $attachment = new Attachment();
-            $attachment->setFallback($countNoMatch . " events not matched.");
-            $attachment->setText($countNoMatch . " events not matched.");
-            $attachment->setColor('danger');
-            $attachments[] = $attachment;
-        }
-
-        if (0 < $countRemoved) {
-            $attachment = new Attachment();
-            $attachment->setFallback($countRemoved . " events removed.");
-            $attachment->setText($countRemoved . " events removed.");
-            $attachment->setColor('danger');
-            $attachments[] = $attachment;
-        }
-
-        if (0 === $countNew && 0 === $countUpdated && 0 === $countNoMatch && 0 === $countRemoved) {
-            return;
-        }
-
-        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
     }
 
     /**

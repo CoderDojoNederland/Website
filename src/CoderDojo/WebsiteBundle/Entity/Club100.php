@@ -16,17 +16,6 @@ use Ramsey\Uuid\Uuid;
  */
 class Club100
 {
-    public const INTERVAL_YEARLY_INVOICED = 'yearly-invoiced';
-    public const INTERVAL_YEARLY = 'yearly';
-    public const INTERVAL_SEMI_YEARLY = 'semi-yearly';
-    public const INTERVAL_QUARTERLY = 'quarterly';
-    public const INTERVALS = [
-        self::INTERVAL_YEARLY_INVOICED,
-        self::INTERVAL_YEARLY,
-        self::INTERVAL_SEMI_YEARLY,
-        self::INTERVAL_QUARTERLY
-    ];
-
     public const REASON_NO_PAYMENT = 'no-payment-received';
     public const REASON_EXPENSIVE = 'expensive';
     public const REASON_OTHER = 'other';
@@ -59,12 +48,6 @@ class Club100
     private $email;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $hash;
-
-    /**
      * @var string|null
      * @ORM\Column(type="string", nullable=true)
      **/
@@ -86,7 +69,7 @@ class Club100
      * @var bool
      * @ORM\Column(type="boolean")
      */
-    private $confirmed = false;
+    private $confirmed = true;
 
     /**
      * @var string
@@ -101,12 +84,6 @@ class Club100
     private $public;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", name="payment_interval")
-     */
-    private $interval;
-
-    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -117,18 +94,6 @@ class Club100
      * @ORM\Column(type="string", nullable=true)
      **/
     private $avatar;
-
-    /**
-     * @var Donation[]|Collection
-     * @ORM\OneToMany(targetEntity="CoderDojo\WebsiteBundle\Entity\Donation", mappedBy="member")
-     **/
-    private $donations;
-
-    /**
-     * @var string|null
-     * @ORM\Column(type="string", nullable=true)
-     **/
-    private $confirmationUrl;
 
     /**
      * @var \DateTime
@@ -145,8 +110,6 @@ class Club100
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->donations = new ArrayCollection();
-        $this->hash = sha1(Uuid::uuid4()->toString());
     }
 
     /**
@@ -238,24 +201,6 @@ class Club100
     }
 
     /**
-     * @return string
-     */
-    public function getInterval(): string
-    {
-        return $this->interval;
-    }
-
-    /**
-     * @param string $interval
-     */
-    public function setInterval(string $interval): void
-    {
-        Assertion::inArray($interval, self::INTERVALS);
-
-        $this->interval = $interval;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreatedAt(): \DateTime
@@ -269,22 +214,6 @@ class Club100
     public function setCreatedAt(\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHash(): string
-    {
-        return $this->hash;
-    }
-
-    /**
-     * @param string $hash
-     */
-    public function setHash(string $hash): void
-    {
-        $this->hash = $hash;
     }
 
     /**
@@ -365,38 +294,6 @@ class Club100
     public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
-    }
-
-    /**
-     * @return Donation[]|Collection
-     */
-    public function getDonations()
-    {
-        return $this->donations;
-    }
-
-    /**
-     * @param Donation $donation
-     */
-    public function addDonation(Donation $donation): void
-    {
-        $this->donations->add($donation);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getConfirmationUrl():? string
-    {
-        return $this->confirmationUrl;
-    }
-
-    /**
-     * @param string $confirmationUrl
-     */
-    public function setConfirmationUrl(string $confirmationUrl): void
-    {
-        $this->confirmationUrl = $confirmationUrl;
     }
 
     /**

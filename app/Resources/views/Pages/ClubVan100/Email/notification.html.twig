@@ -1,0 +1,39 @@
+{% extends ":Snippets:_email.html.twig" %}
+
+{% block content %}
+    <p>Hi,</p>
+    <p>
+        Er is een nieuw Club van 100 lid!
+    </p>
+    <table class="table table-sm">
+        <tr>
+            <td>Naam: </td>
+            <td>{{ member.firstName }} {{ member.lastName }}</td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td>{{ member.email }} {{ member.email }}</td>
+        </tr>
+        <tr>
+            <td>Twitter: </td>
+            <td>{{ member.twitter }}</td>
+        </tr>
+        <tr>
+            <td>Bedrijf: </td>
+            <td>{{ member.company }}</td>
+        </tr>
+        <tr>
+            <td>Type: </td>
+            <td>{{ member.memberType }}</td>
+        </tr>
+        <tr>
+            <td>Anoniem: </td>
+            <td>{{ member.public ? 'Nee' : 'Ja' }}</td>
+        </tr>
+        <tr>
+            <td>Reden: </td>
+            <td>{{ member.reason }}</td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+{% endblock content %}

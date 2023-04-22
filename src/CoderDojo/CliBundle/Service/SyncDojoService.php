@@ -2,12 +2,9 @@
 
 namespace CoderDojo\CliBundle\Service;
 
-use CL\Slack\Model\Attachment;
-use CL\Slack\Model\AttachmentField;
 use CoderDojo\WebsiteBundle\Command\CreateDojoCommand;
 use CoderDojo\WebsiteBundle\Command\RemoveDojoCommand;
 use CoderDojo\WebsiteBundle\Entity\Dojo as InternalDojo;
-use CoderDojo\WebsiteBundle\Service\SlackService;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\NonUniqueResultException;
 use GuzzleHttp\Client;
@@ -48,11 +45,6 @@ class SyncDojoService
     private $unmatched = [];
 
     /**
-     * @var SlackService
-     */
-    private $slackService;
-
-    /**
      * @var MessageBus
      */
     private $commandBus;
@@ -66,18 +58,15 @@ class SyncDojoService
      * SyncService constructor.
      * @param ZenApiService $zen
      * @param Registry $doctrine
-     * @param SlackService $slackService
      * @param MessageBus $commandBus
      */
     public function __construct(
         ZenApiService $zen,
         Registry $doctrine,
-        SlackService $slackService,
         MessageBus $commandBus
     ) {
         $this->zen = $zen;
         $this->doctrine = $doctrine->getManager();
-        $this->slackService = $slackService;
         $this->commandBus = $commandBus;
     }
 
@@ -155,8 +144,6 @@ class SyncDojoService
         $output->writeln($this->countNew . ' New dojos added');
         $output->writeln($this->countUpdated . ' Existing dojos updated');
         $output->writeln($this->countRemoved . ' Existing dojos removed');
-
-        $this->notifySlack();
     }
 
     /**
@@ -310,83 +297,5 @@ class SyncDojoService
 
         $this->progressBar->advance();
         $this->countNew++;
-    }
-
-    /**
-     * Created notification for slack to keep us up to date on the sync process
-     */
-    private function notifySlack()
-    {
-        if (
-            0 === $this->countNew &&
-            0 === $this->countUpdated &&
-            0 === $this->countRemoved &&
-            0 === count($this->unmatched)
-        ) {
-            return;
-        }
-
-        $message = "Zen synchronizer just handled dojo's.";
-        $attachments = [];
-
-        if (0 < $this->countNew) {
-            $attachment = new Attachment();
-            $attachment->setFallback($this->countNew . " dojo's added.");
-            $attachment->setText($this->countNew . " dojo's added.");
-            $attachment->setColor('good');
-            $attachments[] = $attachment;
-        }
-
-        if (0 < $this->countUpdated) {
-            $attachment = new Attachment();
-            $attachment->setFallback($this->countUpdated . " dojo's updated.");
-            $attachment->setText($this->countUpdated . " dojo's updated.");
-            $attachment->setColor('warning');
-            $attachments[] = $attachment;
-        }
-
-        if (0 < $this->countRemoved) {
-            $attachment = new Attachment();
-            $attachment->setFallback($this->countRemoved . " dojo's removed.");
-            $attachment->setText($this->countRemoved . " dojo's removed.");
-            $attachment->setColor('danger');
-            $attachments[] = $attachment;
-        }
-
-        $this->slackService->sendToChannel('#website-nl', $message, $attachments);
-
-        foreach($this->unmatched as $unmatched) {
-            $attachment = new Attachment();
-            $attachment->setFallback(sprintf('This dojo resulted in multiple internal possibilities: %s (zen: $s)', $unmatched->getName(), $unmatched->getZenId()));
-            $attachment->setText('A dojo resulted in multiple internal possibilities');
-            $attachment->setColor('danger');
-
-            $nameField = new AttachmentField();
-            $nameField->setTitle('Name');
-            $nameField->setValue($unmatched->getName());
-            $nameField->setShort(true);
-
-            $cityField = new AttachmentField();
-            $cityField->setTitle('City');
-            $cityField->setValue($unmatched->getCity());
-            $cityField->setShort(true);
-
-            $zenIdField = new AttachmentField();
-            $zenIdField->setTitle('Zen ID');
-            $zenIdField->setValue($unmatched->getZenId());
-            $zenIdField->setShort(true);
-
-            $zenUrlField = new AttachmentField();
-            $zenUrlField->setTitle('Zen Url');
-            $zenUrlField->setValue($unmatched->getZenUrl());
-            $zenUrlField->setShort(true);
-
-            $attachment->addField($nameField);
-            $attachment->addField($cityField);
-            $attachment->addField($zenIdField);
-            $attachment->addField($zenUrlField);
-
-            $this->slackService->sendToChannel('#website-nl', 'We couldn\'t match this dojo internally.', [$attachment]);
-        }
     }
 }

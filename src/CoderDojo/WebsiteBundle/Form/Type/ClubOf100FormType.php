@@ -108,22 +108,6 @@ class ClubOf100FormType extends AbstractType
             ]
         ));
 
-        $builder->add('subscription', ChoiceType::class, array(
-            'label' => 'Betaling*',
-            'required' => true,
-            'choices' => [
-                'Jaarlijks €100 (met factuur)' => 'yearly-invoiced',
-                'Jaarlijks €100' => 'yearly',
-                'Halfjaarlijks €50' => 'semi-yearly',
-                'Kwartaallijks €25' => 'quarterly'
-            ],
-            'attr' => [
-                'class' => 'form-control'
-            ],
-            'expanded' => true,
-            'multiple' => false
-        ));
-
         $builder->add('consent', CheckboxType::class, [
             'label' => 'Ik ga akkoord met de verwerking van mijn gegevens volgens de Privacy Verklaring.',
             'label_attr' => [
