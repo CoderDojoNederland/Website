@@ -77,12 +77,5 @@ class RemindCocRequestsCommand extends ContainerAwareCommand
         }
 
         $bar->finish();
-
-        if ($bar->getProgress() > 0) {
-            $this->getContainer()->get('coder_dojo.website_bundle.slack_service')->sendToChannel(
-                '#website-nl',
-                sprintf('Er zijn %d VOG\'s herinnerd', $bar->getProgress())
-            );
-        }
     }
 }

@@ -67,20 +67,6 @@ class DojoController extends Controller
                 $em->persist($dojo);
                 $em->flush();
 
-                $msg = sprintf(
-                    "%s heeft een nieuwe dojo toegevoegd voor %s\n<%s|Registreer op Eventbrite>",
-                    $this->getUser()->getName(),
-                    $dojo->getDate()->format('d F Y'),
-                    $dojo->getUrl()
-                );
-
-                try {
-                    $this->get('coder_dojo.website_bundle.slack_service')->sendToChannel('#general', $msg);
-                } catch (\Exception $exception) {
-                    // Fail silently so dojo's can still be added
-                    $this->get('logger')->addError('Error with Slack for dojo ' . $this->getUser()->getCity() . ': ' . $exception->getMessage());
-                }
-
                 $msg = "ok";
             }else{
                 $msg = "Deze dojo hoort niet bij jouw organizer id";
