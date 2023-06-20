@@ -4,7 +4,6 @@ require "capistrano/scm/git"
 require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/symfony'
-require 'slackistrano/capistrano'
 require 'capistrano/yarn'
 install_plugin Capistrano::SCM::Git
 

@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.17.0"
+lock "3.17.1"
 
 set :application, "coderdojo-website"
 set :repo_url, "git@github.com:CoderDojoNederland/Website.git"
@@ -9,11 +9,6 @@ set :linked_dirs, ["var/logs", "web/articles", "web/club-100-avatars", "web/medi
 
 set :symfony_console_path, "bin/console"
 set :symfony_console_flags, "--no-debug"
-
-set :slackistrano, {
-  channel: '#website-nl',
-  webhook: ENV['SLACK_WEBHOOK']
-}
 
 after 'deploy:publishing', 'coderdojo:migrate'
 after 'deploy:publishing', 'coderdojo:bower_symlink'
