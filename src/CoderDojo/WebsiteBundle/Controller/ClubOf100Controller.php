@@ -124,9 +124,11 @@ class ClubOf100Controller extends Controller
          */
         $message = \Swift_Message::newInstance()
             ->setSubject('Nieuw Club van 100 lid')
-            ->setFrom('website@coderdojo.nl', 'CoderDojo Nederland Website')
+            ->setFrom('contact@coderdojo.nl', 'CoderDojo Nederland Website')
             ->setReplyTo($member->getEmail())
-            ->setTo('contact@coderdojo.nl')
+            ->setTo('sanneke@coderdojo.nl')
+            ->addCc('marloes@coderdojo.nl')
+            ->addCc('richard@coderdojo.nl')
             ->setContentType('text/html')
             ->setBody(
                 $this->renderView(':Pages:ClubVan100/Email/notification.html.twig', ['member' => $member])
