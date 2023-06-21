@@ -340,6 +340,17 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
     ga('set', 'forceSSL', true);
     ga('set', 'anonymizeIp', true);
 </script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7TBB09DLS"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E7TBB09DLS');
+</script>
+
 {% javascripts filter="?jsqueeze" output="bundle/app_2.js"
     'assets/vendor/appear.js'
     'assets/vendor/jquery/jquery.min.js'
