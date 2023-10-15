@@ -189,6 +189,11 @@ Ben je ouder? Wordt dan mentor bij een Dojo of start jouw eigen CoderDojo!{% end
                                 </li>
                                 <li {% if app.request.get('_route') == 'dojocon' %}class="active"{% endif %}>
                                     <a href="{{ path('dojocon') }}">
+                                        2023 | DojoCon
+                                    </a>
+                                </li>
+                                <li {% if app.request.get('_route') == 'dojocon2022' %}class="active"{% endif %}>
+                                    <a href="{{ path('dojocon2022') }}">
                                         2022 | DojoCon
                                     </a>
                                 </li>

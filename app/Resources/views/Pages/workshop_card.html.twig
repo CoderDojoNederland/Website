@@ -1,0 +1,42 @@
+{% macro workshop_card(id, img, title, name, info) %}
+    <div class="card g-brd-none rounded-0 g-mb-1">
+        <div id="accordion-workshops-heading-{{ id }}" class="u-accordion__header g-pa-0" role="tab">
+            <div class="collapsed w-100 d-md-table g-color-gray-dark-v5" role="button" data-target="#accordion-workshops-body-{{ id }}" data-toggle="collapse" data-parent="#accordion-workshops" aria-expanded="false" aria-controls="accordion-workshops-body-{{ id }}">
+                <div class="clearfix d-md-table-cell g-valign-middle g-pa-20">
+                    <!-- Track Avatar -->
+                    <img class="d-inline-block g-width-40 g-height-40 g-mr-25" src="{{ img }}" alt="{{ title }}">
+                    <!-- End Track Avatar -->
+
+                    <!-- Track Title -->
+                    <h6 class="d-inline-block g-font-size-13 g-width-100 g-font-weight-700 g-color-black mb-0">{{ title }}</h6>
+                    <!-- End Article Title -->
+                </div>
+                <div class="d-md-table-cell g-font-weight-700 g-hidden-sm-down g-valign-middle g-width-300 g-px-20 g-py-5">
+                    {{ name }}
+                </div>
+
+                <!-- Buy Track -->
+                <div class="text-md-right d-md-table-cell g-valign-middle g-width-200--md g-pa-20">
+                    <div class="btn btn-xl rounded-0 w-100 u-btn-primary g-font-weight-700 g-font-size-12">
+                        Meer info
+                    </div>
+                </div>
+                <!-- End Buy Track -->
+            </div>
+        </div>
+        <div id="accordion-workshops-body-{{ id }}" class="collapse g-bg-gray-dark-v1 g-color-white" role="tabpanel" aria-labelledby="accordion-workshops-heading-03" data-parent="#accordion-workshops">
+            <div class="u-accordion__body g-color-white-opacity-0_8">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="img-fluid" src="{{ img }}" alt="{{ title }}">
+                    </div>
+                    <div class="col-8">
+                        <p class="g-line-height-2">
+                            {{ info|raw }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
