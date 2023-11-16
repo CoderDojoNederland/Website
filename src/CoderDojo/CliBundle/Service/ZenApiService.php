@@ -99,7 +99,7 @@ class ZenApiService
         $kml = file_get_contents($this->kernelRootDir.'/kml/be-border.kml');
         $polygonArray = \geoPHP::load($kml, 'kml')->asArray();
         $polygon = new Polygon();
-        
+
         foreach($polygonArray[0] as $polygonPoint)
         {
             $point = new Coordinate([$polygonPoint[1], $polygonPoint[0]]);
@@ -167,7 +167,7 @@ class ZenApiService
                 $externalDojo->uuid,
                 null,
                 '',
-                'https://zen.coderdojo.com/dojo/' . $externalDojo->urlSlug,
+                'https://coderdojo.com/nl/dojos/' . $externalDojo->urlSlug,
                 $name,
                 $city,
                 $externalDojo->lat,
