@@ -69,12 +69,10 @@ class ZenApiService
                 "variables" => {"countryCode" => $countryCode}
         });
 
-        $response = $this->client->request(
-            'POST',
-            'https://clubs-api.raspberrypi.org/graphql',
+        $response = $this->client->request('POST', 'https://clubs-api.raspberrypi.org/graphql', [
             'headers' => $headers,
             'body' => $body
-        );
+        ]);
 
         $result = json_decode($response->getBody()->getContents());
 
