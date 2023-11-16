@@ -167,7 +167,7 @@ class ZenApiService
                 $externalDojo->uuid,
                 null,
                 '',
-                'https://coderdojo.com/nl/dojos/' . $externalDojo->urlSlug,
+                'https://coderdojo.com/dojos/' . $externalDojo->urlSlug,
                 $name,
                 $city,
                 $externalDojo->lat,
