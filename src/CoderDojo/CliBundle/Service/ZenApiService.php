@@ -10,8 +10,7 @@ use League\Geotools\Polygon\Polygon;
 
 class ZenApiService
 {
-
-    const DOJOS_BY_COUNTRY = <<<'GQL'
+    const DOJOS_BY_COUNTRY = '
         query ($countryCode: String!) {
           dojoCollection: clubs(filterBy: {brand: CODERDOJO, countryCode: $countryCode}, first: 200) {
             dojos: nodes {
@@ -29,7 +28,7 @@ class ZenApiService
             }
           }
         }
-        GQL
+        ';
 
     /**
      * @var Client
@@ -62,10 +61,10 @@ class ZenApiService
             'Content-Type' => 'application/json'
         ];
 
-        $body = json_encode({
-                "query" => DOJOS_BY_COUNTRY,
-                "variables" => {"countryCode" => $countryCode}
-        });
+        $body = json_encode([
+                "query" => self::DOJOS_BY_COUNTRY,
+                "variables" => ["countryCode" => $countryCode]
+        ]);
 
         $response = $this->client->request('POST', 'https://clubs-api.raspberrypi.org/graphql', [
             'headers' => $headers,
@@ -86,7 +85,7 @@ class ZenApiService
      */
     public function getNlDojos()
     {
-        $dojos = getDojosByCountry("NL")
+        $dojos = $this->getDojosByCountry("NL");
         $dojos = $dojos->dojos;
 
         return $this->dojoToCommand($dojos);
@@ -94,7 +93,7 @@ class ZenApiService
 
     public function getBeDojos()
     {
-        $dojos = getDojosByCountry("BE")
+        $dojos = $this->getDojosByCountry("BE");
         $dojos = $dojos->dojos;
 
         $kml = file_get_contents($this->kernelRootDir.'/kml/be-border.kml');
@@ -128,7 +127,7 @@ class ZenApiService
      */
     public function getEvents(array $dojoZenIds)
     {
-        return Array.new();
+        return [];
     }
 
     /**
@@ -165,7 +164,7 @@ class ZenApiService
 
             // verifiedAt and creatorEmail are not in the clubs-api (yet)
             $externalDojos[] = new CreateDojoCommand(
-                $externalDojo->id,
+                $externalDojo->uuid,
                 null,
                 '',
                 'https://zen.coderdojo.com/dojo/' . $externalDojo->urlSlug,

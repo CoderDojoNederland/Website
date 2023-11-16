@@ -214,7 +214,7 @@ class CreateDojoCommand
      */
     public function getCity()
     {
-        return $this->city;
+        return empty($this->city) ? null : $this->city;
     }
 
     /**

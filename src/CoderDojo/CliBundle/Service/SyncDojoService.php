@@ -183,16 +183,16 @@ class SyncDojoService
         $this->progressBar->setMessage('Matched internal dojo: ' . $internalDojo->getName());
 
         $internalDojo->setZenId($externalDojo->getZenId());
-        $internalDojo->setVerifiedAt(new \DateTime($externalDojo->getVerifiedAt()));
-        $internalDojo->setZenCreatorEmail($externalDojo->getZenCreatorEmail());
+        $internalDojo->setVerifiedAt(new \DateTime($externalDojo->getVerifiedAt() ?? $internalDojo->getVerifiedAt()));
+        $internalDojo->setZenCreatorEmail($externalDojo->getZenCreatorEmail() ?? $internalDojo->getZenCreatorEmail());
         $internalDojo->setZenUrl($externalDojo->getZenUrl());
         $internalDojo->setName($externalDojo->getName());
         $internalDojo->setLat($externalDojo->getLat());
         $internalDojo->setLon($externalDojo->getLon());
         $internalDojo->setEmail($externalDojo->getEmail());
         $internalDojo->setWebsite($externalDojo->getWebsite());
-        $internalDojo->setTwitter($externalDojo->getTwitter());
-        $internalDojo->setCity($externalDojo->getCity());
+        $internalDojo->setTwitter($externalDojo->getTwitter() ?? $internalDojo->getTwitter());
+        $internalDojo->setCity($externalDojo->getCity() ?? $internalDojo->getCity());
         $internalDojo->setCountry($externalDojo->getCountry());
 
         /**
