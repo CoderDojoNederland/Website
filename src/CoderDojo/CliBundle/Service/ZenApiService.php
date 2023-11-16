@@ -26,9 +26,7 @@ class ZenApiService
               twitter
               countryCode
               active
-              discardedAt
             }
-            totalCount
           }
         }
         GQL
@@ -155,10 +153,6 @@ class ZenApiService
 
             // Stage 4 has been mapped to setting `active` to false.
             if (!$externalDojo->active) {
-                $removed = true;
-            }
-
-            if (!isNull($externalDojo->discardedAt)) {
                 $removed = true;
             }
 
