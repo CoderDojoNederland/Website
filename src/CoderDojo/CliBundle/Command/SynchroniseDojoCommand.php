@@ -19,6 +19,6 @@ class SynchroniseDojoCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->getContainer()->get('coder_dojo.cli_bundle.service.sync_dojo_service')->run($output);
-        $this->getContainer()->get('coder_dojo.cli_bundle.service.sync_event_service')->run($output);
+        //$this->getContainer()->get('coder_dojo.cli_bundle.service.sync_event_service')->run($output);
     }
 }
