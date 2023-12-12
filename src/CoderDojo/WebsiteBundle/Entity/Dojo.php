@@ -186,9 +186,9 @@ class Dojo
     }
 
     /**
-     * @param \DateTime $verifiedAt
+     * @param \DateTime|null $verifiedAt
      */
-    public function setVerifiedAt(\DateTime $verifiedAt): void
+    public function setVerifiedAt(?\DateTime $verifiedAt): void
     {
         $this->verifiedAt = $verifiedAt;
     }

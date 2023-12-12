@@ -25,6 +25,7 @@ class ZenApiService
               twitter
               countryCode
               active
+              createdAt
             }
           }
         }
@@ -139,6 +140,10 @@ class ZenApiService
         $externalDojos = [];
 
         foreach ($dojos as $externalDojo) {
+            if($externalDojo->city === null) {
+                continue; // ignore for now
+            }
+
             $city = $externalDojo->city;
             $city = explode(",", $city);
             $city = array_pop($city);

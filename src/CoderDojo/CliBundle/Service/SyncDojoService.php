@@ -183,7 +183,12 @@ class SyncDojoService
         $this->progressBar->setMessage('Matched internal dojo: ' . $internalDojo->getName());
 
         $internalDojo->setZenId($externalDojo->getZenId());
-        $internalDojo->setVerifiedAt(new \DateTime($externalDojo->getVerifiedAt() ?? $internalDojo->getVerifiedAt()));
+
+        $verifiedAt = $externalDojo->getVerifiedAt() ? new \DateTime(
+            $externalDojo->getVerifiedAt()
+        ) : $internalDojo->getVerifiedAt();
+
+        $internalDojo->setVerifiedAt($verifiedAt);
         $internalDojo->setZenCreatorEmail($externalDojo->getZenCreatorEmail() ?? $internalDojo->getZenCreatorEmail());
         $internalDojo->setZenUrl($externalDojo->getZenUrl());
         $internalDojo->setName($externalDojo->getName());
