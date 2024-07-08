@@ -227,7 +227,7 @@ class DefaultController extends Controller
      */
     public function styleAction()
     {
-        return $this->redirect('https://app.frontify.com/d/U9lF61SDuNiZ/coderdojo-nederland-styleguide');
+        return $this->redirect('https://company-93902.frontify.com/d/U9lF61SDuNiZ');
     }
     
     
