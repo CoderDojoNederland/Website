@@ -73,7 +73,7 @@ class DefaultController extends Controller
                     ->setSubject($form->get('subject')->getData())
                     ->setFrom('contact@coderdojo.nl', $form->get('naam')->getData())
                     ->setReplyTo($form->get('email')->getData())
-                    ->setTo($form->get('ontvanger')->getData())
+                    ->setTo('contact@coderdojo.nl')
                     ->setBcc('website+websiteform@coderdojo.nl')
                     ->setContentType('text/html')
                     ->setBody(

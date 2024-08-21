@@ -24,7 +24,6 @@ services:
 
     coder_dojo.form.contact:
         class: CoderDojo\WebsiteBundle\Form\Type\ContactFormType
-        arguments: ['@doctrine']
         tags:
             - { name: form.type, alias: coderdojo_contact_form }
 

@@ -22,16 +22,6 @@ use Symfony\Component\Validator\Constraints\Collection;
 class ContactFormType extends AbstractType
 {
     /**
-     * @var User[]
-     */
-    private $dojos;
-
-    public function __construct(Registry $doctrine)
-    {
-        $this->dojos = $doctrine->getRepository('CoderDojoWebsiteBundle:Dojo')->findBy(['country' => 'nl'],['name'=>'asc']);
-    }
-
-    /**
      * Build the form
      *
      * @param FormBuilderInterface $builder form builder
@@ -49,22 +39,6 @@ class ContactFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email:'
             ])
-            ->add('ontvanger', ChoiceType::class, [
-                'label' => 'Ontvanger:',
-                'empty_data' => '- Kies een dojo -',
-                'mapped' => false,
-                'choices' => $this->buildChoices(),
-                'group_by' => function($val, $key, $index) {
-                    if ('contact@coderdojo.nl' !== $val) {
-                        return 'Lokale Dojo\'s';
-                    }
-
-                    return 'Algemene zaken';
-                },
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
             ->add('subject', TextType::class, array(
                 'label' => 'Onderwerp'
             ))
@@ -75,20 +49,6 @@ class ContactFormType extends AbstractType
                     'rows' => 10
                 )
             ));
-    }
-
-    protected function buildChoices()
-    {
-        $choices = [];
-
-        $choices['CoderDojo Nederland'] = 'contact@coderdojo.nl';
-
-        /** @var User $dojo */
-        foreach ($this->dojos as $dojo) {
-            $choices[ $dojo->getName() ] = $dojo->getEmail();
-        }
-
-        return $choices;
     }
 
     /**
