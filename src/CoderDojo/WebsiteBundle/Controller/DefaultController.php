@@ -71,7 +71,7 @@ class DefaultController extends Controller
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
-                    ->setFrom('contact@coderdojo.nl', $form->get('naam')->getData())
+                    ->setFrom('website@coderdojo.nl', $form->get('naam')->getData())
                     ->setReplyTo($form->get('email')->getData())
                     ->setTo('contact@coderdojo.nl')
                     ->setBcc('website+websiteform@coderdojo.nl')
