@@ -55,6 +55,8 @@ class DefaultController extends Controller
         $reCaptchaSiteKey = $this->container->getParameter('recaptcha_site');
 
         if ($request->isMethod('POST')) {
+            return $this->redirect($this->generateUrl('contact'));
+
             $form->handleRequest($request);
 
             if ($form->isValid()) {

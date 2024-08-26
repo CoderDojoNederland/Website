@@ -65,6 +65,11 @@
                         Heb je een vraag of suggestie? Neem dan via dit formulier contact ons op.<br/>
                         Wij doen ons uiterste best om zo snel mogelijk te antwoorden!
                     </p>
+
+                    <p class="alert alert-warning">
+                        Het contactformulier is tijdelijk buiten gebruik. Wij zijn bereikbaar via ons algemeen emailadres contact [at] coderdojo.nl.
+                    </p>
+                    {#
                     {{ form_start(form, { 'action': path('contact'), 'attr': { 'class': 'fos_user_registration_register form-horizontal' } }) }}
                         {{ form_row(form.naam) }}
                         {{ form_row(form.email) }}
@@ -84,6 +89,7 @@
                             </div>
                         </div>
                     {{ form_end(form) }}
+                    #}
                 </div>
             </div>
         </div>
